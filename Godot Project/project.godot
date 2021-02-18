@@ -15,14 +15,15 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Project"
-config/icon="res://icon.png"
+config/name="Sample"
+run/main_scene="res://Scenes/Main_Menu/Main Menu.tscn"
 
 [display]
 
-window/size/width=1366
-window/size/height=768
+window/size/width=1280
+window/size/height=720
 
 [rendering]
 
+environment/default_clear_color=Color( 0.301961, 0.301961, 0.301961, 1 )
 environment/default_environment="res://default_env.tres"
