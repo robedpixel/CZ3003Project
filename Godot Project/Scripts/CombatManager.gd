@@ -5,12 +5,10 @@ extends Node
 # var a = 2
 # var b = "text"
 
-
-export var difficulty = 1
+onready var player = get_node("../Player")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	self.set_meta("type", "monster")
 	pass # Replace with function body.
 
 
@@ -18,5 +16,8 @@ func _ready():
 #func _process(delta):
 #	pass
 
-func test():
-	print("TEST")
+func _enterCombat():
+	print("Entering combat")
+	print(player)
+	player._disableAndHide()
+	get_node("../CombatUI")._show()

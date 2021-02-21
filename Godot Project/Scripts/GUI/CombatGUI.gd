@@ -1,4 +1,4 @@
-extends Node
+extends Control
 
 
 # Declare member variables here. Examples:
@@ -6,11 +6,9 @@ extends Node
 # var b = "text"
 
 
-export var difficulty = 1
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	self.set_meta("type", "monster")
+	self.visible = false
 	pass # Replace with function body.
 
 
@@ -18,5 +16,5 @@ func _ready():
 #func _process(delta):
 #	pass
 
-func test():
-	print("TEST")
+func _show():
+	self.visible = true

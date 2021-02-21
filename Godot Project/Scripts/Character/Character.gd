@@ -3,6 +3,7 @@ extends KinematicBody2D
 export (int) var speed = 200
 
 var velocity = Vector2()
+onready var playerSprite = $PlayerSprite
 
 var canInteract = false
 var interactObjList = []
@@ -14,6 +15,8 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if Input.is_action_just_pressed('interact'):
+		_interact()
 	pass
 
 func get_input():
@@ -43,3 +46,28 @@ func _RemoveInteractable(interactObjName):
 	self.interactObjList.remove(i)
 	print(self.interactObjList)
 	
+# interact with the latest interactable obj
+func _interact():
+	if(interactObjList.size() > 0):
+		var interactObjName = interactObjList[interactObjList.size() - 1]
+		print("interacting with " + interactObjName)
+		
+		var interactObjType = get_node("../Interactables/" + interactObjName).get_meta("type")
+		print(interactObjType)
+		# lazy, lets just do a switch here
+		# godot no switch, use match
+		match interactObjType:
+			"monster":
+				get_node("../CombatManager")._enterCombat()
+
+func _disableAndHide():
+	set_process(false)
+	set_physics_process(false)
+	set_process_input(false)
+	playerSprite.visible = false
+	
+
+
+
+
+

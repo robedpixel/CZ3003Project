@@ -5,7 +5,6 @@ extends Area2D
 # var a = 2
 # var b = "text"
 
-onready var childTextLabel = $InteractTextLabel
 onready var parent = get_parent()
 
 # Called when the node enters the scene tree for the first time.
@@ -21,11 +20,9 @@ func _on_Interactable_Area_body_entered(body):
 	print("Enter")
 	if(body.name == "Player"):
 		body._AddInteractable(parent.name)
-		childTextLabel._show()
 
 
 func _on_Interactable_Area_body_exited(body):
 	print("Exit")
 	if(body.name == "Player"):
 		body._RemoveInteractable(parent.name)
-		childTextLabel._hide()

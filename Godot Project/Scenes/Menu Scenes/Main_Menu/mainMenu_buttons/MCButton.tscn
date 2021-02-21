@@ -1,6 +1,7 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://Scenes/GUI Scenes/Main_Menu/mainMenu_buttons/MenuButtonController.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Menu Scenes/Main_Menu/mainMenu_buttons/MenuButtonController.tscn" type="PackedScene" id=1]
+
 
 
 [node name="MCButton" instance=ExtResource( 1 )]
