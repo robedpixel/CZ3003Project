@@ -68,4 +68,6 @@ margin_right = 1035.0
 margin_bottom = 180.0
 custom_fonts/font = ExtResource( 2 )
 text = "Login"
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
 [connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_Button_pressed"]
