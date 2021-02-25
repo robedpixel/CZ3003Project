@@ -15,7 +15,6 @@ font_data = ExtResource( 5 )
 [node name="Main Menu" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 2.51978
 script = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -67,11 +66,13 @@ scene_to_load = "res://Scenes/Menu Scenes/Select_World/SW.tscn"
 margin_left = 380.0
 margin_right = 740.0
 margin_bottom = 60.0
+scene_to_load = "res://Scenes/Menu Scenes/Maze_Creator/MC.tscn"
 
 [node name="LeaderboardButton" parent="MainMenuVericalContainer/Buttons" instance=ExtResource( 4 )]
 margin_left = 760.0
 margin_right = 1120.0
 margin_bottom = 60.0
+scene_to_load = "res://Scenes/Menu Scenes/Leaderboard/LeaderBoard.tscn"
 
 [node name="Version" type="Label" parent="MainMenuVericalContainer"]
 margin_top = 541.0
