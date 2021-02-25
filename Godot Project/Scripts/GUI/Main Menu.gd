@@ -6,8 +6,8 @@ var x =0
 
 # for connecting the buttons to the respective buttons
 func _ready():
-	$VBoxContainer/CenterRow/Buttons/SelectWorldButton.grab_focus() #for keyboard movements in the main menu
-	for button in $VBoxContainer/CenterRow/Buttons.get_children():
+	$MainMenuVericalContainer/Buttons.grab_focus() #for keyboard movements in the main menu
+	for button in $MainMenuVericalContainer/Buttons.get_children():
 		button.connect("pressed",self,"on_pressed", [button.scene_to_load])
 
 
