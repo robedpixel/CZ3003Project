@@ -61,6 +61,7 @@ custom_constants/separation = 20
 [node name="SelectWorldButton" parent="MainMenuVericalContainer/Buttons" instance=ExtResource( 3 )]
 margin_right = 360.0
 margin_bottom = 60.0
+scene_to_load = "res://Scenes/Menu Scenes/Select_World/SW.tscn"
 
 [node name="MCButton" parent="MainMenuVericalContainer/Buttons" instance=ExtResource( 2 )]
 margin_left = 380.0
