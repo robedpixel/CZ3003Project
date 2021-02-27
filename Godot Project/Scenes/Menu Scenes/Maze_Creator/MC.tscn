@@ -3,7 +3,7 @@
 [ext_resource path="res://Scripts/GUI/BackToMainMenu.gd" type="Script" id=1]
 [ext_resource path="res://Resources/fonts/arcade_48.tres" type="DynamicFont" id=2]
 
-[node name="LeaderBoardScene" type="Control"]
+[node name="MazeCreatorScene" type="Control"]
 margin_right = 1280.0
 margin_bottom = 720.0
 size_flags_horizontal = 3
@@ -12,7 +12,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="LBCenterContainer" type="CenterContainer" parent="."]
+[node name="MCCenterContainer" type="CenterContainer" parent="."]
 margin_left = -0.000246644
 margin_right = 1280.0
 margin_bottom = 710.101
@@ -22,23 +22,23 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="LBCenterContainer"]
-margin_left = 431.0
+[node name="VBoxContainer" type="VBoxContainer" parent="MCCenterContainer"]
+margin_left = 428.0
 margin_top = 300.0
-margin_right = 848.0
+margin_right = 851.0
 margin_bottom = 410.0
 
-[node name="Label" type="Label" parent="LBCenterContainer/VBoxContainer"]
-margin_right = 417.0
+[node name="Label" type="Label" parent="MCCenterContainer/VBoxContainer"]
+margin_right = 423.0
 margin_bottom = 50.0
 custom_fonts/font = ExtResource( 2 )
-text = "LeaderBoard  Page"
+text = "Maze Creator  Page"
 
-[node name="LBBackButton" type="Button" parent="LBCenterContainer/VBoxContainer"]
+[node name="MCBackButton" type="Button" parent="MCCenterContainer/VBoxContainer"]
 margin_top = 54.0
-margin_right = 417.0
+margin_right = 423.0
 margin_bottom = 110.0
 custom_fonts/font = ExtResource( 2 )
 text = "Back"
 script = ExtResource( 1 )
-[connection signal="pressed" from="LBCenterContainer/VBoxContainer/LBBackButton" to="LBCenterContainer/VBoxContainer/LBBackButton" method="_on_LBBackButton_pressed"]
+[connection signal="pressed" from="MCCenterContainer/VBoxContainer/MCBackButton" to="MCCenterContainer/VBoxContainer/MCBackButton" method="_on_MCBackButton_pressed"]
