@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://CharacterStats.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/Menu Scenes/Select_Character/Warrior.png" type="Texture" id=2]
+
+[resource]
+script = ExtResource( 1 )
+characterType = "Warrior"
+health = 10
+multiplier = 1.0
+profile = ExtResource( 2 )
