@@ -10,3 +10,7 @@ func _on_MCBackButton_pressed():
 
 func _on_LBBackButton_pressed():
 	get_tree().change_scene(path_to_main_menu)
+
+
+func _on_BackButton_pressed():
+	get_tree().change_scene(path_to_main_menu)
