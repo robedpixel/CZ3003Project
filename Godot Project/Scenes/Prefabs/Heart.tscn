@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Resources/images/heart.png" type="Texture" id=1]
+
+[node name="Heart" type="Sprite"]
+scale = Vector2( 3, 3 )
+texture = ExtResource( 1 )
+hframes = 5
+region_rect = Rect2( 0, 2, 80, 13 )
