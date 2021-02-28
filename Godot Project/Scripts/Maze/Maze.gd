@@ -12,7 +12,7 @@ onready var upDoor = get_node("../Interactables/UpDoor")
 onready var downDoor = get_node("../Interactables/DownDoor")
 
 # UI
-onready var gridLocationTxt = get_node("../MainUI/GridLocationBackground/GridLocationText")
+onready var gridLocationTxt = get_node("../MainCanvas/MainUI/GridLocationBackground/GridLocationText")
 
 var playerX = 0
 var playerY = 0
@@ -37,6 +37,8 @@ func _initializeMaze():
 	
 	_loadRoom(playerX, playerY)
 	_updatePlayerGridUI()
+	
+	player._initHealth(3)
 
 # 0 up
 # 1 down

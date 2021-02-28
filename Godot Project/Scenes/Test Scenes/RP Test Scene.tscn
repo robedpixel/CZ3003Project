@@ -57,6 +57,46 @@ extents = Vector2( 73.791, 72.4807 )
 
 [node name="Main" type="Node2D"]
 
+[node name="MainCanvas" type="CanvasLayer" parent="."]
+
+[node name="MainUI" type="Control" parent="MainCanvas"]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GridLocationBackground" type="ColorRect" parent="MainCanvas/MainUI"]
+anchor_bottom = 1.0
+margin_left = 1080.0
+margin_right = 1280.0
+margin_bottom = 40.0
+color = Color( 0.239216, 0.235294, 0.235294, 0.745098 )
+
+[node name="GridLocationText" type="Label" parent="MainCanvas/MainUI/GridLocationBackground"]
+margin_right = 200.0
+margin_bottom = 80.0
+custom_fonts/font = ExtResource( 13 )
+text = "x0	    y0"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Hearts" type="Control" parent="MainCanvas/MainUI"]
+margin_left = 50.0
+margin_top = 50.0
+margin_right = 90.0
+margin_bottom = 90.0
+script = ExtResource( 14 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CombatUI" parent="MainCanvas" instance=ExtResource( 6 )]
+visible = false
+
 [node name="Player" type="KinematicBody2D" parent="."]
 position = Vector2( 233.082, 112.303 )
 script = ExtResource( 2 )
@@ -185,46 +225,8 @@ shape = SubResource( 9 )
 [node name="CombatManager" type="Node2D" parent="."]
 script = ExtResource( 5 )
 
-[node name="CombatUI" parent="." instance=ExtResource( 6 )]
-visible = false
-
 [node name="MazeDesign" type="Node2D" parent="."]
 script = ExtResource( 8 )
-
-[node name="MainUI" type="Control" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="GridLocationBackground" type="ColorRect" parent="MainUI"]
-anchor_bottom = 1.0
-margin_left = 1080.0
-margin_right = 1280.0
-margin_bottom = 40.0
-color = Color( 0.239216, 0.235294, 0.235294, 0.745098 )
-
-[node name="GridLocationText" type="Label" parent="MainUI/GridLocationBackground"]
-margin_right = 200.0
-margin_bottom = 80.0
-custom_fonts/font = ExtResource( 13 )
-text = "x0	    y0"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Hearts" type="Control" parent="MainUI"]
-margin_left = 50.0
-margin_top = 50.0
-margin_right = 90.0
-margin_bottom = 90.0
-script = ExtResource( 14 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 [connection signal="body_entered" from="Interactables/UpDoor/Area2D" to="Interactables/UpDoor/Area2D" method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="Interactables/UpDoor/Area2D" to="Interactables/UpDoor/Area2D" method="_on_Area2D_body_exited"]
 [connection signal="body_entered" from="Interactables/DownDoor/Area2D" to="Interactables/DownDoor/Area2D" method="_on_Area2D_body_entered"]

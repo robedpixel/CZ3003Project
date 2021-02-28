@@ -1,9 +1,7 @@
 extends Node
 
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+onready var combatUI = get_node("../MainCanvas/CombatUI")
 
 onready var player = get_node("../Player")
 
@@ -31,9 +29,9 @@ func _exitCombat():
 	
 func _toggleCombatUI(show):
 	if(show):
-		get_node("../CombatUI")._show()
+		combatUI._show()
 	else:
-		get_node("../CombatUI")._hide()	
+		combatUI._hide()	
 
 # Button callback,
 # ansValue will take on values 1, 2, 3, 4
@@ -41,4 +39,9 @@ func _onAnswer(ansValue):
 	print('Chosen ans ' + str(ansValue))
 	if(ansValue == correctAnswer):
 		print("You got it correct!")
+	else:
+		print("Wrong answer")
+		# Take enemy damage value
+		# Hardcode to 1 dmg for now
+		player._takeDamage(1)
 	_exitCombat()
