@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Thief.png-e2aeaaac1705531f98181b17e2da5e51.stex"
+path="res://.import/Warrior.png-dc39eba91b842143cd482536f36e150d.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Scenes/Menu Scenes/Select_Character/Thief.png"
-dest_files=[ "res://.import/Thief.png-e2aeaaac1705531f98181b17e2da5e51.stex" ]
+source_file="res://Resources/images/Warrior.png"
+dest_files=[ "res://.import/Warrior.png-dc39eba91b842143cd482536f36e150d.stex" ]
 
 [params]
 

@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scenes/Menu Scenes/Select_Character/CharacterDisplay.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Scenes/Menu Scenes/Select_Character/Thief.png" type="Texture" id=2]
-[ext_resource path="res://Scenes/Menu Scenes/Select_Character/Warrior.png" type="Texture" id=3]
+[ext_resource path="res://Resources/images/Thief.png" type="Texture" id=2]
+[ext_resource path="res://Resources/images/Warrior.png" type="Texture" id=3]
 [ext_resource path="res://Resources/fonts/ARCADECLASSIC.TTF" type="DynamicFontData" id=4]
 
 [sub_resource type="DynamicFont" id=1]

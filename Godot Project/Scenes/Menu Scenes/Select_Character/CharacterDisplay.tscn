@@ -1,8 +1,12 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://Scenes/Menu Scenes/Select_Character/SC.gd" type="Script" id=1]
-[ext_resource path="res://Scenes/Menu Scenes/Select_Character/Warrior.png" type="Texture" id=2]
-[ext_resource path="res://Scenes/Menu Scenes/Select_Character/PixelRobot.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://Scripts/GUI/SC.gd" type="Script" id=1]
+[ext_resource path="res://Resources/images/Warrior.png" type="Texture" id=2]
+[ext_resource path="res://Resources/fonts/PixelRobot.ttf" type="DynamicFontData" id=3]
+
+[sub_resource type="DynamicFont" id=2]
+size = 70
+font_data = ExtResource( 3 )
 
 [sub_resource type="DynamicFont" id=1]
 size = 70
@@ -71,12 +75,12 @@ size_flags_vertical = 3
 
 [node name="Class" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 margin_right = 452.0
-margin_bottom = 55.0
+margin_bottom = 56.0
 
 [node name="Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/Class"]
 margin_right = 75.0
-margin_bottom = 55.0
-custom_fonts/font = SubResource( 1 )
+margin_bottom = 56.0
+custom_fonts/font = SubResource( 2 )
 text = "Class"
 
 [node name="Data" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/Class"]
@@ -89,9 +93,9 @@ text = "Knight"
 align = 2
 
 [node name="Health" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer"]
-margin_top = 59.0
+margin_top = 60.0
 margin_right = 452.0
-margin_bottom = 114.0
+margin_bottom = 115.0
 
 [node name="Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/Health"]
 margin_right = 98.0
@@ -109,9 +113,9 @@ text = "10"
 align = 2
 
 [node name="Multiplier" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer"]
-margin_top = 118.0
+margin_top = 119.0
 margin_right = 452.0
-margin_bottom = 173.0
+margin_bottom = 174.0
 
 [node name="Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/Multiplier"]
 margin_right = 146.0

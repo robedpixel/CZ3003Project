@@ -12,7 +12,7 @@ onready var select_thief = get_node("../../HBoxContainer2/CenterContainer2/Selec
 
 
 func _ready():
-	var class_data = load("res://Scenes/Menu Scenes/Select_Character/Warrior.tres")
+	var class_data = load("res://Resources/images/Warrior.tres")
 	update_class_display(class_data)
 	
 func update_class_display(class_Data):
@@ -23,14 +23,14 @@ func update_class_display(class_Data):
 
 
 func _on_WarriorButton_pressed():
-	var class_data = load("res://Scenes/Menu Scenes/Select_Character/Warrior.tres")
+	var class_data = load("res://Resources/images/Warrior.tres")
 	update_class_display(class_data)
 	select_warrior.disabled = false
 	select_thief.disabled = true
 
 
 func _on_ThiefButton_pressed():
-	var class_data = load("res://Scenes/Menu Scenes/Select_Character/Thief.tres")
+	var class_data = load("res://Resources/images/Thief.tres")
 	update_class_display(class_data)
 	select_thief.disabled = false
 	select_warrior.disabled = true
