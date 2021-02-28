@@ -48,16 +48,21 @@ func _moveRoom(dir):
 	var newPlayerY = playerY
 	
 	print("Moving " + dir)
+	var doorPos = Vector2(0, 0)
 	# move
 	match dir:
 		"UpDoor":
 			newPlayerY += 1
+			doorPos = downDoor.position
 		"DownDoor":
 			newPlayerY -= 1
+			doorPos = upDoor.position
 		"LeftDoor":
 			newPlayerX -=1
+			doorPos = rightDoor.position
 		"RightDoor":
 			newPlayerX += 1
+			doorPos = leftDoor.position
 		_:
 			print("Unable to move, invalid direction. Door missing?")
 			
@@ -71,6 +76,7 @@ func _moveRoom(dir):
 		
 	_loadRoom(playerX, playerY)
 	_updatePlayerGridUI()
+	player.set_position(doorPos)
 	
 
 
