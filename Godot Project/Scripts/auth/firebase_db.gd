@@ -5,10 +5,25 @@ const FIRESTORE_URL := "https://ssadmazerunner-default-rtdb.firebaseio.com/"
 var id_token
 var id
 var username
+var user_id
 var http
 
 func _ready():
+	http = HTTPRequest.new()
+	add_child(http)
 	pass
+
+func save_world_score(world: int ,score: int) ->void:
+	user_id = FirebaseAuth._get_user_id()
+	id_token = FirebaseAuth._get_current_token_id()
+	var fields := {
+		"student-id": user_id,
+		"score": score
+	}
+	var body := to_json(fields)
+	var path = "leaderboard/World "+str(world)+ ".json"
+	var url = FIRESTORE_URL + path + "?auth=%s" % id_token
+	http.request(url, FirebaseAuth._get_request_headers(), false, HTTPClient.METHOD_POST, body)
 
 func save_document(path: String, fields: Dictionary, http: HTTPRequest) -> void:
 	id_token = FirebaseAuth._get_current_token_id()

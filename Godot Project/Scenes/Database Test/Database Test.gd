@@ -26,7 +26,8 @@ func _on_Button_pressed():
 		"score": score
 	}
 	print(data)
-	handler.save_document("leaderboard.json", data, self.http)
+	#handler.save_document("leaderboard.json", data, self.http)
+	handler.save_world_score(1,30)
 
 
 func _on_Button2_pressed():
