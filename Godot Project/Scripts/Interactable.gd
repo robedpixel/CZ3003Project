@@ -26,3 +26,17 @@ func _on_Interactable_Area_body_exited(body):
 	print("Exit")
 	if(body.name == "Player"):
 		body._RemoveInteractable(parent.name)
+
+
+
+func _on_Area2D_body_entered(body):
+	print("Enter")
+	if(body.name == "Player"):
+		body._AddInteractable(parent.name)
+		
+
+
+func _on_Area2D_body_exited(body):
+	print("Exit")
+	if(body.name == "Player"):
+		body._RemoveInteractable(parent.name)

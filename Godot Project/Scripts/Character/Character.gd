@@ -2,11 +2,19 @@ extends KinematicBody2D
 
 export (int) var speed = 200
 
+const FLOAT_EPSILON = 0.00001
+
+onready var cmbtManager = get_node("../CombatManager")
+onready var mazeManager = get_node("../Maze")
+
 var velocity = Vector2()
 onready var playerSprite = $PlayerSprite
 
 var canInteract = false
 var interactObjList = []
+
+var movingRight = false
+var right = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -17,7 +25,15 @@ func _ready():
 func _process(delta):
 	if Input.is_action_just_pressed('interact'):
 		_interact()
-	pass
+	
+	if(movingRight):
+		if(not right):
+			apply_scale(Vector2(-1, 1))
+		right = true
+	elif(not movingRight):
+		if(right):
+			apply_scale(Vector2(-1, 1))
+		right = false
 
 func get_input():
 	velocity = Vector2()
@@ -30,6 +46,13 @@ func get_input():
 	if Input.is_action_pressed('up'):
 		velocity.y -= 1
 	velocity = velocity.normalized() * speed
+	
+	if(velocity.x > FLOAT_EPSILON):
+		movingRight = true
+	elif(velocity.x < -FLOAT_EPSILON):
+		movingRight = false
+	#print(velocity)
+	#print(right)
 
 func _physics_process(delta):
 	get_input()
@@ -52,19 +75,32 @@ func _interact():
 		var interactObjName = interactObjList[interactObjList.size() - 1]
 		print("interacting with " + interactObjName)
 		
-		var interactObjType = get_node("../Interactables/" + interactObjName).get_meta("type")
-		print(interactObjType)
+		if('Door' in interactObjName):
+			mazeManager._moveRoom(interactObjName)
+		elif('Monster' in interactObjName):
+			cmbtManager._enterCombat()
+		
+		#var interactObjType = get_node("../Interactables/" + interactObjName).get_meta("type")
+		#print(interactObjType)
 		# lazy, lets just do a switch here
 		# godot no switch, use match
-		match interactObjType:
-			"monster":
-				get_node("../CombatManager")._enterCombat()
+#		match interactObjType:
+#			"monster":
+#				cmbtManager._enterCombat()
+#			"door":
+#				mazeManager._moveRoom(interactObjName)
 
 func _disableAndHide():
 	set_process(false)
 	set_physics_process(false)
 	set_process_input(false)
 	playerSprite.visible = false
+	
+func _enable():
+	set_process(true)
+	set_physics_process(true)
+	set_process_input(true)
+	playerSprite.visible = true
 	
 
 
