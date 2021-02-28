@@ -17,6 +17,9 @@ func _ready():
 	add_child(http)
 
 
+func _get_user_id() ->String:
+	return user_info.id
+
 func _get_current_token_id() -> String:
 	#check if current token is expired
 	#if no, return current token
