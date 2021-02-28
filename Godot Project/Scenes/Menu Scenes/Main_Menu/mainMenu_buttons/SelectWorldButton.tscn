@@ -2,11 +2,9 @@
 
 [ext_resource path="res://Scenes/Menu Scenes/Main_Menu/mainMenu_buttons/MenuButtonController.tscn" type="PackedScene" id=1]
 
-
-
 [node name="Button" instance=ExtResource( 1 )]
 scene_to_load = "res://Scenes/Select_World/SelectWorld.tscn"
 
 [node name="Label" parent="." index="0"]
-text = "Select World
-"
+margin_bottom = 3.8147e-06
+text = "Select World"
