@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scripts/GUI/BackToMainMenu.gd" type="Script" id=1]
 [ext_resource path="res://Resources/fonts/arcade_48.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Scripts/GUI/Gotocharselect.gd" type="Script" id=3]
+[ext_resource path="res://Resources/images/sample_map.png" type="Texture" id=4]
 
 [node name="SelectWorldScene" type="Control"]
 margin_right = 1280.0
@@ -13,33 +15,85 @@ __meta__ = {
 }
 
 [node name="SWCenterContainer" type="CenterContainer" parent="."]
-margin_left = 1.41406
-margin_top = -7.07104
-margin_right = 1281.41
-margin_bottom = 712.929
+margin_left = -1.94971
+margin_top = 0.656285
+margin_right = 1278.05
+margin_bottom = 720.656
 size_flags_horizontal = 3
 size_flags_vertical = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="SWCenterContainer"]
-margin_left = 431.0
-margin_top = 305.0
-margin_right = 848.0
-margin_bottom = 415.0
-
-[node name="Label" type="Label" parent="SWCenterContainer/VBoxContainer"]
-margin_right = 417.0
-margin_bottom = 50.0
+[node name="Page title" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -471.0
+margin_top = 23.622
+margin_right = 471.0
+margin_bottom = 73.622
 custom_fonts/font = ExtResource( 2 )
-text = "Select World Page"
+text = "SELECT  A   WORLD  TO  BEGIN  YOUR  ADVENTURE"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="SWBackButton" type="Button" parent="SWCenterContainer/VBoxContainer"]
-margin_top = 54.0
-margin_right = 417.0
-margin_bottom = 110.0
+[node name="BackButton" type="Button" parent="."]
+margin_left = 1055.07
+margin_top = 582.135
+margin_right = 1175.07
+margin_bottom = 638.135
 custom_fonts/font = ExtResource( 2 )
-text = "Back"
+text = "back"
 script = ExtResource( 1 )
-[connection signal="pressed" from="SWCenterContainer/VBoxContainer/SWBackButton" to="SWCenterContainer/VBoxContainer/SWBackButton" method="_on_SWBackButton_pressed"]
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+margin_top = -6.0
+margin_right = 1281.0
+margin_bottom = 466.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="sample_map2" type="Sprite" parent="HBoxContainer"]
+position = Vector2( 933.841, 282.078 )
+scale = Vector2( 1.85211, 1.62787 )
+texture = ExtResource( 4 )
+
+[node name="sample_map" type="Sprite" parent="HBoxContainer"]
+position = Vector2( 357.395, 282.078 )
+scale = Vector2( 1.87453, 1.62787 )
+texture = ExtResource( 4 )
+
+[node name="World1Button" type="Button" parent="."]
+margin_left = 74.0
+margin_top = 498.0
+margin_right = 635.0
+margin_bottom = 554.0
+size_flags_horizontal = 7
+custom_fonts/font = ExtResource( 2 )
+text = "world 1"
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="World2Button" type="Button" parent="."]
+margin_left = 653.32
+margin_top = 498.0
+margin_right = 1214.32
+margin_bottom = 554.0
+size_flags_horizontal = 7
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 2 )
+text = "world 2"
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="BackButton" to="BackButton" method="_on_BackButton_pressed"]
+[connection signal="pressed" from="World1Button" to="World1Button" method="_on_World1Button_pressed"]
+[connection signal="pressed" from="World2Button" to="World1Button" method="_on_World2Button_pressed"]
