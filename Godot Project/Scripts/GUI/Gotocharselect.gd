@@ -1,6 +1,6 @@
 extends Button
 
-var path_to_char_select ="res://Scenes/Menu Scenes/Select_Character/SC.tscn";
+var path_to_char_select ="res://Scenes/Menu Scenes/Select_Character/CharacterSelection.tscn";
 
 
 
@@ -11,6 +11,7 @@ var path_to_char_select ="res://Scenes/Menu Scenes/Select_Character/SC.tscn";
 
 func _on_World1Button_pressed():
 	get_tree().change_scene(path_to_char_select)
+	
 
 
 func _on_World2Button_pressed():
