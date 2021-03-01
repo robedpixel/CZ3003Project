@@ -38,7 +38,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="BackButton" type="Button" parent="."]
+[node name="SWBackButton" type="Button" parent="."]
 margin_left = 1055.07
 margin_top = 582.135
 margin_right = 1175.07
@@ -94,6 +94,6 @@ script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-[connection signal="pressed" from="BackButton" to="BackButton" method="_on_BackButton_pressed"]
+[connection signal="pressed" from="SWBackButton" to="SWBackButton" method="_on_SWBackButton_pressed"]
 [connection signal="pressed" from="World1Button" to="World1Button" method="_on_World1Button_pressed"]
 [connection signal="pressed" from="World2Button" to="World1Button" method="_on_World2Button_pressed"]

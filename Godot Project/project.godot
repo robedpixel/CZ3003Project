@@ -26,6 +26,7 @@ run/main_scene="res://Scenes/Menu Scenes/Main_Menu/Main Menu.tscn"
 [autoload]
 
 FirebaseAuth="*res://Scripts/auth/firebase_auth.gd"
+GlobalVariables="*res://Scripts/global_variables.gd"
 
 [display]
 
