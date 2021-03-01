@@ -17,6 +17,7 @@ var interactObjList = []
 var movingRight = false
 var right = false
 
+# throw all the stats here, 
 var maxHealth = 0
 var health = 0
 

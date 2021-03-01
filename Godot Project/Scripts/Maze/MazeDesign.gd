@@ -5,11 +5,12 @@ var HEIGHT
 
 var layout
 
-# 0 empty room
+# 0 walled
 # 1 challenge room
 # 2 shop
 # 3 boss
 # 4 starting room
+# 5 empty room
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -18,9 +19,9 @@ func _ready():
 #func _process(delta):
 #	pass
 
-# set the layout variable
-func _setMaze():
-	pass
+# set the 2d array layout variable
+func _setMaze(newLayout):
+	layout = newLayout
 
 func _generateMaze(mazeWidth, mazeHeight):
 	WIDTH = mazeWidth
@@ -48,8 +49,8 @@ func _setRoom(x, y, value):
 	if(x < 0 or x >= WIDTH or y < 0 or y >= HEIGHT or value < 0 or value > 4):
 		print("Error setting room " + str(x) + " " + str(y) + " " + str(value))
 	
-	print("B")
-	print(layout)
+	layout[x][y] = value
+	print("Setting " + str(x) + " " + str(y) + " " + str(value))
 	#layout[x][y] = value
 	
 	
