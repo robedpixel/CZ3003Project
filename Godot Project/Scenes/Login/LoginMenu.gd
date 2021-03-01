@@ -4,8 +4,11 @@ extends Control
 
 var username = ""
 var password = ""
+var questions
 
 func _ready():
+	questions = load("res://Scripts/Maze/QuestionManager.gd").new()
+	add_child(questions)
 	pass
 
 func _on_Button_pressed():
