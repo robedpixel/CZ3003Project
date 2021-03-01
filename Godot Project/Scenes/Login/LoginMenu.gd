@@ -14,10 +14,6 @@ func _ready():
 func _on_Button_pressed():
 	username = $"VBoxContainer/UsernameContainer/UsernameInputBox".get_text()
 	password = $"VBoxContainer/PasswordContainer/PasswordInputBox".get_text()
-	
-	var json = questions.read_question_source("")
-	questions.read_questions()
-	
 	var success = yield(FirebaseAuth.login(username,password),"completed")
 	if success:
 		#Scene for testing database accesses
