@@ -57,9 +57,10 @@ func login(email: String, password: String) -> bool:
 	}
 	self.http.request(LOGIN_URL, [], false,HTTPClient.METHOD_POST, to_json(body))
 	var result:= yield(http, "request_completed") as Array
+	print(result)
 	if result[1] ==200:
 		user_info = _get_user_info(result)
-		print("success")
+		print("successsful login")
 		return true
-	print("failure")
+	print("failure to login")
 	return false

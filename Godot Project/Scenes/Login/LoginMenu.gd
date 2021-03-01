@@ -11,8 +11,10 @@ func _ready():
 func _on_Button_pressed():
 	username = $"VBoxContainer/UsernameContainer/UsernameInputBox".get_text()
 	password = $"VBoxContainer/PasswordContainer/PasswordInputBox".get_text()
-	var success = FirebaseAuth.login(username,password)
+	var success = yield(FirebaseAuth.login(username,password),"completed")
 	if success:
-		get_tree().change_scene("res://Scenes/Database Test/Database Test.tscn")
+		#Scene for testing database accesses
+		#get_tree().change_scene("res://Scenes/Database Test/Database Test.tscn")
+		get_tree().change_scene("res://Scenes/Menu Scenes/Main_Menu/Main Menu.tscn")
 	else:
 		print("cannot log in")
