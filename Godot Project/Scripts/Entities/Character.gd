@@ -6,6 +6,7 @@ const FLOAT_EPSILON = 0.00001
 
 onready var cmbtManager = get_node("../CombatManager")
 onready var mazeManager = get_node("../Maze")
+onready var healthUI = get_node("../MainCanvas/MainUI/Hearts")
 
 var velocity = Vector2()
 onready var playerSprite = $PlayerSprite
@@ -16,10 +17,12 @@ var interactObjList = []
 var movingRight = false
 var right = false
 
+var maxHealth = 0
+var health = 0
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
-
+	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -102,7 +105,23 @@ func _enable():
 	set_process_input(true)
 	playerSprite.visible = true
 	
+func _initHealth(initHealth):
+	maxHealth = initHealth
+	health = maxHealth
+	healthUI._initHeartUI(maxHealth)
 
+func _restoreHealth(healthRestored):
+	health += healthRestored
+	if(health >= maxHealth):
+		health = maxHealth
+	healthUI._setHeart(health, maxHealth)
+
+func _takeDamage(damageTaken):
+	health -= damageTaken
+	if(health < 0):
+		print("Game over")
+		return
+	healthUI._setHeart(health, maxHealth)
 
 
 
