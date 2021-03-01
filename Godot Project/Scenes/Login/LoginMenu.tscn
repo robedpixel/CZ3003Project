@@ -68,4 +68,11 @@ margin_right = 1035.0
 margin_bottom = 180.0
 custom_fonts/font = ExtResource( 2 )
 text = "Login"
+
+[node name="LoginStatusLabel" type="Label" parent="VBoxContainer"]
+margin_top = 184.0
+margin_right = 1035.0
+margin_bottom = 198.0
+align = 1
+valign = 1
 [connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_Button_pressed"]
