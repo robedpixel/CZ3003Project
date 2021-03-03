@@ -11,14 +11,13 @@ var maxHearts = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass
-	#_initHeartUI(3)
-	#_setHeart(2, 4)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
 
+# Call this function to initiate the entire UI
 func _initHeartUI(maxHearts):
 	_deleteHeartUI()
 	_createHeartUI(maxHearts)
@@ -27,6 +26,7 @@ func _deleteHeartUI():
 	for n in get_children():
 		n.queue_free()
 
+# creates the heart UI
 func _createHeartUI(noOfHearts):
 	for i in noOfHearts:
 		var heartInstance = heartObj.instance()

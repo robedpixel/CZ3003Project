@@ -1,6 +1,7 @@
 extends Node
 
 
+onready var area2D = $Area2D
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
@@ -19,5 +20,7 @@ func _ready():
 func _toggleDoor(show):
 	if(show):
 		$Sprite.visible = true
+		area2D._enable()
 	else:
 		$Sprite.visible = false
+		area2D._disable()

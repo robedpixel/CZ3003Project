@@ -5,6 +5,7 @@ extends Node
 # var a = 2
 # var b = "text"
 
+onready var monsterSprite = $MonsterSprite
 
 export var difficulty = 1
 
@@ -17,5 +18,14 @@ func _ready():
 #func _process(delta):
 #	pass
 
-func test():
-	print("TEST")
+func _disableAndHide():
+	set_process(false)
+	set_physics_process(false)
+	set_process_input(false)
+	monsterSprite.visible = false
+	
+func _enable():
+	set_process(true)
+	set_physics_process(true)
+	set_process_input(true)
+	monsterSprite.visible = true

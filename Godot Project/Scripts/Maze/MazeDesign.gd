@@ -7,8 +7,8 @@ var layout
 
 # 0 walled
 # 1 challenge room
-# 2 shop
-# 3 boss
+# 2 boss
+# 3 shop
 # 4 starting room
 # 5 empty room
 
@@ -36,6 +36,7 @@ func _generateMaze(mazeWidth, mazeHeight):
 			layout[x].append([])
 			layout[x][y]=1
 			
+	_setRoom(0, 1, 1)
 			
 func _getLayout():
 	return layout
@@ -51,6 +52,5 @@ func _setRoom(x, y, value):
 	
 	layout[x][y] = value
 	print("Setting " + str(x) + " " + str(y) + " " + str(value))
-	#layout[x][y] = value
 	
 	
