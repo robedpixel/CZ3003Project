@@ -15,6 +15,7 @@ func _ready():
 	var class_data = load("res://Resources/images/Warrior.tres")
 	update_class_display(class_data)
 	
+	
 func update_class_display(class_Data):
 	profile_image.texture = class_Data.profile
 	class_label.text = class_Data.characterType
@@ -38,8 +39,13 @@ func _on_ThiefButton_pressed():
 
 # Go to the game scene based on the selection
 func _on_SelectWarrior_pressed():
-	get_tree().change_scene(path_to_main_menu) # Change accordingly
+	#get_tree().change_scene(path_to_main_menu) # Change accordingly
+	print("Warriror Selected")
+	print("World ",GlobalVariables.world_num)
+	
 
 
 func _on_SelectThief_pressed():
-	get_tree().change_scene(path_to_main_menu) # Change accordingly
+	#get_tree().change_scene(path_to_main_menu) # Change accordingly
+	print("Theif Selected")
+	print("World ",GlobalVariables.world_num)
