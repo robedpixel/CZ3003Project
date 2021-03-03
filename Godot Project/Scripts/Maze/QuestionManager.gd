@@ -29,10 +29,9 @@ func _ready():
 
 func read_json_from_source(path : String)->Dictionary:
 	var file = File.new()
-	file.open("res://Resources/Questions/sample_json.json", file.READ)
+	file.open(path, file.READ)
 	var json = file.get_as_text()
 	file.close()
-	print(JSON.parse(json).result)
 	var json_result = JSON.parse(json).result
 	return json_result
 
@@ -44,13 +43,13 @@ func read_questions(questions_json: Dictionary)->void:
 	self.question_array.resize(counter)
 	counter = 0
 	for question in questions_json:
-		question_array[counter] = CombatQuestion.new()
-		question_array[counter].question = questions_json[question]["question"]
-		question_array[counter].answer_a = questions_json[question]["answer_a"]
-		question_array[counter].answer_b = questions_json[question]["answer_b"]
-		question_array[counter].answer_c = questions_json[question]["answer_c"]
-		question_array[counter].answer_d = questions_json[question]["answer_d"]
-		question_array[counter].correct_answer = questions_json[question]["cor_answer"]
+		self.question_array[counter] = CombatQuestion.new()
+		self.question_array[counter].question = questions_json[question]["question"]
+		self.question_array[counter].answer_a = questions_json[question]["answer_a"]
+		self.question_array[counter].answer_b = questions_json[question]["answer_b"]
+		self.question_array[counter].answer_c = questions_json[question]["answer_c"]
+		self.question_array[counter].answer_d = questions_json[question]["answer_d"]
+		self.question_array[counter].correct_answer = questions_json[question]["cor_answer"]
 		counter = counter + 1
 		
 func add_questions(questions_json: Dictionary)->void:
@@ -78,6 +77,7 @@ func add_questions_from_source(path : String):
 	var json_result = read_json_from_source(path)
 	self.add_questions(json_result)
 
+#To be called once before any subsequent calls to ask_question
 func prepare_questions():
 	self.asked_questions.resize(self.num_questions)
 	for i in range(0, self.asked_questions.size()):
@@ -85,15 +85,22 @@ func prepare_questions():
 	unasked_questions = num_questions
 
 func ask_question()->CombatQuestion:
-	self.temp_int = rng.randomize(0,unasked_questions-1)
-	for i in range(0, self.questions_array.size()):
+	self.temp_int = rng.randi_range(0,unasked_questions-1)
+	for i in range(0, self.question_array.size()):
 		if asked_questions[i]==false:
 			if self.temp_int != 0:
 				self.temp_int = self.temp_int - 1
 			else:
 				unasked_questions = unasked_questions - 1
 				asked_questions[i] = true
-				return self.questions_array[i]
+				
+				#reset asked questions if all questions have been asked
+				if unasked_questions == 0:
+					unasked_questions = num_questions
+					for j in range(0, asked_questions.size()):
+						asked_questions[j] = false
+						
+				return self.question_array[i]
 	return null
 
 func clear_questions_array():
