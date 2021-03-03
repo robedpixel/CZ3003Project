@@ -7,15 +7,19 @@ onready var buttons_dict= {
 	
 	"btn_x0y3":["Button_X0Y3",0,3],"btn_x1y3":["Button_X1Y3",1,3],
 	"btn_x2y3":["Button_X2Y3",2,3],"btn_x3y3":["Button_X3Y3",3,3],
+	"btn_x4y3":["Button_X4Y3",4,3],
 	
 	"btn_x0y2":["Button_X0Y2",0,2],"btn_x1y2":["Button_X1Y2",1,2],
 	"btn_x2y2":["Button_X2Y2",2,2],"btn_x3y2":["Button_X3Y2",3,2],
+	"btn_x4y2":["Button_X4Y2",4,2],
 	
 	"btn_x0y1":["Button_X0Y1",0,1],"btn_x1y1":["Button_X1Y1",1,1],
 	"btn_x2y1":["Button_X2Y1",2,1],"btn_x3y1":["Button_X3Y1",3,1],
+	"btn_x4y1":["Button_X4Y1",4,1],
 	
 	"btn_x0y0":["Button_X0Y0_Start",0,0],"btn_x1y0":["Button_X1Y0",1,0],
-	"btn_x2y0":["Button_X2Y0",2,0],"btn_x3y0":["Button_X3Y0",3,0]
+	"btn_x2y0":["Button_X2Y0",2,0],"btn_x3y0":["Button_X3Y0",3,0],
+	"btn_x4y0":["Button_X4Y0",4,0]
 	}
 
 var button_grid = []
@@ -26,12 +30,10 @@ func _ready():
 	var height=5
 	var width=5
 	generate_layout(height,width)
-	#initial_button_text()
+	initial_button_text()
 	
 	print(button_grid)
 	
-	#y axis = 3
-	#btn_x0y3.text=(state_name(button_grid[0][3])) 
 
 func generate_layout(var height,var width):
 	for x in range(width):
@@ -83,4 +85,5 @@ func button_press(var button_name):
 	button_node.text= get_state_name(button_grid[x][y])
 	print(button_grid)
 
-
+func _on_Button_X0Y4_pressed():
+	button_press("btn_x0y4")
