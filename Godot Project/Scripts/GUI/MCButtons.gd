@@ -1,5 +1,8 @@
 extends GridContainer
 
+# Dictionary that contains the info of each button
+# "button_key" : [0,1,2] where,
+# 0 = buton path of node, 1 = x axis of button, 2 = y axis of button
 onready var buttons_dict= {
 	"btn_x0y4":["Button_X0Y4",0,4],"btn_x1y4":["Button_X1Y4",1,4],
 	"btn_x2y4":["Button_X2Y4",2,4],"btn_x3y4":["Button_X3Y4",3,4],
@@ -22,19 +25,22 @@ onready var buttons_dict= {
 	"btn_x4y0":["Button_X4Y0",4,0]
 	}
 
-var button_grid = []
-
+var button_grid = [] # the maze to be created
+var boss_exists  # Boolean to see if the boss already exits
+var store_exists  # Boolean to see if the store already exits
+var height=5  # height of the map
+var width=5   # width of the map
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var height=5
-	var width=5
 	generate_layout(height,width)
 	initial_button_text()
-	
+	boss_exists = false
+	store_exists = false
 	print(button_grid)
 	
 
+# Function that initailies all (x,y) axis to 0 except (0,0) to 6 as it is the start
 func generate_layout(var height,var width):
 	for x in range(width):
 		button_grid.append([])
@@ -45,36 +51,72 @@ func generate_layout(var height,var width):
 			else:
 				button_grid[x][y]=0
 
+# Function that to initialize the text on the UI of the grid container
 func initial_button_text():
 	print(len(buttons_dict))
 	for key in buttons_dict.keys():
 		var button_node = get_node(buttons_dict[key][0])
 		var x = buttons_dict[key][1]
 		var y = buttons_dict[key][2]
-		
 		button_node.text=get_state_name(button_grid[x][y])
 	
 
-
-#funtion to get the name of the state
+#funtion to get the name of the state, uses swtich case
 func get_state_name(state):
-	if state ==0: return "void"
-	elif state ==1: return "easy"
-	elif state ==2: return "meduim"
-	elif state ==3: return "hard"
-	elif state ==4: return "boss"
-	elif state ==5: return "store"
-	elif state ==6: return "start"
-	else: ""
+	match(state): 
+		0 : return "void"
+		1 : return "easy"
+		2 : return "meduim"
+		3 : return "hard"
+		4 : return "boss"
+		5 : return "store"
+		6 : return "start"
+		_ : return "error"
 
 # function to set the state, the parameter state refers to button state
 func set_state_int(state):
 	if state<5:
-		state=state+1
+		check_for_boss_existence()
+		check_for_store_existence()
+		print("Boss: ", boss_exists, " Store: ", store_exists)
+		
+		if(state==3 and boss_exists==true):
+			print("boss exist")
+			state=set_state_int(4)
+			return state
+		elif(state==4 && store_exists==true):
+			print("store exist")
+			state= 0
+			return state
+		else: state=state+1
 		return state
 	else: 
+		check_for_boss_existence()
+		check_for_store_existence()
+		print("Boss: ", boss_exists, " Store: ", store_exists)
 		state=0
 		return state
+
+# function to check if the boss already exist in the maze, if exists the boss_exists = true
+func check_for_boss_existence():
+	for x in range(width):
+		for y in range(height):
+			if(button_grid[x][y]==4):
+				boss_exists=true
+				return
+	boss_exists=false
+	return 
+
+# function to check if the store already exist in the maze, if exists the store_exists = true
+func check_for_store_existence():
+	for x in range(width):
+		for y in range(height):
+			if(button_grid[x][y]==5):
+				store_exists=true
+				return
+	store_exists=false
+	return 
+
 
 func button_press(var button_name):
 	var x = buttons_dict[button_name][1]
@@ -87,3 +129,12 @@ func button_press(var button_name):
 
 func _on_Button_X0Y4_pressed():
 	button_press("btn_x0y4")
+
+func _on_Button_X1Y4_pressed():
+	button_press("btn_x1y4")
+
+func _on_Button_X0Y3_pressed():
+	button_press("btn_x0y3")
+
+func _on_Button_X1Y3_pressed():
+	button_press("btn_x1y3")
