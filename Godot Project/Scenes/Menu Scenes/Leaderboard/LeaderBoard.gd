@@ -6,18 +6,6 @@ var handler
 
 var data_from_db
 var students = {
-	"John" : 100,
-	"Felix" : 90,
-	"Samuel" : 80,
-	"Yen Yong" : 200,
-	"Alex" : 70,
-	"Shah" : 60,
-	"Winnie" : 95,
-	"Tan" : 60,
-	"Lim" : 80,
-	"Ng" : 65,
-	"Lai" : 50,
-	"Clement" : 60
 }
 
 var highest = 0
@@ -40,25 +28,24 @@ func get_leaderboard_data():
 	handler.get_world_leaderboard_data(1, self.http) #for now assume world 1
 
 func process_db_data():
-	#need to format the db data into something like the above
-	print("test123")
-	#print(data_from_db)
 	for key in data_from_db:
+		var studName=null
+		var score=null
 		var value = data_from_db[key]
-		#print("key: " + key + " value: " + str(value))
-		print("key: " + key)
-		for key2 in value:
-			var value2 = value[key2]
-			print("key2: " + key2 +"value: " + str(value2))
-			students["a"] = 5
-			
-	
-	
-	#pass
+		print("key: " + key + " value: " + str(value))
+		score = value["score"]
+		studName = value["student-name"]
+		if(studName in students):
+			#new score > old score
+			if(score > students[studName]):
+				students[studName] = score
+		else:
+			students[studName] = score
 
 func show_sorted_leaderboard():
-	while (j <= 12):
+	while (j <= 10):
 		highest = 0
+		maxName = ""
 		for i in students:
 			if (students[i] > highest):
 				highest = students[i]
