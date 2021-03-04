@@ -9,12 +9,24 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Node",
+"class": "CombatQuestion",
+"language": "GDScript",
+"path": "res://Scripts/Maze/CombatQuestion.gd"
+}, {
+"base": "Node",
+"class": "QuestionManager",
+"language": "GDScript",
+"path": "res://Scripts/Maze/QuestionManager.gd"
+}, {
 "base": "Resource",
 "class": "characterStats",
 "language": "GDScript",
 "path": "res://Scripts/Character/CharacterStats.gd"
 } ]
 _global_script_class_icons={
+"CombatQuestion": "",
+"QuestionManager": "",
 "characterStats": ""
 }
 

@@ -2,14 +2,7 @@ extends Node
 
 enum {ANSWER_A, ANSWER_B, ANSWER_C,ANSWER_D}
 
-class CombatQuestion:
-	var question :String
-	var answer_a :String
-	var answer_b :String
-	var answer_c :String
-	var answer_d :String
-	var correct_answer: int
-
+class_name QuestionManager
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
