@@ -1,8 +1,10 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://Scripts/Monster.gd" type="Script" id=2]
-[ext_resource path="res://Scripts/Interactable.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/Entities/Monster.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/Entities/Interactable.gd" type="Script" id=3]
 [ext_resource path="res://Resources/images/icon.png" type="Texture" id=4]
+
+
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 32.8479, 33.0825 )

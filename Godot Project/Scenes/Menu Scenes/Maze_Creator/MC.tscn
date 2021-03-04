@@ -1,44 +1,291 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Scripts/GUI/BackToMainMenu.gd" type="Script" id=1]
-[ext_resource path="res://Resources/fonts/arcade_48.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Resources/fonts/arcade_40.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Scripts/GUI/MCButtons.gd" type="Script" id=3]
 
 [node name="MazeCreatorScene" type="Control"]
-margin_right = 1280.0
-margin_bottom = 720.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MCCenterContainer" type="CenterContainer" parent="."]
-margin_left = -0.000246644
-margin_right = 1280.0
-margin_bottom = 710.101
-size_flags_horizontal = 3
-size_flags_vertical = 3
+[node name="GridContainer" type="GridContainer" parent="."]
+margin_left = 50.0
+margin_top = 25.0
+margin_right = 1250.0
+margin_bottom = 625.0
+columns = 5
+script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MCCenterContainer"]
-margin_left = 428.0
-margin_top = 300.0
-margin_right = 851.0
-margin_bottom = 410.0
-
-[node name="Label" type="Label" parent="MCCenterContainer/VBoxContainer"]
-margin_right = 423.0
-margin_bottom = 50.0
+[node name="Button_X0Y4" type="Button" parent="GridContainer"]
+margin_right = 236.0
+margin_bottom = 116.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 custom_fonts/font = ExtResource( 2 )
-text = "Maze Creator  Page"
+text = "a"
 
-[node name="MCBackButton" type="Button" parent="MCCenterContainer/VBoxContainer"]
-margin_top = 54.0
-margin_right = 423.0
-margin_bottom = 110.0
+[node name="Button_X1Y4" type="Button" parent="GridContainer"]
+margin_left = 240.0
+margin_right = 476.0
+margin_bottom = 116.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 2 )
+text = "a"
+
+[node name="Button_X2Y4" type="Button" parent="GridContainer"]
+margin_left = 480.0
+margin_right = 716.0
+margin_bottom = 116.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 2 )
+text = "a"
+
+[node name="Button_X3Y4" type="Button" parent="GridContainer"]
+margin_left = 720.0
+margin_right = 956.0
+margin_bottom = 116.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 2 )
+text = "a"
+
+[node name="Button_X4Y4" type="Button" parent="GridContainer"]
+margin_left = 960.0
+margin_right = 1196.0
+margin_bottom = 116.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 2 )
+text = "a"
+
+[node name="Button_X0Y3" type="Button" parent="GridContainer"]
+margin_top = 120.0
+margin_right = 236.0
+margin_bottom = 236.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 2 )
+text = "a"
+
+[node name="Button_X1Y3" type="Button" parent="GridContainer"]
+margin_left = 240.0
+margin_top = 120.0
+margin_right = 476.0
+margin_bottom = 236.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 2 )
+text = "a"
+
+[node name="Button_X2Y3" type="Button" parent="GridContainer"]
+margin_left = 480.0
+margin_top = 120.0
+margin_right = 716.0
+margin_bottom = 236.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 2 )
+text = "a"
+
+[node name="Button_X3Y3" type="Button" parent="GridContainer"]
+margin_left = 720.0
+margin_top = 120.0
+margin_right = 956.0
+margin_bottom = 236.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 2 )
+text = "a"
+
+[node name="Button_X4Y3" type="Button" parent="GridContainer"]
+margin_left = 960.0
+margin_top = 120.0
+margin_right = 1196.0
+margin_bottom = 236.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 2 )
+text = "a"
+
+[node name="Button_X0Y2" type="Button" parent="GridContainer"]
+margin_top = 240.0
+margin_right = 236.0
+margin_bottom = 356.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 2 )
+text = "a"
+
+[node name="Button_X1Y2" type="Button" parent="GridContainer"]
+margin_left = 240.0
+margin_top = 240.0
+margin_right = 476.0
+margin_bottom = 356.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 2 )
+text = "a"
+
+[node name="Button_X2Y2" type="Button" parent="GridContainer"]
+margin_left = 480.0
+margin_top = 240.0
+margin_right = 716.0
+margin_bottom = 356.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 2 )
+text = "a"
+
+[node name="Button_X3Y2" type="Button" parent="GridContainer"]
+margin_left = 720.0
+margin_top = 240.0
+margin_right = 956.0
+margin_bottom = 356.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 2 )
+text = "a"
+
+[node name="Button_X4Y2" type="Button" parent="GridContainer"]
+margin_left = 960.0
+margin_top = 240.0
+margin_right = 1196.0
+margin_bottom = 356.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 2 )
+text = "a"
+
+[node name="Button_X0Y1" type="Button" parent="GridContainer"]
+margin_top = 360.0
+margin_right = 236.0
+margin_bottom = 476.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 2 )
+text = "a"
+
+[node name="Button_X1Y1" type="Button" parent="GridContainer"]
+margin_left = 240.0
+margin_top = 360.0
+margin_right = 476.0
+margin_bottom = 476.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 2 )
+text = "a"
+
+[node name="Button_X2Y1" type="Button" parent="GridContainer"]
+margin_left = 480.0
+margin_top = 360.0
+margin_right = 716.0
+margin_bottom = 476.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 2 )
+text = "a"
+
+[node name="Button_X3Y1" type="Button" parent="GridContainer"]
+margin_left = 720.0
+margin_top = 360.0
+margin_right = 956.0
+margin_bottom = 476.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 2 )
+text = "a"
+
+[node name="Button_X4Y1" type="Button" parent="GridContainer"]
+margin_left = 960.0
+margin_top = 360.0
+margin_right = 1196.0
+margin_bottom = 476.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 2 )
+text = "a"
+
+[node name="Button_X0Y0_Start" type="Button" parent="GridContainer"]
+margin_top = 480.0
+margin_right = 236.0
+margin_bottom = 596.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 2 )
+disabled = true
+text = "start"
+
+[node name="Button_X1Y0" type="Button" parent="GridContainer"]
+margin_left = 240.0
+margin_top = 480.0
+margin_right = 476.0
+margin_bottom = 596.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 2 )
+text = "a"
+
+[node name="Button_X2Y0" type="Button" parent="GridContainer"]
+margin_left = 480.0
+margin_top = 480.0
+margin_right = 716.0
+margin_bottom = 596.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 2 )
+text = "a"
+
+[node name="Button_X3Y0" type="Button" parent="GridContainer"]
+margin_left = 720.0
+margin_top = 480.0
+margin_right = 956.0
+margin_bottom = 596.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 2 )
+text = "a"
+
+[node name="Button_X4Y0" type="Button" parent="GridContainer"]
+margin_left = 960.0
+margin_top = 480.0
+margin_right = 1196.0
+margin_bottom = 596.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 2 )
+text = "a"
+
+[node name="MCBackButton" type="Button" parent="."]
+margin_left = 50.0
+margin_top = 640.0
+margin_right = 250.0
+margin_bottom = 700.0
 custom_fonts/font = ExtResource( 2 )
 text = "Back"
 script = ExtResource( 1 )
-[connection signal="pressed" from="MCCenterContainer/VBoxContainer/MCBackButton" to="MCCenterContainer/VBoxContainer/MCBackButton" method="_on_MCBackButton_pressed"]
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ConfirmButton" type="Button" parent="."]
+margin_left = 1046.0
+margin_top = 640.0
+margin_right = 1247.0
+margin_bottom = 700.0
+custom_fonts/font = ExtResource( 2 )
+text = "Confirm"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="GridContainer/Button_X0Y4" to="GridContainer" method="_on_Button_X0Y4_pressed"]
+[connection signal="pressed" from="MCBackButton" to="MCBackButton" method="_on_MCBackButton_pressed"]
