@@ -32,8 +32,7 @@ func _ready():
 	handler = load("res://Scripts/auth/firebase_db.gd").new()
 	add_child(handler)
 	get_leaderboard_data()
-	process_db_data()
-	show_sorted_leaderboard()
+	
 	
 
 func get_leaderboard_data():
@@ -42,10 +41,23 @@ func get_leaderboard_data():
 
 func process_db_data():
 	#need to format the db data into something like the above
-	pass
+	print("test123")
+	#print(data_from_db)
+	for key in data_from_db:
+		var value = data_from_db[key]
+		#print("key: " + key + " value: " + str(value))
+		print("key: " + key)
+		for key2 in value:
+			var value2 = value[key2]
+			print("key2: " + key2 +"value: " + str(value2))
+			students["a"] = 5
+			
+	
+	
+	#pass
 
 func show_sorted_leaderboard():
-	while (j <= 11):
+	while (j <= 12):
 		highest = 0
 		for i in students:
 			if (students[i] > highest):
@@ -75,5 +87,8 @@ func _on_HTTPRequest_request_completed(result, response_code, headers, body):
 			print("success 200")
 			print(result_body)
 			data_from_db = result_body
+			process_db_data()
+			show_sorted_leaderboard()
 			return
 	print("some other error")
+	

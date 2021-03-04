@@ -82,6 +82,10 @@ interact={
  ]
 }
 
+[network]
+
+limits/debugger_stdout/max_chars_per_second=10000
+
 [rendering]
 
 environment/default_clear_color=Color( 0.301961, 0.301961, 0.301961, 1 )
