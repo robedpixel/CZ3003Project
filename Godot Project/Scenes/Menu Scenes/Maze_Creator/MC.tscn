@@ -283,12 +283,34 @@ margin_top = 640.0
 margin_right = 1247.0
 margin_bottom = 700.0
 custom_fonts/font = ExtResource( 2 )
+disabled = true
 text = "Confirm"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 [connection signal="pressed" from="GridContainer/Button_X0Y4" to="GridContainer" method="_on_Button_X0Y4_pressed"]
 [connection signal="pressed" from="GridContainer/Button_X1Y4" to="GridContainer" method="_on_Button_X1Y4_pressed"]
+[connection signal="pressed" from="GridContainer/Button_X2Y4" to="GridContainer" method="_on_Button_X2Y4_pressed"]
+[connection signal="pressed" from="GridContainer/Button_X3Y4" to="GridContainer" method="_on_Button_X3Y4_pressed"]
+[connection signal="pressed" from="GridContainer/Button_X4Y4" to="GridContainer" method="_on_Button_X4Y4_pressed"]
 [connection signal="pressed" from="GridContainer/Button_X0Y3" to="GridContainer" method="_on_Button_X0Y3_pressed"]
 [connection signal="pressed" from="GridContainer/Button_X1Y3" to="GridContainer" method="_on_Button_X1Y3_pressed"]
+[connection signal="pressed" from="GridContainer/Button_X2Y3" to="GridContainer" method="_on_Button_X2Y3_pressed"]
+[connection signal="pressed" from="GridContainer/Button_X3Y3" to="GridContainer" method="_on_Button_X3Y3_pressed"]
+[connection signal="pressed" from="GridContainer/Button_X4Y3" to="GridContainer" method="_on_Button_X4Y3_pressed"]
+[connection signal="pressed" from="GridContainer/Button_X0Y2" to="GridContainer" method="_on_Button_X0Y2_pressed"]
+[connection signal="pressed" from="GridContainer/Button_X1Y2" to="GridContainer" method="_on_Button_X1Y2_pressed"]
+[connection signal="pressed" from="GridContainer/Button_X2Y2" to="GridContainer" method="_on_Button_X2Y2_pressed"]
+[connection signal="pressed" from="GridContainer/Button_X3Y2" to="GridContainer" method="_on_Button_X3Y2_pressed"]
+[connection signal="pressed" from="GridContainer/Button_X4Y2" to="GridContainer" method="_on_Button_X4Y2_pressed"]
+[connection signal="pressed" from="GridContainer/Button_X0Y1" to="GridContainer" method="_on_Button_X0Y1_pressed"]
+[connection signal="pressed" from="GridContainer/Button_X1Y1" to="GridContainer" method="_on_Button_X1Y1_pressed"]
+[connection signal="pressed" from="GridContainer/Button_X2Y1" to="GridContainer" method="_on_Button_X2Y1_pressed"]
+[connection signal="pressed" from="GridContainer/Button_X3Y1" to="GridContainer" method="_on_Button_X3Y1_pressed"]
+[connection signal="pressed" from="GridContainer/Button_X4Y1" to="GridContainer" method="_on_Button_X4Y1_pressed"]
+[connection signal="pressed" from="GridContainer/Button_X1Y0" to="GridContainer" method="_on_Button_X1Y0_pressed"]
+[connection signal="pressed" from="GridContainer/Button_X2Y0" to="GridContainer" method="_on_Button_X2Y0_pressed"]
+[connection signal="pressed" from="GridContainer/Button_X3Y0" to="GridContainer" method="_on_Button_X3Y0_pressed"]
+[connection signal="pressed" from="GridContainer/Button_X4Y0" to="GridContainer" method="_on_Button_X4Y0_pressed"]
 [connection signal="pressed" from="MCBackButton" to="MCBackButton" method="_on_MCBackButton_pressed"]
+[connection signal="pressed" from="ConfirmButton" to="GridContainer" method="_on_ConfirmButton_pressed"]
