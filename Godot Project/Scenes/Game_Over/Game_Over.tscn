@@ -1,0 +1,56 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scenes/Game_Over/Game_Over.gd" type="Script" id=1]
+[ext_resource path="res://Resources/fonts/arcade_48.tres" type="DynamicFont" id=2]
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+margin_right = 1073.0
+margin_bottom = 496.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+margin_left = 325.0
+margin_top = 166.0
+margin_right = 748.0
+margin_bottom = 330.0
+
+[node name="GameOverLabel" type="Label" parent="CenterContainer/VBoxContainer"]
+margin_right = 423.0
+margin_bottom = 50.0
+custom_fonts/font = ExtResource( 2 )
+text = "GAME OVER"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+margin_top = 54.0
+margin_right = 423.0
+margin_bottom = 104.0
+
+[node name="YourScoreLabel" type="Label" parent="CenterContainer/VBoxContainer/HBoxContainer"]
+margin_right = 309.0
+margin_bottom = 50.0
+custom_fonts/font = ExtResource( 2 )
+text = "Your score is"
+
+[node name="ScoreLabel" type="Label" parent="CenterContainer/VBoxContainer/HBoxContainer"]
+margin_left = 313.0
+margin_right = 313.0
+margin_bottom = 50.0
+custom_fonts/font = ExtResource( 2 )
+
+[node name="Button" type="Button" parent="CenterContainer/VBoxContainer"]
+margin_top = 108.0
+margin_right = 423.0
+margin_bottom = 164.0
+custom_fonts/font = ExtResource( 2 )
+text = "View Leaderboard"
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Button" to="." method="_on_Button_pressed"]

@@ -13,7 +13,7 @@ func _ready():
 	add_child(http)
 	pass
 
-func save_world_score(world: int, score: int, http: HTTPRequest) ->void:
+func save_world_score(world: int, score: int) ->void:
 	user_id = FirebaseAuth._get_user_id()
 	id_token = FirebaseAuth._get_current_token_id()
 	var fields := {
