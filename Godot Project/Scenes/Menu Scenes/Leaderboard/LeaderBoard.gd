@@ -6,18 +6,6 @@ var handler
 
 var data_from_db
 var students = {
-	"John" : 100,
-	"Felix" : 90,
-	"Samuel" : 80,
-	"Yen Yong" : 200,
-	"Alex" : 70,
-	"Shah" : 60,
-	"Winnie" : 95,
-	"Tan" : 60,
-	"Lim" : 80,
-	"Ng" : 65,
-	"Lai" : 50,
-	"Clement" : 60
 }
 
 var highest = 0
@@ -32,8 +20,7 @@ func _ready():
 	handler = load("res://Scripts/auth/firebase_db.gd").new()
 	add_child(handler)
 	get_leaderboard_data()
-	process_db_data()
-	show_sorted_leaderboard()
+	
 	
 
 func get_leaderboard_data():
@@ -41,12 +28,24 @@ func get_leaderboard_data():
 	handler.get_world_leaderboard_data(1, self.http) #for now assume world 1
 
 func process_db_data():
-	#need to format the db data into something like the above
-	pass
+	for key in data_from_db:
+		var studName=null
+		var score=null
+		var value = data_from_db[key]
+		print("key: " + key + " value: " + str(value))
+		score = value["score"]
+		studName = value["student-name"]
+		if(studName in students):
+			#new score > old score
+			if(score > students[studName]):
+				students[studName] = score
+		else:
+			students[studName] = score
 
 func show_sorted_leaderboard():
-	while (j <= 11):
+	while (j <= 10):
 		highest = 0
+		maxName = ""
 		for i in students:
 			if (students[i] > highest):
 				highest = students[i]
@@ -75,5 +74,8 @@ func _on_HTTPRequest_request_completed(result, response_code, headers, body):
 			print("success 200")
 			print(result_body)
 			data_from_db = result_body
+			process_db_data()
+			show_sorted_leaderboard()
 			return
 	print("some other error")
+	
