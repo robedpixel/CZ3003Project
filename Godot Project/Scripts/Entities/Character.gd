@@ -32,6 +32,9 @@ func _ready():
 	_showItem()
 	pass
 
+func _initPlayer(startingHealth):
+	_initHealth(startingHealth)
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if Input.is_action_just_pressed('interact'):
@@ -124,6 +127,7 @@ func _enable():
 	set_process_input(true)
 	playerSprite.visible = true
 	
+# could make an empty node and attach a player health to it.
 func _initHealth(initHealth):
 	maxHealth = initHealth
 	health = maxHealth
@@ -141,7 +145,8 @@ func _takeDamage(damageTaken):
 		print("Game over")
 		return
 	healthUI._setHeart(health, maxHealth)
-	
+
+# could make an empty node and add playerInventory or playerCoins to it
 func _addCoins(coinsToAdd):
 	coins += coinsToAdd
 	
@@ -151,6 +156,8 @@ func _removeCoins(coinsToRemove):
 func _getCoins():
 	return coins
 	
+# could make an empty node and add playerInventory to it
+# can decouple UI logic from player. Use observer pattern to see if currentInventoryIndex has changed
 func _nextItem():
 	if(inventory.size() <= 0):
 		itemUI._setItem(GlobalVariables.ItemEnum.ITEM_NULL)
@@ -165,7 +172,7 @@ func _nextItem():
 func _showItem():
 	itemUI._setItem(inventory[currentInventoryIndex])
 	
-# lets just put item logic here for now..
+# can move item logic outside of player
 func _useItem():
 	if(inventory.size() <= 0):
 		print("No items to use")

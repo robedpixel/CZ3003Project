@@ -50,12 +50,8 @@ func _initializeMaze():
 	_loadRoom(playerX, playerY)
 	_updatePlayerGridUI()
 	
-	player._initHealth(3)
+	player._initPlayer(3)
 
-# 0 up
-# 1 down
-# 2 left
-# 3 right
 func _moveRoom(dir):
 	
 	_exitRoom()
