@@ -34,9 +34,10 @@ func _generateMaze(mazeWidth, mazeHeight):
 		layout[x]=[]        
 		for y in range(HEIGHT):
 			layout[x].append([])
-			layout[x][y]=1
+			layout[x][y]=5
 			
 	_setRoom(0, 1, 1)
+	_setRoom(1, 0, 3)
 			
 func _getLayout():
 	return layout

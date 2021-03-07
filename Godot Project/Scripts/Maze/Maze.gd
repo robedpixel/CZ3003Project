@@ -16,6 +16,7 @@ onready var gridLocationTxt = get_node("../MainCanvas/MainUI/GridLocationBackgro
 
 # prefabs
 onready var monsterObj = preload("res://Scenes/Prefabs/Monster.tscn")
+onready var shopObj = preload("res://Scenes/Prefabs/Shop.tscn")
 
 # player variables
 var playerX = 0
@@ -24,6 +25,8 @@ var playerY = 0
 # room variables
 var currentRoomType
 var currentMonster
+
+var shop
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -150,6 +153,8 @@ func _toggleAllDoors(show):
 
 # Clear monster/shop
 func _exitRoom():
+	if(shop):
+		shop.queue_free()
 	if(currentMonster):
 		currentMonster.queue_free()
 
@@ -161,4 +166,6 @@ func _initChallengeRoom(isBoss):
 	currentMonster = monster
 	
 func _initShopRoom():
-	pass
+	var shopInstance = shopObj.instance()
+	get_node("/root/Main").add_child(shopInstance)
+	shop = shopInstance
