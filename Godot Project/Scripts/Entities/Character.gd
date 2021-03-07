@@ -20,6 +20,7 @@ var right = false
 # throw all the stats here, 
 var maxHealth = 0
 var health = 0
+var coins = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -65,24 +66,29 @@ func _physics_process(delta):
 func _AddInteractable(interactObjName):
 	canInteract = true
 	self.interactObjList.append(interactObjName)
-	print(self.interactObjList)
+	#print(self.interactObjList)
 	
 func _RemoveInteractable(interactObjName):
 	canInteract = false
 	var i = self.interactObjList.find(interactObjName)
 	self.interactObjList.remove(i)
-	print(self.interactObjList)
+	#print(self.interactObjList)
 	
 # interact with the latest interactable obj
+# no observer pattern, throwing all here
 func _interact():
 	if(interactObjList.size() > 0):
-		var interactObjName = interactObjList[interactObjList.size() - 1]
-		print("interacting with " + interactObjName)
+		var interactObj = interactObjList[interactObjList.size() - 1]
+		print("interacting with " + interactObj.name)
 		
-		if('Door' in interactObjName):
-			mazeManager._moveRoom(interactObjName)
-		elif('Monster' in interactObjName):
-			cmbtManager._enterCombat()
+		interactObj._interact()
+		
+		#if('Door' in interactObj):
+			#mazeManager._moveRoom(interactObj.name)
+		#elif('Monster' in interactObj):
+			#cmbtManager._enterCombat()
+		#elif('ShopItem' in interactObj):
+			
 		
 		#var interactObjType = get_node("../Interactables/" + interactObjName).get_meta("type")
 		#print(interactObjType)
@@ -123,7 +129,15 @@ func _takeDamage(damageTaken):
 		print("Game over")
 		return
 	healthUI._setHeart(health, maxHealth)
+	
+func _addCoins(coinsToAdd):
+	coins += coinsToAdd
+	
+func _removeCoins(coinsToRemove):
+	coins -= coinsToRemove
 
+func _getCoins():
+	return coins
 
 
 

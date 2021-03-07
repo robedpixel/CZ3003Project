@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Resources/images/icon.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Entities/Interactable.gd" type="Script" id=2]
 [ext_resource path="res://Scripts/Maze/ShopItem.gd" type="Script" id=3]
 [ext_resource path="res://Resources/fonts/arcade_48.tres" type="DynamicFont" id=4]
+[ext_resource path="res://Resources/images/coin-2.png" type="Texture" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 49.1509, 47.7313 )
@@ -20,14 +21,18 @@ script = ExtResource( 2 )
 shape = SubResource( 1 )
 
 [node name="Label" type="Label" parent="."]
-margin_left = -40.0
+margin_left = -80.0
 margin_top = 35.0
-margin_right = 40.0
 margin_bottom = 85.0
 custom_fonts/font = ExtResource( 4 )
-text = "0$"
-align = 1
-valign = 1
+text = "0"
+align = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 19, 59.0562 )
+scale = Vector2( 3, 3 )
+texture = ExtResource( 5 )
+hframes = 4

@@ -1,20 +1,21 @@
 extends Node
 
 
+
 onready var area2D = $Area2D
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+
+onready var maze = get_tree().get_root().get_node("Main/Maze")
+
+export var direction = "up"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	self.set_meta("type", "door")
+	print(maze)
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
-
+func _interact():
+	maze._moveRoom(direction)
 
 # lets just disable sprite and have an invisible door lmao godot sucks
 func _toggleDoor(show):

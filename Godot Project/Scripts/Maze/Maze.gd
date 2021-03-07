@@ -64,16 +64,16 @@ func _moveRoom(dir):
 	var doorPos = Vector2(0, 0)
 	# move
 	match dir:
-		"UpDoor":
+		"up":
 			newPlayerY += 1
 			doorPos = downDoor.position
-		"DownDoor":
+		"down":
 			newPlayerY -= 1
 			doorPos = upDoor.position
-		"LeftDoor":
+		"left":
 			newPlayerX -=1
 			doorPos = rightDoor.position
-		"RightDoor":
+		"right":
 			newPlayerX += 1
 			doorPos = leftDoor.position
 		_:
