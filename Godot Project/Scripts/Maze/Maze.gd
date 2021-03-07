@@ -27,6 +27,7 @@ var currentRoomType
 var currentMonster
 
 var shop
+var shopItems = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -50,7 +51,15 @@ func _initializeMaze():
 	_loadRoom(playerX, playerY)
 	_updatePlayerGridUI()
 	
-	player._initPlayer(3)
+	player._initPlayer(3, 5)
+	
+	# init shop and boss
+	
+	shopItems = [GlobalVariables.ItemEnum.ITEM_HEALTHPOT,
+	GlobalVariables.ItemEnum.ITEM_HEALTHPOT,
+	GlobalVariables.ItemEnum.ITEM_HEALTHPOT]
+	
+	
 
 func _moveRoom(dir):
 	
@@ -150,6 +159,7 @@ func _toggleAllDoors(show):
 # Clear monster/shop
 func _exitRoom():
 	if(shop):
+		
 		shop.queue_free()
 	if(currentMonster):
 		currentMonster.queue_free()

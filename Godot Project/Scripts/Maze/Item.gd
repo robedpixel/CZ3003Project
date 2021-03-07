@@ -3,7 +3,7 @@ extends Node
 
 enum ItemEnum {ITEM_NULL, ITEM_HEALTHPOT, ITEM_SCROLL}
 
-export var itemType = ItemEnum.ITEM_NULL
+var itemType
 export var itemCost = 1
 
 onready var itemSprite = $ItemSprite
@@ -21,9 +21,24 @@ func _ready():
 
 func _hideItem():
 	itemSprite.visible = false
+	
+	if(itemLabel):
+		itemLabel.visible = false
+	if(itemCoinSprite):
+		itemCoinSprite.visible = false
+
+func _showItem():
+	itemSprite.visible = true
+	
+	if(itemLabel):
+		itemLabel.visible = true
+	if(itemCoinSprite):
+		itemCoinSprite.visible = true
 
 func _setItem(type):
 	itemType = type
+	print("setting ")
+	print(itemType)
 	itemSprite.texture = _getImage()
 
 func _getImage():
@@ -45,9 +60,6 @@ func _interact(player):
 	player._addItem(itemType)
 	
 	_hideItem()
-	
-	if(itemLabel):
-		itemLabel.visible = false
-	if(itemCoinSprite):
-		itemCoinSprite.visible = false
+	# fuck it just remove item from maze directly
+	get_node("/root/Main/Maze").shopItems.erase(itemType)
 		

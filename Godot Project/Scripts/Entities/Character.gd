@@ -21,7 +21,7 @@ var right = false
 # throw all the stats here, 
 var maxHealth = 0
 var health = 0
-var coins = 5
+var coins = 0
 
 var inventory = []
 var currentInventoryIndex = 0
@@ -32,8 +32,9 @@ func _ready():
 	_showItem()
 	pass
 
-func _initPlayer(startingHealth):
+func _initPlayer(startingHealth, startingCoins):
 	_initHealth(startingHealth)
+	_setCoins(startingCoins)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -147,6 +148,9 @@ func _takeDamage(damageTaken):
 	healthUI._setHeart(health, maxHealth)
 
 # could make an empty node and add playerInventory or playerCoins to it
+func _setCoins(coinsToSet):
+	coins = coinsToSet
+
 func _addCoins(coinsToAdd):
 	coins += coinsToAdd
 	
