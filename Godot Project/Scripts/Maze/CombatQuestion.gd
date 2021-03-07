@@ -4,6 +4,8 @@ class_name CombatQuestion
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
+enum{ANSWER_A,ANSWER_B,ANSWER_C,ANSWER_D}
+
 var question :String
 var answer_a :String
 var answer_b :String
