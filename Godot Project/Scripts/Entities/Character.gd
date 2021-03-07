@@ -173,10 +173,8 @@ func _useItem():
 	
 	var item = inventory[currentInventoryIndex]
 	
-	
-	
 	match item:
-		0:
+		GlobalVariables.ItemEnum.ITEM_HEALTHPOT:
 			_restoreHealth(3)
 		1:
 			pass
