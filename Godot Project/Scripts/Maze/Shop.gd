@@ -17,4 +17,7 @@ func _initShop():
 	for i in items.size():
 		get_child(i)._setItem(items[i])
 		get_child(i)._showItem()
+		
+		# TODO CHange cost to its respective cost
+		get_child(i)._setItemCost(1)
 	

@@ -52,6 +52,6 @@ func _setRoom(x, y, value):
 		print("Error setting room " + str(x) + " " + str(y) + " " + str(value))
 	
 	layout[x][y] = value
-	print("Setting " + str(x) + " " + str(y) + " " + str(value))
+	print("Setting room " + str(x) + " " + str(y) + " " + str(value))
 	
 	

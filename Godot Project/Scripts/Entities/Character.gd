@@ -175,6 +175,7 @@ func _nextItem():
 	
 func _showItem():
 	itemUI._setItem(inventory[currentInventoryIndex])
+	#itemUI._disableCollider()
 	
 # can move item logic outside of player
 func _useItem():
