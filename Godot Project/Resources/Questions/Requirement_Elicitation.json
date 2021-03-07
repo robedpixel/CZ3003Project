@@ -1,0 +1,98 @@
+{
+  "Question 1": {
+    "question": "What is the first step of requirement elicitation?",
+    "answer_a": "Identifying stakeholders",
+    "answer_b": "Listing out requirements",
+    "answer_c": "Requirements gathering",
+    "answer_d": "Verification of requirements",
+    "cor_answer": "0"
+  },
+  "Question 2": {
+    "question": "What is a project mission statement?",
+    "answer_a": "A complex piece of document which state the steps required to complete the project",
+    "answer_b": "A document which must define the stakeholders, developers and can be ambiguous",
+    "answer_c": "A simple short statement of what companies intend to accomplish in the project",
+    "answer_d": "A statement which states what the project is about and its stakeholders",
+    "cor_answer":  "2"
+  },
+  "Question 3": {
+    "question": "Which of the following is an example of Non-Functional Requirement?",
+    "answer_a": "The bank customer must be able to withdraw cash from the ATM",
+    "answer_b": "The system must be able to use WiFi to communicate all transactions with a clients secure database",
+    "answer_c": "The customer must be able to load the webpage within 3 seconds",
+    "answer_d": "The system must display the current time in 24 hour format",
+    "cor_answer": "2"
+  },
+  "Question 4": {
+    "question": "Which of the following is true about Atomic Requirement?",
+    "answer_a": "The requirement is readable and easily understood by others",
+    "answer_b": "The requirement is verifiable, traceable and unambiguous",
+    "answer_c": "The atomic requirement is elicited only by the design team",
+    "answer_d": "The terms used in the requirement must be consistent and complex",
+    "cor_answer": "1"
+  },
+  "Question 5": {
+    "question": "Which of the following is an example of Atomic Requirement?",
+    "answer_a": "The user interface must be user-friendly",
+    "answer_b": "The time taken to search for a query must be fast",
+    "answer_c": "The system must be able to support a minimum number of 10 users concurrently at any given time",
+    "answer_d": "The system must not crash easily when there is a heavy load",
+    "cor_answer": "2"
+  },
+  "Question 6": {
+    "question": "Why is Requirement Elicitation a difficult task?",
+    "answer_a": "Problem of understanding the requirement",
+    "answer_b": "Problem of the scope",
+    "answer_c": "Problem of volatility",
+    "answer_d": "All of the above",
+    "cor_answer" : "3"
+  },
+  "Question 7": {
+    "question": "What is an actor in a use case?",
+    "answer_a": "A person who is a stakeholder in the system's design",
+    "answer_b": "A person who design the system",
+    "answer_c": "Any person who might use the system",
+    "answer_d": "A person or external system that interacts with the system",
+    "cor_answer": "3"
+  },
+  "Question 8": {
+    "question": "Which of the following is true about <<include>> in the Use Case Diagram",
+    "answer_a": "It helps to add more functionality to another use case",
+    "answer_b": "It is only used in parent Use Case in exceptional or unusual circumstances",
+    "answer_c": "It supports the reuse of functionality in a Use Case model",
+    "answer_d": "The included use case is usually optional",
+    "cor_answer": "2"
+  },
+  "Question 9": {
+    "question": "A Use Case description MUST include which of the following:",
+    "answer_a": "Participating Actors",
+    "answer_b": "Frequency",
+    "answer_c": "Assumptions",
+    "answer_d": "Exceptions",
+    "cor_answer": "0"
+  },
+    "Question 10": {
+    "question": "Which of the following is true about 'Flow of Events' in a Use Case description?",
+    "answer_a": "It shows the variations or errors in the interaction",
+    "answer_b": "It must include the exceptional situations that cause the failure of the Use Case",
+    "answer_c": "It shows the normal or main successful flow of the Use Case",
+    "answer_d": "It contains the alternate flow of the Use Case",
+    "cor_answer": "2"
+  },
+    "Question 11": {
+    "question": "Which of the following is NOT true about the differences between Functional Requirements and Use Cases?",
+    "answer_a": "Functional Requirements are more focused on the User level while Use Cases are more focused on the Developer level",
+    "answer_b": "Functional Requirements state what is it about while Use Cases states how the functions interact",
+    "answer_c": "Functional Requirements show the overall Use Cases while Use Cases describe how a user uses a system to accomplish a goal",
+    "answer_d": "Functional Requirements focus is on the written text while Use Cases focus is on the diagram itself",
+    "cor_answer": "2"
+  },
+    "Question 12": {
+    "question": "Which of the following is NOT the main reason why project team review clients specification?",
+    "answer_a": "To identify the actors in the Use Case",
+    "answer_b": "To initiate the generation of Data Dictionary",
+    "answer_c": "To ensure that the design of the system can be completed on schedule",
+    "answer_d": "To identify uncertainties and clarify with client",
+    "cor_answer": "2"
+  }
+}
