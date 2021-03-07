@@ -21,7 +21,7 @@ var right = false
 # throw all the stats here, 
 var maxHealth = 0
 var health = 0
-var coins = 0
+var coins = 5
 
 var inventory = []
 var currentInventoryIndex = 0
@@ -96,7 +96,7 @@ func _interact():
 		var interactObj = interactObjList[interactObjList.size() - 1]
 		print("interacting with " + interactObj.name)
 		
-		interactObj._interact()
+		interactObj._interact(self)
 		
 		#if('Door' in interactObj):
 			#mazeManager._moveRoom(interactObj.name)
@@ -192,7 +192,8 @@ func _useItem():
 		_:
 			pass
 	
-		
+func _addItem(itemType):
+	inventory.append(itemType)
 	
 	
 	

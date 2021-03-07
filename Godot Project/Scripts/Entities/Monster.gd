@@ -15,7 +15,7 @@ export var difficulty = 1
 func _ready():
 	self.set_meta("type", "monster")
 
-func _interact():
+func _interact(player):
 	cmbtManager._enterCombat(self)
 
 func _disableAndHide():

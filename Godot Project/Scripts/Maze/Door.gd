@@ -14,7 +14,7 @@ func _ready():
 	print(maze)
 
 
-func _interact():
+func _interact(player):
 	maze._moveRoom(direction)
 
 # lets just disable sprite and have an invisible door lmao godot sucks

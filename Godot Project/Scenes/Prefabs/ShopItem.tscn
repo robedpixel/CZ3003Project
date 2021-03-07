@@ -13,10 +13,11 @@ extents = Vector2( 49.1509, 47.7313 )
 position = Vector2( 640, 360 )
 script = ExtResource( 3 )
 
-[node name="InteractableArea" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
 script = ExtResource( 2 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractableArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource( 1 )
 
 [node name="Label" type="Label" parent="."]
@@ -30,7 +31,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Item Coin Sprite" type="Sprite" parent="."]
+[node name="ItemCoinSprite" type="Sprite" parent="."]
 position = Vector2( 19, 59.0562 )
 scale = Vector2( 3, 3 )
 texture = ExtResource( 5 )
@@ -39,3 +40,5 @@ hframes = 4
 [node name="ItemSprite" type="Sprite" parent="."]
 scale = Vector2( 5, 5 )
 texture = ExtResource( 1 )
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_Area2D_body_entered"]
+[connection signal="body_exited" from="Area2D" to="Area2D" method="_on_Area2D_body_exited"]
