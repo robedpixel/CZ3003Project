@@ -7,6 +7,7 @@ const FLOAT_EPSILON = 0.00001
 onready var cmbtManager = get_node("../CombatManager")
 onready var mazeManager = get_node("../Maze")
 onready var healthUI = get_node("../MainCanvas/MainUI/Hearts")
+onready var itemUI = get_node("../MainCanvas/MainUI/ItemUI/ItemUIBG/Item")
 
 var velocity = Vector2()
 onready var playerSprite = $PlayerSprite
@@ -22,14 +23,25 @@ var maxHealth = 0
 var health = 0
 var coins = 0
 
+var inventory = []
+var currentInventoryIndex = 0
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	inventory.append(GlobalVariables.ItemEnum.ITEM_HEALTHPOT)
+	_showItem()
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if Input.is_action_just_pressed('interact'):
 		_interact()
+	
+	if(Input.is_action_just_pressed("next_item")):
+		_nextItem()
+		
+	if(Input.is_action_just_pressed("use_item")):
+		_useItem()
 	
 	if(movingRight):
 		if(not right):
@@ -138,6 +150,42 @@ func _removeCoins(coinsToRemove):
 
 func _getCoins():
 	return coins
-
+	
+func _nextItem():
+	if(inventory.size() <= 0):
+		itemUI._setItem(GlobalVariables.ItemEnum.ITEM_NULL)
+		return
+	
+	currentInventoryIndex += 1
+	if(currentInventoryIndex >= inventory.size()):
+		currentInventoryIndex = 0
+	
+	_showItem()
+	
+func _showItem():
+	itemUI._setItem(inventory[currentInventoryIndex])
+	
+# lets just put item logic here for now..
+func _useItem():
+	if(inventory.size() <= 0):
+		print("No items to use")
+		return
+	
+	var item = inventory[currentInventoryIndex]
+	
+	
+	
+	match item:
+		0:
+			_restoreHealth(3)
+		1:
+			pass
+		_:
+			pass
+	
+		
+	
+	
+	
 
 

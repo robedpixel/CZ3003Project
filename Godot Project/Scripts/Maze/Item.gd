@@ -1,11 +1,11 @@
 extends Node
 
 
-enum ShopItemEnum {ITEM_NULL, ITEM_HEALTHPOT, ITEM_SCROLL}
+enum ItemEnum {ITEM_NULL, ITEM_HEALTHPOT, ITEM_SCROLL}
 
-export var shopItemType = ShopItemEnum.ITEM_NULL
+export var itemType = ItemEnum.ITEM_NULL
 
-onready var shopItemSprite = $ShopItemSprite
+onready var itemSprite = $ItemSprite
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -17,14 +17,14 @@ func _ready():
 #	pass
 
 func _setItem(type):
-	shopItemType = type
-	shopItemSprite.texture = _getImage()
+	itemType = type
+	itemSprite.texture = _getImage()
 
 func _getImage():
-	match shopItemType:
-		ShopItemEnum.ITEM_HEALTHPOT:
+	match itemType:
+		ItemEnum.ITEM_HEALTHPOT:
 			return load("res://Resources/images/life-pot.png")
-		ShopItemEnum.ITEM_SCROLL:
+		ItemEnum.ITEM_SCROLL:
 			pass
 		_:
-			pass
+			return null
