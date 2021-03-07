@@ -46,6 +46,7 @@ func _setItem(type):
 
 func _setItemCost(cost):
 	itemCost = cost
+	itemLabel.text = str(itemCost)
 
 func _getImage():
 	match itemType:
