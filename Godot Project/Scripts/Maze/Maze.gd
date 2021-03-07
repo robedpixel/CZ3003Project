@@ -169,3 +169,4 @@ func _initShopRoom():
 	var shopInstance = shopObj.instance()
 	get_node("/root/Main").add_child(shopInstance)
 	shop = shopInstance
+	shop._initShop()
