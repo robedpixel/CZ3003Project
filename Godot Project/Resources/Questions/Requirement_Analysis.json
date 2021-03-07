@@ -65,7 +65,7 @@
     "cor_answer": "3"
   },
   "Question 9": {
-    "question": "What is 'aggregation' in a class relationship?",
+    "question": "What is 'composition' in a class relationship?",
     "answer_a": "It is symbolized by a white triangle",
     "answer_b": "It is symbolized by a black triangle",
     "answer_c": "It is symbolized by a white diamond",
