@@ -1,0 +1,101 @@
+{ // Topic: Requirement Analysis
+  "Question 1": {
+    "question": "Which of the following is true about Class Diagram?", // Easy
+    "answer1": "Class Diagram must contain name, attribute, and operation methods of the class",
+    "answer2": "Class Diagram represents the structure of the system",
+    "answer3": "There is generally no relationship between different classes",
+    "answer4": "Class diagram must be the first step when doing Requirement Elicitation",
+    "cor_answer": "Class Diagram represents the structure of the system"
+
+  },
+  "Question 2": {
+    "question": "What is 'aggregation' in a class relationship?", // Medium
+    "answer1": "It is considered 'part of' relationship and is symbolized by a clear white diamond", <-
+    "answer2": "It is considered 'entirely made of' relationship and is symbolized by a clear white diamond",
+    "answer3": "It is considered 'entirely made of' relationship and is symbolized by black diamond,
+    "answer4": "It is considered 'part of' relationship and is symbolized by a black diamond" ,
+    "cor_answer": "It is considered 'part of' relationship and is symbolized by a clear white diamond"
+  },
+  "Question 3": {
+    "question": "What is 'dependency' in a class relationship?", // Medium
+    "answer1": "It is symbolized by solid line with black arrow",
+    "answer2": "It is symbolized by dashed line with white arrow",
+    "answer3": "It is symbolized by solid line with white arrow",
+    "answer4": "It is symbolized by dotted line", <-
+    "cor_answer: "It is symbolized by dotted line"
+  },
+  "Question 4": {
+    "question": "Which of the following is NOT a stereotype of classes?", // Easy
+    "answer1": "Boundary Class",
+    "answer2": "Interface Class", <-
+    "answer3": "Control Class",
+    "answer4": "Entity Class",
+    "cor_answer": "Interface Class"
+  },
+  "Question 5": {
+    "question": "What is the heuristic which the sequence diagram follows?", // Hard
+    "answer1": "The message arrow in sequence diagram go from left to right and is read from bottom to top ",
+    "answer2": "The sequence diagram must follow the order of events in the use case description",
+    "answer3": "Position the lifelines to make message arrows as short as possible", <-
+    "answer4": "All of the above",
+    "cor_answer": "Position the lifelines to make message arrows as short as possible"
+  },
+  "Question 6": {
+    "question": "The order of events in a sequence diagram is determined:", // Hard
+    "answer1": "By following the order of events in the use case description",
+    "answer2": "By placing numbers in comments along the left-hand margin of the diagram",
+    "answer3": "By the relative position of the events on the timeline", <-
+    "answer4": "By the sequence numbers of the events",
+    "cor_answer": "By the relative position of the events on the timeline"
+  },
+    "Question 7": {
+    "question": "Which of the following is true about sequence diagram?", // Boss
+    "answer1": "The messages in the sequence diagram must be synchronous",
+    "answer2": "Activation are represented by dashed lines",
+    "answer3": "Lifelines are represented by narrow bars",
+    "answer4": "Objects can be represented using rectangles or stereotypes" <-
+    "cor_answer": "Objects can be represented using rectangles or stereotypes"
+  },
+  "Question 8": {
+    "question": "Which of the following components can be described as "application logic layer", // Boss
+    "answer1": "Boundary Class",
+    "answer2": "Interface Class",
+    "answer3": "Entity Class",
+    "answer4": "Control Class", <-
+    "cor_answer": "Control Class"
+  },
+  "Question 9": {
+    "question": "What is 'aggregation' in a class relationship?", // Medium
+    "answer1": "It is symbolized by a white triangle",
+    "answer2": "It is symbolized by a black triangle",
+    "answer3": "It is symbolized by a white diamond", <-
+    "answer4": "It is symbolized by a black diamond",
+    "cor_answer": "It is symbolized by a white diamond"
+  },
+  "Question 10": {
+    "question": "Which of the following is not a typical element of a class?", // Easy
+    "answer1": "name",
+    "answer2": "object", <-
+    "answer3": "attribute",
+    "answer4": "method",
+    "cor_answer": "object"
+  },
+  "Question 11": {
+    "question": "How are objects represented in a sequence diagram?", // Boss
+    "answer1": "circles",
+    "answer2": "rectangles", <-
+    "answer3": "narrow bars",
+    "answer4": "triangles",
+    "cor_answer": "rectangles"
+  },
+  "Question 12": {
+    "question": "Which is true about sequence diagrams?", // Boss
+    "answer1": "Sequence diagrams are good at precise definition of single object in many use cases",
+    "answer2": "Sequence diagrams are good at capturing interactions between objects", <-
+    "answer3": "Sequence diagrams are good at precise definition of many use cases and many threads ",
+    "answer4": "Sequence diagrams is a conceptual model"
+    "cor_answer": "Sequence diagrams are good at capturing interactions between objects"
+  },
+
+
+}
