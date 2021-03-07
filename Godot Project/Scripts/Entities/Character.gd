@@ -7,6 +7,7 @@ const FLOAT_EPSILON = 0.00001
 onready var cmbtManager = get_node("../CombatManager")
 onready var mazeManager = get_node("../Maze")
 onready var healthUI = get_node("../MainCanvas/MainUI/Hearts")
+onready var coinUI = get_node("../MainCanvas/MainUI/CoinsUI")
 onready var itemUI = get_node("../MainCanvas/MainUI/ItemUI/ItemUIBG/Item")
 
 var velocity = Vector2()
@@ -25,6 +26,9 @@ var coins = 0
 
 var inventory = []
 var currentInventoryIndex = 0
+
+#signals
+signal coin_change_signal(value)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -150,13 +154,14 @@ func _takeDamage(damageTaken):
 # could make an empty node and add playerInventory or playerCoins to it
 func _setCoins(coinsToSet):
 	coins = coinsToSet
+	emit_signal("coin_change_signal", coins)
 
 func _addCoins(coinsToAdd):
-	coins += coinsToAdd
+	_setCoins(coins+coinsToAdd)
 	
 func _removeCoins(coinsToRemove):
-	coins -= coinsToRemove
-
+	_setCoins(coins-coinsToRemove)
+	
 func _getCoins():
 	return coins
 	
