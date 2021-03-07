@@ -1,0 +1,26 @@
+{
+  "Question 1": {
+    "question": "What is 'aggregation' in a class relationship?",
+    "answer_a": "It is considered 'part of' relationship and is symbolized by a clear white diamond",
+    "answer_b": "It is considered 'entirely made of' relationship and is symbolized by a clear white diamond",
+    "answer_c": "It is considered 'entirely made of' relationship and is symbolized by black diamond",
+    "answer_d": "It is considered 'part of' relationship and is symbolized by a black diamond",
+    "cor_answer": "1"
+  },
+  "Question 2": {
+    "question": "What is 'dependency' in a class relationship?",
+    "answer_a": "It is symbolized by solid line with black arrow",
+    "answer_b": "It is symbolized by dashed line with white arrow",
+    "answer_c": "It is symbolized by solid line with white arrow",
+    "answer_d": "It is symbolized by dotted line",
+    "cor_answer": "3"
+  },
+  "Question 3": {
+    "question": "What is 'composition' in a class relationship?",
+    "answer_a": "It is symbolized by a white triangle",
+    "answer_b": "It is symbolized by a black triangle",
+    "answer_c": "It is symbolized by a white diamond",
+    "answer_d": "It is symbolized by a black diamond",
+    "cor_answer": "3"
+  }
+}

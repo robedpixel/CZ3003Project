@@ -1,0 +1,26 @@
+{
+  "Question 1": {
+    "question": "What is a project mission statement?",
+    "answer_a": "A complex piece of document which state the steps required to complete the project",
+    "answer_b": "A document which must define the stakeholders, developers and can be ambiguous",
+    "answer_c": "A simple short statement of what companies intend to accomplish in the project",
+    "answer_d": "A statement which states what the project is about and its stakeholders",
+    "cor_answer":  "2"
+  },
+  "Question 2": {
+    "question": "Which of the following is true about Atomic Requirement?",
+    "answer_a": "The requirement is readable and easily understood by others",
+    "answer_b": "The requirement is verifiable, traceable and unambiguous",
+    "answer_c": "The atomic requirement is elicited only by the design team",
+    "answer_d": "The terms used in the requirement must be consistent and complex",
+    "cor_answer": "1"
+  },
+  "Question 3": {
+    "question": "A Use Case description MUST include which of the following:",
+    "answer_a": "Participating Actors",
+    "answer_b": "Frequency",
+    "answer_c": "Assumptions",
+    "answer_d": "Exceptions",
+    "cor_answer": "0"
+  }
+}

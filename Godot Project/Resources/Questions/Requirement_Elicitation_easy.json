@@ -1,0 +1,26 @@
+{
+  "Question 1": {
+    "question": "What is the first step of requirement elicitation?",
+    "answer_a": "Identifying stakeholders",
+    "answer_b": "Listing out requirements",
+    "answer_c": "Requirements gathering",
+    "answer_d": "Verification of requirements",
+    "cor_answer": "0"
+  },
+  "Question 2": {
+    "question": "Why is Requirement Elicitation a difficult task?",
+    "answer_a": "Problem of understanding the requirement",
+    "answer_b": "Problem of the scope",
+    "answer_c": "Problem of volatility",
+    "answer_d": "All of the above",
+    "cor_answer" : "3"
+  },
+  "Question 3": {
+    "question": "What is an actor in a use case?",
+    "answer_a": "A person who is a stakeholder in the system's design",
+    "answer_b": "A person who design the system",
+    "answer_c": "Any person who might use the system",
+    "answer_d": "A person or external system that interacts with the system",
+    "cor_answer": "3"
+  }
+}

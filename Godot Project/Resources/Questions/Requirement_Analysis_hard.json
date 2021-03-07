@@ -1,0 +1,18 @@
+{
+  "Question 1": {
+    "question": "What is the heuristic which the sequence diagram follows?",
+    "answer_a": "The message arrow in sequence diagram go from left to right and is read from bottom to top ",
+    "answer_b": "The sequence diagram must follow the order of events in the use case description",
+    "answer_c": "Position the lifelines to make message arrows as short as possible",
+    "answer_d": "All of the above",
+    "cor_answer": "2"
+  },
+  "Question 2": {
+    "question": "The order of events in a sequence diagram is determined:",
+    "answer_a": "By following the order of events in the use case description",
+    "answer_b": "By placing numbers in comments along the left-hand margin of the diagram",
+    "answer_c": "By the relative position of the events on the timeline",
+    "answer_d": "By the sequence numbers of the events",
+    "cor_answer": "2"
+  }
+}

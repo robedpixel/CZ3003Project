@@ -1,0 +1,26 @@
+{
+  "Question 1": {
+    "question": "Which of the following is an example of Atomic Requirement?",
+    "answer_a": "The user interface must be user-friendly",
+    "answer_b": "The time taken to search for a query must be fast",
+    "answer_c": "The system must be able to support a minimum number of 10 users concurrently at any given time",
+    "answer_d": "The system must not crash easily when there is a heavy load",
+    "cor_answer": "2"
+  },
+  "Question 2": {
+  "question": "Which of the following is true about 'Flow of Events' in a Use Case description?",
+  "answer_a": "It shows the variations or errors in the interaction",
+  "answer_b": "It must include the exceptional situations that cause the failure of the Use Case",
+  "answer_c": "It shows the normal or main successful flow of the Use Case",
+  "answer_d": "It contains the alternate flow of the Use Case",
+  "cor_answer": "2"
+  },
+  "Question 3": {
+  "question": "Which of the following is NOT true about the differences between Functional Requirements and Use Cases?",
+  "answer_a": "Functional Requirements are more focused on the User level while Use Cases are more focused on the Developer level",
+  "answer_b": "Functional Requirements state what is it about while Use Cases states how the functions interact",
+  "answer_c": "Functional Requirements show the overall Use Cases while Use Cases describe how a user uses a system to accomplish a goal",
+  "answer_d": "Functional Requirements focus is on the written text while Use Cases focus is on the diagram itself",
+  "cor_answer": "2"
+  }
+}
