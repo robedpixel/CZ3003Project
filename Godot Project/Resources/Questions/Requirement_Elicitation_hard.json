@@ -1,0 +1,26 @@
+{
+  "Question 1": {
+    "question": "Which of the following is an example of Non-Functional Requirement?",
+    "answer_a": "The bank customer must be able to withdraw cash from the ATM",
+    "answer_b": "The system must be able to use WiFi to communicate all transactions with a clients secure database",
+    "answer_c": "The customer must be able to load the webpage within 3 seconds",
+    "answer_d": "The system must display the current time in 24 hour format",
+    "cor_answer": "2"
+  },
+  "Question 2": {
+    "question": "Which of the following is true about <<include>> in the Use Case Diagram",
+    "answer_a": "It helps to add more functionality to another use case",
+    "answer_b": "It is only used in parent Use Case in exceptional or unusual circumstances",
+    "answer_c": "It supports the reuse of functionality in a Use Case model",
+    "answer_d": "The included use case is usually optional",
+    "cor_answer": "2"
+  },
+  "Question 3": {
+  "question": "Which of the following is NOT the main reason why project team review clients specification?",
+  "answer_a": "To identify the actors in the Use Case",
+  "answer_b": "To initiate the generation of Data Dictionary",
+  "answer_c": "To ensure that the design of the system can be completed on schedule",
+  "answer_d": "To identify uncertainties and clarify with client",
+  "cor_answer": "2"
+  }
+}
