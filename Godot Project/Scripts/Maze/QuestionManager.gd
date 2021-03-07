@@ -1,7 +1,5 @@
 extends Node
 
-enum {ANSWER_A, ANSWER_B, ANSWER_C,ANSWER_D}
-
 class_name QuestionManager
 # Declare member variables here. Examples:
 # var a = 2
@@ -20,7 +18,7 @@ func _ready():
 	rng.randomize()
 	pass # Replace with function body.
 
-func read_json_from_source(path : String)->Dictionary:
+func _read_json_from_source(path : String)->Dictionary:
 	var file = File.new()
 	file.open(path, file.READ)
 	var json = file.get_as_text()
@@ -28,7 +26,7 @@ func read_json_from_source(path : String)->Dictionary:
 	var json_result = JSON.parse(json).result
 	return json_result
 
-func read_questions(questions_json: Dictionary)->void:
+func _read_questions(questions_json: Dictionary)->void:
 	var counter : int = 0
 	for key in questions_json:
 		counter = counter + 1
@@ -45,7 +43,7 @@ func read_questions(questions_json: Dictionary)->void:
 		self.question_array[counter].correct_answer = questions_json[question]["cor_answer"]
 		counter = counter + 1
 		
-func add_questions(questions_json: Dictionary)->void:
+func _add_questions(questions_json: Dictionary)->void:
 	var counter : int = num_questions
 	for key in questions_json:
 		counter = counter + 1
@@ -62,13 +60,13 @@ func add_questions(questions_json: Dictionary)->void:
 		counter = counter + 1
 
 func read_questions_from_source(path : String):
-	var json_result = read_json_from_source(path)
+	var json_result = _read_json_from_source(path)
 	print(json_result)
-	self.read_questions(json_result)
+	self._read_questions(json_result)
 	
 func add_questions_from_source(path : String):
-	var json_result = read_json_from_source(path)
-	self.add_questions(json_result)
+	var json_result = _read_json_from_source(path)
+	self._add_questions(json_result)
 
 #To be called once before any subsequent calls to ask_question
 func prepare_questions():
