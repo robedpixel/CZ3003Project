@@ -1,21 +1,28 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scripts/GUI/BackToMainMenu.gd" type="Script" id=1]
 [ext_resource path="res://Resources/fonts/arcade_48.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Scenes/Menu Scenes/Leaderboard/LeaderBoard.gd" type="Script" id=3]
+[ext_resource path="res://Scenes/Menu Scenes/Leaderboard/f_logo_RGB-Hex-Blue_512.png" type="Texture" id=4]
+[ext_resource path="res://Scenes/Menu Scenes/Leaderboard/2890bac9ba41e52707f36268231dfe9e.png" type="Texture" id=5]
 
 [node name="LeaderBoardScene" type="Control"]
 margin_right = 1280.0
 margin_bottom = 720.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="LBCenterContainer" type="CenterContainer" parent="."]
-margin_left = -0.000246644
-margin_right = 1280.0
-margin_bottom = 710.101
+anchor_top = -4.23855e-08
+anchor_bottom = -4.23855e-08
+margin_left = 30.4123
+margin_top = -307.175
+margin_right = 1310.41
+margin_bottom = 402.926
 size_flags_horizontal = 3
 size_flags_vertical = 3
 __meta__ = {
@@ -24,9 +31,9 @@ __meta__ = {
 
 [node name="VBoxContainer" type="VBoxContainer" parent="LBCenterContainer"]
 margin_left = 431.0
-margin_top = 300.0
+margin_top = 330.0
 margin_right = 848.0
-margin_bottom = 410.0
+margin_bottom = 380.0
 
 [node name="Label" type="Label" parent="LBCenterContainer/VBoxContainer"]
 margin_right = 417.0
@@ -34,11 +41,94 @@ margin_bottom = 50.0
 custom_fonts/font = ExtResource( 2 )
 text = "LeaderBoard  Page"
 
-[node name="LBBackButton" type="Button" parent="LBCenterContainer/VBoxContainer"]
-margin_top = 54.0
-margin_right = 417.0
-margin_bottom = 110.0
+[node name="ShareFBBtn" type="Button" parent="."]
+margin_left = 1080.21
+margin_top = 543.0
+margin_right = 1248.21
+margin_bottom = 597.0
+action_mode = 0
+text = "     Share on FB"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ShareTwitterBtn" type="Button" parent="."]
+margin_left = 1080.59
+margin_top = 615.0
+margin_right = 1250.59
+margin_bottom = 671.0
+text = "          Share on Twitter"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LBBackButton" type="Button" parent="."]
+margin_left = 427.412
+margin_top = 656.825
+margin_right = 844.412
+margin_bottom = 712.825
 custom_fonts/font = ExtResource( 2 )
 text = "Back"
 script = ExtResource( 1 )
-[connection signal="pressed" from="LBCenterContainer/VBoxContainer/LBBackButton" to="LBCenterContainer/VBoxContainer/LBBackButton" method="_on_LBBackButton_pressed"]
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+margin_left = 337.625
+margin_top = 97.0
+margin_right = 989.625
+margin_bottom = 625.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+margin_right = 652.0
+margin_bottom = 528.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
+margin_right = 652.0
+margin_bottom = 50.0
+
+[node name="RankLabel" type="Label" parent="ScrollContainer/VBoxContainer/HBoxContainer"]
+margin_bottom = 50.0
+size_flags_vertical = 1
+custom_fonts/font = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NameLabel" type="Label" parent="ScrollContainer/VBoxContainer/HBoxContainer"]
+margin_left = 4.0
+margin_right = 326.0
+margin_bottom = 50.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 2 )
+
+[node name="ScoreLabel" type="Label" parent="ScrollContainer/VBoxContainer/HBoxContainer"]
+margin_left = 330.0
+margin_right = 652.0
+margin_bottom = 50.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 2 )
+align = 2
+
+[node name="FBLogoImg" type="Sprite" parent="."]
+position = Vector2( 1107.85, 570.663 )
+scale = Vector2( 0.0897207, 0.069043 )
+texture = ExtResource( 4 )
+
+[node name="TwitLogoImg" type="Sprite" parent="."]
+position = Vector2( 1108.05, 642.885 )
+scale = Vector2( 0.0833217, 0.0755706 )
+texture = ExtResource( 5 )
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+[connection signal="pressed" from="ShareFBBtn" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="ShareFBBtn" to="." method="_on_ShareFBBtn_pressed"]
+[connection signal="pressed" from="ShareTwitterBtn" to="." method="_on_ShareTwitterBtn_pressed"]
+[connection signal="pressed" from="LBBackButton" to="LBBackButton" method="_on_LBBackButton_pressed"]
+[connection signal="request_completed" from="HTTPRequest" to="." method="_on_HTTPRequest_request_completed"]

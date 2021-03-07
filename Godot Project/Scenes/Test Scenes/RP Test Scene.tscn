@@ -169,7 +169,7 @@ scale = Vector2( 0.3, 0.3 )
 z_index = 1
 frames = SubResource( 6 )
 animation = "test"
-frame = 3
+frame = 1
 speed_scale = 2.0
 playing = true
 

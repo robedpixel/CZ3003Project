@@ -13,7 +13,7 @@ func _ready():
 	add_child(http)
 	pass
 
-func save_world_score(world: int ,score: int) ->void:
+func save_world_score(world: int, score: int) ->void:
 	user_id = FirebaseAuth._get_user_id()
 	id_token = FirebaseAuth._get_current_token_id()
 	var fields := {
@@ -29,11 +29,15 @@ func save_document(path: String, fields: Dictionary, http: HTTPRequest) -> void:
 	id_token = FirebaseAuth._get_current_token_id()
 	print("id_token")
 	print(id_token)
-	var document := { "fields": fields }
-	var body := to_json(document)
+	var body := to_json(fields)
 	var url = FIRESTORE_URL + path + "?auth=%s" % id_token
 	http.request(url, FirebaseAuth._get_request_headers(), false, HTTPClient.METHOD_POST, body)
 
+func get_world_leaderboard_data(world: int, http: HTTPRequest) -> void:
+	id_token = FirebaseAuth._get_current_token_id()
+	var path = "leaderboard/World "+str(world)+ ".json"
+	var url = FIRESTORE_URL + path + "?auth=%s" % id_token
+	print(http.request(url, FirebaseAuth._get_request_headers(), false, HTTPClient.METHOD_GET))
 
 func get_document(path: String, http: HTTPRequest):
 	id_token = FirebaseAuth._get_current_token_id()

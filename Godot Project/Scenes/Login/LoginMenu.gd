@@ -16,6 +16,7 @@ func _on_Button_pressed():
 		#Scene for testing database accesses
 		#get_tree().change_scene("res://Scenes/Database Test/Database Test.tscn")
 		get_tree().change_scene("res://Scenes/Menu Scenes/Main_Menu/Main Menu.tscn")
+
 	else:
 		$"VBoxContainer/LoginStatusLabel".set_text("Incorrect username and/or password")
 		print("cannot log in")
