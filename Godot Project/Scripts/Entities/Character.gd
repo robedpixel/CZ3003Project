@@ -180,6 +180,10 @@ func _useItem():
 	
 	var item = inventory[currentInventoryIndex]
 	
+	# remove from inventory
+	inventory.erase(item)
+	_nextItem()
+	
 	match item:
 		GlobalVariables.ItemEnum.ITEM_HEALTHPOT:
 			_restoreHealth(3)
