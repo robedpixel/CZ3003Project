@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/weapon_slash1.png-703a85f64236a915de891eed4c3b1098.stex"
+path="res://.import/scroll-empty.png-f6a8953f16dde8db34c036d97a237c08.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resources/images/weapon_slash1.png"
-dest_files=[ "res://.import/weapon_slash1.png-703a85f64236a915de891eed4c3b1098.stex" ]
+source_file="res://Resources/images/scroll-empty.png"
+dest_files=[ "res://.import/scroll-empty.png-f6a8953f16dde8db34c036d97a237c08.stex" ]
 
 [params]
 

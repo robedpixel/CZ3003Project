@@ -16,7 +16,7 @@ func _ready():
 #func _process(delta):
 #	pass
 
-func _enterCombat():
+func _enterCombat(monster):
 	print("Entering combat")
 	print(player)
 	player._disableAndHide()

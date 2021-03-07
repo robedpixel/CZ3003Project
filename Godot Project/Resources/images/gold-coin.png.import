@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/weapon_slash1.png-703a85f64236a915de891eed4c3b1098.stex"
+path="res://.import/gold-coin.png-8fdb9f79904320d4bf78e41caf9bdb2e.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resources/images/weapon_slash1.png"
-dest_files=[ "res://.import/weapon_slash1.png-703a85f64236a915de891eed4c3b1098.stex" ]
+source_file="res://Resources/images/gold-coin.png"
+dest_files=[ "res://.import/gold-coin.png-8fdb9f79904320d4bf78e41caf9bdb2e.stex" ]
 
 [params]
 

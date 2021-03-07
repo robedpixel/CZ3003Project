@@ -5,6 +5,9 @@ extends Node
 # var a = 2
 # var b = "text"
 
+onready var monsterSprite = $MonsterSprite
+
+onready var cmbtManager = get_node("/root/Main/CombatManager")
 
 export var difficulty = 1
 
@@ -12,10 +15,17 @@ export var difficulty = 1
 func _ready():
 	self.set_meta("type", "monster")
 
+func _interact():
+	cmbtManager._enterCombat(self)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
-
-func test():
-	print("TEST")
+func _disableAndHide():
+	set_process(false)
+	set_physics_process(false)
+	set_process_input(false)
+	monsterSprite.visible = false
+	
+func _enable():
+	set_process(true)
+	set_physics_process(true)
+	set_process_input(true)
+	monsterSprite.visible = true

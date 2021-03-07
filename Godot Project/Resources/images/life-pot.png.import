@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/weapon_slash1.png-703a85f64236a915de891eed4c3b1098.stex"
+path="res://.import/life-pot.png-13e7ddc7bf0921089445dc08e69bab9e.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resources/images/weapon_slash1.png"
-dest_files=[ "res://.import/weapon_slash1.png-703a85f64236a915de891eed4c3b1098.stex" ]
+source_file="res://Resources/images/life-pot.png"
+dest_files=[ "res://.import/life-pot.png-13e7ddc7bf0921089445dc08e69bab9e.stex" ]
 
 [params]
 
