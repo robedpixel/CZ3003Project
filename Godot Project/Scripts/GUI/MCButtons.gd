@@ -68,7 +68,7 @@ func initial_button_text():
 #funtion to get the name of the state, uses swtich case
 func get_state_name(state):
 	match(state): 
-		0 : return "void"
+		0 : return ""
 		1 : return "easy"
 		2 : return "meduim"
 		3 : return "hard"
@@ -155,7 +155,7 @@ func search_algorithm(grid_to_search, boss_x, boss_y):
 		#print("Current Pos: ",current_position)
 		queue.remove(0)
 		grid_to_search[current_position[0]][current_position[1]] = visited #set visited =1
-		if(current_position == (Vector2(0, 3))) :
+		if(current_position == (Vector2(boss_x, boss_y))) :
 			return true
 		for i in range(4) :
 			next_x = current_position[0] + direction[i][0]
@@ -184,6 +184,10 @@ func _on_ConfirmButton_pressed():
 	var converted_grid = convert_map_dual_state(convert_button_grid)
 	print(converted_grid)
 	var path_exists = search_algorithm(converted_grid,boss_x_axis,boss_y_axis)
+	if(path_exists ==  true):
+		GlobalVariables.maze_creator_map = button_grid
+	else:
+		print("Path does not exist")
 	print("Path exists: ", path_exists)
 
 
