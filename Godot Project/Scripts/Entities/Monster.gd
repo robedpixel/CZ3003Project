@@ -23,9 +23,11 @@ func _disableAndHide():
 	set_physics_process(false)
 	set_process_input(false)
 	monsterSprite.visible = false
+	monsterSprite.playing = false
 	
 func _enable():
 	set_process(true)
 	set_physics_process(true)
 	set_process_input(true)
 	monsterSprite.visible = true
+	monsterSprite.playing = true

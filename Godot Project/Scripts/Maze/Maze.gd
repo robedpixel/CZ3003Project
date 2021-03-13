@@ -100,6 +100,10 @@ func _moveRoom(dir):
 	player.set_position(doorPos)
 	
 
+func _refreshRoom():
+	_exitRoom()
+	_loadRoom(playerX, playerY)
+
 
 func _loadRoom(x, y):
 	print("Loading room " + str(x) + " " + str(y))
@@ -159,7 +163,6 @@ func _toggleAllDoors(show):
 # Clear monster/shop
 func _exitRoom():
 	if(shop):
-		
 		shop.queue_free()
 	if(currentMonster):
 		currentMonster.queue_free()
@@ -176,3 +179,11 @@ func _initShopRoom():
 	get_node("/root/Main").add_child(shopInstance)
 	shop = shopInstance
 	shop._initShop()
+
+
+func _on_CombatManager_victory_signal(value):
+	if(value):
+		# TODO reward player
+		mazeDesign._setRoom(playerX, playerY, 5)
+	else:
+		pass

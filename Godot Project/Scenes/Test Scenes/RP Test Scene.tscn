@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://Resources/images/walfie_example.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Entities/Character.gd" type="Script" id=2]
@@ -17,6 +17,7 @@
 [ext_resource path="res://Resources/images/all.png" type="Texture" id=15]
 [ext_resource path="res://Scenes/Prefabs/Heart.tscn" type="PackedScene" id=16]
 [ext_resource path="res://Scripts/GUI/Game/CoinsUI.gd" type="Script" id=17]
+[ext_resource path="res://Scripts/GUI/Game/MainUI.gd" type="Script" id=18]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 33.9829, 56.0424 )
@@ -66,6 +67,7 @@ extents = Vector2( 73.791, 72.4807 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_bottom = 6.10352e-05
+script = ExtResource( 18 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -211,7 +213,7 @@ scale = Vector2( 0.3, 0.3 )
 z_index = 1
 frames = SubResource( 6 )
 animation = "test"
-frame = 1
+frame = 3
 speed_scale = 2.0
 playing = true
 
@@ -329,3 +331,5 @@ script = ExtResource( 9 )
 [connection signal="body_exited" from="Interactables/RightDoor/Area2D" to="Interactables/RightDoor/Area2D" method="_on_Area2D_body_exited"]
 [connection signal="body_entered" from="Interactables/LeftDoor/Area2D" to="Interactables/LeftDoor/Area2D" method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="Interactables/LeftDoor/Area2D" to="Interactables/LeftDoor/Area2D" method="_on_Area2D_body_exited"]
+[connection signal="combat_signal" from="CombatManager" to="MainCanvas/MainUI" method="_on_CombatManager_combat_signal"]
+[connection signal="victory_signal" from="CombatManager" to="Maze" method="_on_CombatManager_victory_signal"]
