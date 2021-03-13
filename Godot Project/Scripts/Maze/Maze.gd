@@ -4,6 +4,7 @@ extends Node
 onready var mazeDesign = get_node("../MazeDesign")
 onready var player = get_node("../Player")
 onready var questionManager = get_node("../QuestionManager")
+onready var cmbtManager = get_node("../CombatManager")
 
 # interactables, door
 onready var interactables = get_node("../Interactables")
@@ -174,6 +175,8 @@ func _initChallengeRoom(isBoss):
 	monster.set_position(Vector2(640, 360))
 	interactables.add_child(monster)
 	currentMonster = monster
+	cmbtManager._setMonster(currentMonster)
+	
 	
 func _initShopRoom():
 	var shopInstance = shopObj.instance()

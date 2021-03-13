@@ -1,7 +1,7 @@
 extends Node
 
 
-onready var combatUI = get_node("../MainCanvas/CombatUI")
+onready var combatUI = get_node("../MainCanvas/CombatCanvas/CombatUI")
 
 onready var player = get_node("../Player")
 
@@ -11,6 +11,8 @@ var correctAnswer = 1
 
 signal combat_signal(value)
 signal victory_signal(value)
+
+var currentMonster
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -27,14 +29,15 @@ func _enterCombat(monster):
 	
 	player._disableAndHide()
 	
-	_toggleCombatUI(true)
-	
 	var question = questionManager.ask_question()
 	combatUI._setQuestion(question)
 	
 	correctAnswer = question.correct_answer
 	
 	emit_signal("combat_signal", true)
+	
+func _setMonster(monster):
+	currentMonster = monster
 	
 func _exitCombat():
 	print("Exiting combat")
@@ -62,3 +65,9 @@ func _onAnswer(ansValue):
 		# Hardcode to 1 dmg for now
 		player._takeDamage(1)
 	_exitCombat()
+
+func _onTransitionShowStart():
+	currentMonster._monsterFadeInAnim()
+	
+func _onTransitionShowEnd():
+	_toggleCombatUI(true)
