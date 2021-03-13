@@ -135,6 +135,8 @@ autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Tween" type="Tween" parent="CombatUI"]
 [connection signal="pressed" from="CombatUI/Control/Button" to="." method="_on_Button1_pressed"]
 [connection signal="pressed" from="CombatUI/Control2/Button" to="." method="_on_Button2_pressed"]
 [connection signal="pressed" from="CombatUI/Control3/Button" to="." method="_on_Button3_pressed"]

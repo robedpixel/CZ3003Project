@@ -70,4 +70,7 @@ func _onTransitionShowStart():
 	currentMonster._monsterFadeInAnim()
 	
 func _onTransitionShowEnd():
+	combatUI._hideAnswers()
 	_toggleCombatUI(true)
+	combatUI._displayQn()
+	

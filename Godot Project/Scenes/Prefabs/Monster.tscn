@@ -41,6 +41,7 @@ script = ExtResource( 2 )
 [node name="MonsterSprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 5, 5 )
 frames = SubResource( 5 )
+frame = 2
 playing = true
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
