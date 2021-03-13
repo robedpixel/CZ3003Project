@@ -1,0 +1,98 @@
+{
+  "Question 1": {
+    "question": "Which of the following is true about Class Diagram?",
+    "answer_a": "Class Diagram must contain name, attribute, and operation methods of the class",
+    "answer_b": "Class Diagram represents the structure of the system",
+    "answer_c": "There is generally no relationship between different classes",
+    "answer_d": "Class diagram must be the first step when doing Requirement Elicitation",
+    "cor_answer": "1"
+  },
+  "Question 2": {
+    "question": "What is 'aggregation' in a class relationship?",
+    "answer_a": "It is considered 'part of' relationship and is symbolized by a clear white diamond",
+    "answer_b": "It is considered 'entirely made of' relationship and is symbolized by a clear white diamond",
+    "answer_c": "It is considered 'entirely made of' relationship and is symbolized by black diamond",
+    "answer_d": "It is considered 'part of' relationship and is symbolized by a black diamond",
+    "cor_answer": "1"
+  },
+  "Question 3": {
+    "question": "What is 'dependency' in a class relationship?",
+    "answer_a": "It is symbolized by solid line with black arrow",
+    "answer_b": "It is symbolized by dashed line with white arrow",
+    "answer_c": "It is symbolized by solid line with white arrow",
+    "answer_d": "It is symbolized by dotted line",
+    "cor_answer": "3"
+  },
+  "Question 4": {
+    "question": "Which of the following is NOT a stereotype of classes?",
+    "answer_a": "Boundary Class",
+    "answer_b": "Interface Class",
+    "answer_c": "Control Class",
+    "answer_d": "Entity Class",
+    "cor_answer": "1"
+  },
+  "Question 5": {
+    "question": "What is the heuristic which the sequence diagram follows?",
+    "answer_a": "The message arrow in sequence diagram go from left to right and is read from bottom to top ",
+    "answer_b": "The sequence diagram must follow the order of events in the use case description",
+    "answer_c": "Position the lifelines to make message arrows as short as possible",
+    "answer_d": "All of the above",
+    "cor_answer": "2"
+  },
+  "Question 6": {
+    "question": "The order of events in a sequence diagram is determined:",
+    "answer_a": "By following the order of events in the use case description",
+    "answer_b": "By placing numbers in comments along the left-hand margin of the diagram",
+    "answer_c": "By the relative position of the events on the timeline",
+    "answer_d": "By the sequence numbers of the events",
+    "cor_answer": "2"
+  },
+    "Question 7": {
+    "question": "Which of the following is true about sequence diagram?",
+    "answer_a": "The messages in the sequence diagram must be synchronous",
+    "answer_b": "Activation are represented by dashed lines",
+    "answer_c": "Lifelines are represented by narrow bars",
+    "answer_d": "Objects can be represented using rectangles or stereotypes",
+    "cor_answer": "3"
+  },
+  "Question 8": {
+    "question": "Which of the following components can be described as 'application logic layer'",
+    "answer_a": "Boundary Class",
+    "answer_b": "Interface Class",
+    "answer_c": "Entity Class",
+    "answer_d": "Control Class",
+    "cor_answer": "3"
+  },
+  "Question 9": {
+    "question": "What is 'composition' in a class relationship?",
+    "answer_a": "It is symbolized by a white triangle",
+    "answer_b": "It is symbolized by a black triangle",
+    "answer_c": "It is symbolized by a white diamond",
+    "answer_d": "It is symbolized by a black diamond",
+    "cor_answer": "3"
+  },
+  "Question 10": {
+    "question": "Which of the following is not a typical element of a class?",
+    "answer_a": "name",
+    "answer_b": "object",
+    "answer_c": "attribute",
+    "answer_d": "method",
+    "cor_answer": "1"
+  },
+  "Question 11": {
+    "question": "How are objects represented in a sequence diagram?",
+    "answer_a": "circles",
+    "answer_b": "rectangles",
+    "answer_c": "narrow bars",
+    "answer_d": "triangles",
+    "cor_answer": "1"
+  },
+  "Question 12": {
+    "question": "Which is true about sequence diagrams?",
+    "answer_a": "Sequence diagrams are good at precise definition of single object in many use cases",
+    "answer_b": "Sequence diagrams are good at capturing interactions between objects",
+    "answer_c": "Sequence diagrams are good at precise definition of many use cases and many threads ",
+    "answer_d": "Sequence diagrams is a conceptual model",
+    "cor_answer": "1"
+  }
+}

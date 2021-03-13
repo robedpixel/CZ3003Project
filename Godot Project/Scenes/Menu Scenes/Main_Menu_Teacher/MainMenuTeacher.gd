@@ -1,17 +1,10 @@
-extends Node
+extends Control
 
-class_name CombatQuestion
+
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
-enum{ANSWER_A,ANSWER_B,ANSWER_C,ANSWER_D}
-
-var question :String
-var answer_a :String
-var answer_b :String
-var answer_c :String
-var answer_d :String
-var correct_answer: int
+var path_to_generate_report =  "res://Scenes/Menu Scenes/Main_Menu_teacher/GenerateReport.tscn";
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -21,3 +14,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
+
+
+func _on_Button_pressed():
+	get_tree().change_scene(path_to_generate_report)

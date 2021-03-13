@@ -1,0 +1,26 @@
+{
+  "Question 1": {
+    "question": "Which of the following is true about Class Diagram?",
+    "answer_a": "Class Diagram must contain name, attribute, and operation methods of the class",
+    "answer_b": "Class Diagram represents the structure of the system",
+    "answer_c": "There is generally no relationship between different classes",
+    "answer_d": "Class diagram must be the first step when doing Requirement Elicitation",
+    "cor_answer": "1"
+  },
+  "Question 2": {
+    "question": "Which of the following is NOT a stereotype of classes?",
+    "answer_a": "Boundary Class",
+    "answer_b": "Interface Class",
+    "answer_c": "Control Class",
+    "answer_d": "Entity Class",
+    "cor_answer": "1"
+  },
+  "Question 3": {
+    "question": "Which of the following is not a typical element of a class?",
+    "answer_a": "name",
+    "answer_b": "object",
+    "answer_c": "attribute",
+    "answer_d": "method",
+    "cor_answer": "1"
+  }
+}
