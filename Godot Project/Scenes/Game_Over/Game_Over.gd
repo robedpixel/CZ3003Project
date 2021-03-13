@@ -1,7 +1,7 @@
 extends Node
 
 var handler
-var score = 123
+var score = 0
 
 func _ready():
 	handler = load("res://Scripts/auth/firebase_db.gd").new()
