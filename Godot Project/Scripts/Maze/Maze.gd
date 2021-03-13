@@ -3,6 +3,7 @@ extends Node
 
 onready var mazeDesign = get_node("../MazeDesign")
 onready var player = get_node("../Player")
+onready var questionManager = get_node("../QuestionManager")
 
 # interactables, door
 onready var interactables = get_node("../Interactables")

@@ -5,6 +5,8 @@ onready var combatUI = get_node("../MainCanvas/CombatUI")
 
 onready var player = get_node("../Player")
 
+onready var questionManager = get_node("../QuestionManager")
+
 var correctAnswer = 1
 
 signal combat_signal(value)
@@ -12,8 +14,8 @@ signal victory_signal(value)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
-
+	questionManager.read_questions_from_source("res://Resources/Questions/Requirement_Analysis.json")
+	questionManager.prepare_questions()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
@@ -22,8 +24,16 @@ func _ready():
 func _enterCombat(monster):
 	print("Entering combat")
 	print(player)
+	
 	player._disableAndHide()
+	
 	_toggleCombatUI(true)
+	
+	var question = questionManager.ask_question()
+	combatUI._setQuestion(question)
+	
+	correctAnswer = question.correct_answer
+	
 	emit_signal("combat_signal", true)
 	
 func _exitCombat():

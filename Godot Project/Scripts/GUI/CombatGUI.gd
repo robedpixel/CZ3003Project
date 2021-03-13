@@ -7,6 +7,12 @@ extends Control
 
 onready var cmbtManager = get_node('../../CombatManager')
 
+onready var questionLabel = $Label
+onready var ans1 = $Control/Button/Label
+onready var ans2 = $Control2/Button/Label
+onready var ans3 = $Control3/Button/Label
+onready var ans4 = $Control4/Button/Label
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	self.visible = false
@@ -42,3 +48,11 @@ func _on_Button3_pressed():
 
 func _on_Button4_pressed():
 	cmbtManager._onAnswer(4)
+	
+func _setQuestion(combatQuestion):
+	questionLabel.text = combatQuestion.question
+	ans1.text = combatQuestion.answer_a
+	ans2.text = combatQuestion.answer_b
+	ans3.text = combatQuestion.answer_c
+	ans4.text = combatQuestion.answer_d
+	
