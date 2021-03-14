@@ -96,7 +96,8 @@ func _set_duration(val:float):
 
 
 func _on_CombatManager_combat_signal(value):
-	_set_mask(randi() % 12)
-	tex_rect.setImmediateShow()
-	tex_rect.hide_screen()
+	if(value):
+		_set_mask(randi() % 12)
+		tex_rect.setImmediateShow()
+		tex_rect.hide_screen()
 
