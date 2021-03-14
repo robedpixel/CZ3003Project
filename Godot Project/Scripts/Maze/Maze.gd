@@ -47,12 +47,14 @@ func _initializeMaze():
 	_exitRoom()
 	
 	mazeDesign._generateMaze(5, 5)
-	mazeDesign._setRoom(playerX, playerY, 4)
-	mazeDesign._setRoom(4, 4, 3)
+	
+	mazeDesign._setRoom(playerX, playerY, GlobalVariables.RoomEnum.STARTING_ROOM)
+	mazeDesign._setRoom(4, 4, GlobalVariables.RoomEnum.BOSS_ROOM)
 	
 	_loadRoom(playerX, playerY)
 	_updatePlayerGridUI()
 	
+	# 3 health 5 coins
 	player._initPlayer(3, 5)
 	
 	# init shop and boss
@@ -138,18 +140,22 @@ func _loadRoom(x, y):
 	
 	# show/hide monsters/shops accordingly
 	match roomType:
-		1: # challenge
+		GlobalVariables.RoomEnum.CHALLENGE_ROOM_EASY: # challenge
 			_initChallengeRoom(false)
-		2: # boss
+		GlobalVariables.RoomEnum.CHALLENGE_ROOM_MED:
+			_initChallengeRoom(false)
+		GlobalVariables.RoomEnum.CHALLENGE_ROOM_HARD:
+			_initChallengeRoom(false)
+		GlobalVariables.RoomEnum.BOSS_ROOM: # boss
 			_initChallengeRoom(true)
-		3: # shop
+		GlobalVariables.RoomEnum.SHOP_ROOM: # shop
 			_initShopRoom()
 		_: # default
 			pass	
 
 func _checkPlayerInValidRoom(x, y):
 	var roomType = mazeDesign._getRoom(x, y)
-	if(roomType == -1 or roomType == 0):
+	if(roomType <= -1 or roomType == GlobalVariables.RoomEnum.VOID_ROOM):
 		return false
 	return true
 	
@@ -188,6 +194,6 @@ func _initShopRoom():
 func _on_CombatManager_victory_signal(value):
 	if(value):
 		# TODO reward player
-		mazeDesign._setRoom(playerX, playerY, 5)
+		mazeDesign._setRoom(playerX, playerY, GlobalVariables.RoomEnum.EMPTY_ROOM)
 	else:
 		pass

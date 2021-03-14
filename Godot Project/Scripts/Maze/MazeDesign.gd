@@ -34,10 +34,9 @@ func _generateMaze(mazeWidth, mazeHeight):
 		layout[x]=[]        
 		for y in range(HEIGHT):
 			layout[x].append([])
-			layout[x][y]=5
+			layout[x][y]=GlobalVariables.RoomEnum.CHALLENGE_ROOM_EASY
 			
-	_setRoom(0, 1, 1)
-	_setRoom(1, 0, 3)
+	_setRoom(1, 0, GlobalVariables.RoomEnum.SHOP_ROOM)
 			
 func _getLayout():
 	return layout
