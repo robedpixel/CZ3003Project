@@ -146,10 +146,11 @@ func _restoreHealth(healthRestored):
 
 func _takeDamage(damageTaken):
 	health -= damageTaken
-	if(health < 0):
+	healthUI._setHeart(health, maxHealth)
+	if(health <= 0):
 		print("Game over")
 		return
-	healthUI._setHeart(health, maxHealth)
+	
 
 # could make an empty node and add playerInventory or playerCoins to it
 func _setCoins(coinsToSet):

@@ -72,15 +72,20 @@ func _displayQn():
 	currentQnTxt = ""
 	txtIndex = 0
 	displayQn = true
-
+	_hideAnswers()
 
 func _displayAnswers():
+	tween_lock = true
 	for x in range(4):
-		tween.interpolate_callback(self, 0.3, "_showAns", x)
+		tween.interpolate_callback(self, 0.25, "_showAns", x)
 		tween.start()
 		yield(tween, "tween_completed")
+	tween_lock = false
 		
 
 
 func _on_Button_pressed(index):
+	if(tween_lock):
+		return
+		
 	cmbtManager._onAnswer(index)

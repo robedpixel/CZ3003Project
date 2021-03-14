@@ -33,15 +33,16 @@ animations = [ {
 extents = Vector2( 32.8479, 33.0825 )
 
 [sub_resource type="RectangleShape2D" id=7]
-extents = Vector2( 76.1249, 80.3656 )
+extents = Vector2( 128.957, 125.574 )
 
 [node name="Monster" type="StaticBody2D"]
 collision_layer = 4
 script = ExtResource( 2 )
 
 [node name="MonsterSprite" type="AnimatedSprite" parent="."]
-scale = Vector2( 5, 5 )
+scale = Vector2( 10, 10 )
 frames = SubResource( 5 )
+frame = 1
 playing = true
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
@@ -57,6 +58,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2( 2, 2 )
 z_index = 1
 shape = SubResource( 6 )
 
@@ -71,7 +73,7 @@ shape = SubResource( 7 )
 
 [node name="Health" type="Node2D" parent="."]
 script = ExtResource( 4 )
-health = 1
-maxHealth = 1
+health = 4
+maxHealth = 4
 [connection signal="body_entered" from="InteractableArea" to="InteractableArea" method="_on_Interactable_Area_body_entered"]
 [connection signal="body_exited" from="InteractableArea" to="InteractableArea" method="_on_Interactable_Area_body_exited"]

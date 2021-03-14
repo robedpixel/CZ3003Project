@@ -6,6 +6,7 @@ extends Node
 # var b = "text"
 
 onready var monsterSprite = $MonsterSprite
+onready var monsterHealth = $Health
 
 onready var cmbtManager = get_node("/root/Main/CombatManager")
 

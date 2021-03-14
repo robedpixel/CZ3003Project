@@ -18,6 +18,7 @@ onready var gridLocationTxt = get_node("../MainCanvas/MainUI/GridLocationBackgro
 
 # prefabs
 onready var monsterObj = preload("res://Scenes/Prefabs/Monster.tscn")
+onready var bossObj = preload("res://Scenes/Prefabs/Boss.tscn")
 onready var shopObj = preload("res://Scenes/Prefabs/Shop.tscn")
 
 # player variables
@@ -59,7 +60,7 @@ func _initializeMaze():
 			mazeDesign._setRoom(x, y, GlobalVariables.RoomEnum.CHALLENGE_ROOM_EASY)
 	
 	mazeDesign._setRoom(playerX, playerY, GlobalVariables.RoomEnum.STARTING_ROOM)
-	mazeDesign._setRoom(4, 4, GlobalVariables.RoomEnum.BOSS_ROOM)
+	mazeDesign._setRoom(1, 1, GlobalVariables.RoomEnum.BOSS_ROOM)
 	mazeDesign._setRoom(1, 0, GlobalVariables.RoomEnum.SHOP_ROOM)
 	
 	_loadRoom(playerX, playerY)
@@ -219,7 +220,11 @@ func _initChallengeRoom(isBoss):
 		# unlock prev door
 		_unlockLastDoor()
 	
-	var monster = monsterObj.instance()
+	var monster
+	if(!isBoss):
+		monster = monsterObj.instance()
+	else:
+		monster = bossObj.instance()
 	monster.set_position(Vector2(640, 360))
 	interactables.add_child(monster)
 	currentMonster = monster

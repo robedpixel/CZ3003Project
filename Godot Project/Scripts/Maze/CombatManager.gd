@@ -13,6 +13,7 @@ signal combat_signal(value)
 signal victory_signal(value)
 
 var currentMonster
+var isBoss : bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -29,15 +30,24 @@ func _enterCombat(monster):
 	
 	player._disableAndHide()
 	
+	_nextQuestion()
+	
+	emit_signal("combat_signal", true)
+
+func _nextQuestion():
 	var question = questionManager.ask_question()
 	combatUI._setQuestion(question)
 	
 	correctAnswer = question.correct_answer
 	
-	emit_signal("combat_signal", true)
-	
+	combatUI._displayQn()
+
 func _setMonster(monster):
 	currentMonster = monster
+	if(currentMonster.monsterHealth.maxHealth == 4):
+		isBoss = true
+	else:
+		isBoss = false
 	
 func _exitCombat():
 	print("Exiting combat")
@@ -55,15 +65,21 @@ func _toggleCombatUI(show):
 # ansValue will take on values 1, 2, 3, 4
 func _onAnswer(ansValue):
 	print('Chosen ans ' + str(ansValue))
-	if(ansValue == correctAnswer):
+	if(true):
+	#if(ansValue == correctAnswer):
 		print("You got it correct!")
-		emit_signal("victory_signal", true)
+		currentMonster.monsterHealth._minusHealth(1)		
 	else:
 		print("Wrong answer")
 		emit_signal("victory_signal", false)
-		# Take enemy damage value
-		# Hardcode to 1 dmg for now
 		player._takeDamage(1)
+		_exitCombat()
+
+func _onAlive(entity):
+	_nextQuestion()
+
+func _onDeath(entity):
+	emit_signal("victory_signal", true)
 	_exitCombat()
 
 func _onTransitionShowStart():
