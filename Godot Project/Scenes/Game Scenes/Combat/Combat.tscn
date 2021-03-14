@@ -137,7 +137,7 @@ __meta__ = {
 }
 
 [node name="Tween" type="Tween" parent="CombatUI"]
-[connection signal="pressed" from="CombatUI/Control/Button" to="." method="_on_Button1_pressed"]
-[connection signal="pressed" from="CombatUI/Control2/Button" to="." method="_on_Button2_pressed"]
-[connection signal="pressed" from="CombatUI/Control3/Button" to="." method="_on_Button3_pressed"]
-[connection signal="pressed" from="CombatUI/Control4/Button" to="." method="_on_Button4_pressed"]
+[connection signal="pressed" from="CombatUI/Control/Button" to="CombatUI" method="_on_Button_pressed" binds= [ 0 ]]
+[connection signal="pressed" from="CombatUI/Control2/Button" to="CombatUI" method="_on_Button_pressed" binds= [ 1 ]]
+[connection signal="pressed" from="CombatUI/Control3/Button" to="CombatUI" method="_on_Button_pressed" binds= [ 2 ]]
+[connection signal="pressed" from="CombatUI/Control4/Button" to="CombatUI" method="_on_Button_pressed" binds= [ 3 ]]
