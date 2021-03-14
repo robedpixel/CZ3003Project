@@ -5,7 +5,7 @@ extends Control
 # var a = 2
 # var b = "text"
 
-onready var cmbtManager = get_node('../../CombatManager')
+onready var cmbtManager = get_node('/root/Main/CombatManager')
 
 onready var questionLabel = $Label
 
@@ -52,25 +52,12 @@ func _show():
 func _hide():
 	self.visible = false
 
-func _on_Button1_pressed():
-	cmbtManager._onAnswer(1)
-
-func _on_Button2_pressed():
-	cmbtManager._onAnswer(2)
-
-
-func _on_Button3_pressed():
-	cmbtManager._onAnswer(3)
-
-
-func _on_Button4_pressed():
-	cmbtManager._onAnswer(4)
-	
 func _hideAnswers():
 	for x in range(4):
 		answers[x].visible = false
 
 func _showAns(index):
+	print(cmbtManager)
 	answers[index].visible = true
 
 func _setQuestion(combatQuestionToSet):
@@ -93,3 +80,7 @@ func _displayAnswers():
 		tween.start()
 		yield(tween, "tween_completed")
 		
+
+
+func _on_Button_pressed(index):
+	cmbtManager._onAnswer(index)
