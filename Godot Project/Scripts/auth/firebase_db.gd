@@ -25,6 +25,35 @@ func save_world_score(world: int, score: int) ->void:
 	var url = FIRESTORE_URL + path + "?auth=%s" % id_token
 	http.request(url, FirebaseAuth._get_request_headers(), false, HTTPClient.METHOD_POST, body)
 
+func save_analytics(world: int) ->void:
+	id_token = FirebaseAuth._get_current_token_id()
+	var path = "analytics/World "+str(world)+ ".json"
+	var url = FIRESTORE_URL + path + "?auth=%s" % id_token
+	
+	self.http.request(url, FirebaseAuth._get_request_headers(), false, HTTPClient.METHOD_GET)
+	var result:= yield(http, "request_completed") as Array
+	print(result)
+	if result[1] ==200:
+		var existing_data = JSON.parse(result[3].get_string_from_ascii()).result as Dictionary
+		print(existing_data)
+		var fields := {
+			"easy": { 
+				"correct": existing_data.easy.correct + AnalyticVariables.easy.correct,
+				"wrong": existing_data.easy.wrong + AnalyticVariables.easy.wrong
+			}, 
+			"medium": { 
+				"correct": existing_data.medium.correct + AnalyticVariables.medium.correct,
+				"wrong": existing_data.medium.wrong + AnalyticVariables.medium.wrong
+			}, 
+			"hard": { 
+				"correct": existing_data.hard.correct + AnalyticVariables.hard.correct,
+				"wrong": existing_data.hard.wrong + AnalyticVariables.hard.wrong
+			}
+		}
+		var body := to_json(fields)
+		print("updating database...")
+		http.request(url, FirebaseAuth._get_request_headers(), false, HTTPClient.METHOD_PATCH, body)
+
 func save_document(path: String, fields: Dictionary, http: HTTPRequest) -> void:
 	id_token = FirebaseAuth._get_current_token_id()
 	print("id_token")
@@ -44,16 +73,5 @@ func get_document(path: String, http: HTTPRequest):
 	print("id_token")
 	print(id_token)
 	var url = FIRESTORE_URL + path + "?auth=%s" % id_token
-	print(http.request(url, FirebaseAuth._get_request_headers(), false, HTTPClient.METHOD_GET))
-	#remove the print later
+	http.request(url, FirebaseAuth._get_request_headers(), false, HTTPClient.METHOD_GET)
 
-func update_document(path: String, fields: Dictionary, http: HTTPRequest) -> void: #NOT DONE YET
-	var document := { "fields": fields }
-	var body := to_json(document)
-	var url = FIRESTORE_URL + path + "?auth=%s" % id_token
-	http.request(url, FirebaseAuth._get_request_headers(), false, HTTPClient.METHOD_PATCH, body)
-
-
-func delete_document(path: String, http: HTTPRequest) -> void: #NOT DONE YET
-	var url = FIRESTORE_URL + path + "?auth=%s" % id_token
-	http.request(url, FirebaseAuth._get_request_headers(), false, HTTPClient.METHOD_DELETE)

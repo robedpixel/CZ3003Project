@@ -39,6 +39,7 @@ run/main_scene="res://Scenes/Menu Scenes/Main_Menu/Main Menu.tscn"
 
 FirebaseAuth="*res://Scripts/auth/firebase_auth.gd"
 GlobalVariables="*res://Scripts/global_variables.gd"
+AnalyticVariables="*res://Scripts/analytic_variables.gd"
 
 [display]
 
