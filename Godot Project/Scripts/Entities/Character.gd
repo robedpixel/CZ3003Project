@@ -7,6 +7,7 @@ const FLOAT_EPSILON = 0.00001
 onready var cmbtManager = get_node("../CombatManager")
 onready var mazeManager = get_node("../Maze")
 onready var healthUI = get_node("../MainCanvas/MainUI/Hearts")
+onready var coinUI = get_node("../MainCanvas/MainUI/CoinsUI")
 onready var itemUI = get_node("../MainCanvas/MainUI/ItemUI/ItemUIBG/Item")
 
 var velocity = Vector2()
@@ -26,14 +27,18 @@ var coins = 0
 var inventory = []
 var currentInventoryIndex = 0
 
+#signals
+signal coin_change_signal(value)
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	inventory.append(GlobalVariables.ItemEnum.ITEM_HEALTHPOT)
 	_showItem()
 	pass
 
-func _initPlayer(startingHealth):
+func _initPlayer(startingHealth, startingCoins):
 	_initHealth(startingHealth)
+	_setCoins(startingCoins)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -96,7 +101,7 @@ func _interact():
 		var interactObj = interactObjList[interactObjList.size() - 1]
 		print("interacting with " + interactObj.name)
 		
-		interactObj._interact()
+		interactObj._interact(self)
 		
 		#if('Door' in interactObj):
 			#mazeManager._moveRoom(interactObj.name)
@@ -141,18 +146,23 @@ func _restoreHealth(healthRestored):
 
 func _takeDamage(damageTaken):
 	health -= damageTaken
-	if(health < 0):
+	healthUI._setHeart(health, maxHealth)
+	if(health <= 0):
 		print("Game over")
 		return
-	healthUI._setHeart(health, maxHealth)
+	
 
 # could make an empty node and add playerInventory or playerCoins to it
+func _setCoins(coinsToSet):
+	coins = coinsToSet
+	emit_signal("coin_change_signal", coins)
+
 func _addCoins(coinsToAdd):
-	coins += coinsToAdd
+	_setCoins(coins+coinsToAdd)
 	
 func _removeCoins(coinsToRemove):
-	coins -= coinsToRemove
-
+	_setCoins(coins-coinsToRemove)
+	
 func _getCoins():
 	return coins
 	
@@ -171,6 +181,7 @@ func _nextItem():
 	
 func _showItem():
 	itemUI._setItem(inventory[currentInventoryIndex])
+	#itemUI._disableCollider()
 	
 # can move item logic outside of player
 func _useItem():
@@ -180,6 +191,10 @@ func _useItem():
 	
 	var item = inventory[currentInventoryIndex]
 	
+	# remove from inventory
+	inventory.erase(item)
+	_nextItem()
+	
 	match item:
 		GlobalVariables.ItemEnum.ITEM_HEALTHPOT:
 			_restoreHealth(3)
@@ -188,7 +203,8 @@ func _useItem():
 		_:
 			pass
 	
-		
+func _addItem(itemType):
+	inventory.append(itemType)
 	
 	
 	

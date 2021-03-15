@@ -3,6 +3,8 @@ extends Node
 
 onready var mazeDesign = get_node("../MazeDesign")
 onready var player = get_node("../Player")
+onready var questionManager = get_node("../QuestionManager")
+onready var cmbtManager = get_node("../CombatManager")
 
 # interactables, door
 onready var interactables = get_node("../Interactables")
@@ -16,17 +18,25 @@ onready var gridLocationTxt = get_node("../MainCanvas/MainUI/GridLocationBackgro
 
 # prefabs
 onready var monsterObj = preload("res://Scenes/Prefabs/Monster.tscn")
+onready var bossObj = preload("res://Scenes/Prefabs/Boss.tscn")
 onready var shopObj = preload("res://Scenes/Prefabs/Shop.tscn")
 
 # player variables
 var playerX = 0
 var playerY = 0
 
+var prevPlayerX = 0
+var prevPlayerY = 0
+
 # room variables
 var currentRoomType
 var currentMonster
 
 var shop
+var shopItems = []
+
+var movedRoom : bool = false
+var lastUsedDoor = ""
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -44,17 +54,30 @@ func _initializeMaze():
 	_exitRoom()
 	
 	mazeDesign._generateMaze(5, 5)
-	mazeDesign._setRoom(playerX, playerY, 4)
-	mazeDesign._setRoom(4, 4, 3)
+	
+	for x in range(mazeDesign.WIDTH):
+		for y in range(mazeDesign.HEIGHT):
+			mazeDesign._setRoom(x, y, GlobalVariables.RoomEnum.CHALLENGE_ROOM_EASY)
+	
+	mazeDesign._setRoom(playerX, playerY, GlobalVariables.RoomEnum.STARTING_ROOM)
+	mazeDesign._setRoom(1, 1, GlobalVariables.RoomEnum.BOSS_ROOM)
+	mazeDesign._setRoom(1, 0, GlobalVariables.RoomEnum.SHOP_ROOM)
 	
 	_loadRoom(playerX, playerY)
 	_updatePlayerGridUI()
 	
-	player._initPlayer(3)
+	# 3 health 5 coins
+	player._initPlayer(3, 5)
+	
+	# init shop and boss
+	
+	shopItems = [GlobalVariables.ItemEnum.ITEM_HEALTHPOT,
+	GlobalVariables.ItemEnum.ITEM_HEALTHPOT,
+	GlobalVariables.ItemEnum.ITEM_HEALTHPOT]
+	
+	
 
 func _moveRoom(dir):
-	
-	_exitRoom()
 	
 	var newPlayerX = playerX
 	var newPlayerY = playerY
@@ -82,14 +105,23 @@ func _moveRoom(dir):
 	if(validRoom):
 		playerX = newPlayerX
 		playerY = newPlayerY
+		movedRoom = true
+		lastUsedDoor = dir
 	else:
 		print("Invalid room. Unable to move to " + str(newPlayerX) + " " + str(newPlayerY))
 		return
-		
+	
+	_exitRoom()
+	
 	_loadRoom(playerX, playerY)
 	_updatePlayerGridUI()
 	player.set_position(doorPos)
 	
+	movedRoom = false
+
+func _refreshRoom():
+	_exitRoom()
+	_loadRoom(playerX, playerY)
 
 
 func _loadRoom(x, y):
@@ -110,7 +142,7 @@ func _loadRoom(x, y):
 	var adjacentDownRoom = mazeDesign._getRoom(x, y - 1)
 	
 	_toggleAllDoors(true)
-	
+	_setLockAllDoors(false)
 	
 	if(adjacentLeftRoom <= 0):
 		leftDoor._toggleDoor(false)
@@ -123,23 +155,34 @@ func _loadRoom(x, y):
 	
 	# show/hide monsters/shops accordingly
 	match roomType:
-		1: # challenge
+		GlobalVariables.RoomEnum.CHALLENGE_ROOM_EASY: # challenge
 			_initChallengeRoom(false)
-		2: # boss
+		GlobalVariables.RoomEnum.CHALLENGE_ROOM_MED:
+			_initChallengeRoom(false)
+		GlobalVariables.RoomEnum.CHALLENGE_ROOM_HARD:
+			_initChallengeRoom(false)
+		GlobalVariables.RoomEnum.BOSS_ROOM: # boss
 			_initChallengeRoom(true)
-		3: # shop
+		GlobalVariables.RoomEnum.SHOP_ROOM: # shop
 			_initShopRoom()
 		_: # default
 			pass	
 
 func _checkPlayerInValidRoom(x, y):
 	var roomType = mazeDesign._getRoom(x, y)
-	if(roomType == -1 or roomType == 0):
+	if(roomType <= -1 or roomType == GlobalVariables.RoomEnum.VOID_ROOM):
 		return false
 	return true
-	
+
 func _updatePlayerGridUI():
 	gridLocationTxt.text = "X" + str(playerX) + "    " + "Y" + str(playerY)
+
+# i should turn this into a list
+func _setLockAllDoors(lock):
+	leftDoor._setLocked(lock)
+	rightDoor._setLocked(lock)
+	upDoor._setLocked(lock)
+	downDoor._setLocked(lock)
 
 func _toggleAllDoors(show):
 	leftDoor._toggleDoor(show)
@@ -147,8 +190,23 @@ func _toggleAllDoors(show):
 	upDoor._toggleDoor(show)
 	downDoor._toggleDoor(show)
 
+func _unlockLastDoor():
+	match lastUsedDoor:
+		"up":
+			downDoor._setLocked(false)
+		"down":
+			upDoor._setLocked(false)
+		"left":
+			rightDoor._setLocked(false)
+		"right":
+			leftDoor._setLocked(false)
+		_:
+			pass
+
 # Clear monster/shop
 func _exitRoom():
+	prevPlayerX = playerX
+	prevPlayerY = playerY
 	if(shop):
 		shop.queue_free()
 	if(currentMonster):
@@ -156,13 +214,33 @@ func _exitRoom():
 
 func _initChallengeRoom(isBoss):
 	print("Init challenge room")
-	var monster = monsterObj.instance()
+	
+	if(movedRoom):
+		_setLockAllDoors(true)
+		# unlock prev door
+		_unlockLastDoor()
+	
+	var monster
+	if(!isBoss):
+		monster = monsterObj.instance()
+	else:
+		monster = bossObj.instance()
 	monster.set_position(Vector2(640, 360))
 	interactables.add_child(monster)
 	currentMonster = monster
+	cmbtManager._setMonster(currentMonster)
+	
 	
 func _initShopRoom():
 	var shopInstance = shopObj.instance()
 	get_node("/root/Main").add_child(shopInstance)
 	shop = shopInstance
 	shop._initShop()
+
+
+func _on_CombatManager_victory_signal(value):
+	if(value):
+		# TODO reward player
+		mazeDesign._setRoom(playerX, playerY, GlobalVariables.RoomEnum.EMPTY_ROOM)
+	else:
+		pass

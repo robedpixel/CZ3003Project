@@ -1,17 +1,33 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://Resources/fonts/arcade_48.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Resources/fonts/combat_dynamicfont.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Scripts/GUI/CombatGUI.gd" type="Script" id=2]
 
-[node name="Combat UI" type="Control"]
-margin_right = 1280.0
-margin_bottom = 720.0
+[node name="CombatCanvas" type="CanvasLayer"]
+
+[node name="CombatUI" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Control" type="Control" parent="."]
+[node name="Label" type="Label" parent="CombatUI"]
+margin_left = 140.0
+margin_top = 109.0
+margin_right = 1140.0
+margin_bottom = 220.0
+custom_fonts/font = ExtResource( 1 )
+text = "what is the meaning of life"
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control" type="Control" parent="CombatUI"]
 margin_left = 135.468
 margin_top = 260.432
 margin_right = 135.468
@@ -20,25 +36,26 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Button" type="Button" parent="Control"]
+[node name="Button" type="Button" parent="CombatUI/Control"]
 margin_right = 400.0
 margin_bottom = 180.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="Control/Button"]
+[node name="Label" type="Label" parent="CombatUI/Control/Button"]
 margin_right = 400.0
 margin_bottom = 180.0
 custom_fonts/font = ExtResource( 1 )
 text = "a"
 align = 1
 valign = 1
+autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Control2" type="Control" parent="."]
+[node name="Control2" type="Control" parent="CombatUI"]
 margin_left = 754.367
 margin_top = 262.114
 margin_right = 754.367
@@ -47,22 +64,23 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Button" type="Button" parent="Control2"]
+[node name="Button" type="Button" parent="CombatUI/Control2"]
 margin_right = 400.0
 margin_bottom = 180.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="Control2/Button"]
+[node name="Label" type="Label" parent="CombatUI/Control2/Button"]
 margin_right = 400.0
 margin_bottom = 180.0
 custom_fonts/font = ExtResource( 1 )
 text = "b"
 align = 1
 valign = 1
+autowrap = true
 
-[node name="Control3" type="Control" parent="."]
+[node name="Control3" type="Control" parent="CombatUI"]
 margin_left = 133.786
 margin_top = 477.383
 margin_right = 133.786
@@ -71,22 +89,26 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Button" type="Button" parent="Control3"]
+[node name="Button" type="Button" parent="CombatUI/Control3"]
 margin_right = 400.0
 margin_bottom = 180.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="Control3/Button"]
+[node name="Label" type="Label" parent="CombatUI/Control3/Button"]
 margin_right = 400.0
 margin_bottom = 180.0
 custom_fonts/font = ExtResource( 1 )
 text = "c"
 align = 1
 valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Control4" type="Control" parent="."]
+[node name="Control4" type="Control" parent="CombatUI"]
 margin_left = 752.686
 margin_top = 479.065
 margin_right = 752.686
@@ -95,31 +117,27 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Button" type="Button" parent="Control4"]
+[node name="Button" type="Button" parent="CombatUI/Control4"]
 margin_right = 400.0
 margin_bottom = 180.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="Control4/Button"]
+[node name="Label" type="Label" parent="CombatUI/Control4/Button"]
 margin_right = 400.0
 margin_bottom = 180.0
 custom_fonts/font = ExtResource( 1 )
 text = "d"
 align = 1
 valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Label" type="Label" parent="."]
-margin_left = 140.0
-margin_top = 20.0
-margin_right = 1140.0
-margin_bottom = 220.0
-custom_fonts/font = ExtResource( 1 )
-text = "what is the meaning of life"
-align = 1
-valign = 1
-[connection signal="pressed" from="Control/Button" to="." method="_on_Button1_pressed"]
-[connection signal="pressed" from="Control2/Button" to="." method="_on_Button2_pressed"]
-[connection signal="pressed" from="Control3/Button" to="." method="_on_Button3_pressed"]
-[connection signal="pressed" from="Control4/Button" to="." method="_on_Button4_pressed"]
+[node name="Tween" type="Tween" parent="CombatUI"]
+[connection signal="pressed" from="CombatUI/Control/Button" to="CombatUI" method="_on_Button_pressed" binds= [ 0 ]]
+[connection signal="pressed" from="CombatUI/Control2/Button" to="CombatUI" method="_on_Button_pressed" binds= [ 1 ]]
+[connection signal="pressed" from="CombatUI/Control3/Button" to="CombatUI" method="_on_Button_pressed" binds= [ 2 ]]
+[connection signal="pressed" from="CombatUI/Control4/Button" to="CombatUI" method="_on_Button_pressed" binds= [ 3 ]]
