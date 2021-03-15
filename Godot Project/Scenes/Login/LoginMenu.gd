@@ -15,8 +15,13 @@ func _on_Button_pressed():
 	if success:
 		#Scene for testing database accesses
 		#get_tree().change_scene("res://Scenes/Database Test/Database Test.tscn")
-		get_tree().change_scene("res://Scenes/Menu Scenes/Main_Menu/Main Menu.tscn")
-
+		match FirebaseAuth._get_user_role():
+			FirebaseAuth.ROLE_STUDENT:
+				get_tree().change_scene("res://Scenes/Menu Scenes/Main_Menu/Main Menu.tscn")
+			FirebaseAuth.ROLE_TEACHER:
+				get_tree().change_scene("res://Scenes/Menu Scenes/Main_Menu_Teacher/MainMenuTeacher.tscn")
+			_:
+				get_tree().change_scene("res://Scenes/Menu Scenes/Main_Menu/Main Menu.tscn")
 	else:
 		$"VBoxContainer/LoginStatusLabel".set_text("Incorrect username and/or password")
 		print("cannot log in")
