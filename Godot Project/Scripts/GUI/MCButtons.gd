@@ -75,11 +75,12 @@ func get_state_name(state):
 		4 : return "boss"
 		5 : return "store"
 		6 : return "start"
+		7 : return "empty"
 		_ : return "error"
 
 # function to set the state, the parameter state refers to button state
 func set_state_int(state):
-	if state<5:
+	if state<7:
 		check_for_boss_existence()
 		check_for_store_existence()
 		#print("Boss: ", boss_exists, " Store: ", store_exists)
@@ -90,9 +91,13 @@ func set_state_int(state):
 			return state
 		elif(state==4 && store_exists==true):
 			print("store exist")
-			state= 0
+			state= 7
+			return state
+		elif(state == 5):
+			state = 7
 			return state
 		else: state=state+1
+		print(state)
 		return state
 	else: 
 		check_for_boss_existence()
