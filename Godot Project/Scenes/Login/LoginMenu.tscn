@@ -61,6 +61,8 @@ text = "Password: "
 margin_left = 72.0
 margin_right = 130.0
 margin_bottom = 24.0
+secret = true
+expand_to_text_length = true
 
 [node name="Button" type="Button" parent="VBoxContainer"]
 margin_top = 124.0
