@@ -1,0 +1,123 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scenes/Menu Scenes/Main_Menu_Teacher/SummaryReport.gd" type="Script" id=1]
+[ext_resource path="res://Resources/fonts/arcade_40.tres" type="DynamicFont" id=2]
+
+[node name="Generate Report" type="Control"]
+anchor_top = 0.00262188
+anchor_right = 1.0
+anchor_bottom = 1.00262
+margin_left = 1.25995
+margin_top = 2.51984
+margin_right = 1.26001
+margin_bottom = 2.51984
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GR_gobackBtn" type="Button" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -112.0
+margin_top = 260.748
+margin_right = 112.0
+margin_bottom = 329.748
+custom_fonts/font = ExtResource( 2 )
+text = "Back"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -389.0
+margin_right = 401.0
+margin_bottom = 156.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+margin_right = 790.0
+margin_bottom = 41.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer2"]
+margin_left = 47.0
+margin_right = 742.0
+margin_bottom = 41.0
+custom_fonts/font = ExtResource( 2 )
+text = "Generate  Summary  Report   Selection"
+align = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 45.0
+margin_right = 790.0
+margin_bottom = 92.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GR_selectW1Btn" type="Button" parent="VBoxContainer/HBoxContainer"]
+margin_right = 393.0
+margin_bottom = 47.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 2 )
+text = "World 1"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GR_selectW2Btn" type="Button" parent="VBoxContainer/HBoxContainer"]
+margin_left = 397.0
+margin_right = 790.0
+margin_bottom = 47.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 2 )
+text = "World 2"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="wSelectedLbl" type="Label" parent="VBoxContainer"]
+margin_top = 96.0
+margin_right = 790.0
+margin_bottom = 181.0
+custom_fonts/font = ExtResource( 2 )
+text = "
+"
+align = 1
+valign = 1
+
+[node name="summReportLbl" type="Label" parent="VBoxContainer"]
+margin_top = 185.0
+margin_right = 790.0
+margin_bottom = 199.0
+align = 1
+
+[node name="ConfirmGR" type="ConfirmationDialog" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -207.5
+margin_top = -71.0
+margin_right = 207.5
+margin_bottom = 71.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="GR_gobackBtn" to="." method="_on_GR_gobackBtn_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/GR_selectW1Btn" to="." method="_on_GR_selectW1Btn_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/GR_selectW2Btn" to="." method="_on_GR_selectW2Btn_pressed"]
+[connection signal="about_to_show" from="ConfirmGR" to="." method="_on_ConfirmationDialog_about_to_show"]
+[connection signal="confirmed" from="ConfirmGR" to="." method="_on_ConfirmationDialog_confirmed"]
