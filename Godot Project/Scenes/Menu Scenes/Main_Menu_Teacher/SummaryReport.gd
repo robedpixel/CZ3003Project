@@ -5,6 +5,9 @@ extends Node
 # var a = 2
 # var b = "text"
 var path_to_main_menu_teacher =  "res://Scenes/Menu Scenes/Main_Menu_teacher/MainMenuTeacher.tscn";
+var wSelected = 0;
+# 1 = world 1
+# 2 = world 2
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -18,19 +21,28 @@ func _ready():
 
 func _on_GR_selectW1Btn_pressed():
 	get_node("ConfirmGR").visible = true
-	get_node("ConfirmGR").dialog_text = "Generate report for World 1?"
-	
+	get_node("ConfirmGR").dialog_text = "Generate Summary report for World 1?"
+	wSelected = 1
 
 
 func _on_GR_selectW2Btn_pressed():
 	get_node("ConfirmGR").visible = true
-	get_node("ConfirmGR").dialog_text = "Generate report for World 2?"
+	get_node("ConfirmGR").dialog_text = "Generate Summary report for World 2?"
+	wSelected = 2
 
-
+	
 func _on_GR_gobackBtn_pressed():
 	get_tree().change_scene(path_to_main_menu_teacher)
 
 
 func _on_ConfirmationDialog_confirmed():
-	print("success!")
+	if(wSelected == 1):
+		print("successw1")
+		get_node("VBoxContainer/wSelectedLbl").text = "World Selected: \n World 1"
+		get_node("VBoxContainer/summReportLbl").text = "World 1 Summary Report \n Score: 500"
+	elif(wSelected == 2):
+		print("successw2")
+		get_node("VBoxContainer/wSelectedLbl").text = "World Selected: \n World 2"
+		get_node("VBoxContainer/summReportLbl").text = "World 2 Summary Report \n Score: 600"	
+
 
