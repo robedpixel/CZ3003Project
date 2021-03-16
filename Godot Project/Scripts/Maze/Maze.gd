@@ -17,8 +17,6 @@ onready var downDoor = $Doors/Down
 onready var gridLocationTxt = get_node("../MainCanvas/MainUI/GridLocationBackground/GridLocationText")
 
 # prefabs
-onready var monsterObj = preload("res://Scenes/Prefabs/Monster.tscn")
-onready var bossObj = preload("res://Scenes/Prefabs/Boss.tscn")
 onready var shopObj = preload("res://Scenes/Prefabs/Shop.tscn")
 
 # player variables
@@ -228,7 +226,7 @@ func _initChallengeRoom(isBoss):
 		var difficulty = mazeDesign._getRoom(playerX, playerY)
 		monster = monsterFactory._createMonster(difficulty)
 	else:
-		monster = bossObj.instance()
+		monster = monsterFactory._createBoss()
 		
 	monster.set_position(Vector2(640, 360))
 	add_child(monster)
@@ -273,6 +271,8 @@ func _rewardPlayer():
 			difficultyMultiplier = GlobalVariables.monsterDifficultyRewardModifier["MED"]
 		GlobalVariables.RoomEnum.CHALLENGE_ROOM_HARD:
 			difficultyMultiplier = GlobalVariables.monsterDifficultyRewardModifier["HARD"]
+		GlobalVariables.RoomEnum.BOSS_ROOM:
+			difficultyMultiplier = GlobalVariables.monsterDifficultyRewardModifier["BOSS"]
 		_:
 			pass
 	

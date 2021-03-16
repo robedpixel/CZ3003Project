@@ -36,7 +36,8 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	if(!tween.is_active()):
+		tween_lock = false
 #	if(displayQn):
 #		currentQnTxt = currentQnTxt + combatQuestion.question[txtIndex]
 #		txtIndex += 1
@@ -86,7 +87,6 @@ func _displayAnswers():
 		tween.interpolate_callback(self, delay, "_showAns", x)
 		tween.start()
 		delay += 0.25
-	tween_lock = false
 		
 
 

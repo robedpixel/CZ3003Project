@@ -11,7 +11,8 @@ BOSS_ROOM, SHOP_ROOM, STARTING_ROOM, EMPTY_ROOM, MAX_ROOM_ENUM}
 var monsterDifficultyRewardModifier = {
 	"EASY" : 1.5,
 	"MED" : 2.0,
-	"HARD" : 3.0
+	"HARD" : 3.0,
+	"BOSS": 5.0
 }
 
 var charSelected = 1

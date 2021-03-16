@@ -24,6 +24,8 @@ func _createMonster(difficulty):
 func _createBoss():
 	var monster = bossObj.instance()
 	
+	monster._setDifficulty(GlobalVariables.RoomEnum.BOSS_ROOM)
+	
 	return monster
 
 func _getSpriteSheet(difficulty):

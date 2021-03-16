@@ -828,8 +828,8 @@ __meta__ = {
 
 [node name="Transition" parent="." instance=ExtResource( 20 )]
 [connection signal="coin_change_signal" from="Player" to="MainCanvas/MainUI/CoinsUI" method="_on_Player_coin_change_signal"]
-[connection signal="combat_signal" from="CombatManager" to="Transition" method="_on_CombatManager_combat_signal"]
 [connection signal="combat_signal" from="CombatManager" to="MainCanvas/MainUI" method="_on_CombatManager_combat_signal"]
+[connection signal="combat_signal" from="CombatManager" to="Transition" method="_on_CombatManager_combat_signal"]
 [connection signal="victory_signal" from="CombatManager" to="Maze" method="_on_CombatManager_victory_signal"]
 [connection signal="body_entered" from="Maze/Doors/Left/Area2D" to="Maze/Doors/Left/Area2D" method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="Maze/Doors/Left/Area2D" to="Maze/Doors/Left/Area2D" method="_on_Area2D_body_exited"]
