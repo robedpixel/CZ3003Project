@@ -18,6 +18,7 @@ var interactObjList = []
 
 var movingRight = false
 var right = false
+var isMoving : bool = false
 
 # throw all the stats here, 
 var maxHealth = 0
@@ -50,26 +51,53 @@ func _process(delta):
 		
 	if(Input.is_action_just_pressed("use_item")):
 		_useItem()
+		
+	_processAnimation()
 	
-	if(movingRight):
-		if(not right):
-			apply_scale(Vector2(-1, 1))
-		right = true
-	elif(not movingRight):
-		if(right):
-			apply_scale(Vector2(-1, 1))
-		right = false
+#	if(movingRight):
+#		if(not right):
+#			apply_scale(Vector2(-1, 1))
+#		right = true
+#	elif(not movingRight):
+#		if(right):
+#			apply_scale(Vector2(-1, 1))
+#		right = false
+
+func _processAnimation():
+	if(!isMoving):
+#		playerSprite.playing = false
+		playerSprite.speed_scale = 0.3
+		return
+	else:
+		playerSprite.playing = true
+		playerSprite.speed_scale = 1.5
+		
+	if(velocity.x > FLOAT_EPSILON):
+		playerSprite.play("right")
+	elif(velocity.x < -FLOAT_EPSILON):
+		playerSprite.play("left")
+	elif(velocity.y > FLOAT_EPSILON):
+		playerSprite.play("down")
+	elif(velocity.y < -FLOAT_EPSILON):
+		playerSprite.play("up")
 
 func get_input():
 	velocity = Vector2()
 	if Input.is_action_pressed('right'):
-		velocity.x += 1
+		velocity = Vector2(1, 0)
 	if Input.is_action_pressed('left'):
-		velocity.x -= 1
+		velocity = Vector2(-1, 0)
 	if Input.is_action_pressed('down'):
-		velocity.y += 1
+		velocity = Vector2(0, 1)
 	if Input.is_action_pressed('up'):
-		velocity.y -= 1
+		velocity = Vector2(0, -1)
+	
+	if(velocity.x < FLOAT_EPSILON and velocity.x > -FLOAT_EPSILON and 
+	velocity.y < FLOAT_EPSILON and velocity.y > -FLOAT_EPSILON):
+		isMoving = false
+	else:
+		isMoving = true
+	
 	velocity = velocity.normalized() * speed
 	
 	if(velocity.x > FLOAT_EPSILON):
