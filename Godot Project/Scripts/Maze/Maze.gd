@@ -5,6 +5,7 @@ onready var mazeDesign = get_node("../MazeDesign")
 onready var player = get_node("../Player")
 onready var questionManager = get_node("../QuestionManager")
 onready var cmbtManager = get_node("../CombatManager")
+onready var monsterFactory = get_node("../MonsterFactory")
 
 # door
 onready var leftDoor = $Doors/Left
@@ -57,6 +58,9 @@ func _initializeMaze():
 	for x in range(mazeDesign.WIDTH):
 		for y in range(mazeDesign.HEIGHT):
 			mazeDesign._setRoom(x, y, GlobalVariables.RoomEnum.CHALLENGE_ROOM_EASY)
+	
+	mazeDesign._setRoom(0, 2, GlobalVariables.RoomEnum.CHALLENGE_ROOM_MED)
+	mazeDesign._setRoom(0, 3, GlobalVariables.RoomEnum.CHALLENGE_ROOM_HARD)
 	
 	mazeDesign._setRoom(playerX, playerY, GlobalVariables.RoomEnum.STARTING_ROOM)
 	mazeDesign._setRoom(1, 1, GlobalVariables.RoomEnum.BOSS_ROOM)
@@ -221,9 +225,11 @@ func _initChallengeRoom(isBoss):
 	
 	var monster
 	if(!isBoss):
-		monster = monsterObj.instance()
+		var difficulty = mazeDesign._getRoom(playerX, playerY)
+		monster = monsterFactory._createMonster(difficulty)
 	else:
 		monster = bossObj.instance()
+		
 	monster.set_position(Vector2(640, 360))
 	add_child(monster)
 	currentMonster = monster

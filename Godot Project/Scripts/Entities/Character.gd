@@ -173,6 +173,9 @@ func _restoreHealth(healthRestored):
 	healthUI._setHeart(health, maxHealth)
 
 func _takeDamage(damageTaken):
+	if(health <= 0):
+		return
+		
 	health -= damageTaken
 	healthUI._setHeart(health, maxHealth)
 	if(health <= 0):

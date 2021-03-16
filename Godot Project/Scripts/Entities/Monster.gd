@@ -1,10 +1,6 @@
 extends Node
 
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
 onready var monsterSprite = $MonsterSprite
 onready var monsterHealth = $Health
 
@@ -38,6 +34,10 @@ func _enable():
 	monsterSprite.playing = true
 	monsterSprite.visible = true
 	
+
+func _setSpriteFrames(spriteFrames):
+	$MonsterSprite._setSpriteFrames(spriteFrames)
+
 func _hideSprite():
 	monsterSprite.visible = false
 	
