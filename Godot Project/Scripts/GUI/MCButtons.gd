@@ -41,7 +41,7 @@ func _ready():
 	initial_button_text()
 	boss_exists = false
 	store_exists = false
-	print(button_grid)
+	#print(button_grid)
 	
 
 # Function that initailies all (x,y) axis to 0 except (0,0) to 6 as it is the start
@@ -75,14 +75,15 @@ func get_state_name(state):
 		4 : return "boss"
 		5 : return "store"
 		6 : return "start"
+		7 : return "empty"
 		_ : return "error"
 
 # function to set the state, the parameter state refers to button state
 func set_state_int(state):
-	if state<5:
+	if state<7:
 		check_for_boss_existence()
 		check_for_store_existence()
-		print("Boss: ", boss_exists, " Store: ", store_exists)
+		#print("Boss: ", boss_exists, " Store: ", store_exists)
 		
 		if(state==3 and boss_exists==true):
 			print("boss exist")
@@ -90,14 +91,18 @@ func set_state_int(state):
 			return state
 		elif(state==4 && store_exists==true):
 			print("store exist")
-			state= 0
+			state= 7
+			return state
+		elif(state == 5):
+			state = 7
 			return state
 		else: state=state+1
+		print(state)
 		return state
 	else: 
 		check_for_boss_existence()
 		check_for_store_existence()
-		print("Boss: ", boss_exists, " Store: ", store_exists)
+		#print("Boss: ", boss_exists, " Store: ", store_exists)
 		state=0
 		return state
 
@@ -138,8 +143,8 @@ func convert_map_dual_state(grid):
 
 # search algorithm to find path to boss location
 func search_algorithm(grid_to_search, boss_x, boss_y):
-	print(boss_x,",",boss_y)
-	print("GRID: ",grid_to_search)
+	#print(boss_x,",",boss_y)
+	#print("GRID: ",grid_to_search)
 	#					up  	down	right	left
 	var direction = [ [0, 1], [0, -1], [1, 0], [-1, 0]]
 	var queue = []
@@ -176,16 +181,17 @@ func button_press(var button_name):
 	button_grid[x][y] = set_state_int(button_grid[x][y])
 	button_node.text= get_state_name(button_grid[x][y])
 	check_for_boss_existence()
-	print(button_grid)
+	#print(button_grid)
 
 # function for confirmation of press
 func _on_ConfirmButton_pressed():
 	var convert_button_grid = button_grid.duplicate(true)
 	var converted_grid = convert_map_dual_state(convert_button_grid)
-	print(converted_grid)
+	#print(converted_grid)
 	var path_exists = search_algorithm(converted_grid,boss_x_axis,boss_y_axis)
 	if(path_exists ==  true):
 		GlobalVariables.maze_creator_map = button_grid
+		print(button_grid)
 	else:
 		print("Path does not exist")
 	print("Path exists: ", path_exists)

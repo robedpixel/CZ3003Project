@@ -33,7 +33,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Sample"
-run/main_scene="res://Scenes/Menu Scenes/Main_Menu/Main Menu.tscn"
+run/main_scene="res://Scenes/Login/LoginMenu.tscn"
 
 [autoload]
 
@@ -45,6 +45,7 @@ AnalyticVariables="*res://Scripts/analytic_variables.gd"
 
 window/size/width=1280
 window/size/height=720
+window/size/resizable=false
 
 [input]
 
