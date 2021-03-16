@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/number 1 monster.png-7abcc64306e1e5e665537b5e2bd6f7e8.stex"
+path="res://.import/monster_easy.png-312a5987b56c697ab483cb284c813a9c.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resources/images/Monster/Drawing/number 1 monster.png"
-dest_files=[ "res://.import/number 1 monster.png-7abcc64306e1e5e665537b5e2bd6f7e8.stex" ]
+source_file="res://Resources/images/Monster/Drawing/monster_easy.png"
+dest_files=[ "res://.import/monster_easy.png-312a5987b56c697ab483cb284c813a9c.stex" ]
 
 [params]
 

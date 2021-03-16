@@ -14,6 +14,8 @@ var monsterDifficultyRewardModifier = {
 	"HARD" : 3.0
 }
 
+var charSelected = 1
+
 func _ready():
 	pass # Replace with function body.
 

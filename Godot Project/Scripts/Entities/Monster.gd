@@ -48,7 +48,7 @@ func _setDifficulty(difficulty):
 func _monsterFadeInAnim():
 	monsterSprite.visible = true
 	$Tween.interpolate_property(monsterSprite, "modulate", Color(1, 1, 1, 0), Color(1, 1, 1, 1), 2.0, Tween.TRANS_LINEAR, Tween.EASE_IN)
-	$Tween.interpolate_property(self, "position:y", 360, 80, 1.0, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	$Tween.interpolate_property(self, "position:y", 360, 200, 1.0, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	$Tween.start()
 	yield(tween, "tween_completed")
 	

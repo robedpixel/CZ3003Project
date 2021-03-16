@@ -29,8 +29,6 @@ func _enterCombat(monster):
 	
 	player._disableAndHide()
 	
-	_nextQuestion()
-	
 	emit_signal("combat_signal", true)
 
 func _nextQuestion():
@@ -51,7 +49,11 @@ func _setMonster(monster):
 func _exitCombat():
 	print("Exiting combat")
 	player._enable()
+	
 	_toggleCombatUI(false)
+	combatUI._showPortrait(false)
+	combatUI.dialogueUI._showDialogueBox(false)
+	
 	emit_signal("combat_signal", false)
 	
 func _toggleCombatUI(show):
@@ -87,5 +89,8 @@ func _onTransitionShowStart():
 func _onTransitionShowEnd():
 	combatUI._hideAnswers()
 	_toggleCombatUI(true)
-	combatUI._displayQn()
+	_nextQuestion()
+	combatUI.dialogueUI._showPortrait(true)
+	combatUI.dialogueUI._setMonsterPortrait(currentMonster)
+	
 	
