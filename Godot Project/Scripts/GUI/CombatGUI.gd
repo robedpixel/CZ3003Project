@@ -57,7 +57,6 @@ func _hideAnswers():
 		answers[x].visible = false
 
 func _showAns(index):
-	print(cmbtManager)
 	answers[index].visible = true
 
 func _setQuestion(combatQuestionToSet):

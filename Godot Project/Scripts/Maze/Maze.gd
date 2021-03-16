@@ -245,7 +245,49 @@ func _initShopRoom():
 
 func _on_CombatManager_victory_signal(value):
 	if(value):
-		# TODO reward player
+		_rewardPlayer()
 		mazeDesign._setRoom(playerX, playerY, GlobalVariables.RoomEnum.EMPTY_ROOM)
 	else:
 		pass
+
+# 
+
+# attack 2, 3
+# Multiplier 1.0, 1.2, 1.4
+
+# Monster difficulty, easy, med , hard
+# Multiplier 1.0, 1.5, 2.0
+func _rewardPlayer():
+	if(!currentMonster):
+		return
+	
+	var base = 1.0
+	
+	var attackMultiplier = 1.25
+	var difficultyMultiplier = 1.0
+	
+	match currentMonster.difficulty:
+		GlobalVariables.RoomEnum.CHALLENGE_ROOM_EASY:
+			difficultyMultiplier = GlobalVariables.monsterDifficultyRewardModifier["EASY"]
+		GlobalVariables.RoomEnum.CHALLENGE_ROOM_MED:
+			difficultyMultiplier = GlobalVariables.monsterDifficultyRewardModifier["MED"]
+		GlobalVariables.RoomEnum.CHALLENGE_ROOM_HARD:
+			difficultyMultiplier = GlobalVariables.monsterDifficultyRewardModifier["HARD"]
+		_:
+			pass
+	
+	match player.attack:
+		2: 
+			attackMultiplier = 1.5
+		3:
+			attackMultiplier = 1.75
+		_:
+			pass
+	
+	var rewardedCoins = int(base * attackMultiplier * difficultyMultiplier)
+	
+	print("Rewarding " + str(attackMultiplier) + " " + str(difficultyMultiplier))
+	
+	player._addCoins(rewardedCoins)
+			
+	

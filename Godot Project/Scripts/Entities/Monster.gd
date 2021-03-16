@@ -6,7 +6,7 @@ onready var monsterHealth = $Health
 
 onready var cmbtManager = get_node("/root/Main/CombatManager")
 
-export var difficulty = 1
+var difficulty
 
 onready var tween = $Tween
 
@@ -16,6 +16,7 @@ signal tween_complete
 func _ready():
 	self.set_meta("type", "monster")
 	connect("tween_completed", self, "_on_tween_completed")
+	
 
 func _interact(player):
 	cmbtManager._enterCombat(self)
@@ -40,6 +41,9 @@ func _setSpriteFrames(spriteFrames):
 
 func _hideSprite():
 	monsterSprite.visible = false
+
+func _setDifficulty(difficulty):
+	self.difficulty = difficulty
 	
 func _monsterFadeInAnim():
 	monsterSprite.visible = true

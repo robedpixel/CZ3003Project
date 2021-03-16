@@ -26,7 +26,6 @@ func _ready():
 
 func _enterCombat(monster):
 	print("Entering combat")
-	print(player)
 	
 	player._disableAndHide()
 	
@@ -65,8 +64,8 @@ func _toggleCombatUI(show):
 # ansValue will take on values 1, 2, 3, 4
 func _onAnswer(ansValue):
 	print('Chosen ans ' + str(ansValue))
-	#if(true):
-	if(ansValue == correctAnswer):
+	if(true):
+	#if(ansValue == correctAnswer):
 		print("You got it correct!")
 		currentMonster.monsterHealth._minusHealth(1)		
 	else:

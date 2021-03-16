@@ -24,6 +24,7 @@ var isMoving : bool = false
 var maxHealth = 0
 var health = 0
 var coins = 0
+var attack = 1
 
 var inventory = []
 var currentInventoryIndex = 0

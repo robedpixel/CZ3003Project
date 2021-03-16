@@ -16,6 +16,7 @@ func _createMonster(difficulty):
 	var monster = monsterObj.instance()
 	
 	monster._setSpriteFrames(_getSpriteSheet(difficulty))
+	monster._setDifficulty(difficulty)
 	
 	return monster
 	
