@@ -6,12 +6,11 @@ onready var player = get_node("../Player")
 onready var questionManager = get_node("../QuestionManager")
 onready var cmbtManager = get_node("../CombatManager")
 
-# interactables, door
-onready var interactables = get_node("../Interactables")
-onready var leftDoor = get_node("../Interactables/LeftDoor")
-onready var rightDoor = get_node("../Interactables/RightDoor")
-onready var upDoor = get_node("../Interactables/UpDoor")
-onready var downDoor = get_node("../Interactables/DownDoor")
+# door
+onready var leftDoor = $Doors/Left
+onready var rightDoor = $Doors/Right
+onready var upDoor = $Doors/Up
+onready var downDoor = $Doors/Down
 
 # UI
 onready var gridLocationTxt = get_node("../MainCanvas/MainUI/GridLocationBackground/GridLocationText")
@@ -88,16 +87,16 @@ func _moveRoom(dir):
 	match dir:
 		"up":
 			newPlayerY += 1
-			doorPos = downDoor.position
+			doorPos = downDoor.area2D.position
 		"down":
 			newPlayerY -= 1
-			doorPos = upDoor.position
+			doorPos = upDoor.area2D.position
 		"left":
 			newPlayerX -=1
-			doorPos = rightDoor.position
+			doorPos = rightDoor.area2D.position
 		"right":
 			newPlayerX += 1
-			doorPos = leftDoor.position
+			doorPos = leftDoor.area2D.position
 		_:
 			print("Unable to move, invalid direction. Door missing?")
 			
@@ -226,7 +225,7 @@ func _initChallengeRoom(isBoss):
 	else:
 		monster = bossObj.instance()
 	monster.set_position(Vector2(640, 360))
-	interactables.add_child(monster)
+	add_child(monster)
 	currentMonster = monster
 	cmbtManager._setMonster(currentMonster)
 	
