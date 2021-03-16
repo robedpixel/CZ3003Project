@@ -1,8 +1,11 @@
 extends Node
 
+enum{ROLE_STUDENT,ROLE_TEACHER}
+
 var username = ""
 var password = ""
 var http
+var role := -1
 
 const API_KEY := "AIzaSyD3FJ3I9YwIgde-M5aZoiQlZsTOd1GpJzk"
 const REGISTER_URL := "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=%s" % API_KEY
@@ -48,6 +51,9 @@ func _get_request_headers() -> PoolStringArray:
 		"Content-Type: application/json",
 		"Authorization: Bearer %s" % user_info.token
 	])
+	
+func _get_user_role()->int:
+	return self.role
 
 func login(email: String, password: String) -> bool:
 	var body:= {
@@ -60,6 +66,14 @@ func login(email: String, password: String) -> bool:
 	print(result)
 	if result[1] ==200:
 		user_info = _get_user_info(result)
+		
+		var path = "role-info/"+str(self._get_user_id())+ ".json"
+		var url = FIRESTORE_URL + path + "?auth=%s" % self._get_current_token_id()
+		self.http.request(url, self._get_request_headers(), false,HTTPClient.METHOD_GET)
+		result = yield(http, "request_completed") as Array
+		var result_body := JSON.parse(result[3].get_string_from_ascii()).result as Dictionary
+		self.role = result_body.role
+		
 		print("successsful login")
 		return true
 	print("failure to login")
