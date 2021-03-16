@@ -227,6 +227,18 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 
 [node name="MainCanvas" type="CanvasLayer" parent="."]
 
+[node name="Hearts" type="Control" parent="MainCanvas"]
+margin_left = 35.0
+margin_top = 35.0
+margin_right = 35.0
+margin_bottom = 35.0
+script = ExtResource( 14 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Heart" parent="MainCanvas/Hearts" instance=ExtResource( 16 )]
+
 [node name="MainUI" type="Control" parent="MainCanvas"]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -256,18 +268,6 @@ valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="Hearts" type="Control" parent="MainCanvas/MainUI"]
-margin_left = 35.0
-margin_top = 35.0
-margin_right = 35.0
-margin_bottom = 35.0
-script = ExtResource( 14 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Heart" parent="MainCanvas/MainUI/Hearts" instance=ExtResource( 16 )]
 
 [node name="DamageUI" type="Control" parent="MainCanvas/MainUI"]
 margin_left = 35.0
@@ -377,7 +377,6 @@ scale = Vector2( 0.3, 0.3 )
 z_index = 1
 frames = SubResource( 6 )
 animation = "test"
-frame = 1
 speed_scale = 2.0
 playing = true
 
@@ -587,6 +586,6 @@ __meta__ = {
 [connection signal="body_exited" from="Interactables/RightDoor/Area2D" to="Interactables/RightDoor/Area2D" method="_on_Area2D_body_exited"]
 [connection signal="body_entered" from="Interactables/LeftDoor/Area2D" to="Interactables/LeftDoor/Area2D" method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="Interactables/LeftDoor/Area2D" to="Interactables/LeftDoor/Area2D" method="_on_Area2D_body_exited"]
-[connection signal="combat_signal" from="CombatManager" to="Transition" method="_on_CombatManager_combat_signal"]
 [connection signal="combat_signal" from="CombatManager" to="MainCanvas/MainUI" method="_on_CombatManager_combat_signal"]
+[connection signal="combat_signal" from="CombatManager" to="Transition" method="_on_CombatManager_combat_signal"]
 [connection signal="victory_signal" from="CombatManager" to="Maze" method="_on_CombatManager_victory_signal"]

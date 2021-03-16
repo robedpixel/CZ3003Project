@@ -6,7 +6,7 @@ const FLOAT_EPSILON = 0.00001
 
 onready var cmbtManager = get_node("../CombatManager")
 onready var mazeManager = get_node("../Maze")
-onready var healthUI = get_node("../MainCanvas/MainUI/Hearts")
+onready var healthUI = get_node("../MainCanvas/Hearts")
 onready var coinUI = get_node("../MainCanvas/MainUI/CoinsUI")
 onready var itemUI = get_node("../MainCanvas/MainUI/ItemUI/ItemUIBG/Item")
 
