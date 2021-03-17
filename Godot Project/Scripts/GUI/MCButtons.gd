@@ -97,7 +97,7 @@ func set_state_int(state):
 			state = 7
 			return state
 		else: state=state+1
-		print(state)
+		#print(state)
 		return state
 	else: 
 		check_for_boss_existence()
@@ -182,6 +182,47 @@ func button_press(var button_name):
 	button_node.text= get_state_name(button_grid[x][y])
 	check_for_boss_existence()
 	#print(button_grid)
+	
+func grid_to_string(grid_to_convert):
+	var grid_string_1 = ""
+	var grid_string_2 = ""
+	var grid_string_3 = ""
+	
+	for x in range(len(grid_to_convert)):
+		#print(grid_to_convert[x])
+		for  i in range(len(grid_to_convert[x])):
+			if(x<2):
+				grid_string_1+=str(grid_to_convert[x][i])
+				#print("String:" ,grid_string_1)
+				#print("Int   :",int(grid_string_1))
+				#print("")
+			elif(x>1 and x<4):
+				grid_string_2+=str(grid_to_convert[x][i])
+				#print("String:" ,grid_string_2)
+				#print("Int   :",int(grid_string_2))
+				#print("")
+			else:
+				grid_string_3+=str(grid_to_convert[x][i])
+	#print([grid_string_1,grid_string_2,grid_string_3])
+	return [grid_string_1,grid_string_2,grid_string_3]
+
+func generate_code(button_grid):
+	var grid_string_1
+	var grid_string_2
+	var grid_string_3
+	var code_1
+	var code_2
+	var code_3
+	
+	grid_string_1 = grid_to_string(button_grid)[0]
+	grid_string_2 = grid_to_string(button_grid)[1]
+	grid_string_3 = grid_to_string(button_grid)[2]
+	
+	code_1 =  GlobalVariables.encode(int(grid_string_1), GlobalVariables.BASE64_DIGITS)
+	code_2 =  GlobalVariables.encode(int(grid_string_2), GlobalVariables.BASE64_DIGITS)
+	code_3 =  GlobalVariables.encode(int(grid_string_3), GlobalVariables.BASE64_DIGITS)
+	print(code_1,"-",code_2,"-",code_3)
+	
 
 # function for confirmation of press
 func _on_ConfirmButton_pressed():
@@ -189,9 +230,15 @@ func _on_ConfirmButton_pressed():
 	var converted_grid = convert_map_dual_state(convert_button_grid)
 	#print(converted_grid)
 	var path_exists = search_algorithm(converted_grid,boss_x_axis,boss_y_axis)
+	
 	if(path_exists ==  true):
 		GlobalVariables.maze_creator_map = button_grid
 		print(button_grid)
+		generate_code(button_grid)
+		#print(Marshalls.variant_to_base64(test,true))
+		#var code = GlobalVariables.encode(int(grid_string), GlobalVariables.BASE64_DIGITS)
+		#print(code)
+		#print(GlobalVariables.decode(code, GlobalVariables.BASE64_DIGITS))
 	else:
 		print("Path does not exist")
 	print("Path exists: ", path_exists)
