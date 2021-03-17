@@ -25,14 +25,22 @@ onready var buttons_dict= {
 	"btn_x4y0":["Button_X4Y0",4,0]
 	}
 onready var confirm_btn = get_node("../ConfirmButton")
+onready var alert_dialog = get_node("../WindowDialog")
+onready var alert_label = get_node("../WindowDialog/VBoxContainer/AlertLabel")
+onready var topic_label = get_node("../TopicLabel")
+onready var topic_button = get_node("../TopicChooserButton")
 
 var button_grid = [] # the maze to be created
 var boss_exists  # Boolean to see if the boss already exits
 var boss_x_axis # Boss x axis
 var boss_y_axis # Boss y axis
 var store_exists  # Boolean to see if the store already exits
+var code_1 = null
+var code_2 = null
+var code_3 = null
 var height=5  # height of the map
 var width=5   # width of the map
+var topic_int=0
 
 
 # Called when the node enters the scene tree for the first time.
@@ -41,6 +49,8 @@ func _ready():
 	initial_button_text()
 	boss_exists = false
 	store_exists = false
+	topic_button.visible=false
+	topic_label.visible = false
 	#print(button_grid)
 	
 
@@ -115,9 +125,14 @@ func check_for_boss_existence():
 				boss_x_axis = x
 				boss_y_axis = y
 				confirm_btn.disabled=false
+				update_topic_button_text()
+				topic_button.visible=true
+				topic_label.visible= true
 				return
 	boss_exists=false
 	confirm_btn.disabled=true
+	topic_button.visible=false
+	topic_label.visible= false
 	return 
 
 # function to check if the store already exist in the maze, if exists the store_exists = true
@@ -210,9 +225,6 @@ func generate_code(button_grid):
 	var grid_string_1
 	var grid_string_2
 	var grid_string_3
-	var code_1
-	var code_2
-	var code_3
 	
 	grid_string_1 = grid_to_string(button_grid)[0]
 	grid_string_2 = grid_to_string(button_grid)[1]
@@ -235,15 +247,40 @@ func _on_ConfirmButton_pressed():
 		GlobalVariables.maze_creator_map = button_grid
 		print(button_grid)
 		generate_code(button_grid)
+		alert_dialog.visible=true
+		alert_dialog.window_title = ""
+		alert_label.text = "Success!\n your code is \n" + code_1 + " - " + code_2+" - "  + code_3
 		#print(Marshalls.variant_to_base64(test,true))
 		#var code = GlobalVariables.encode(int(grid_string), GlobalVariables.BASE64_DIGITS)
 		#print(code)
 		#print(GlobalVariables.decode(code, GlobalVariables.BASE64_DIGITS))
 	else:
+		alert_dialog.visible=true
+		alert_dialog.window_title = "ERROR"
+		alert_label.text = "Path does not lead to boss tile!"
 		print("Path does not exist")
 	print("Path exists: ", path_exists)
 
+func update_topic_button_text():
+	match(topic_int): 
+		0 : topic_button.text= "Req Ana"
+		1 : topic_button.text= "Req Elic"
+		2 : topic_button.text= "Both"
+		_ : return "error"
 
+func _on_TopicChooserButton_pressed():
+	print(topic_int)
+	if topic_int<2:
+		topic_int=topic_int+1
+		update_topic_button_text()
+	else: 
+		topic_int=0
+		update_topic_button_text()
+	#print(topic_int)
+
+func _on_AlertButton_pressed():
+	alert_dialog.visible=false
+	
 ####################		The functions below are totally for each button		############################
 
 #########################  				 Y axis = 4				#########################
@@ -324,3 +361,8 @@ func _on_Button_X3Y0_pressed():
 
 func _on_Button_X4Y0_pressed():
 	button_press("btn_x4y0")
+
+
+
+
+
