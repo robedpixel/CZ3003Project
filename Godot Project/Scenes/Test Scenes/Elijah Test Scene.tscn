@@ -13,10 +13,18 @@ __meta__ = {
 [node name="Testbutton" type="Button" parent="."]
 anchor_right = 0.096
 anchor_bottom = 0.088
-margin_top = 129.0
-margin_right = 1074.12
-margin_bottom = 133.64
+margin_left = 32.527
+margin_top = 640.945
+margin_right = 1106.65
+margin_bottom = 645.585
 text = "test"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_right = 1194.0
+margin_bottom = 125.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
