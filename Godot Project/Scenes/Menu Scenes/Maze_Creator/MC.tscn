@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scripts/GUI/BackToMainMenu.gd" type="Script" id=1]
 [ext_resource path="res://Resources/fonts/arcade_40.tres" type="DynamicFont" id=2]
 [ext_resource path="res://Scripts/GUI/MCButtons.gd" type="Script" id=3]
 [ext_resource path="res://Resources/fonts/joystix_28.tres" type="DynamicFont" id=4]
 [ext_resource path="res://Resources/fonts/joystix_20.tres" type="DynamicFont" id=5]
+[ext_resource path="res://Resources/fonts/chary_40.tres" type="DynamicFont" id=6]
 
 [sub_resource type="ShaderMaterial" id=1]
 
@@ -324,8 +325,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 440.0
 margin_top = 215.0
-margin_right = -440.0
-margin_bottom = -330.0
+margin_right = -415.0
+margin_bottom = -305.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/title_font = ExtResource( 5 )
@@ -338,26 +339,26 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_right = -1.00006
 margin_bottom = 0.999969
-custom_constants/separation = 25
+custom_constants/separation = 10
 alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="AlertLabel" type="Label" parent="WindowDialog/VBoxContainer"]
-margin_top = 43.0
-margin_right = 398.0
-margin_bottom = 67.0
-custom_fonts/font = ExtResource( 5 )
+margin_top = 55.0
+margin_right = 423.0
+margin_bottom = 95.0
+custom_fonts/font = ExtResource( 6 )
 text = "Sample"
 align = 1
 valign = 1
 autowrap = true
 
 [node name="AlertButton" type="Button" parent="WindowDialog/VBoxContainer"]
-margin_top = 92.0
-margin_right = 398.0
-margin_bottom = 132.0
+margin_top = 105.0
+margin_right = 423.0
+margin_bottom = 145.0
 custom_fonts/font = ExtResource( 4 )
 text = "Ok"
 [connection signal="pressed" from="GridContainer/Button_X0Y4" to="GridContainer" method="_on_Button_X0Y4_pressed"]

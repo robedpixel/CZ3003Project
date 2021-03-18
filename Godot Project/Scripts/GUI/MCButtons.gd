@@ -221,21 +221,30 @@ func grid_to_string(grid_to_convert):
 	#print([grid_string_1,grid_string_2,grid_string_3])
 	return [grid_string_1,grid_string_2,grid_string_3]
 
-func generate_code(button_grid):
+func generate_code(button_grid,topic_number):
 	var grid_string_1
 	var grid_string_2
 	var grid_string_3
 	
 	grid_string_1 = grid_to_string(button_grid)[0]
 	grid_string_2 = grid_to_string(button_grid)[1]
-	grid_string_3 = grid_to_string(button_grid)[2]
+	grid_string_3 = grid_to_string(button_grid)[2] + str(topic_number)
 	
-	code_1 =  GlobalVariables.encode(int(grid_string_1), GlobalVariables.BASE64_DIGITS)
-	code_2 =  GlobalVariables.encode(int(grid_string_2), GlobalVariables.BASE64_DIGITS)
-	code_3 =  GlobalVariables.encode(int(grid_string_3), GlobalVariables.BASE64_DIGITS)
+	print(len(grid_string_1))
+	print(len(grid_string_2))
+	print(len(grid_string_3))
+	code_1 =  encode_to_Base64(int(grid_string_1))
+	code_2 =  encode_to_Base64(int(grid_string_2))
+	code_3 =  encode_to_Base64(int(grid_string_3))
 	print(code_1,"-",code_2,"-",code_3)
+	print(len(code_1),"-",len(code_2),"-",len(code_3))
 	
-
+func encode_to_Base64(value:int):
+	if(value==0):
+		return "#"
+	else:
+		return GlobalVariables.encode(value, GlobalVariables.BASE64_DIGITS)
+	
 # function for confirmation of press
 func _on_ConfirmButton_pressed():
 	var convert_button_grid = button_grid.duplicate(true)
@@ -246,10 +255,10 @@ func _on_ConfirmButton_pressed():
 	if(path_exists ==  true):
 		GlobalVariables.maze_creator_map = button_grid
 		print(button_grid)
-		generate_code(button_grid)
+		generate_code(button_grid,topic_int)
 		alert_dialog.visible=true
 		alert_dialog.window_title = ""
-		alert_label.text = "Success!\n your code is \n" + code_1 + " - " + code_2+" - "  + code_3
+		alert_label.text = "SUCCESS!\n YOUR CODE IS \n" + code_1 + " - " + code_2+" - "  + code_3
 		#print(Marshalls.variant_to_base64(test,true))
 		#var code = GlobalVariables.encode(int(grid_string), GlobalVariables.BASE64_DIGITS)
 		#print(code)
@@ -257,19 +266,19 @@ func _on_ConfirmButton_pressed():
 	else:
 		alert_dialog.visible=true
 		alert_dialog.window_title = "ERROR"
-		alert_label.text = "Path does not lead to boss tile!"
+		alert_label.text = "NO PATH TO BOSS TILE!"
 		print("Path does not exist")
 	print("Path exists: ", path_exists)
 
 func update_topic_button_text():
 	match(topic_int): 
-		0 : topic_button.text= "Req Ana"
-		1 : topic_button.text= "Req Elic"
-		2 : topic_button.text= "Both"
+		0 : topic_button.text= "Requirement Analysis"
+		1 : topic_button.text= "Requirement Elicitation"
+		2 : topic_button.text= "Both Topics"
 		_ : return "error"
 
 func _on_TopicChooserButton_pressed():
-	print(topic_int)
+	#print(topic_int)
 	if topic_int<2:
 		topic_int=topic_int+1
 		update_topic_button_text()
