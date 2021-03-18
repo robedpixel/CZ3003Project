@@ -39,9 +39,10 @@ func show_summary_report():
 	for i in studsScoreData:
 		var value = studsScoreData[i]
 		totalScore += value[1]
-		get_node("VBoxContainer/summReportLbl").text += str(value[0]) + " " + str(value[1]) + "\n"
+		get_node("VBoxContainer/ScrollContainer/HBoxContainer3/nameLbl").text += str(value[0]) + "\n"
+		get_node("VBoxContainer/ScrollContainer/HBoxContainer3/scoreLbl").text += str(value[1]) + "\n"
 	var avgScore = totalScore/studsScoreData.size()
-	get_node("VBoxContainer/summReportLbl").text += "Avg score: " + str(avgScore)
+	get_node("VBoxContainer/avgScoreLbl").text = "Average score: " + str(avgScore)
 
 func _on_GR_selectW1Btn_pressed():
 	get_node("ConfirmGR").visible = true
@@ -60,7 +61,8 @@ func _on_GR_gobackBtn_pressed():
 
 
 func _on_ConfirmationDialog_confirmed():
-	get_node("VBoxContainer/summReportLbl").text = ""
+	get_node("VBoxContainer/ScrollContainer/HBoxContainer3/nameLbl").text = ""
+	get_node("VBoxContainer/ScrollContainer/HBoxContainer3/scoreLbl").text = ""
 	studsScoreData = {}
 	if(wSelected == 1):
 		print("successw1")
