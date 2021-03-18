@@ -51,8 +51,34 @@ func save_analytics(world: int) ->void:
 			}
 		}
 		var body := to_json(fields)
-		print("updating database...")
+		#saving student analytics here
+		yield(self.save_student_analytics(world),"completed")
+		print("updating analytics...")
 		http.request(url, FirebaseAuth._get_request_headers(), false, HTTPClient.METHOD_PATCH, body)
+
+func save_student_analytics(world: int) ->void:
+	id_token = FirebaseAuth._get_current_token_id()
+	var url = FIRESTORE_URL + "student-analytics/World "+str(world)+ ".json" + "?auth=%s" % id_token
+	
+	var fields := {
+		"easy": { 
+			"correct": AnalyticVariables.easy.correct,
+			"wrong": AnalyticVariables.easy.wrong
+		}, 
+		"medium": { 
+			"correct": AnalyticVariables.medium.correct,
+			"wrong": AnalyticVariables.medium.wrong
+		}, 
+		"hard": { 
+			"correct": AnalyticVariables.hard.correct,
+			"wrong": AnalyticVariables.hard.wrong
+		}
+	}
+	var body := to_json(fields)
+	print("updating student analytics...")
+	http.request(url, FirebaseAuth._get_request_headers(), false, HTTPClient.METHOD_POST, body)
+	yield(http, "request_completed")
+	print("updated student analytics")
 
 func save_document(path: String, fields: Dictionary, http: HTTPRequest) -> void:
 	id_token = FirebaseAuth._get_current_token_id()
