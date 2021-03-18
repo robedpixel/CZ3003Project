@@ -1,23 +1,47 @@
-extends Node
+extends Control
 
+onready var http : HTTPRequest = $HTTPRequest
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+var handler
+var data_from_db
 var path_to_main_menu_teacher =  "res://Scenes/Menu Scenes/Main_Menu_teacher/MainMenuTeacher.tscn";
-var wSelected = 0;
-# 1 = world 1
-# 2 = world 2
+var wSelected = 0;# 1 = world 1, 2 = world 2
+var studsScoreData = {
+}
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	
+	handler = load("res://Scripts/auth/firebase_db.gd").new()
+	add_child(handler)
+	
+func get_leaderboard_data():
+	print("getting leaderboard data...")
+	if wSelected == 1:
+		handler.get_world_leaderboard_data(1, self.http) #for now assume world
+	elif wSelected == 2:
+		handler.get_world_leaderboard_data(2, self.http) #for now assume world
+	
+func process_db_data():
+	var id = 0;
+	for key in data_from_db:
+		var studName=null
+		var score=null
+		var value = data_from_db[key]
+		print("key: " + key + " value: " + str(value))
+		score = value["score"]
+		studName = value["student-name"]
+		var studScoreArray = [studName,score]
+		studsScoreData[id] = studScoreArray
+		id += 1
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
-
+func show_summary_report():
+	var totalScore = 0
+	for i in studsScoreData:
+		var value = studsScoreData[i]
+		totalScore += value[1]
+		get_node("VBoxContainer/summReportLbl").text += str(value[0]) + " " + str(value[1]) + "\n"
+	var avgScore = totalScore/studsScoreData.size()
+	get_node("VBoxContainer/summReportLbl").text += "Avg score: " + str(avgScore)
 
 func _on_GR_selectW1Btn_pressed():
 	get_node("ConfirmGR").visible = true
@@ -36,13 +60,30 @@ func _on_GR_gobackBtn_pressed():
 
 
 func _on_ConfirmationDialog_confirmed():
+	get_node("VBoxContainer/summReportLbl").text = ""
+	studsScoreData = {}
 	if(wSelected == 1):
 		print("successw1")
 		get_node("VBoxContainer/wSelectedLbl").text = "World Selected: \n World 1"
-		get_node("VBoxContainer/summReportLbl").text = "World 1 Summary Report \n Score: 500"
 	elif(wSelected == 2):
 		print("successw2")
 		get_node("VBoxContainer/wSelectedLbl").text = "World Selected: \n World 2"
-		get_node("VBoxContainer/summReportLbl").text = "World 2 Summary Report \n Score: 600"	
+	get_leaderboard_data()
+		
 
-
+func _on_HTTPRequest_request_completed(result, response_code, headers, body):
+	print("http request completed")
+	var result_body := JSON.parse(body.get_string_from_ascii()).result as Dictionary
+	match response_code:
+		404:
+			print("error 404")
+			return
+		200:
+			print("success 200")
+			print(result_body)
+			data_from_db = result_body
+			process_db_data()
+			show_summary_report()
+			#show_sorted_leaderboard()
+			return
+	print("some other error")

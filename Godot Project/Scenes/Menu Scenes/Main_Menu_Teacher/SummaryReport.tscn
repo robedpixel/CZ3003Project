@@ -116,8 +116,11 @@ margin_bottom = 71.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
 [connection signal="pressed" from="GR_gobackBtn" to="." method="_on_GR_gobackBtn_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/GR_selectW1Btn" to="." method="_on_GR_selectW1Btn_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/GR_selectW2Btn" to="." method="_on_GR_selectW2Btn_pressed"]
 [connection signal="about_to_show" from="ConfirmGR" to="." method="_on_ConfirmationDialog_about_to_show"]
 [connection signal="confirmed" from="ConfirmGR" to="." method="_on_ConfirmationDialog_confirmed"]
+[connection signal="request_completed" from="HTTPRequest" to="." method="_on_HTTPRequest_request_completed"]
