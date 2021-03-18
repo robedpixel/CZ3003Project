@@ -11,17 +11,22 @@ func _ready():
 func _on_Button_pressed():
 	username = $"VBoxContainer/UsernameContainer/UsernameInputBox".get_text()
 	password = $"VBoxContainer/PasswordContainer/PasswordInputBox".get_text()
-	var success = yield(FirebaseAuth.login(username,password),"completed")
-	if success:
-		#Scene for testing database accesses
-		#get_tree().change_scene("res://Scenes/Database Test/Database Test.tscn")
-		match FirebaseAuth._get_user_role():
-			FirebaseAuth.ROLE_STUDENT:
-				get_tree().change_scene("res://Scenes/Menu Scenes/Main_Menu/Main Menu.tscn")
-			FirebaseAuth.ROLE_TEACHER:
-				get_tree().change_scene("res://Scenes/Menu Scenes/Main_Menu_Teacher/MainMenuTeacher.tscn")
-			_:
-				get_tree().change_scene("res://Scenes/Menu Scenes/Main_Menu/Main Menu.tscn")
+	if username.empty() == true:
+		$"VBoxContainer/LoginStatusLabel".set_text("Please input a valid username")
+	elif password.empty() == true:
+		$"VBoxContainer/LoginStatusLabel".set_text("Please input a valid password")
 	else:
-		$"VBoxContainer/LoginStatusLabel".set_text("Incorrect username and/or password")
-		print("cannot log in")
+		var success = yield(FirebaseAuth.login(username,password),"completed")
+		if success:
+			#Scene for testing database accesses
+			#get_tree().change_scene("res://Scenes/Database Test/Database Test.tscn")
+			match FirebaseAuth._get_user_role():
+				FirebaseAuth.ROLE_STUDENT:
+					get_tree().change_scene("res://Scenes/Menu Scenes/Main_Menu/Main Menu.tscn")
+				FirebaseAuth.ROLE_TEACHER:
+					get_tree().change_scene("res://Scenes/Menu Scenes/Main_Menu_Teacher/MainMenuTeacher.tscn")
+				_:
+					get_tree().change_scene("res://Scenes/Menu Scenes/Main_Menu/Main Menu.tscn")
+		else:
+			$"VBoxContainer/LoginStatusLabel".set_text("Incorrect username/password")
+			print("cannot log in")
