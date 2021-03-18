@@ -198,7 +198,7 @@ func button_press(var button_name):
 	check_for_boss_existence()
 	#print(button_grid)
 	
-func grid_to_string(grid_to_convert):
+func split_grid_to_encode(grid_to_convert):
 	var grid_string_1 = ""
 	var grid_string_2 = ""
 	var grid_string_3 = ""
@@ -226,18 +226,25 @@ func generate_code(button_grid,topic_number):
 	var grid_string_2
 	var grid_string_3
 	
-	grid_string_1 = grid_to_string(button_grid)[0]
-	grid_string_2 = grid_to_string(button_grid)[1]
-	grid_string_3 = grid_to_string(button_grid)[2] + str(topic_number)
+	grid_string_1 = split_grid_to_encode(button_grid)[0]
+	grid_string_2 = split_grid_to_encode(button_grid)[1]
+	grid_string_3 = split_grid_to_encode(button_grid)[2] + str(topic_number)
 	
-	print(len(grid_string_1))
-	print(len(grid_string_2))
-	print(len(grid_string_3))
+#	print("ALL GRID STRINGS:")
+#	print(grid_string_1)
+#	print(grid_string_2)
+#	print(grid_string_3)
+#	print("")
+#	print("ALL GRID INTS:")
+#	print(int(grid_string_1))
+#	print(int(grid_string_2))
+#	print(int(grid_string_3))
+#	print("")
 	code_1 =  encode_to_Base64(int(grid_string_1))
 	code_2 =  encode_to_Base64(int(grid_string_2))
 	code_3 =  encode_to_Base64(int(grid_string_3))
-	print(code_1,"-",code_2,"-",code_3)
-	print(len(code_1),"-",len(code_2),"-",len(code_3))
+	#print(code_1,"-",code_2,"-",code_3)
+	#print(len(code_1),"-",len(code_2),"-",len(code_3))
 	
 func encode_to_Base64(value:int):
 	if(value==0):
@@ -254,21 +261,19 @@ func _on_ConfirmButton_pressed():
 	
 	if(path_exists ==  true):
 		GlobalVariables.maze_creator_map = button_grid
-		print(button_grid)
+		print("Created Maze: ", button_grid)
 		generate_code(button_grid,topic_int)
 		alert_dialog.visible=true
 		alert_dialog.window_title = ""
 		alert_label.text = "SUCCESS!\n YOUR CODE IS \n" + code_1 + " - " + code_2+" - "  + code_3
-		#print(Marshalls.variant_to_base64(test,true))
-		#var code = GlobalVariables.encode(int(grid_string), GlobalVariables.BASE64_DIGITS)
-		#print(code)
-		#print(GlobalVariables.decode(code, GlobalVariables.BASE64_DIGITS))
+		GlobalVariables.generated_code_to_string(str(code_1),str(code_2),str(code_3))
+		#print("Path exists: ", path_exists)
 	else:
 		alert_dialog.visible=true
 		alert_dialog.window_title = "ERROR"
 		alert_label.text = "NO PATH TO BOSS TILE!"
-		print("Path does not exist")
-	print("Path exists: ", path_exists)
+		#print("Path does not exist")
+
 
 func update_topic_button_text():
 	match(topic_int): 
