@@ -2,6 +2,7 @@ extends Node
 
 var world_num = 0
 var maze_creator_map = []
+var charSelected = 0
 
 var BASE64_DIGITS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789$&'
 
