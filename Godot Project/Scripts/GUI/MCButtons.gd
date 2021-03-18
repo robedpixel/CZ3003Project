@@ -27,6 +27,7 @@ onready var buttons_dict= {
 onready var confirm_btn = get_node("../ConfirmButton")
 onready var alert_dialog = get_node("../WindowDialog")
 onready var alert_label = get_node("../WindowDialog/VBoxContainer/AlertLabel")
+onready var alert_line_edit = get_node("../WindowDialog/VBoxContainer/AlertLineEdit")
 onready var topic_label = get_node("../TopicLabel")
 onready var topic_button = get_node("../TopicChooserButton")
 
@@ -264,12 +265,15 @@ func _on_ConfirmButton_pressed():
 		print("Created Maze: ", button_grid)
 		generate_code(button_grid,topic_int)
 		alert_dialog.visible=true
+		alert_line_edit.visible = true
 		alert_dialog.window_title = ""
-		alert_label.text = "SUCCESS!\n YOUR CODE IS \n" + code_1 + " - " + code_2+" - "  + code_3
+		alert_label.text = "SUCCESS!\n YOUR CODE IS" 
+		alert_line_edit.text= code_1 + " - " + code_2+" - "  + code_3
 		GlobalVariables.generated_code_to_string(str(code_1),str(code_2),str(code_3))
 		#print("Path exists: ", path_exists)
 	else:
 		alert_dialog.visible=true
+		alert_line_edit.visible = false
 		alert_dialog.window_title = "ERROR"
 		alert_label.text = "NO PATH TO BOSS TILE!"
 		#print("Path does not exist")

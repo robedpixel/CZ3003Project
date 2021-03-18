@@ -339,26 +339,35 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_right = -1.00006
 margin_bottom = 0.999969
-custom_constants/separation = 10
+custom_constants/separation = 5
 alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="AlertLabel" type="Label" parent="WindowDialog/VBoxContainer"]
-margin_top = 55.0
+margin_top = 57.0
 margin_right = 423.0
-margin_bottom = 95.0
+margin_bottom = 97.0
 custom_fonts/font = ExtResource( 6 )
 text = "Sample"
 align = 1
 valign = 1
 autowrap = true
 
-[node name="AlertButton" type="Button" parent="WindowDialog/VBoxContainer"]
-margin_top = 105.0
+[node name="AlertLineEdit" type="LineEdit" parent="WindowDialog/VBoxContainer"]
+visible = false
+margin_top = 88.0
 margin_right = 423.0
-margin_bottom = 145.0
+margin_bottom = 112.0
+custom_fonts/font = ExtResource( 6 )
+align = 1
+editable = false
+
+[node name="AlertButton" type="Button" parent="WindowDialog/VBoxContainer"]
+margin_top = 102.0
+margin_right = 423.0
+margin_bottom = 142.0
 custom_fonts/font = ExtResource( 4 )
 text = "Ok"
 [connection signal="pressed" from="GridContainer/Button_X0Y4" to="GridContainer" method="_on_Button_X0Y4_pressed"]
