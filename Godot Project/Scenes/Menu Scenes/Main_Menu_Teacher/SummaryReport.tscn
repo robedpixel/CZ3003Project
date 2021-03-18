@@ -90,8 +90,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="CanvasLayer" type="CanvasLayer" parent="VBoxContainer/HBoxContainer"]
-
 [node name="wSelectedLbl" type="Label" parent="VBoxContainer"]
 margin_top = 96.0
 margin_right = 878.0
