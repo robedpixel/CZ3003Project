@@ -13,6 +13,8 @@ onready var dialogue = get_node("/root/Main/DialogueCanvas/DialogueUI/DialogueBo
 
 onready var background = $BG
 
+var weaponSlash = preload("res://Scenes/Prefabs/WeaponSlash.tscn")
+
 # can godot do array? 
 onready var ans1 = $Control/Button/Label
 onready var ans2 = $Control2/Button/Label
@@ -101,3 +103,10 @@ func _onDialogueTextEnd():
 	
 func _showPortrait(show):
 	dialogueUI._showPortrait(show)
+	
+func _weaponSlashAnimation(monsterPosition):
+	var weaponSlashInstance = weaponSlash.instance()
+	
+	weaponSlashInstance.set_position(monsterPosition)
+	
+	add_child(weaponSlashInstance)
