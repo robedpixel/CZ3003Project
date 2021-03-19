@@ -72,6 +72,9 @@ func _onAnswer(ansValue):
 		print("You got it correct!")
 		currentMonster.monsterHealth._minusHealth(1)		
 		combatUI._weaponSlashAnimation(currentMonster.position)
+		if(isBoss):
+			currentMonster._setShake(2)
+			currentMonster.start_shake_tween()
 	else:
 		print("Wrong answer")
 		player._takeDamage(1)
@@ -89,6 +92,9 @@ func _onAlive(entity):
 	_nextQuestion()
 
 func _onDeath(entity):
+	currentMonster._deathAnim()
+	
+func _monsterDeathAnimEnd():
 	emit_signal("victory_signal", true)
 	_exitCombat()
 

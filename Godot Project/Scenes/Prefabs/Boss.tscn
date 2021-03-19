@@ -43,7 +43,7 @@ script = ExtResource( 2 )
 scale = Vector2( 10, 10 )
 frames = SubResource( 5 )
 animation = "idle"
-frame = 3
+frame = 1
 playing = true
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
@@ -76,5 +76,8 @@ shape = SubResource( 7 )
 script = ExtResource( 4 )
 health = 4
 maxHealth = 4
+
+[node name="ShakeTween" type="Tween" parent="."]
 [connection signal="body_entered" from="InteractableArea" to="InteractableArea" method="_on_Interactable_Area_body_entered"]
 [connection signal="body_exited" from="InteractableArea" to="InteractableArea" method="_on_Interactable_Area_body_exited"]
+[connection signal="tween_completed" from="ShakeTween" to="." method="_on_ShakeTween_tween_completed"]
