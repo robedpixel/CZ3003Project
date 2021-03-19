@@ -6,6 +6,7 @@ onready var player = get_node("../Player")
 onready var questionManager = get_node("../QuestionManager")
 onready var cmbtManager = get_node("../CombatManager")
 onready var monsterFactory = get_node("../MonsterFactory")
+onready var transition = get_node("../Transition")
 
 # door
 onready var leftDoor = $Doors/Left
@@ -35,6 +36,7 @@ var shopItems = []
 
 var movedRoom : bool = false
 var lastUsedDoor = ""
+var targetDoorPos
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -114,11 +116,18 @@ func _moveRoom(dir):
 	
 	_exitRoom()
 	
-	_loadRoom(playerX, playerY)
-	_updatePlayerGridUI()
-	player.set_position(doorPos)
+	targetDoorPos = doorPos
 	
-	movedRoom = false
+	transition._roomFlash()
+
+# part 2 of moveRoom()
+func _moveRoomTransition():
+	if(movedRoom):
+		_loadRoom(playerX, playerY)
+		_updatePlayerGridUI()
+		player.set_position(targetDoorPos)
+	
+		movedRoom = false
 
 func _refreshRoom():
 	_exitRoom()

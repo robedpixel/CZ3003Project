@@ -13,7 +13,7 @@ onready var itemUI = get_node("../MainCanvas/MainUI/ItemUI/ItemUIBG/Item")
 var velocity = Vector2()
 onready var playerSprite = $PlayerSprite
 
-var canInteract = false
+var lock : bool = false
 var interactObjList = []
 
 var movingRight = false
@@ -44,6 +44,9 @@ func _initPlayer(startingHealth, startingCoins):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if(lock):
+		return
+	
 	if Input.is_action_just_pressed('interact'):
 		_interact()
 	
@@ -113,12 +116,10 @@ func _physics_process(delta):
 	velocity = move_and_slide(velocity)
 	
 func _AddInteractable(interactObjName):
-	canInteract = true
 	self.interactObjList.append(interactObjName)
 	#print(self.interactObjList)
 	
 func _RemoveInteractable(interactObjName):
-	canInteract = false
 	var i = self.interactObjList.find(interactObjName)
 	self.interactObjList.remove(i)
 	#print(self.interactObjList)
@@ -237,6 +238,9 @@ func _useItem():
 	
 func _addItem(itemType):
 	inventory.append(itemType)
+	
+func _lockCharacter(lock):
+	self.lock = lock
 	
 	
 	

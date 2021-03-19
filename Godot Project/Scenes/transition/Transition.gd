@@ -44,6 +44,7 @@ export(float, 0.0, 3.0, 0.1) var duration : float = 1 setget _set_duration
 var input_lock : bool = false
 
 onready var tex_rect : TextureRect = $TextureRect
+onready var customTransition = $CustomTransitionTextureRect
 
 ###########################################################
 # Every Frame
@@ -94,6 +95,13 @@ func _set_duration(val:float):
 	elif tex_rect:
 		tex_rect.duration = val
 
+func _roomFlash():
+	customTransition._setColor(Color(0.7, 0.7, 0.7, 0.0))
+	customTransition._startTransition()
+	
+func _hurtFlash():
+	customTransition._setColor(Color(150, 0, 24, 0.0))
+	customTransition._startTransition()
 
 func _on_CombatManager_combat_signal(value):
 	if(value):
