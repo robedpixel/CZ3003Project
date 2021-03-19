@@ -59,6 +59,7 @@ func _on_WindowDialog_draw():
 func default_message_setting():
 	popup_label.text = default_text.to_upper()
 	confirm_button.text = "Confirm".to_upper()
+	confirm_button.text = "decode".to_upper()
 	user_line_edit.visible = true
 	user_line_edit.clear()
 	bool_code_decoded = false

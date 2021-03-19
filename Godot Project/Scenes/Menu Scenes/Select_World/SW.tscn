@@ -177,7 +177,7 @@ __meta__ = {
 
 [node name="PopupLabel" type="Label" parent="WindowDialog/VBoxContainer"]
 margin_top = 106.0
-margin_right = 650.0
+margin_right = 649.0
 margin_bottom = 146.0
 size_flags_vertical = 6
 custom_fonts/font = ExtResource( 5 )
@@ -189,9 +189,9 @@ __meta__ = {
 }
 
 [node name="UserCode" type="LineEdit" parent="WindowDialog/VBoxContainer"]
-margin_top = 263.0
-margin_right = 650.0
-margin_bottom = 313.0
+margin_top = 262.0
+margin_right = 649.0
+margin_bottom = 312.0
 rect_min_size = Vector2( 600, 50 )
 custom_fonts/font = ExtResource( 5 )
 align = 1
@@ -200,15 +200,15 @@ clear_button_enabled = true
 placeholder_text = "ENTER CODE HERE"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="WindowDialog/VBoxContainer"]
-margin_top = 323.0
-margin_right = 650.0
-margin_bottom = 370.0
+margin_top = 322.0
+margin_right = 649.0
+margin_bottom = 369.0
 size_flags_horizontal = 3
 custom_constants/separation = 10
 alignment = 1
 
 [node name="SWAlertCancelButton" type="Button" parent="WindowDialog/VBoxContainer/HBoxContainer"]
-margin_right = 320.0
+margin_right = 319.0
 margin_bottom = 47.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 6 )
@@ -216,8 +216,8 @@ text = "CANCEL"
 script = ExtResource( 9 )
 
 [node name="ConfirmButton" type="Button" parent="WindowDialog/VBoxContainer/HBoxContainer"]
-margin_left = 330.0
-margin_right = 650.0
+margin_left = 329.0
+margin_right = 649.0
 margin_bottom = 47.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 6 )
