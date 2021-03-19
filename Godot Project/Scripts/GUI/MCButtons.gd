@@ -28,8 +28,11 @@ onready var confirm_btn = get_node("../ConfirmButton")
 onready var alert_dialog = get_node("../WindowDialog")
 onready var alert_label = get_node("../WindowDialog/VBoxContainer/AlertLabel")
 onready var alert_line_edit = get_node("../WindowDialog/VBoxContainer/AlertLineEdit")
+onready var alert_button = get_node("../WindowDialog/VBoxContainer/AlertButton")
 onready var topic_label = get_node("../TopicLabel")
 onready var topic_button = get_node("../TopicChooserButton")
+
+var path_to_select_world = "res://Scenes/Menu Scenes/Select_World/SW.tscn"
 
 var button_grid = [] # the maze to be created
 var boss_exists  # Boolean to see if the boss already exits
@@ -39,10 +42,10 @@ var store_exists  # Boolean to see if the store already exits
 var code_1 = null
 var code_2 = null
 var code_3 = null
-var height=5  # height of the map
-var width=5   # width of the map
-var topic_int=0
-
+var height = 5  # height of the map
+var width = 5   # width of the map
+var topic_int = 0
+var bool_maze_encoded
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -261,21 +264,23 @@ func _on_ConfirmButton_pressed():
 	var path_exists = search_algorithm(converted_grid,boss_x_axis,boss_y_axis)
 	
 	if(path_exists ==  true):
-		GlobalVariables.maze_creator_map = button_grid
 		print("Created Maze: ", button_grid)
 		generate_code(button_grid,topic_int)
 		alert_dialog.visible=true
 		alert_line_edit.visible = true
 		alert_dialog.window_title = ""
-		alert_label.text = "SUCCESS!\n YOUR CODE IS" 
-		alert_line_edit.text= code_1 + " - " + code_2+" - "  + code_3
-		GlobalVariables.generated_code_to_string(str(code_1),str(code_2),str(code_3))
+		alert_label.text = "SUCCESS!\nYOUR CODE IS" 
+		alert_line_edit.text= code_1 + "-" + code_2 + "-" + code_3
+		alert_button.text = "Go to maze"
+		bool_maze_encoded = true
 		#print("Path exists: ", path_exists)
 	else:
 		alert_dialog.visible=true
 		alert_line_edit.visible = false
 		alert_dialog.window_title = "ERROR"
 		alert_label.text = "NO PATH TO BOSS TILE!"
+		alert_button.text = "Close"
+		bool_maze_encoded = false
 		#print("Path does not exist")
 
 
@@ -297,7 +302,10 @@ func _on_TopicChooserButton_pressed():
 	#print(topic_int)
 
 func _on_AlertButton_pressed():
-	alert_dialog.visible=false
+	if(bool_maze_encoded==false):
+		alert_dialog.visible=false
+	else:
+		get_tree().change_scene(path_to_select_world)
 	
 ####################		The functions below are totally for each button		############################
 
