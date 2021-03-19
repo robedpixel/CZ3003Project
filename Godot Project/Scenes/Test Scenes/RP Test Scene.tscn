@@ -534,7 +534,7 @@ scale = Vector2( 4, 4 )
 z_index = 1
 frames = SubResource( 20 )
 animation = "down"
-frame = 3
+frame = 1
 playing = true
 
 [node name="Room" type="Node2D" parent="."]

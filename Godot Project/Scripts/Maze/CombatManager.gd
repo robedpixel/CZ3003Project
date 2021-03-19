@@ -72,6 +72,7 @@ func _onAnswer(ansValue):
 		print("You got it correct!")
 		currentMonster.monsterHealth._minusHealth(1)		
 		combatUI._weaponSlashAnimation(currentMonster.position)
+		combatUI._hideAnswers()
 		if(isBoss):
 			currentMonster._setShake(2)
 			currentMonster.start_shake_tween()
