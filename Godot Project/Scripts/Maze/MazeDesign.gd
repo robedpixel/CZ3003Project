@@ -45,7 +45,7 @@ func _getRoom(x, y):
 	return layout[x][y]
 
 func _setRoom(x, y, value):			
-	if(x < 0 or x >= WIDTH or y < 0 or y >= HEIGHT or value < 0 or value > 4):
+	if(x < 0 or x >= WIDTH or y < 0 or y >= HEIGHT or value < GlobalVariables.RoomEnum.VOID_ROOM or value >= GlobalVariables.RoomEnum.MAX_ROOM_ENUM):
 		print("Error setting room " + str(x) + " " + str(y) + " " + str(value))
 	
 	layout[x][y] = value

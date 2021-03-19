@@ -11,6 +11,7 @@ var correctAnswer = 1
 
 signal combat_signal(value)
 signal victory_signal(value)
+signal gameover_signal
 
 var currentMonster
 var isBoss : bool = false
@@ -26,11 +27,8 @@ func _ready():
 
 func _enterCombat(monster):
 	print("Entering combat")
-	print(player)
 	
 	player._disableAndHide()
-	
-	_nextQuestion()
 	
 	emit_signal("combat_signal", true)
 
@@ -52,7 +50,11 @@ func _setMonster(monster):
 func _exitCombat():
 	print("Exiting combat")
 	player._enable()
+	
 	_toggleCombatUI(false)
+	combatUI._showPortrait(false)
+	combatUI.dialogueUI._showDialogueBox(false)
+	
 	emit_signal("combat_signal", false)
 	
 func _toggleCombatUI(show):
@@ -65,20 +67,35 @@ func _toggleCombatUI(show):
 # ansValue will take on values 1, 2, 3, 4
 func _onAnswer(ansValue):
 	print('Chosen ans ' + str(ansValue))
-	#if(true):
-	if(ansValue == correctAnswer):
+	if(true):
+	#if(ansValue == correctAnswer):
 		print("You got it correct!")
 		currentMonster.monsterHealth._minusHealth(1)		
+		combatUI._weaponSlashAnimation(currentMonster.position)
+		combatUI._hideAnswers()
+		if(isBoss):
+			currentMonster._setShake(2)
+			currentMonster.start_shake_tween()
 	else:
 		print("Wrong answer")
-		emit_signal("victory_signal", false)
 		player._takeDamage(1)
-		_exitCombat()
+		if(player.health <= 0):
+			emit_signal("gameover_signal")
+			return
+		if(!isBoss):
+			emit_signal("victory_signal", false)
+			
+			_exitCombat()
+		else:
+			_nextQuestion()
 
 func _onAlive(entity):
 	_nextQuestion()
 
 func _onDeath(entity):
+	currentMonster._deathAnim()
+	
+func _monsterDeathAnimEnd():
 	emit_signal("victory_signal", true)
 	_exitCombat()
 
@@ -88,5 +105,8 @@ func _onTransitionShowStart():
 func _onTransitionShowEnd():
 	combatUI._hideAnswers()
 	_toggleCombatUI(true)
-	combatUI._displayQn()
+	_nextQuestion()
+	combatUI.dialogueUI._showPortrait(true)
+	combatUI.dialogueUI._setMonsterPortrait(currentMonster)
+	
 	

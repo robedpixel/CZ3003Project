@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Resources/fonts/combat_dynamicfont.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Scripts/GUI/CombatGUI.gd" type="Script" id=2]
+[ext_resource path="res://Resources/images/battle_backgrounds_v_2__free_to_use__by_kwharever_dcp9kqf.png" type="Texture" id=3]
 
 [node name="CombatCanvas" type="CanvasLayer"]
 
@@ -13,25 +14,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="CombatUI"]
-margin_left = 140.0
-margin_top = 109.0
-margin_right = 1140.0
-margin_bottom = 220.0
-custom_fonts/font = ExtResource( 1 )
-text = "what is the meaning of life"
-align = 1
-valign = 1
-autowrap = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="Control" type="Control" parent="CombatUI"]
 margin_left = 135.468
-margin_top = 260.432
+margin_top = 81.432
 margin_right = 135.468
-margin_bottom = 260.432
+margin_bottom = 81.432
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -57,9 +44,9 @@ __meta__ = {
 
 [node name="Control2" type="Control" parent="CombatUI"]
 margin_left = 754.367
-margin_top = 262.114
+margin_top = 83.114
 margin_right = 754.367
-margin_bottom = 262.114
+margin_bottom = 83.114
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -82,9 +69,9 @@ autowrap = true
 
 [node name="Control3" type="Control" parent="CombatUI"]
 margin_left = 133.786
-margin_top = 477.383
+margin_top = 298.383
 margin_right = 133.786
-margin_bottom = 477.383
+margin_bottom = 298.383
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -110,9 +97,9 @@ __meta__ = {
 
 [node name="Control4" type="Control" parent="CombatUI"]
 margin_left = 752.686
-margin_top = 479.065
+margin_top = 300.065
 margin_right = 752.686
-margin_bottom = 479.065
+margin_bottom = 300.065
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -137,6 +124,15 @@ __meta__ = {
 }
 
 [node name="Tween" type="Tween" parent="CombatUI"]
+
+[node name="BG" type="Sprite" parent="CombatUI"]
+visible = false
+position = Vector2( 453.257, 383.163 )
+scale = Vector2( 7, 7 )
+texture = ExtResource( 3 )
+vframes = 3
+hframes = 3
+frame = 5
 [connection signal="pressed" from="CombatUI/Control/Button" to="CombatUI" method="_on_Button_pressed" binds= [ 0 ]]
 [connection signal="pressed" from="CombatUI/Control2/Button" to="CombatUI" method="_on_Button_pressed" binds= [ 1 ]]
 [connection signal="pressed" from="CombatUI/Control3/Button" to="CombatUI" method="_on_Button_pressed" binds= [ 2 ]]

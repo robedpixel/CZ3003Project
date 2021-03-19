@@ -7,7 +7,13 @@ extends Control
 
 onready var cmbtManager = get_node('/root/Main/CombatManager')
 
-onready var questionLabel = $Label
+onready var dialogueUI = get_node("/root/Main/DialogueCanvas/DialogueUI")
+
+onready var dialogue = get_node("/root/Main/DialogueCanvas/DialogueUI/DialogueBox")
+
+onready var background = $BG
+
+var weaponSlash = preload("res://Scenes/Prefabs/WeaponSlash.tscn")
 
 # can godot do array? 
 onready var ans1 = $Control/Button/Label
@@ -32,13 +38,15 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if(displayQn):
-		currentQnTxt = currentQnTxt + combatQuestion.question[txtIndex]
-		txtIndex += 1
-		questionLabel.text = currentQnTxt
-		if(txtIndex >= combatQuestion.question.length()):
-			displayQn = false
-			_displayAnswers()
+	if(!tween.is_active()):
+		tween_lock = false
+#	if(displayQn):
+#		currentQnTxt = currentQnTxt + combatQuestion.question[txtIndex]
+#		txtIndex += 1
+#		questionLabel.text = currentQnTxt
+#		if(txtIndex >= combatQuestion.question.length()):
+#			displayQn = false
+#			_displayAnswers()
 
 func _toggle(show):
 	if(show):
@@ -57,12 +65,10 @@ func _hideAnswers():
 		answers[x].visible = false
 
 func _showAns(index):
-	print(cmbtManager)
 	answers[index].visible = true
 
 func _setQuestion(combatQuestionToSet):
 	combatQuestion = combatQuestionToSet
-	questionLabel.text = combatQuestion.question
 	ans1.text = combatQuestion.answer_a
 	ans2.text = combatQuestion.answer_b
 	ans3.text = combatQuestion.answer_c
@@ -71,16 +77,18 @@ func _setQuestion(combatQuestionToSet):
 func _displayQn():
 	currentQnTxt = ""
 	txtIndex = 0
-	displayQn = true
+	#displayQn = true
+	dialogueUI._showDialogueBox(true)
+	dialogue._displayDialogue(combatQuestion.question)
 	_hideAnswers()
 
 func _displayAnswers():
 	tween_lock = true
+	var delay = 0.25
 	for x in range(4):
-		tween.interpolate_callback(self, 0.25, "_showAns", x)
+		tween.interpolate_callback(self, delay, "_showAns", x)
 		tween.start()
-		yield(tween, "tween_completed")
-	tween_lock = false
+		delay += 0.25
 		
 
 
@@ -89,3 +97,16 @@ func _on_Button_pressed(index):
 		return
 		
 	cmbtManager._onAnswer(index)
+	
+func _onDialogueTextEnd():
+	_displayAnswers()
+	
+func _showPortrait(show):
+	dialogueUI._showPortrait(show)
+	
+func _weaponSlashAnimation(monsterPosition):
+	var weaponSlashInstance = weaponSlash.instance()
+	
+	weaponSlashInstance.set_position(monsterPosition)
+	
+	add_child(weaponSlashInstance)

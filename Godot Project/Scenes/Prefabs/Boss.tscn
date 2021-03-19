@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=2]
 
-[ext_resource path="res://Resources/images/monster_1.png" type="Texture" id=1]
+[ext_resource path="res://Resources/images/Monster/Sprite/20.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Entities/Monster.gd" type="Script" id=2]
 [ext_resource path="res://Scripts/Entities/Interactable.gd" type="Script" id=3]
 [ext_resource path="res://Scripts/Entities/Health.gd" type="Script" id=4]
@@ -25,7 +25,7 @@ region = Rect2( 0, 48, 16, 16 )
 animations = [ {
 "frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
 "loop": true,
-"name": "default",
+"name": "idle",
 "speed": 5.0
 } ]
 
@@ -42,7 +42,7 @@ script = ExtResource( 2 )
 [node name="MonsterSprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 10, 10 )
 frames = SubResource( 5 )
-frame = 1
+animation = "idle"
 playing = true
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
@@ -75,5 +75,8 @@ shape = SubResource( 7 )
 script = ExtResource( 4 )
 health = 4
 maxHealth = 4
+
+[node name="ShakeTween" type="Tween" parent="."]
 [connection signal="body_entered" from="InteractableArea" to="InteractableArea" method="_on_Interactable_Area_body_entered"]
 [connection signal="body_exited" from="InteractableArea" to="InteractableArea" method="_on_Interactable_Area_body_exited"]
+[connection signal="tween_completed" from="ShakeTween" to="." method="_on_ShakeTween_tween_completed"]
