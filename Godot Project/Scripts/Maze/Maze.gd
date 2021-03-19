@@ -300,5 +300,5 @@ func _rewardPlayer():
 	
 	player._addCoins(rewardedCoins)
 	
-	effectManager._playCoinAnim(currentMonster.get_position(), 5)
+	effectManager._playCoinAnim(currentMonster.get_position(), rewardedCoins)
 	

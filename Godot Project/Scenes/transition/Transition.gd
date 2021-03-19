@@ -97,7 +97,7 @@ func _set_duration(val:float):
 
 func _roomFlash():
 	customTransition._setColor(Color(0.7, 0.7, 0.7, 1.0))
-	customTransition._startTransition(0.5, Tween.TRANS_QUINT, Tween.EASE_IN, Tween.TRANS_QUINT, Tween.EASE_IN)
+	customTransition._startTransition(0.5, Tween.TRANS_QUINT, Tween.EASE_OUT, Tween.TRANS_QUINT, Tween.EASE_IN)
 	
 func _hurtFlash():
 	customTransition._setColor(Color(0.8, 0, 0.16, 0.7))
