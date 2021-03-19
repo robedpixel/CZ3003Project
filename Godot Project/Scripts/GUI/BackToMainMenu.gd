@@ -14,8 +14,11 @@ func _on_SWBackButton_pressed():
 
 func _on_CSBackButton_pressed():
 	get_tree().change_scene(path_to_select_world)
-	GlobalVariables.world_num = 0
+	GlobalVariables.world_num = null
 	print("Selected world ",GlobalVariables.world_num)
+
+
+
 
 
 
