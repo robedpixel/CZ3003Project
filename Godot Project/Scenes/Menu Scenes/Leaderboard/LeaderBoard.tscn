@@ -127,8 +127,8 @@ scale = Vector2( 0.0833217, 0.0755706 )
 texture = ExtResource( 5 )
 
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
-[connection signal="pressed" from="ShareFBBtn" to="." method="_on_Button_pressed"]
 [connection signal="pressed" from="ShareFBBtn" to="." method="_on_ShareFBBtn_pressed"]
+[connection signal="pressed" from="ShareFBBtn" to="." method="_on_Button_pressed"]
 [connection signal="pressed" from="ShareTwitterBtn" to="." method="_on_ShareTwitterBtn_pressed"]
 [connection signal="pressed" from="LBBackButton" to="LBBackButton" method="_on_LBBackButton_pressed"]
 [connection signal="request_completed" from="HTTPRequest" to="." method="_on_HTTPRequest_request_completed"]

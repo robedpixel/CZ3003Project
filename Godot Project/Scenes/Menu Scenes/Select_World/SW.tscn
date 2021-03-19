@@ -14,17 +14,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="SWCenterContainer" type="CenterContainer" parent="."]
-margin_left = -1.94971
-margin_top = 0.656285
-margin_right = 1278.05
-margin_bottom = 720.656
-size_flags_horizontal = 3
-size_flags_vertical = 3
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="Page title" type="Label" parent="."]
 anchor_left = 0.5
 anchor_right = 0.5
@@ -39,10 +28,10 @@ __meta__ = {
 }
 
 [node name="SWBackButton" type="Button" parent="."]
-margin_left = 1055.07
-margin_top = 582.135
-margin_right = 1175.07
-margin_bottom = 638.135
+margin_left = 1055.0
+margin_top = 640.0
+margin_right = 1248.0
+margin_bottom = 696.0
 custom_fonts/font = ExtResource( 2 )
 text = "back"
 script = ExtResource( 1 )
@@ -50,30 +39,42 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
-margin_top = -6.0
-margin_right = 1281.0
-margin_bottom = 466.0
+[node name="WorldContainer" type="HBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 15.0
+margin_top = 80.0
+margin_right = -15.0
+margin_bottom = -120.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 19
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="sample_map2" type="Sprite" parent="HBoxContainer"]
-position = Vector2( 933.841, 282.078 )
-scale = Vector2( 1.85211, 1.62787 )
-texture = ExtResource( 4 )
+[node name="World1_Container" type="VBoxContainer" parent="WorldContainer"]
+margin_right = 404.0
+margin_bottom = 520.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 20
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="sample_map" type="Sprite" parent="HBoxContainer"]
-position = Vector2( 357.395, 282.078 )
-scale = Vector2( 1.87453, 1.62787 )
+[node name="sample_map" type="TextureRect" parent="WorldContainer/World1_Container"]
+margin_right = 404.0
+margin_bottom = 444.0
+size_flags_vertical = 3
 texture = ExtResource( 4 )
+expand = true
 
-[node name="World1Button" type="Button" parent="."]
-margin_left = 74.0
-margin_top = 498.0
-margin_right = 635.0
-margin_bottom = 554.0
-size_flags_horizontal = 7
+[node name="World1Button" type="Button" parent="WorldContainer/World1_Container"]
+margin_top = 464.0
+margin_right = 404.0
+margin_bottom = 520.0
+size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 2 )
 text = "world 1"
 script = ExtResource( 3 )
@@ -81,19 +82,66 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="World2Button" type="Button" parent="."]
-margin_left = 653.32
-margin_top = 498.0
-margin_right = 1214.32
-margin_bottom = 554.0
-size_flags_horizontal = 7
+[node name="World2_Container" type="VBoxContainer" parent="WorldContainer"]
+margin_left = 423.0
+margin_right = 827.0
+margin_bottom = 520.0
+size_flags_horizontal = 3
 size_flags_vertical = 3
+custom_constants/separation = 20
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="sample_map2" type="TextureRect" parent="WorldContainer/World2_Container"]
+margin_right = 404.0
+margin_bottom = 444.0
+size_flags_vertical = 3
+texture = ExtResource( 4 )
+expand = true
+
+[node name="World2Button" type="Button" parent="WorldContainer/World2_Container"]
+margin_top = 464.0
+margin_right = 404.0
+margin_bottom = 520.0
+size_flags_horizontal = 7
 custom_fonts/font = ExtResource( 2 )
 text = "world 2"
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="FriendMaze_Container" type="VBoxContainer" parent="WorldContainer"]
+margin_left = 846.0
+margin_right = 1250.0
+margin_bottom = 520.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 20
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="sample_map3" type="TextureRect" parent="WorldContainer/FriendMaze_Container"]
+margin_right = 404.0
+margin_bottom = 444.0
+size_flags_vertical = 3
+texture = ExtResource( 4 )
+expand = true
+
+[node name="FriendMaze" type="Button" parent="WorldContainer/FriendMaze_Container"]
+margin_top = 464.0
+margin_right = 404.0
+margin_bottom = 520.0
+size_flags_horizontal = 7
+custom_fonts/font = ExtResource( 2 )
+text = "Friends Maze"
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="pressed" from="SWBackButton" to="SWBackButton" method="_on_SWBackButton_pressed"]
-[connection signal="pressed" from="World1Button" to="World1Button" method="_on_World1Button_pressed"]
-[connection signal="pressed" from="World2Button" to="World1Button" method="_on_World2Button_pressed"]
+[connection signal="pressed" from="WorldContainer/World1_Container/World1Button" to="WorldContainer/World1_Container/World1Button" method="_on_World1Button_pressed"]
+[connection signal="pressed" from="WorldContainer/World2_Container/World2Button" to="WorldContainer/World1_Container/World1Button" method="_on_World2Button_pressed"]
+[connection signal="pressed" from="WorldContainer/FriendMaze_Container/FriendMaze" to="WorldContainer/FriendMaze_Container/FriendMaze" method="_on_FriendMaze_pressed"]

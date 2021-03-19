@@ -25,10 +25,7 @@ func _ready():
 
 func get_leaderboard_data():
 	print("begin saving analytics...")
-	handler.save_analytics(1)
-	var success = yield(handler.save_analytics(1),"completed")
-	if success:
-		print("saving analytics successful")
+	yield(handler.save_analytics(1),"completed")
 	print("getting leaderboard data...")
 	handler.get_world_leaderboard_data(1, self.http) #for now assume world 1
 
