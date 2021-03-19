@@ -9,6 +9,7 @@ onready var mazeManager = get_node("../Maze")
 onready var healthUI = get_node("../MainCanvas/Hearts")
 onready var coinUI = get_node("../MainCanvas/MainUI/CoinsUI")
 onready var itemUI = get_node("../MainCanvas/MainUI/ItemUI/ItemUIBG/Item")
+onready var transition = get_node("../Transition")
 
 var velocity = Vector2()
 onready var playerSprite = $PlayerSprite
@@ -31,12 +32,13 @@ var currentInventoryIndex = 0
 
 #signals
 signal coin_change_signal(value)
+signal player_hurt_signal(value)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	inventory.append(GlobalVariables.ItemEnum.ITEM_HEALTHPOT)
 	_showItem()
-	pass
+	connect("player_hurt_signal", transition, "_hurtFlash")
 
 func _initPlayer(startingHealth, startingCoins):
 	_initHealth(startingHealth)
@@ -180,6 +182,9 @@ func _takeDamage(damageTaken):
 		
 	health -= damageTaken
 	healthUI._setHeart(health, maxHealth)
+	
+	emit_signal("player_hurt_signal")
+	
 	if(health <= 0):
 		print("Game over")
 		return

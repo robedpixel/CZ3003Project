@@ -20,9 +20,9 @@ func _ready():
 #	pass
 
 func _setColor(inColor):
-	flashColor = Color(inColor.r, inColor.g, inColor.b, 0.0)
+	flashColor = inColor
 
-func _startTransition():
+func _startTransition(dur, curve, easeType, curve2, easeType2):
 	if(tween_lock):
 		return
 		
@@ -30,7 +30,7 @@ func _startTransition():
 	
 	tween_lock = true
 	var startColor = flashColor
-	tween.interpolate_property(self, "color", Color(startColor.r, startColor.g, startColor.b, 0), Color(startColor.r, startColor.g, startColor.b, 1.0), 0.5, Tween.TRANS_QUINT, Tween.EASE_IN)
+	tween.interpolate_property(self, "color", Color(startColor.r, startColor.g, startColor.b, 0), Color(startColor.r, startColor.g, startColor.b, flashColor.a), dur, curve, easeType)
 	
 	tween.start()
 	
@@ -38,7 +38,7 @@ func _startTransition():
 	
 	yield(tween, "tween_completed")
 	
-	tween.interpolate_property(self, "color", Color(color.r, color.g, color.b, 1.0), Color(startColor.r, startColor.g, startColor.b, 0), 0.5, Tween.TRANS_QUINT, Tween.EASE_IN)
+	tween.interpolate_property(self, "color", Color(color.r, color.g, color.b, flashColor.a), Color(startColor.r, startColor.g, startColor.b, 0), dur, curve2, easeType2)
 	
 	tween.start()
 	

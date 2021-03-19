@@ -11,6 +11,7 @@ var correctAnswer = 1
 
 signal combat_signal(value)
 signal victory_signal(value)
+signal gameover_signal
 
 var currentMonster
 var isBoss : bool = false
@@ -66,15 +67,22 @@ func _toggleCombatUI(show):
 # ansValue will take on values 1, 2, 3, 4
 func _onAnswer(ansValue):
 	print('Chosen ans ' + str(ansValue))
-	if(true):
-	#if(ansValue == correctAnswer):
+	#if(true):
+	if(ansValue == correctAnswer):
 		print("You got it correct!")
 		currentMonster.monsterHealth._minusHealth(1)		
 	else:
 		print("Wrong answer")
-		emit_signal("victory_signal", false)
 		player._takeDamage(1)
-		_exitCombat()
+		if(player.health <= 0):
+			emit_signal("gameover_signal")
+			return
+		if(!isBoss):
+			emit_signal("victory_signal", false)
+			
+			_exitCombat()
+		else:
+			_nextQuestion()
 
 func _onAlive(entity):
 	_nextQuestion()
