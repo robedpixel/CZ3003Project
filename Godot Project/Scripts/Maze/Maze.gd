@@ -5,20 +5,20 @@ onready var mazeDesign = get_node("../MazeDesign")
 onready var player = get_node("../Player")
 onready var questionManager = get_node("../QuestionManager")
 onready var cmbtManager = get_node("../CombatManager")
+onready var monsterFactory = get_node("../MonsterFactory")
+onready var transition = get_node("../Transition")
+onready var effectManager = get_node("../EffectManager")
 
-# interactables, door
-onready var interactables = get_node("../Interactables")
-onready var leftDoor = get_node("../Interactables/LeftDoor")
-onready var rightDoor = get_node("../Interactables/RightDoor")
-onready var upDoor = get_node("../Interactables/UpDoor")
-onready var downDoor = get_node("../Interactables/DownDoor")
+# door
+onready var leftDoor = $Doors/Left
+onready var rightDoor = $Doors/Right
+onready var upDoor = $Doors/Up
+onready var downDoor = $Doors/Down
 
 # UI
 onready var gridLocationTxt = get_node("../MainCanvas/MainUI/GridLocationBackground/GridLocationText")
 
 # prefabs
-onready var monsterObj = preload("res://Scenes/Prefabs/Monster.tscn")
-onready var bossObj = preload("res://Scenes/Prefabs/Boss.tscn")
 onready var shopObj = preload("res://Scenes/Prefabs/Shop.tscn")
 
 # player variables
@@ -37,6 +37,7 @@ var shopItems = []
 
 var movedRoom : bool = false
 var lastUsedDoor = ""
+var targetDoorPos
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -58,6 +59,9 @@ func _initializeMaze():
 	for x in range(mazeDesign.WIDTH):
 		for y in range(mazeDesign.HEIGHT):
 			mazeDesign._setRoom(x, y, GlobalVariables.RoomEnum.CHALLENGE_ROOM_EASY)
+	
+	mazeDesign._setRoom(0, 2, GlobalVariables.RoomEnum.CHALLENGE_ROOM_MED)
+	mazeDesign._setRoom(0, 3, GlobalVariables.RoomEnum.CHALLENGE_ROOM_HARD)
 	
 	mazeDesign._setRoom(playerX, playerY, GlobalVariables.RoomEnum.STARTING_ROOM)
 	mazeDesign._setRoom(1, 1, GlobalVariables.RoomEnum.BOSS_ROOM)
@@ -88,16 +92,16 @@ func _moveRoom(dir):
 	match dir:
 		"up":
 			newPlayerY += 1
-			doorPos = downDoor.position
+			doorPos = downDoor.area2D.position
 		"down":
 			newPlayerY -= 1
-			doorPos = upDoor.position
+			doorPos = upDoor.area2D.position
 		"left":
 			newPlayerX -=1
-			doorPos = rightDoor.position
+			doorPos = rightDoor.area2D.position
 		"right":
 			newPlayerX += 1
-			doorPos = leftDoor.position
+			doorPos = leftDoor.area2D.position
 		_:
 			print("Unable to move, invalid direction. Door missing?")
 			
@@ -113,11 +117,18 @@ func _moveRoom(dir):
 	
 	_exitRoom()
 	
-	_loadRoom(playerX, playerY)
-	_updatePlayerGridUI()
-	player.set_position(doorPos)
+	targetDoorPos = doorPos
 	
-	movedRoom = false
+	transition._roomFlash()
+
+# part 2 of moveRoom()
+func _moveRoomTransition():
+	if(movedRoom):
+		_loadRoom(playerX, playerY)
+		_updatePlayerGridUI()
+		player.set_position(targetDoorPos)
+	
+		movedRoom = false
 
 func _refreshRoom():
 	_exitRoom()
@@ -222,11 +233,13 @@ func _initChallengeRoom(isBoss):
 	
 	var monster
 	if(!isBoss):
-		monster = monsterObj.instance()
+		var difficulty = mazeDesign._getRoom(playerX, playerY)
+		monster = monsterFactory._createMonster(difficulty)
 	else:
-		monster = bossObj.instance()
+		monster = monsterFactory._createBoss()
+		
 	monster.set_position(Vector2(640, 360))
-	interactables.add_child(monster)
+	add_child(monster)
 	currentMonster = monster
 	cmbtManager._setMonster(currentMonster)
 	
@@ -240,7 +253,52 @@ func _initShopRoom():
 
 func _on_CombatManager_victory_signal(value):
 	if(value):
-		# TODO reward player
+		_rewardPlayer()
 		mazeDesign._setRoom(playerX, playerY, GlobalVariables.RoomEnum.EMPTY_ROOM)
 	else:
 		pass
+
+# 
+
+# attack 2, 3
+# Multiplier 1.0, 1.2, 1.4
+
+# Monster difficulty, easy, med , hard
+# Multiplier 1.0, 1.5, 2.0
+func _rewardPlayer():
+	if(!currentMonster):
+		return
+	
+	var base = 1.0
+	
+	var attackMultiplier = 1.25
+	var difficultyMultiplier = 1.0
+	
+	match currentMonster.difficulty:
+		GlobalVariables.RoomEnum.CHALLENGE_ROOM_EASY:
+			difficultyMultiplier = GlobalVariables.monsterDifficultyRewardModifier["EASY"]
+		GlobalVariables.RoomEnum.CHALLENGE_ROOM_MED:
+			difficultyMultiplier = GlobalVariables.monsterDifficultyRewardModifier["MED"]
+		GlobalVariables.RoomEnum.CHALLENGE_ROOM_HARD:
+			difficultyMultiplier = GlobalVariables.monsterDifficultyRewardModifier["HARD"]
+		GlobalVariables.RoomEnum.BOSS_ROOM:
+			difficultyMultiplier = GlobalVariables.monsterDifficultyRewardModifier["BOSS"]
+		_:
+			pass
+	
+	match player.attack:
+		2: 
+			attackMultiplier = 1.5
+		3:
+			attackMultiplier = 1.75
+		_:
+			pass
+	
+	var rewardedCoins = int(base * attackMultiplier * difficultyMultiplier)
+	
+	print("Rewarding " + str(attackMultiplier) + " " + str(difficultyMultiplier))
+	
+	player._addCoins(rewardedCoins)
+	
+	effectManager._playCoinAnim(currentMonster.get_position(), rewardedCoins)
+	

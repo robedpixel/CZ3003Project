@@ -1,6 +1,6 @@
-[gd_scene load_steps=37 format=2]
+[gd_scene load_steps=61 format=2]
 
-[ext_resource path="res://Resources/images/walfie_example.png" type="Texture" id=1]
+[ext_resource path="res://Resources/images/Character/Sprite/5.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Entities/Character.gd" type="Script" id=2]
 [ext_resource path="res://Scripts/Maze/Room.gd" type="Script" id=3]
 [ext_resource path="res://Scripts/Maze/Item.gd" type="Script" id=4]
@@ -9,7 +9,7 @@
 [ext_resource path="res://Resources/images/coin-2.png" type="Texture" id=7]
 [ext_resource path="res://Scripts/Maze/MazeDesign.gd" type="Script" id=8]
 [ext_resource path="res://Scripts/Maze/Maze.gd" type="Script" id=9]
-[ext_resource path="res://Resources/images/1x1.png" type="Texture" id=10]
+[ext_resource path="res://Scripts/Maze/MonsterFactory.gd" type="Script" id=10]
 [ext_resource path="res://Scripts/Maze/Door.gd" type="Script" id=11]
 [ext_resource path="res://Scripts/Entities/Interactable.gd" type="Script" id=12]
 [ext_resource path="res://Resources/fonts/arcade_48.tres" type="DynamicFont" id=13]
@@ -21,63 +21,141 @@
 [ext_resource path="res://Scripts/Maze/QuestionManager.gd" type="Script" id=19]
 [ext_resource path="res://Scenes/transition/Transition.tscn" type="PackedScene" id=20]
 [ext_resource path="res://Resources/images/0x72_16x16DungeonTileset.v4.png" type="Texture" id=21]
+[ext_resource path="res://Resources/images/Character/Drawing/number 18 character.png" type="Texture" id=22]
+[ext_resource path="res://Resources/images/Monster/Drawing/monster_boss.png" type="Texture" id=23]
+[ext_resource path="res://Scripts/GUI/DialogueUI.gd" type="Script" id=24]
+[ext_resource path="res://Scripts/GUI/Dialogue.gd" type="Script" id=25]
+[ext_resource path="res://Resources/fonts/combat_dynamicfont.tres" type="DynamicFont" id=26]
+[ext_resource path="res://Resources/images/hud/dialogue-bubble.png" type="Texture" id=27]
+[ext_resource path="res://Resources/images/hud/faceset-box.png" type="Texture" id=28]
+[ext_resource path="res://Scripts/effects.gd" type="Script" id=29]
+[ext_resource path="res://Scripts/global_pos.gd" type="Script" id=30]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 33.9829, 56.0424 )
+extents = Vector2( 29.6183, 25.6201 )
 
 [sub_resource type="AtlasTexture" id=2]
-flags = 4
 atlas = ExtResource( 1 )
-region = Rect2( 0, 0, 341, 423 )
+region = Rect2( 48, 0, 16, 16 )
 
 [sub_resource type="AtlasTexture" id=3]
-flags = 4
 atlas = ExtResource( 1 )
-region = Rect2( 341, 0, 341, 423 )
+region = Rect2( 48, 16, 16, 16 )
 
 [sub_resource type="AtlasTexture" id=4]
-flags = 4
 atlas = ExtResource( 1 )
-region = Rect2( 682, 0, 341, 423 )
+region = Rect2( 48, 32, 16, 16 )
 
 [sub_resource type="AtlasTexture" id=5]
-flags = 4
 atlas = ExtResource( 1 )
-region = Rect2( 341, 0, 341, 423 )
+region = Rect2( 48, 48, 16, 16 )
 
-[sub_resource type="SpriteFrames" id=6]
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 1 )
+region = Rect2( 32, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 1 )
+region = Rect2( 32, 16, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 1 )
+region = Rect2( 32, 32, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 1 )
+region = Rect2( 32, 48, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 1 )
+region = Rect2( 16, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 1 )
+region = Rect2( 16, 16, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 1 )
+region = Rect2( 16, 32, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 1 )
+region = Rect2( 16, 48, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=14]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 16, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=17]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 16, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=18]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 32, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=19]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 48, 16, 16 )
+
+[sub_resource type="SpriteFrames" id=20]
 animations = [ {
 "frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ) ],
 "loop": true,
-"name": "test",
+"name": "right",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ) ],
+"loop": true,
+"name": "left",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ) ],
+"loop": true,
+"name": "up",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 14 ), SubResource( 15 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ) ],
+"loop": true,
+"name": "down",
 "speed": 5.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=7]
+[sub_resource type="RectangleShape2D" id=21]
 extents = Vector2( 20.9225, 440.206 )
 
-[sub_resource type="RectangleShape2D" id=8]
+[sub_resource type="RectangleShape2D" id=22]
 extents = Vector2( 786.64, 24.5294 )
 
-[sub_resource type="RectangleShape2D" id=9]
-extents = Vector2( 73.791, 72.4807 )
-
-[sub_resource type="ConvexPolygonShape2D" id=10]
+[sub_resource type="ConvexPolygonShape2D" id=23]
 points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 
-[sub_resource type="ConvexPolygonShape2D" id=11]
+[sub_resource type="ConvexPolygonShape2D" id=24]
 points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 
-[sub_resource type="ConvexPolygonShape2D" id=12]
+[sub_resource type="ConvexPolygonShape2D" id=25]
 points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
 
-[sub_resource type="ConvexPolygonShape2D" id=13]
+[sub_resource type="ConvexPolygonShape2D" id=26]
 points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 
-[sub_resource type="ConvexPolygonShape2D" id=14]
+[sub_resource type="ConvexPolygonShape2D" id=27]
 points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 
-[sub_resource type="TileSet" id=15]
+[sub_resource type="TileSet" id=28]
 2/name = "0x72_16x16DungeonTileset.v4.png 2"
 2/texture = ExtResource( 21 )
 2/tex_offset = Vector2( 0, 0 )
@@ -116,32 +194,32 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 3/navigation_offset = Vector2( 0, 0 )
 3/shape_offset = Vector2( 0, 0 )
 3/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-3/shape = SubResource( 10 )
+3/shape = SubResource( 23 )
 3/shape_one_way = false
 3/shape_one_way_margin = 1.0
 3/shapes = [ {
 "autotile_coord": Vector2( 0, 1 ),
 "one_way": false,
 "one_way_margin": 1.0,
-"shape": SubResource( 10 ),
+"shape": SubResource( 23 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 }, {
 "autotile_coord": Vector2( 1, 1 ),
 "one_way": false,
 "one_way_margin": 1.0,
-"shape": SubResource( 11 ),
+"shape": SubResource( 24 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 }, {
 "autotile_coord": Vector2( 1, 1 ),
 "one_way": false,
 "one_way_margin": 1.0,
-"shape": SubResource( 12 ),
+"shape": SubResource( 25 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 }, {
 "autotile_coord": Vector2( 2, 1 ),
 "one_way": false,
 "one_way_margin": 1.0,
-"shape": SubResource( 13 ),
+"shape": SubResource( 26 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 3/z_index = 0
@@ -155,14 +233,14 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 4/navigation_offset = Vector2( 0, 0 )
 4/shape_offset = Vector2( 0, 0 )
 4/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-4/shape = SubResource( 14 )
+4/shape = SubResource( 27 )
 4/shape_one_way = false
 4/shape_one_way_margin = 1.0
 4/shapes = [ {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
-"shape": SubResource( 14 ),
+"shape": SubResource( 27 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 4/z_index = 0
@@ -223,9 +301,27 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 7/shapes = [  ]
 7/z_index = 0
 
+[sub_resource type="RectangleShape2D" id=29]
+extents = Vector2( 34.4287, 63.2573 )
+
+[sub_resource type="RectangleShape2D" id=30]
+extents = Vector2( 66.2783, 32.5377 )
+
 [node name="Main" type="Node2D"]
 
 [node name="MainCanvas" type="CanvasLayer" parent="."]
+
+[node name="Hearts" type="Control" parent="MainCanvas"]
+margin_left = 35.0
+margin_top = 35.0
+margin_right = 35.0
+margin_bottom = 35.0
+script = ExtResource( 14 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Heart" parent="MainCanvas/Hearts" instance=ExtResource( 16 )]
 
 [node name="MainUI" type="Control" parent="MainCanvas"]
 anchor_right = 1.0
@@ -256,18 +352,6 @@ valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="Hearts" type="Control" parent="MainCanvas/MainUI"]
-margin_left = 35.0
-margin_top = 35.0
-margin_right = 35.0
-margin_bottom = 35.0
-script = ExtResource( 14 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Heart" parent="MainCanvas/MainUI/Hearts" instance=ExtResource( 16 )]
 
 [node name="DamageUI" type="Control" parent="MainCanvas/MainUI"]
 margin_left = 35.0
@@ -311,6 +395,7 @@ __meta__ = {
 scale = Vector2( 4, 4 )
 texture = ExtResource( 7 )
 hframes = 4
+script = ExtResource( 30 )
 
 [node name="Label" type="Label" parent="MainCanvas/MainUI/CoinsUI"]
 margin_left = 25.0
@@ -363,22 +448,93 @@ scale = Vector2( 5, 5 )
 [node name="CombatCanvas" parent="MainCanvas" instance=ExtResource( 6 )]
 layer = 3
 
+[node name="DialogueCanvas" type="CanvasLayer" parent="."]
+
+[node name="DialogueUI" type="Control" parent="DialogueCanvas"]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 24 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DialogueBox" type="TextureRect" parent="DialogueCanvas/DialogueUI"]
+margin_left = 215.0
+margin_top = 520.0
+margin_right = 1065.0
+margin_bottom = 700.0
+texture = ExtResource( 27 )
+stretch_mode = 1
+script = ExtResource( 25 )
+
+[node name="Label" type="Label" parent="DialogueCanvas/DialogueUI/DialogueBox"]
+anchor_right = 0.998
+anchor_bottom = 0.994
+margin_left = 25.0
+margin_top = 25.0
+margin_right = -25.0
+margin_bottom = -25.0
+custom_fonts/font = ExtResource( 26 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Portrait" type="TextureRect" parent="DialogueCanvas/DialogueUI"]
+margin_left = 40.0
+margin_top = 535.0
+margin_right = 190.0
+margin_bottom = 685.0
+texture = ExtResource( 28 )
+stretch_mode = 1
+
+[node name="ViewportContainer" type="ViewportContainer" parent="DialogueCanvas/DialogueUI/Portrait"]
+margin_left = 15.0
+margin_top = 15.0
+margin_right = 165.0
+margin_bottom = 165.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Viewport" type="Viewport" parent="DialogueCanvas/DialogueUI/Portrait/ViewportContainer"]
+size = Vector2( 120, 120 )
+handle_input_locally = false
+render_target_update_mode = 3
+
+[node name="ColorRect" type="ColorRect" parent="DialogueCanvas/DialogueUI/Portrait/ViewportContainer/Viewport"]
+margin_right = 150.0
+margin_bottom = 150.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="PlayerPortrait" type="Sprite" parent="DialogueCanvas/DialogueUI/Portrait/ViewportContainer/Viewport"]
+visible = false
+position = Vector2( 80, 280 )
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 22 )
+
+[node name="EnemyPortrait" type="Sprite" parent="DialogueCanvas/DialogueUI/Portrait/ViewportContainer/Viewport"]
+visible = false
+position = Vector2( 80, 130 )
+scale = Vector2( 0.1, 0.1 )
+texture = ExtResource( 23 )
+
 [node name="Player" type="KinematicBody2D" parent="."]
-position = Vector2( 720, 360 )
+position = Vector2( 640, 360 )
 script = ExtResource( 2 )
 speed = 400
 
 [node name="PlayerCollisionShape2D" type="CollisionShape2D" parent="Player"]
-position = Vector2( 5, 0 )
+position = Vector2( 0, 9 )
 shape = SubResource( 1 )
 
 [node name="PlayerSprite" type="AnimatedSprite" parent="Player"]
-scale = Vector2( 0.3, 0.3 )
+scale = Vector2( 4, 4 )
 z_index = 1
-frames = SubResource( 6 )
-animation = "test"
+frames = SubResource( 20 )
+animation = "down"
 frame = 1
-speed_scale = 2.0
 playing = true
 
 [node name="Room" type="Node2D" parent="."]
@@ -389,94 +545,28 @@ visible = false
 position = Vector2( 0, 360 )
 
 [node name="Left Wall Collision Shape" type="CollisionShape2D" parent="Room/Left Wall"]
-shape = SubResource( 7 )
+shape = SubResource( 21 )
 
 [node name="Right Wall" type="StaticBody2D" parent="Room"]
 visible = false
 position = Vector2( 1280, 360 )
 
 [node name="Right Wall Collision Shape" type="CollisionShape2D" parent="Room/Right Wall"]
-shape = SubResource( 7 )
+shape = SubResource( 21 )
 
 [node name="Top Wall" type="StaticBody2D" parent="Room"]
 visible = false
 position = Vector2( 640, 0 )
 
 [node name="Top Wall Collision Shape" type="CollisionShape2D" parent="Room/Top Wall"]
-shape = SubResource( 8 )
+shape = SubResource( 22 )
 
 [node name="Bottom Wall" type="StaticBody2D" parent="Room"]
 visible = false
 position = Vector2( 640, 720 )
 
 [node name="Bottom Wall Collision Shape" type="CollisionShape2D" parent="Room/Bottom Wall"]
-shape = SubResource( 8 )
-
-[node name="Interactables" type="Node" parent="."]
-
-[node name="UpDoor" type="Node2D" parent="Interactables"]
-position = Vector2( 640, 40 )
-script = ExtResource( 11 )
-
-[node name="Sprite" type="Sprite" parent="Interactables/UpDoor"]
-scale = Vector2( 80, 100 )
-texture = ExtResource( 10 )
-
-[node name="Area2D" type="Area2D" parent="Interactables/UpDoor"]
-collision_layer = 2
-script = ExtResource( 12 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactables/UpDoor/Area2D"]
-shape = SubResource( 9 )
-
-[node name="DownDoor" type="Node2D" parent="Interactables"]
-position = Vector2( 640, 680 )
-script = ExtResource( 11 )
-direction = "down"
-
-[node name="Sprite" type="Sprite" parent="Interactables/DownDoor"]
-scale = Vector2( 80, 100 )
-texture = ExtResource( 10 )
-
-[node name="Area2D" type="Area2D" parent="Interactables/DownDoor"]
-collision_layer = 2
-script = ExtResource( 12 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactables/DownDoor/Area2D"]
-shape = SubResource( 9 )
-
-[node name="RightDoor" type="Node2D" parent="Interactables"]
-position = Vector2( 1240, 360 )
-script = ExtResource( 11 )
-direction = "right"
-
-[node name="Sprite" type="Sprite" parent="Interactables/RightDoor"]
-scale = Vector2( 80, 100 )
-texture = ExtResource( 10 )
-
-[node name="Area2D" type="Area2D" parent="Interactables/RightDoor"]
-collision_layer = 2
-script = ExtResource( 12 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactables/RightDoor/Area2D"]
-shape = SubResource( 9 )
-
-[node name="LeftDoor" type="Node2D" parent="Interactables"]
-position = Vector2( 40, 360 )
-script = ExtResource( 11 )
-direction = "left"
-
-[node name="Sprite" type="Sprite" parent="Interactables/LeftDoor"]
-scale = Vector2( 80, 100 )
-texture = ExtResource( 10 )
-
-[node name="Area2D" type="Area2D" parent="Interactables/LeftDoor"]
-collision_layer = 2
-collision_mask = 2147483649
-script = ExtResource( 12 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactables/LeftDoor/Area2D"]
-shape = SubResource( 9 )
+shape = SubResource( 22 )
 
 [node name="QuestionManager" type="Node" parent="."]
 script = ExtResource( 19 )
@@ -487,45 +577,57 @@ script = ExtResource( 5 )
 [node name="MazeDesign" type="Node2D" parent="."]
 script = ExtResource( 8 )
 
+[node name="MonsterFactory" type="Node2D" parent="."]
+script = ExtResource( 10 )
+
 [node name="Maze" type="Node2D" parent="."]
 script = ExtResource( 9 )
 
 [node name="TileMap2" type="TileMap" parent="Maze"]
-visible = false
 scale = Vector2( 4, 4 )
-tile_set = SubResource( 15 )
+tile_set = SubResource( 28 )
 cell_size = Vector2( 16, 16 )
 cell_quadrant_size = 64
 collision_layer = 32
-collision_mask = 2
 format = 1
-tile_data = PoolIntArray( 0, 4, 0, 1, 4, 0, 2, 4, 0, 3, 4, 0, 4, 4, 0, 5, 4, 0, 6, 4, 0, 7, 4, 0, 8, 4, 0, 9, 4, 0, 10, 4, 0, 11, 4, 0, 12, 4, 0, 13, 4, 0, 14, 4, 0, 15, 4, 0, 16, 4, 0, 17, 4, 0, 18, 4, 0, 19, 4, 0, 65536, 4, 0, 65537, 4, 0, 65538, 4, 0, 65539, 4, 0, 65540, 4, 0, 65541, 4, 0, 65542, 4, 0, 65543, 4, 0, 65544, 4, 0, 65545, 4, 0, 65546, 4, 0, 65547, 4, 0, 65548, 4, 0, 65549, 4, 0, 65550, 4, 0, 65551, 4, 0, 65552, 4, 0, 65553, 4, 0, 65554, 4, 0, 65555, 4, 0, 131072, 4, 0, 131073, 4, 0, 131074, 4, 0, 131075, 4, 0, 131076, 4, 0, 131077, 4, 0, 131078, 4, 0, 131079, 4, 0, 131080, 4, 0, 131081, 4, 0, 131082, 4, 0, 131083, 4, 0, 131084, 4, 0, 131085, 4, 0, 131086, 4, 0, 131087, 4, 0, 131088, 4, 0, 131089, 4, 0, 131090, 4, 0, 131091, 4, 0, 196608, 4, 0, 196609, 4, 0, 196610, 4, 0, 196617, 4, 0, 196618, 4, 0, 196625, 4, 0, 196626, 4, 0, 196627, 4, 0, 262144, 4, 0, 262145, 4, 0, 262146, 4, 0, 262161, 4, 0, 262162, 4, 0, 262163, 4, 0, 327680, 4, 0, 327681, 4, 0, 327682, 4, 0, 327697, 4, 0, 327698, 4, 0, 327699, 4, 0, 393216, 4, 0, 393217, 4, 0, 393218, 4, 0, 393233, 4, 0, 393234, 4, 0, 393235, 4, 0, 458752, 4, 0, 458753, 4, 0, 458754, 4, 0, 458769, 4, 0, 458770, 4, 0, 458771, 4, 0, 524288, 4, 0, 524289, 4, 0, 524290, 4, 0, 524305, 4, 0, 524306, 4, 0, 524307, 4, 0, 589824, 4, 0, 589825, 4, 0, 589826, 4, 0, 589827, 4, 0, 589828, 4, 0, 589829, 4, 0, 589830, 4, 0, 589831, 4, 0, 589832, 4, 0, 589833, 4, 0, 589834, 4, 0, 589835, 4, 0, 589836, 4, 0, 589837, 4, 0, 589838, 4, 0, 589839, 4, 0, 589840, 4, 0, 589841, 4, 0, 589842, 4, 0, 589843, 4, 0, 655360, 4, 0, 655361, 4, 0, 655362, 4, 0, 655363, 4, 0, 655364, 4, 0, 655365, 4, 0, 655366, 4, 0, 655367, 4, 0, 655368, 4, 0, 655369, 4, 0, 655370, 4, 0, 655371, 4, 0, 655372, 4, 0, 655373, 4, 0, 655374, 4, 0, 655375, 4, 0, 655376, 4, 0, 655377, 4, 0, 655378, 4, 0, 655379, 4, 0, 720896, 4, 0, 720897, 4, 0, 720898, 4, 0, 720899, 4, 0, 720900, 4, 0, 720901, 4, 0, 720902, 4, 0, 720903, 4, 0, 720904, 4, 0, 720905, 4, 0, 720906, 4, 0, 720907, 4, 0, 720908, 4, 0, 720909, 4, 0, 720910, 4, 0, 720911, 4, 0, 720912, 4, 0, 720913, 4, 0, 720914, 4, 0, 720915, 4, 0 )
+tile_data = PoolIntArray( 0, 4, 0, 1, 4, 0, 2, 4, 0, 3, 4, 0, 4, 4, 0, 5, 4, 0, 6, 4, 0, 7, 4, 0, 8, 4, 0, 9, 4, 0, 10, 4, 0, 11, 4, 0, 12, 4, 0, 13, 4, 0, 14, 4, 0, 15, 4, 0, 16, 4, 0, 17, 4, 0, 18, 4, 0, 19, 4, 0, 65536, 4, 0, 65537, 4, 0, 65538, 4, 0, 65539, 4, 0, 65540, 4, 0, 65541, 4, 0, 65542, 4, 0, 65543, 4, 0, 65544, 4, 0, 65545, 4, 0, 65546, 4, 0, 65547, 4, 0, 65548, 4, 0, 65549, 4, 0, 65550, 4, 0, 65551, 4, 0, 65552, 4, 0, 65553, 4, 0, 65554, 4, 0, 65555, 4, 0, 131072, 4, 0, 131073, 4, 0, 131074, 4, 0, 131075, 4, 0, 131076, 4, 0, 131077, 4, 0, 131078, 4, 0, 131079, 4, 0, 131080, 4, 0, 131083, 4, 0, 131084, 4, 0, 131085, 4, 0, 131086, 4, 0, 131087, 4, 0, 131088, 4, 0, 131089, 4, 0, 131090, 4, 0, 131091, 4, 0, 196608, 4, 0, 196609, 4, 0, 196610, 4, 0, 196617, 6, 0, 196618, 6, 0, 196625, 4, 0, 196626, 4, 0, 196627, 4, 0, 262144, 4, 0, 262145, 4, 0, 262146, 4, 0, 262161, 4, 0, 262162, 4, 0, 262163, 4, 0, 327680, 4, 0, 327681, 4, 0, 327698, 4, 0, 327699, 4, 0, 393216, 4, 0, 393217, 4, 0, 393234, 4, 0, 393235, 4, 0, 458752, 4, 0, 458753, 4, 0, 458754, 4, 0, 458769, 4, 0, 458770, 4, 0, 458771, 4, 0, 524288, 4, 0, 524289, 4, 0, 524290, 4, 0, 524305, 4, 0, 524306, 4, 0, 524307, 4, 0, 589824, 4, 0, 589825, 4, 0, 589826, 4, 0, 589827, 4, 0, 589828, 4, 0, 589829, 4, 0, 589830, 4, 0, 589831, 4, 0, 589832, 4, 0, 589835, 4, 0, 589836, 4, 0, 589837, 4, 0, 589838, 4, 0, 589839, 4, 0, 589840, 4, 0, 589841, 4, 0, 589842, 4, 0, 589843, 4, 0, 655360, 4, 0, 655361, 4, 0, 655362, 4, 0, 655363, 4, 0, 655364, 4, 0, 655365, 4, 0, 655366, 4, 0, 655367, 4, 0, 655368, 4, 0, 655369, 4, 0, 655370, 4, 0, 655371, 4, 0, 655372, 4, 0, 655373, 4, 0, 655374, 4, 0, 655375, 4, 0, 655376, 4, 0, 655377, 4, 0, 655378, 4, 0, 655379, 4, 0, 720896, 4, 0, 720897, 4, 0, 720898, 4, 0, 720899, 4, 0, 720900, 4, 0, 720901, 4, 0, 720902, 4, 0, 720903, 4, 0, 720904, 4, 0, 720905, 4, 0, 720906, 4, 0, 720907, 4, 0, 720908, 4, 0, 720909, 4, 0, 720910, 4, 0, 720911, 4, 0, 720912, 4, 0, 720913, 4, 0, 720914, 4, 0, 720915, 4, 0 )
 __meta__ = {
 "_editor_description_": ""
 }
 
 [node name="TileMap" type="TileMap" parent="Maze"]
-visible = false
 scale = Vector2( 4, 4 )
-tile_set = SubResource( 15 )
+tile_set = SubResource( 28 )
 cell_size = Vector2( 16, 16 )
 cell_quadrant_size = 64
 collision_layer = 32
-collision_mask = 2
 format = 1
 tile_data = PoolIntArray( 65539, 3, 1, 65540, 3, 1, 65541, 3, 1, 65542, 3, 1, 65543, 3, 1, 65544, 3, 1, 65547, 3, 1, 65548, 3, 1, 65549, 3, 1, 65550, 3, 1, 65551, 3, 1, 65552, 3, 1, 131075, 3, 65537, 131076, 3, 65537, 131077, 3, 65537, 131078, 3, 65537, 131079, 3, 65537, 131080, 3, 65537, 131083, 3, 65537, 131084, 3, 65537, 131085, 3, 65537, 131086, 3, 65537, 131087, 3, 65537, 131088, 3, 65537, 196611, 3, 131073, 196612, 3, 131074, 196613, 3, 131072, 196614, 3, 131073, 196615, 3, 131074, 196616, 3, 131072, 196619, 3, 131072, 196620, 3, 131073, 196621, 3, 131074, 196622, 3, 131072, 196623, 3, 131073, 196624, 3, 131074, 262147, 6, 0, 262148, 6, 0, 262149, 6, 0, 262150, 6, 0, 262151, 6, 0, 262152, 6, 0, 262153, 6, 0, 262154, 6, 0, 262155, 6, 0, 262156, 6, 0, 262157, 6, 0, 262158, 6, 0, 262159, 6, 0, 262160, 6, 0, 327683, 6, 0, 327684, 6, 0, 327685, 6, 0, 327686, 6, 0, 327687, 6, 0, 327688, 6, 0, 327689, 6, 0, 327690, 6, 0, 327691, 6, 0, 327692, 6, 0, 327693, 6, 0, 327694, 6, 0, 327695, 6, 0, 327696, 6, 0, 393219, 6, 0, 393220, 6, 0, 393221, 6, 0, 393222, 6, 0, 393223, 6, 0, 393224, 6, 0, 393225, 6, 0, 393226, 6, 0, 393227, 6, 0, 393228, 6, 0, 393229, 6, 0, 393230, 6, 0, 393231, 6, 0, 393232, 6, 0, 458755, 6, 0, 458756, 6, 0, 458757, 6, 0, 458758, 6, 0, 458759, 6, 0, 458760, 6, 0, 458761, 6, 0, 458762, 6, 0, 458763, 6, 0, 458764, 6, 0, 458765, 6, 0, 458766, 6, 0, 458767, 6, 0, 458768, 6, 0, 524291, 6, 0, 524292, 6, 0, 524293, 6, 0, 524294, 6, 0, 524295, 6, 0, 524296, 6, 0, 524297, 6, 0, 524298, 6, 0, 524299, 6, 0, 524300, 6, 0, 524301, 6, 0, 524302, 6, 0, 524303, 6, 0, 524304, 6, 0, 589827, 7, 65536, 589828, 7, 65537, 589829, 7, 1, 589830, 7, 65536, 589831, 7, 65537, 589832, 7, 1, 589833, 7, 65536, 589834, 7, 65537, 589835, 7, 1, 589836, 7, 65536, 589837, 7, 65537, 589838, 7, 1, 589839, 7, 65536, 589840, 7, 65537 )
 __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="Node2D" type="Node2D" parent="Maze"]
+[node name="Doors" type="Node2D" parent="Maze"]
+
+[node name="Left" type="Node2D" parent="Maze/Doors"]
+script = ExtResource( 11 )
+direction = "left"
+
+[node name="Area2D" type="Area2D" parent="Maze/Doors/Left"]
+position = Vector2( 160, 380 )
+collision_layer = 2
+collision_mask = 2147483649
+script = ExtResource( 12 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Maze/Doors/Left/Area2D"]
+shape = SubResource( 29 )
+
+[node name="Door" type="Node2D" parent="Maze/Doors/Left"]
 visible = false
 
-[node name="Left" type="Node2D" parent="Maze/Node2D"]
-
-[node name="TileMap" type="TileMap" parent="Maze/Node2D/Left"]
+[node name="TileMap" type="TileMap" parent="Maze/Doors/Left/Door"]
 scale = Vector2( 4, 4 )
-tile_set = SubResource( 15 )
+tile_set = SubResource( 28 )
 cell_size = Vector2( 16, 16 )
 cell_quadrant_size = 64
 collision_layer = 32
@@ -536,9 +638,8 @@ __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="TileMap2" type="TileMap" parent="Maze/Node2D/Left"]
-scale = Vector2( 4, 4 )
-tile_set = SubResource( 15 )
+[node name="TileMap2" type="TileMap" parent="Maze/Doors/Left/Door/TileMap"]
+tile_set = SubResource( 28 )
 cell_size = Vector2( 16, 16 )
 cell_quadrant_size = 64
 collision_layer = 32
@@ -549,11 +650,42 @@ __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="Right" type="Node2D" parent="Maze/Node2D"]
+[node name="Empty" type="Node2D" parent="Maze/Doors/Left"]
+visible = false
 
-[node name="TileMap3" type="TileMap" parent="Maze/Node2D/Right"]
+[node name="TileMap" type="TileMap" parent="Maze/Doors/Left/Empty"]
 scale = Vector2( 4, 4 )
-tile_set = SubResource( 15 )
+tile_set = SubResource( 28 )
+cell_size = Vector2( 16, 16 )
+cell_quadrant_size = 64
+collision_layer = 32
+format = 1
+tile_data = PoolIntArray( 327682, 4, 0, 393218, 4, 0 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Right" type="Node2D" parent="Maze/Doors"]
+script = ExtResource( 11 )
+direction = "right"
+
+[node name="Area2D" type="Area2D" parent="Maze/Doors/Right"]
+position = Vector2( 1120, 385 )
+collision_layer = 2
+script = ExtResource( 12 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Maze/Doors/Right/Area2D"]
+shape = SubResource( 29 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Door" type="Node2D" parent="Maze/Doors/Right"]
+visible = false
+
+[node name="TileMap3" type="TileMap" parent="Maze/Doors/Right/Door"]
+scale = Vector2( 4, 4 )
+tile_set = SubResource( 28 )
 cell_size = Vector2( 16, 16 )
 cell_quadrant_size = 64
 collision_layer = 32
@@ -564,9 +696,8 @@ __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="TileMap" type="TileMap" parent="Maze/Node2D/Right"]
-scale = Vector2( 4, 4 )
-tile_set = SubResource( 15 )
+[node name="TileMap" type="TileMap" parent="Maze/Doors/Right/Door/TileMap3"]
+tile_set = SubResource( 28 )
 cell_size = Vector2( 16, 16 )
 cell_quadrant_size = 64
 collision_layer = 32
@@ -577,16 +708,142 @@ __meta__ = {
 "_editor_description_": ""
 }
 
+[node name="Empty" type="Node2D" parent="Maze/Doors/Right"]
+visible = false
+
+[node name="TileMap" type="TileMap" parent="Maze/Doors/Right/Empty"]
+scale = Vector2( 4, 4 )
+tile_set = SubResource( 28 )
+cell_size = Vector2( 16, 16 )
+cell_quadrant_size = 64
+collision_layer = 32
+format = 1
+tile_data = PoolIntArray( 327697, 4, 0, 393233, 4, 0 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Up" type="Node2D" parent="Maze/Doors"]
+script = ExtResource( 11 )
+
+[node name="Area2D" type="Area2D" parent="Maze/Doors/Up"]
+position = Vector2( 640, 180 )
+z_index = 1
+collision_layer = 2
+script = ExtResource( 12 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Maze/Doors/Up/Area2D"]
+shape = SubResource( 30 )
+
+[node name="Door" type="Node2D" parent="Maze/Doors/Up"]
+
+[node name="TileMap" type="TileMap" parent="Maze/Doors/Up/Door"]
+scale = Vector2( 4, 4 )
+tile_set = SubResource( 28 )
+cell_size = Vector2( 16, 16 )
+cell_quadrant_size = 64
+collision_layer = 32
+format = 1
+tile_data = PoolIntArray( 65544, 3, 2, 65547, 3, 0, 131080, 3, 65538, 131081, 6, 0, 131082, 6, 0, 131083, 3, 65536, 196617, 6, 0, 196618, 6, 0 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="TileMap2" type="TileMap" parent="Maze/Doors/Up/Door"]
+scale = Vector2( 4, 4 )
+tile_set = SubResource( 28 )
+cell_size = Vector2( 16, 16 )
+cell_quadrant_size = 64
+collision_layer = 32
+format = 1
+tile_data = PoolIntArray( 131081, 5, 0, 131082, 5, 1, 196617, 5, 65536, 196618, 5, 65537 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Empty" type="Node2D" parent="Maze/Doors/Up"]
+visible = false
+
+[node name="TileMap" type="TileMap" parent="Maze/Doors/Up/Empty"]
+scale = Vector2( 4, 4 )
+tile_set = SubResource( 28 )
+cell_size = Vector2( 16, 16 )
+cell_quadrant_size = 64
+collision_layer = 32
+format = 1
+tile_data = PoolIntArray( 65545, 3, 0, 65546, 3, 1, 131081, 3, 65537, 131082, 3, 65537, 196617, 3, 131072, 196618, 3, 131073 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Down" type="Node2D" parent="Maze/Doors"]
+script = ExtResource( 11 )
+direction = "down"
+
+[node name="Area2D" type="Area2D" parent="Maze/Doors/Down"]
+position = Vector2( 640, 610 )
+collision_layer = 2
+script = ExtResource( 12 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Maze/Doors/Down/Area2D"]
+shape = SubResource( 30 )
+
+[node name="Door" type="Node2D" parent="Maze/Doors/Down"]
+visible = false
+
+[node name="TileMap" type="TileMap" parent="Maze/Doors/Down/Door"]
+scale = Vector2( 4, 4 )
+tile_set = SubResource( 28 )
+cell_size = Vector2( 16, 16 )
+cell_quadrant_size = 64
+collision_layer = 32
+format = 1
+tile_data = PoolIntArray( 589833, 6, 0, 589834, 6, 0 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="TileMap2" type="TileMap" parent="Maze/Doors/Down/Door"]
+scale = Vector2( 4, 4 )
+tile_set = SubResource( 28 )
+cell_size = Vector2( 16, 16 )
+cell_quadrant_size = 64
+collision_layer = 32
+format = 1
+tile_data = PoolIntArray( 524297, 5, 6, 524298, 5, 7, 589833, 5, 65542, 589834, 5, 65543 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Empty" type="Node2D" parent="Maze/Doors/Down"]
+visible = false
+
+[node name="TileMap" type="TileMap" parent="Maze/Doors/Down/Empty"]
+scale = Vector2( 4, 4 )
+z_index = -1
+tile_set = SubResource( 28 )
+cell_size = Vector2( 16, 16 )
+cell_quadrant_size = 64
+collision_layer = 32
+format = 1
+tile_data = PoolIntArray( 589833, 4, 0, 589834, 4, 0 )
+__meta__ = {
+"_editor_description_": ""
+}
+
 [node name="Transition" parent="." instance=ExtResource( 20 )]
+
+[node name="EffectManager" type="Node2D" parent="."]
+script = ExtResource( 29 )
 [connection signal="coin_change_signal" from="Player" to="MainCanvas/MainUI/CoinsUI" method="_on_Player_coin_change_signal"]
-[connection signal="body_entered" from="Interactables/UpDoor/Area2D" to="Interactables/UpDoor/Area2D" method="_on_Area2D_body_entered"]
-[connection signal="body_exited" from="Interactables/UpDoor/Area2D" to="Interactables/UpDoor/Area2D" method="_on_Area2D_body_exited"]
-[connection signal="body_entered" from="Interactables/DownDoor/Area2D" to="Interactables/DownDoor/Area2D" method="_on_Area2D_body_entered"]
-[connection signal="body_exited" from="Interactables/DownDoor/Area2D" to="Interactables/DownDoor/Area2D" method="_on_Area2D_body_exited"]
-[connection signal="body_entered" from="Interactables/RightDoor/Area2D" to="Interactables/RightDoor/Area2D" method="_on_Area2D_body_entered"]
-[connection signal="body_exited" from="Interactables/RightDoor/Area2D" to="Interactables/RightDoor/Area2D" method="_on_Area2D_body_exited"]
-[connection signal="body_entered" from="Interactables/LeftDoor/Area2D" to="Interactables/LeftDoor/Area2D" method="_on_Area2D_body_entered"]
-[connection signal="body_exited" from="Interactables/LeftDoor/Area2D" to="Interactables/LeftDoor/Area2D" method="_on_Area2D_body_exited"]
-[connection signal="combat_signal" from="CombatManager" to="Transition" method="_on_CombatManager_combat_signal"]
 [connection signal="combat_signal" from="CombatManager" to="MainCanvas/MainUI" method="_on_CombatManager_combat_signal"]
+[connection signal="combat_signal" from="CombatManager" to="Transition" method="_on_CombatManager_combat_signal"]
 [connection signal="victory_signal" from="CombatManager" to="Maze" method="_on_CombatManager_victory_signal"]
+[connection signal="body_entered" from="Maze/Doors/Left/Area2D" to="Maze/Doors/Left/Area2D" method="_on_Area2D_body_entered"]
+[connection signal="body_exited" from="Maze/Doors/Left/Area2D" to="Maze/Doors/Left/Area2D" method="_on_Area2D_body_exited"]
+[connection signal="body_entered" from="Maze/Doors/Right/Area2D" to="Maze/Doors/Right/Area2D" method="_on_Area2D_body_entered"]
+[connection signal="body_exited" from="Maze/Doors/Right/Area2D" to="Maze/Doors/Right/Area2D" method="_on_Area2D_body_exited"]
+[connection signal="body_entered" from="Maze/Doors/Up/Area2D" to="Maze/Doors/Up/Area2D" method="_on_Area2D_body_entered"]
+[connection signal="body_exited" from="Maze/Doors/Up/Area2D" to="Maze/Doors/Up/Area2D" method="_on_Area2D_body_exited"]
+[connection signal="body_entered" from="Maze/Doors/Down/Area2D" to="Maze/Doors/Down/Area2D" method="_on_Area2D_body_entered"]
+[connection signal="body_exited" from="Maze/Doors/Down/Area2D" to="Maze/Doors/Down/Area2D" method="_on_Area2D_body_exited"]
