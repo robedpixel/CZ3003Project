@@ -223,6 +223,7 @@ func _getCoins():
 func _nextItem():
 	if(inventory.size() <= 0):
 		itemUI._setItem(GlobalVariables.ItemEnum.ITEM_NULL)
+		currentInventoryIndex = 0
 		return
 	
 	currentInventoryIndex += 1
@@ -239,6 +240,7 @@ func _showItem():
 func _useItem():
 	if(inventory.size() <= 0):
 		print("No items to use")
+		currentInventoryIndex = 0
 		return
 	
 	var item = inventory[currentInventoryIndex]
@@ -257,6 +259,7 @@ func _useItem():
 	
 func _addItem(itemType):
 	inventory.append(itemType)
+	_showItem()
 	
 func _lockCharacter(lock):
 	self.lock = lock
