@@ -21,7 +21,7 @@ var bool_code_decoded
 var default_text = "Please input your friend's code below.\n- you must include the (-) \n- the code is case sensitive"
 var incorrect_code_text= "Incorrect Code. Please try again."
 var empty_input_text = "Nothing was entered. Please enter the code"
-var success_text = "Successfully decoded! Click play to beign."
+var success_text = "Successfully decoded!\nClick play to beign your adventure!."
 
 var path_to_char_select ="res://Scenes/Menu Scenes/Select_Character/CharacterSelection.tscn";
 
