@@ -25,15 +25,27 @@ onready var buttons_dict= {
 	"btn_x4y0":["Button_X4Y0",4,0]
 	}
 onready var confirm_btn = get_node("../ConfirmButton")
+onready var alert_dialog = get_node("../WindowDialog")
+onready var alert_label = get_node("../WindowDialog/VBoxContainer/AlertLabel")
+onready var alert_line_edit = get_node("../WindowDialog/VBoxContainer/AlertLineEdit")
+onready var alert_button = get_node("../WindowDialog/VBoxContainer/AlertButton")
+onready var topic_label = get_node("../TopicLabel")
+onready var topic_button = get_node("../TopicChooserButton")
+
+var path_to_select_world = "res://Scenes/Menu Scenes/Select_World/SW.tscn"
 
 var button_grid = [] # the maze to be created
 var boss_exists  # Boolean to see if the boss already exits
 var boss_x_axis # Boss x axis
 var boss_y_axis # Boss y axis
 var store_exists  # Boolean to see if the store already exits
-var height=5  # height of the map
-var width=5   # width of the map
-
+var code_1 = null
+var code_2 = null
+var code_3 = null
+var height = 5  # height of the map
+var width = 5   # width of the map
+var topic_int = 0
+var bool_maze_encoded
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -41,6 +53,8 @@ func _ready():
 	initial_button_text()
 	boss_exists = false
 	store_exists = false
+	topic_button.visible=false
+	topic_label.visible = false
 	#print(button_grid)
 	
 
@@ -97,7 +111,7 @@ func set_state_int(state):
 			state = 7
 			return state
 		else: state=state+1
-		print(state)
+		#print(state)
 		return state
 	else: 
 		check_for_boss_existence()
@@ -115,9 +129,14 @@ func check_for_boss_existence():
 				boss_x_axis = x
 				boss_y_axis = y
 				confirm_btn.disabled=false
+				update_topic_button_text()
+				topic_button.visible=true
+				topic_label.visible= true
 				return
 	boss_exists=false
 	confirm_btn.disabled=true
+	topic_button.visible=false
+	topic_label.visible= false
 	return 
 
 # function to check if the store already exist in the maze, if exists the store_exists = true
@@ -182,21 +201,112 @@ func button_press(var button_name):
 	button_node.text= get_state_name(button_grid[x][y])
 	check_for_boss_existence()
 	#print(button_grid)
+	
+func split_grid_to_encode(grid_to_convert):
+	var grid_string_1 = ""
+	var grid_string_2 = ""
+	var grid_string_3 = ""
+	
+	for x in range(len(grid_to_convert)):
+		#print(grid_to_convert[x])
+		for  i in range(len(grid_to_convert[x])):
+			if(x<2):
+				grid_string_1+=str(grid_to_convert[x][i])
+				#print("String:" ,grid_string_1)
+				#print("Int   :",int(grid_string_1))
+				#print("")
+			elif(x>1 and x<4):
+				grid_string_2+=str(grid_to_convert[x][i])
+				#print("String:" ,grid_string_2)
+				#print("Int   :",int(grid_string_2))
+				#print("")
+			else:
+				grid_string_3+=str(grid_to_convert[x][i])
+	#print([grid_string_1,grid_string_2,grid_string_3])
+	return [grid_string_1,grid_string_2,grid_string_3]
 
+func generate_code(button_grid,topic_number):
+	var grid_string_1
+	var grid_string_2
+	var grid_string_3
+	
+	grid_string_1 = split_grid_to_encode(button_grid)[0]
+	grid_string_2 = split_grid_to_encode(button_grid)[1]
+	grid_string_3 = split_grid_to_encode(button_grid)[2] + str(topic_number)
+	
+#	print("ALL GRID STRINGS:")
+#	print(grid_string_1)
+#	print(grid_string_2)
+#	print(grid_string_3)
+#	print("")
+#	print("ALL GRID INTS:")
+#	print(int(grid_string_1))
+#	print(int(grid_string_2))
+#	print(int(grid_string_3))
+#	print("")
+	code_1 =  encode_to_Base64(int(grid_string_1))
+	code_2 =  encode_to_Base64(int(grid_string_2))
+	code_3 =  encode_to_Base64(int(grid_string_3))
+	#print(code_1,"-",code_2,"-",code_3)
+	#print(len(code_1),"-",len(code_2),"-",len(code_3))
+	
+func encode_to_Base64(value:int):
+	if(value==0):
+		return "#"
+	else:
+		return GlobalVariables.encode(value, GlobalVariables.BASE64_DIGITS)
+	
 # function for confirmation of press
 func _on_ConfirmButton_pressed():
 	var convert_button_grid = button_grid.duplicate(true)
 	var converted_grid = convert_map_dual_state(convert_button_grid)
 	#print(converted_grid)
 	var path_exists = search_algorithm(converted_grid,boss_x_axis,boss_y_axis)
+	
 	if(path_exists ==  true):
-		GlobalVariables.maze_creator_map = button_grid
-		print(button_grid)
+		print("Created Maze: ", button_grid)
+		generate_code(button_grid,topic_int)
+		alert_dialog.visible=true
+		alert_line_edit.visible = true
+		alert_dialog.window_title = ""
+		alert_label.text = "SUCCESS!\nYOUR CODE IS" 
+		alert_line_edit.text= code_1 + "-" + code_2 + "-" + code_3
+		alert_button.text = "Go to maze"
+		bool_maze_encoded = true
+		#print("Path exists: ", path_exists)
 	else:
-		print("Path does not exist")
-	print("Path exists: ", path_exists)
+		alert_dialog.visible=true
+		alert_line_edit.visible = false
+		alert_dialog.window_title = "ERROR"
+		alert_label.text = "NO PATH TO BOSS TILE!"
+		alert_button.text = "Close"
+		bool_maze_encoded = false
+		#print("Path does not exist")
 
 
+func update_topic_button_text():
+	match(topic_int): 
+		0 : topic_button.text= "Requirement Analysis"
+		1 : topic_button.text= "Requirement Elicitation"
+		2 : topic_button.text= "Both Topics"
+		_ : return "error"
+
+func _on_TopicChooserButton_pressed():
+	#print(topic_int)
+	if topic_int<2:
+		topic_int=topic_int+1
+		update_topic_button_text()
+	else: 
+		topic_int=0
+		update_topic_button_text()
+	#print(topic_int)
+
+func _on_AlertButton_pressed():
+	if(bool_maze_encoded==false):
+		alert_dialog.visible=false
+	else:
+		get_tree().change_scene(path_to_select_world)
+	
 ####################		The functions below are totally for each button		############################
 
 #########################  				 Y axis = 4				#########################
@@ -277,3 +387,8 @@ func _on_Button_X3Y0_pressed():
 
 func _on_Button_X4Y0_pressed():
 	button_press("btn_x4y0")
+
+
+
+
+
