@@ -10,7 +10,6 @@ var studsScoreData = {
 }
 
 func _ready():
-	
 	handler = load("res://Scripts/auth/firebase_db.gd").new()
 	add_child(handler)
 	

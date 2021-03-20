@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Scenes/Menu Scenes/Main_Menu_Teacher/DetailedReport.gd" type="Script" id=1]
 [ext_resource path="res://Resources/fonts/arcade_40.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Resources/fonts/joystix_28.tres" type="DynamicFont" id=3]
 
 [node name="Generate Report" type="Control"]
 anchor_top = 0.00262188
@@ -34,16 +35,16 @@ __meta__ = {
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -389.0
-margin_right = 401.0
-margin_bottom = 156.0
+margin_left = -400.0
+margin_right = 390.0
+margin_bottom = 199.0
 alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
-margin_right = 790.0
+margin_right = 878.0
 margin_bottom = 41.0
 alignment = 1
 __meta__ = {
@@ -51,8 +52,8 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="VBoxContainer/HBoxContainer2"]
-margin_left = 36.0
-margin_right = 753.0
+margin_left = 80.0
+margin_right = 797.0
 margin_bottom = 41.0
 custom_fonts/font = ExtResource( 2 )
 text = "Generate  Detailed  Report   Selection"
@@ -60,7 +61,7 @@ align = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 margin_top = 45.0
-margin_right = 790.0
+margin_right = 878.0
 margin_bottom = 92.0
 alignment = 1
 __meta__ = {
@@ -68,7 +69,7 @@ __meta__ = {
 }
 
 [node name="GR_selectW1Btn" type="Button" parent="VBoxContainer/HBoxContainer"]
-margin_right = 393.0
+margin_right = 437.0
 margin_bottom = 47.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 2 )
@@ -78,8 +79,8 @@ __meta__ = {
 }
 
 [node name="GR_selectW2Btn" type="Button" parent="VBoxContainer/HBoxContainer"]
-margin_left = 397.0
-margin_right = 790.0
+margin_left = 441.0
+margin_right = 878.0
 margin_bottom = 47.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 2 )
@@ -90,7 +91,7 @@ __meta__ = {
 
 [node name="wSelectedLbl" type="Label" parent="VBoxContainer"]
 margin_top = 96.0
-margin_right = 790.0
+margin_right = 878.0
 margin_bottom = 181.0
 custom_fonts/font = ExtResource( 2 )
 text = "
@@ -100,9 +101,62 @@ valign = 1
 
 [node name="detReportLbl" type="Label" parent="VBoxContainer"]
 margin_top = 185.0
-margin_right = 790.0
+margin_right = 878.0
 margin_bottom = 199.0
 align = 1
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 203.0
+margin_right = 878.0
+margin_bottom = 274.0
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer3"]
+margin_right = 437.0
+margin_bottom = 71.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 3 )
+text = "NAME
+-------------------"
+
+[node name="Label2" type="Label" parent="VBoxContainer/HBoxContainer3"]
+margin_left = 441.0
+margin_right = 878.0
+margin_bottom = 71.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 3 )
+text = "score
+-------------------"
+align = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer"]
+margin_top = 278.0
+margin_right = 878.0
+margin_bottom = 603.0
+rect_min_size = Vector2( 0, 325 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/ScrollContainer"]
+margin_right = 878.0
+margin_bottom = 325.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="nameLbl" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer"]
+margin_right = 437.0
+margin_bottom = 325.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="scoreLbl" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer"]
+margin_left = 441.0
+margin_right = 878.0
+margin_bottom = 325.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="ConfirmGR" type="ConfirmationDialog" parent="."]
 anchor_left = 0.5
@@ -116,6 +170,8 @@ margin_bottom = 71.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
 [connection signal="pressed" from="GR_gobackBtn" to="." method="_on_GR_gobackBtn_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/GR_selectW1Btn" to="." method="_on_GR_selectW1Btn_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/GR_selectW2Btn" to="." method="_on_GR_selectW2Btn_pressed"]
