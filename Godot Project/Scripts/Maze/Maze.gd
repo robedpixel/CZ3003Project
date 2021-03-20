@@ -71,7 +71,7 @@ func _initializeMaze():
 	_updatePlayerGridUI()
 	
 	# 3 health 5 coins
-	player._initPlayer(3, 5)
+	player._initPlayer(3, 1, 5, GlobalVariables.charSelected)
 	
 	# init shop and boss
 	

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/number 5 character.png-291892455d1674e8381b2fff20d1aa55.stex"
+path="res://.import/character1.png-657bba041c9913c99ea2d1447865b305.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resources/images/Character/Drawing/number 5 character.png"
-dest_files=[ "res://.import/number 5 character.png-291892455d1674e8381b2fff20d1aa55.stex" ]
+source_file="res://Resources/images/Character/Drawing/character1.png"
+dest_files=[ "res://.import/character1.png-657bba041c9913c99ea2d1447865b305.stex" ]
 
 [params]
 

@@ -10,6 +10,8 @@ onready var healthUI = get_node("../MainCanvas/Hearts")
 onready var coinUI = get_node("../MainCanvas/MainUI/CoinsUI")
 onready var itemUI = get_node("../MainCanvas/MainUI/ItemUI/ItemUIBG/Item")
 onready var transition = get_node("../Transition")
+onready var dialogueUI = get_node("../DialogueCanvas/DialogueUI")
+onready var dialogue = get_node("../DialogueCanvas/DialogueUI/DialogueBox")
 
 var velocity = Vector2()
 onready var playerSprite = $PlayerSprite
@@ -20,6 +22,7 @@ var interactObjList = []
 var movingRight = false
 var right = false
 var isMoving : bool = false
+var lockFrame : bool = false
 
 # throw all the stats here, 
 var maxHealth = 0
@@ -29,6 +32,8 @@ var attack = 1
 
 var inventory = []
 var currentInventoryIndex = 0
+
+var portrait
 
 #signals
 signal coin_change_signal(value)
@@ -40,13 +45,28 @@ func _ready():
 	_showItem()
 	connect("player_hurt_signal", transition, "_hurtFlash")
 
-func _initPlayer(startingHealth, startingCoins):
+func _initPlayer(startingHealth, startingAttack, startingCoins, charType):
 	_initHealth(startingHealth)
 	_setCoins(startingCoins)
+	attack = startingAttack
+	
+	match charType:
+		1:
+			portrait = preload("res://Resources/images/Character/Drawing/character1.png")
+		2:
+			portrait = preload("res://Resources/images/Character/Drawing/character2.png")
+		3:
+			portrait = preload("res://Resources/images/Character/Drawing/character3.png")
+		_:
+			pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if(lock):
+		return
+	
+	if(lockFrame):
+		lockFrame = false
 		return
 	
 	if Input.is_action_just_pressed('interact'):
@@ -70,7 +90,7 @@ func _process(delta):
 #		right = false
 
 func _processAnimation():
-	if(!isMoving):
+	if(!isMoving or lockFrame):
 #		playerSprite.playing = false
 		playerSprite.speed_scale = 0.3
 		return
@@ -88,6 +108,10 @@ func _processAnimation():
 		playerSprite.play("up")
 
 func get_input():
+	if(lock):
+		return
+	
+	
 	velocity = Vector2()
 	if Input.is_action_pressed('right'):
 		velocity = Vector2(1, 0)
@@ -133,7 +157,14 @@ func _interact():
 		var interactObj = interactObjList[interactObjList.size() - 1]
 		print("interacting with " + interactObj.name)
 		
-		interactObj._interact(self)
+		var result = interactObj._interact(self)
+		
+		if(result != ""):
+			lock = true
+			dialogueUI._showDialogueBox(true)
+			dialogueUI._showPortrait(true)
+			dialogueUI._showPlayerPortrait(portrait)
+			dialogue._displayDialogueClosable(result)
 		
 		#if('Door' in interactObj):
 			#mazeManager._moveRoom(interactObj.name)
@@ -246,6 +277,7 @@ func _addItem(itemType):
 	
 func _lockCharacter(lock):
 	self.lock = lock
+	lockFrame = true
 	
 	
 	
