@@ -58,8 +58,31 @@ func _initializeMaze():
 	_exitRoom()
 	
 	var topic = GlobalVariables.topic_selected
-	topic = GlobalVariables.TopicEnum.TOPIC_1
+	if(topic == null):
+		topic = GlobalVariables.TopicEnum.TOPIC_1
 	cmbtManager._initTopic(topic)
+	
+	var charSelected = GlobalVariables.charSelected
+	charSelected = 0
+	var health = 0
+	var attack = 0
+	var coins = 0
+	var class_data = null
+	match charSelected:
+		0:
+			class_data = preload("res://Resources/images/Warrior.tres")
+		1:
+			class_data = preload("res://Resources/images/Average.tres")
+		2:
+			class_data = preload("res://Resources/images/Thief.tres")
+		_:
+			pass
+			
+	if(class_data == null):
+		print("Error initializing player. Setting debug player")
+		player._initPlayer(30, 999, 99999, charSelected)
+	else:
+		player._initPlayer(class_data.health, class_data.multiplier, 0, charSelected)
 	
 	mazeDesign._generateMaze(5, 5)
 	
@@ -77,8 +100,6 @@ func _initializeMaze():
 	_loadRoom(playerX, playerY)
 	_updatePlayerGridUI()
 	
-	# 3 health 5 coins
-	player._initPlayer(3, 1, 5, GlobalVariables.charSelected)
 	
 	# init shop and boss
 	

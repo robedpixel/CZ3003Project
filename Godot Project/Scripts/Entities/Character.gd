@@ -23,6 +23,8 @@ var right = false
 var isMoving : bool = false
 var lockFrame : bool = false
 
+var idleAnimSpeed = 0.3
+
 # throw all the stats here, 
 var maxHealth = 0
 var health = 0
@@ -50,12 +52,18 @@ func _initPlayer(startingHealth, startingAttack, startingCoins, charType):
 	attack = startingAttack
 	
 	match charType:
+		0:
+			portrait = load("res://Resources/images/Character/Drawing/character3.png")
+			playerSprite.set_sprite_frames(load("res://Scenes/Prefabs/player_warrior.tres"))
+			idleAnimSpeed = 0
 		1:
-			portrait = preload("res://Resources/images/Character/Drawing/character1.png")
+			portrait = load("res://Resources/images/Character/Drawing/character2.png")
+			playerSprite.set_sprite_frames(load("res://Scenes/Prefabs/player_average.tres"))
+			idleAnimSpeed = 0
 		2:
-			portrait = preload("res://Resources/images/Character/Drawing/character2.png")
-		3:
-			portrait = preload("res://Resources/images/Character/Drawing/character3.png")
+			portrait = load("res://Resources/images/Character/Drawing/character1.png")
+			playerSprite.set_sprite_frames(load("res://Scenes/Prefabs/player_thief.tres"))
+			idleAnimSpeed = 0.3
 		_:
 			pass
 
@@ -91,7 +99,9 @@ func _process(delta):
 func _processAnimation():
 	if(!isMoving or lockFrame):
 #		playerSprite.playing = false
-		playerSprite.speed_scale = 0.3
+		playerSprite.speed_scale = idleAnimSpeed
+		if(idleAnimSpeed == 0):
+			playerSprite.frame = 0
 		return
 	else:
 		playerSprite.playing = true
