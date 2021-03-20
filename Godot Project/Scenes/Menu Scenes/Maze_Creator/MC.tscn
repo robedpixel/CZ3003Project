@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scripts/GUI/BackToMainMenu.gd" type="Script" id=1]
 [ext_resource path="res://Resources/fonts/arcade_40.tres" type="DynamicFont" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Resources/fonts/joystix_28.tres" type="DynamicFont" id=4]
 [ext_resource path="res://Resources/fonts/chary_28_dialog_title.tres" type="DynamicFont" id=5]
 [ext_resource path="res://Resources/fonts/chary_40.tres" type="DynamicFont" id=6]
+[ext_resource path="res://Resources/Main GUI Images/bg1_maroon.png" type="Texture" id=7]
 
 [sub_resource type="ShaderMaterial" id=1]
 
@@ -17,6 +18,11 @@ size_flags_vertical = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 682.814, 379.383 )
+scale = Vector2( 1.21215, 1.2049 )
+texture = ExtResource( 7 )
 
 [node name="GridContainer" type="GridContainer" parent="."]
 margin_left = 50.0
