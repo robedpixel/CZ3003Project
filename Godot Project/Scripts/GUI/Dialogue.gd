@@ -55,4 +55,5 @@ func _displayDialogue(dialogueText):
 	txtIndex = 0
 	displayingDialogue = true
 	fullDialogueTxt = dialogueText
+	print(fullDialogueTxt)
 	

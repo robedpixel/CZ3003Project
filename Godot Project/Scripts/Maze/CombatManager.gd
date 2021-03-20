@@ -10,7 +10,7 @@ onready var questionManager = get_node("../QuestionManager")
 var correctAnswer = 1
 
 signal combat_signal(value)
-signal victory_signal(value)
+signal victory_signal(value, roomDifficulty)
 signal gameover_signal
 
 var currentMonster
@@ -20,6 +20,7 @@ var isBoss : bool = false
 func _ready():
 	questionManager.read_questions_from_source("res://Resources/Questions/Requirement_Analysis.json")
 	questionManager.prepare_questions()
+	var question = questionManager.ask_question()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
@@ -34,6 +35,7 @@ func _enterCombat(monster):
 
 func _nextQuestion():
 	var question = questionManager.ask_question()
+	print("QUESTION" + str (question.question))
 	combatUI._setQuestion(question)
 	
 	correctAnswer = question.correct_answer
@@ -83,7 +85,7 @@ func _onAnswer(ansValue):
 			emit_signal("gameover_signal")
 			return
 		if(!isBoss):
-			emit_signal("victory_signal", false)
+			emit_signal("victory_signal", false, currentMonster.difficulty)
 			
 			_exitCombat()
 		else:
@@ -96,13 +98,15 @@ func _onDeath(entity):
 	currentMonster._deathAnim()
 	
 func _monsterDeathAnimEnd():
-	emit_signal("victory_signal", true)
+	emit_signal("victory_signal", true, currentMonster.difficulty)
 	_exitCombat()
 
 func _onTransitionShowStart():
+	print("AAAA")
 	currentMonster._monsterFadeInAnim()
 	
 func _onTransitionShowEnd():
+	print("BBBB")
 	combatUI._hideAnswers()
 	_toggleCombatUI(true)
 	_nextQuestion()

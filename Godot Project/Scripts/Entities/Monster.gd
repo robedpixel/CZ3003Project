@@ -25,6 +25,7 @@ func _ready():
 
 func _interact(player):
 	cmbtManager._enterCombat(self)
+	return ""
 
 func _disableAndHide():
 	set_process(false)

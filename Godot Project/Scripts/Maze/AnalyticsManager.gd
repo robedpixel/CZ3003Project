@@ -44,3 +44,11 @@ func get_next_difficulty():
 		return GlobalVariables.RoomEnum.CHALLENGE_ROOM_MED
 	else:
 		return GlobalVariables.RoomEnum.CHALLENGE_ROOM_HARD
+
+# connected via signal
+func _on_CombatManager_victory_signal(value, difficulty):
+	print(difficulty)
+	if(value):
+		pass
+	else:
+		pass

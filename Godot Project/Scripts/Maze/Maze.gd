@@ -9,6 +9,7 @@ onready var monsterFactory = get_node("../MonsterFactory")
 onready var transition = get_node("../Transition")
 onready var effectManager = get_node("../EffectManager")
 
+
 # door
 onready var leftDoor = $Doors/Left
 onready var rightDoor = $Doors/Right
@@ -251,7 +252,7 @@ func _initShopRoom():
 	shop._initShop()
 
 
-func _on_CombatManager_victory_signal(value):
+func _on_CombatManager_victory_signal(value, difficulty):
 	if(value):
 		_rewardPlayer()
 		mazeDesign._setRoom(playerX, playerY, GlobalVariables.RoomEnum.EMPTY_ROOM)
@@ -301,4 +302,5 @@ func _rewardPlayer():
 	player._addCoins(rewardedCoins)
 	
 	effectManager._playCoinAnim(currentMonster.get_position(), rewardedCoins)
-	
+
+

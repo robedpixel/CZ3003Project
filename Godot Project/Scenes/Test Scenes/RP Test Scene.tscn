@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=2]
+[gd_scene load_steps=62 format=2]
 
 [ext_resource path="res://Resources/images/Character/Sprite/5.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Entities/Character.gd" type="Script" id=2]
@@ -30,6 +30,7 @@
 [ext_resource path="res://Resources/images/hud/faceset-box.png" type="Texture" id=28]
 [ext_resource path="res://Scripts/effects.gd" type="Script" id=29]
 [ext_resource path="res://Scripts/global_pos.gd" type="Script" id=30]
+[ext_resource path="res://Scripts/Maze/AnalyticsManager.gd" type="Script" id=31]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 29.6183, 25.6201 )
@@ -576,6 +577,9 @@ script = ExtResource( 19 )
 [node name="CombatManager" type="Node2D" parent="."]
 script = ExtResource( 5 )
 
+[node name="AnalyticsManager" type="Node2D" parent="."]
+script = ExtResource( 31 )
+
 [node name="MazeDesign" type="Node2D" parent="."]
 script = ExtResource( 8 )
 
@@ -840,6 +844,7 @@ script = ExtResource( 29 )
 [connection signal="coin_change_signal" from="Player" to="MainCanvas/MainUI/CoinsUI" method="_on_Player_coin_change_signal"]
 [connection signal="combat_signal" from="CombatManager" to="Transition" method="_on_CombatManager_combat_signal"]
 [connection signal="combat_signal" from="CombatManager" to="MainCanvas/MainUI" method="_on_CombatManager_combat_signal"]
+[connection signal="victory_signal" from="CombatManager" to="AnalyticsManager" method="_on_CombatManager_victory_signal"]
 [connection signal="victory_signal" from="CombatManager" to="Maze" method="_on_CombatManager_victory_signal"]
 [connection signal="body_entered" from="Maze/Doors/Left/Area2D" to="Maze/Doors/Left/Area2D" method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="Maze/Doors/Left/Area2D" to="Maze/Doors/Left/Area2D" method="_on_Area2D_body_exited"]

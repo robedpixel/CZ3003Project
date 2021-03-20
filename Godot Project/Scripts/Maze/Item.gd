@@ -55,8 +55,7 @@ func _getImage():
 			
 func _interact(player):
 	if(player._getCoins() < itemCost):
-		print("Not enough money to purchase")
-		return
+		return "Not enough money to purchase"
 		
 	player._removeCoins(itemCost)
 	
@@ -65,5 +64,7 @@ func _interact(player):
 	_hideItem()
 	# fuck it just remove item from maze directly
 	get_node("/root/Main/Maze").shopItems.erase(itemType)
+	
+	return ""
 		
 		
