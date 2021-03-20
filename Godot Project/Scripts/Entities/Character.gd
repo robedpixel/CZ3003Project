@@ -6,35 +6,39 @@ const FLOAT_EPSILON = 0.00001
 
 onready var cmbtManager = get_node("../CombatManager")
 onready var mazeManager = get_node("../Maze")
-onready var healthUI = get_node("../MainCanvas/MainUI/Hearts")
+onready var healthUI = get_node("../MainCanvas/Hearts")
 onready var coinUI = get_node("../MainCanvas/MainUI/CoinsUI")
 onready var itemUI = get_node("../MainCanvas/MainUI/ItemUI/ItemUIBG/Item")
+onready var transition = get_node("../Transition")
 
 var velocity = Vector2()
 onready var playerSprite = $PlayerSprite
 
-var canInteract = false
+var lock : bool = false
 var interactObjList = []
 
 var movingRight = false
 var right = false
+var isMoving : bool = false
 
 # throw all the stats here, 
 var maxHealth = 0
 var health = 0
 var coins = 0
+var attack = 1
 
 var inventory = []
 var currentInventoryIndex = 0
 
 #signals
 signal coin_change_signal(value)
+signal player_hurt_signal(value)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	inventory.append(GlobalVariables.ItemEnum.ITEM_HEALTHPOT)
 	_showItem()
-	pass
+	connect("player_hurt_signal", transition, "_hurtFlash")
 
 func _initPlayer(startingHealth, startingCoins):
 	_initHealth(startingHealth)
@@ -42,6 +46,9 @@ func _initPlayer(startingHealth, startingCoins):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if(lock):
+		return
+	
 	if Input.is_action_just_pressed('interact'):
 		_interact()
 	
@@ -50,26 +57,53 @@ func _process(delta):
 		
 	if(Input.is_action_just_pressed("use_item")):
 		_useItem()
+		
+	_processAnimation()
 	
-	if(movingRight):
-		if(not right):
-			apply_scale(Vector2(-1, 1))
-		right = true
-	elif(not movingRight):
-		if(right):
-			apply_scale(Vector2(-1, 1))
-		right = false
+#	if(movingRight):
+#		if(not right):
+#			apply_scale(Vector2(-1, 1))
+#		right = true
+#	elif(not movingRight):
+#		if(right):
+#			apply_scale(Vector2(-1, 1))
+#		right = false
+
+func _processAnimation():
+	if(!isMoving):
+#		playerSprite.playing = false
+		playerSprite.speed_scale = 0.3
+		return
+	else:
+		playerSprite.playing = true
+		playerSprite.speed_scale = 1.5
+		
+	if(velocity.x > FLOAT_EPSILON):
+		playerSprite.play("right")
+	elif(velocity.x < -FLOAT_EPSILON):
+		playerSprite.play("left")
+	elif(velocity.y > FLOAT_EPSILON):
+		playerSprite.play("down")
+	elif(velocity.y < -FLOAT_EPSILON):
+		playerSprite.play("up")
 
 func get_input():
 	velocity = Vector2()
 	if Input.is_action_pressed('right'):
-		velocity.x += 1
+		velocity = Vector2(1, 0)
 	if Input.is_action_pressed('left'):
-		velocity.x -= 1
+		velocity = Vector2(-1, 0)
 	if Input.is_action_pressed('down'):
-		velocity.y += 1
+		velocity = Vector2(0, 1)
 	if Input.is_action_pressed('up'):
-		velocity.y -= 1
+		velocity = Vector2(0, -1)
+	
+	if(velocity.x < FLOAT_EPSILON and velocity.x > -FLOAT_EPSILON and 
+	velocity.y < FLOAT_EPSILON and velocity.y > -FLOAT_EPSILON):
+		isMoving = false
+	else:
+		isMoving = true
+	
 	velocity = velocity.normalized() * speed
 	
 	if(velocity.x > FLOAT_EPSILON):
@@ -84,12 +118,10 @@ func _physics_process(delta):
 	velocity = move_and_slide(velocity)
 	
 func _AddInteractable(interactObjName):
-	canInteract = true
 	self.interactObjList.append(interactObjName)
 	#print(self.interactObjList)
 	
 func _RemoveInteractable(interactObjName):
-	canInteract = false
 	var i = self.interactObjList.find(interactObjName)
 	self.interactObjList.remove(i)
 	#print(self.interactObjList)
@@ -145,8 +177,14 @@ func _restoreHealth(healthRestored):
 	healthUI._setHeart(health, maxHealth)
 
 func _takeDamage(damageTaken):
+	if(health <= 0):
+		return
+		
 	health -= damageTaken
 	healthUI._setHeart(health, maxHealth)
+	
+	emit_signal("player_hurt_signal")
+	
 	if(health <= 0):
 		print("Game over")
 		return
@@ -205,6 +243,9 @@ func _useItem():
 	
 func _addItem(itemType):
 	inventory.append(itemType)
+	
+func _lockCharacter(lock):
+	self.lock = lock
 	
 	
 	

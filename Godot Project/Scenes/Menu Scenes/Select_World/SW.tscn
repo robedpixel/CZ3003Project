@@ -1,12 +1,18 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Scripts/GUI/BackToMainMenu.gd" type="Script" id=1]
 [ext_resource path="res://Resources/fonts/arcade_48.tres" type="DynamicFont" id=2]
 [ext_resource path="res://Scripts/GUI/Gotocharselect.gd" type="Script" id=3]
 [ext_resource path="res://Resources/images/sample_map.png" type="Texture" id=4]
+[ext_resource path="res://Resources/fonts/chary_40.tres" type="DynamicFont" id=5]
+[ext_resource path="res://Resources/fonts/arcade_40.tres" type="DynamicFont" id=6]
+[ext_resource path="res://Resources/fonts/chary_28_dialog_title.tres" type="DynamicFont" id=7]
+[ext_resource path="res://Resources/fonts/arcade_34_SW_Buttons.tres" type="DynamicFont" id=8]
+[ext_resource path="res://Scripts/GUI/DecodeMaze.gd" type="Script" id=9]
 
 [node name="SelectWorldScene" type="Control"]
-margin_right = 1280.0
+margin_left = 1.33484
+margin_right = 1281.33
 margin_bottom = 720.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -39,23 +45,24 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="WorldContainer" type="HBoxContainer" parent="."]
+[node name="WorldContainer" type="GridContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 15.0
-margin_top = 80.0
-margin_right = -15.0
+margin_top = 105.0
+margin_right = -45.0
 margin_bottom = -120.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_constants/separation = 19
+custom_constants/hseparation = 20
+columns = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="World1_Container" type="VBoxContainer" parent="WorldContainer"]
-margin_right = 404.0
-margin_bottom = 520.0
+margin_right = 382.0
+margin_bottom = 495.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 20
@@ -64,28 +71,28 @@ __meta__ = {
 }
 
 [node name="sample_map" type="TextureRect" parent="WorldContainer/World1_Container"]
-margin_right = 404.0
-margin_bottom = 444.0
+margin_right = 382.0
+margin_bottom = 434.0
 size_flags_vertical = 3
 texture = ExtResource( 4 )
 expand = true
 
-[node name="World1Button" type="Button" parent="WorldContainer/World1_Container"]
-margin_top = 464.0
-margin_right = 404.0
-margin_bottom = 520.0
-size_flags_horizontal = 3
-custom_fonts/font = ExtResource( 2 )
-text = "world 1"
+[node name="World1Button2" type="Button" parent="WorldContainer/World1_Container"]
+margin_top = 454.0
+margin_right = 382.0
+margin_bottom = 495.0
+size_flags_horizontal = 5
+custom_fonts/font = ExtResource( 8 )
+text = "Requirement Analysis"
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="World2_Container" type="VBoxContainer" parent="WorldContainer"]
-margin_left = 423.0
-margin_right = 827.0
-margin_bottom = 520.0
+margin_left = 402.0
+margin_right = 817.0
+margin_bottom = 495.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 20
@@ -94,28 +101,28 @@ __meta__ = {
 }
 
 [node name="sample_map2" type="TextureRect" parent="WorldContainer/World2_Container"]
-margin_right = 404.0
-margin_bottom = 444.0
+margin_right = 415.0
+margin_bottom = 434.0
 size_flags_vertical = 3
 texture = ExtResource( 4 )
 expand = true
 
 [node name="World2Button" type="Button" parent="WorldContainer/World2_Container"]
-margin_top = 464.0
-margin_right = 404.0
-margin_bottom = 520.0
+margin_top = 454.0
+margin_right = 415.0
+margin_bottom = 495.0
 size_flags_horizontal = 7
-custom_fonts/font = ExtResource( 2 )
-text = "world 2"
+custom_fonts/font = ExtResource( 8 )
+text = "Requirement Elicitaion"
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="FriendMaze_Container" type="VBoxContainer" parent="WorldContainer"]
-margin_left = 846.0
-margin_right = 1250.0
-margin_bottom = 520.0
+margin_left = 837.0
+margin_right = 1219.0
+margin_bottom = 495.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 20
@@ -124,24 +131,102 @@ __meta__ = {
 }
 
 [node name="sample_map3" type="TextureRect" parent="WorldContainer/FriendMaze_Container"]
-margin_right = 404.0
-margin_bottom = 444.0
+margin_right = 382.0
+margin_bottom = 434.0
 size_flags_vertical = 3
 texture = ExtResource( 4 )
 expand = true
 
 [node name="FriendMaze" type="Button" parent="WorldContainer/FriendMaze_Container"]
-margin_top = 464.0
-margin_right = 404.0
-margin_bottom = 520.0
+margin_top = 454.0
+margin_right = 382.0
+margin_bottom = 495.0
 size_flags_horizontal = 7
-custom_fonts/font = ExtResource( 2 )
+custom_fonts/font = ExtResource( 8 )
 text = "Friends Maze"
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="WindowDialog" type="WindowDialog" parent="."]
+visible = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 350.0
+margin_top = 145.272
+margin_right = -280.0
+margin_bottom = -194.728
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/title_font = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="WindowDialog"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = -10.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 10
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PopupLabel" type="Label" parent="WindowDialog/VBoxContainer"]
+margin_top = 106.0
+margin_right = 649.0
+margin_bottom = 146.0
+size_flags_vertical = 6
+custom_fonts/font = ExtResource( 5 )
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="UserCode" type="LineEdit" parent="WindowDialog/VBoxContainer"]
+margin_top = 262.0
+margin_right = 649.0
+margin_bottom = 312.0
+rect_min_size = Vector2( 600, 50 )
+custom_fonts/font = ExtResource( 5 )
+align = 1
+max_length = 18
+clear_button_enabled = true
+placeholder_text = "ENTER CODE HERE"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="WindowDialog/VBoxContainer"]
+margin_top = 322.0
+margin_right = 649.0
+margin_bottom = 369.0
+size_flags_horizontal = 3
+custom_constants/separation = 10
+alignment = 1
+
+[node name="SWAlertCancelButton" type="Button" parent="WindowDialog/VBoxContainer/HBoxContainer"]
+margin_right = 319.0
+margin_bottom = 47.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 6 )
+text = "CANCEL"
+script = ExtResource( 9 )
+
+[node name="ConfirmButton" type="Button" parent="WindowDialog/VBoxContainer/HBoxContainer"]
+margin_left = 329.0
+margin_right = 649.0
+margin_bottom = 47.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 6 )
+text = "confirm"
+script = ExtResource( 9 )
 [connection signal="pressed" from="SWBackButton" to="SWBackButton" method="_on_SWBackButton_pressed"]
-[connection signal="pressed" from="WorldContainer/World1_Container/World1Button" to="WorldContainer/World1_Container/World1Button" method="_on_World1Button_pressed"]
-[connection signal="pressed" from="WorldContainer/World2_Container/World2Button" to="WorldContainer/World1_Container/World1Button" method="_on_World2Button_pressed"]
+[connection signal="pressed" from="WorldContainer/World1_Container/World1Button2" to="WorldContainer/World1_Container/World1Button2" method="_on_World1Button_pressed"]
+[connection signal="pressed" from="WorldContainer/World2_Container/World2Button" to="WorldContainer/World2_Container/World2Button" method="_on_World2Button_pressed"]
 [connection signal="pressed" from="WorldContainer/FriendMaze_Container/FriendMaze" to="WorldContainer/FriendMaze_Container/FriendMaze" method="_on_FriendMaze_pressed"]
+[connection signal="draw" from="WindowDialog" to="WindowDialog/VBoxContainer/HBoxContainer/ConfirmButton" method="_on_WindowDialog_draw"]
+[connection signal="pressed" from="WindowDialog/VBoxContainer/HBoxContainer/SWAlertCancelButton" to="WindowDialog/VBoxContainer/HBoxContainer/SWAlertCancelButton" method="_on_SWAlertCancelButton_pressed"]
+[connection signal="pressed" from="WindowDialog/VBoxContainer/HBoxContainer/ConfirmButton" to="WindowDialog/VBoxContainer/HBoxContainer/ConfirmButton" method="_on_ConfirmButton_pressed"]

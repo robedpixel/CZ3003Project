@@ -1,8 +1,13 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scripts/GUI/BackToMainMenu.gd" type="Script" id=1]
 [ext_resource path="res://Resources/fonts/arcade_40.tres" type="DynamicFont" id=2]
 [ext_resource path="res://Scripts/GUI/MCButtons.gd" type="Script" id=3]
+[ext_resource path="res://Resources/fonts/joystix_28.tres" type="DynamicFont" id=4]
+[ext_resource path="res://Resources/fonts/chary_28_dialog_title.tres" type="DynamicFont" id=5]
+[ext_resource path="res://Resources/fonts/chary_40.tres" type="DynamicFont" id=6]
+
+[sub_resource type="ShaderMaterial" id=1]
 
 [node name="MazeCreatorScene" type="Control"]
 anchor_right = 1.0
@@ -288,6 +293,87 @@ text = "Confirm"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="TopicChooserButton" type="Button" parent="."]
+margin_left = 462.0
+margin_top = 640.0
+margin_right = 1020.0
+margin_bottom = 700.0
+custom_fonts/font = ExtResource( 4 )
+text = "Topic 0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TopicLabel" type="Label" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 296.081
+margin_top = 652.639
+margin_right = -822.919
+margin_bottom = -33.3609
+custom_fonts/font = ExtResource( 4 )
+text = "Topic :"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WindowDialog" type="WindowDialog" parent="."]
+visible = true
+material = SubResource( 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 440.0
+margin_top = 215.0
+margin_right = -415.0
+margin_bottom = -305.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/title_font = ExtResource( 5 )
+window_title = "sample"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="WindowDialog"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 3.05176e-05
+margin_bottom = -9.99998
+custom_constants/separation = 10
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AlertLabel" type="Label" parent="WindowDialog/VBoxContainer"]
+margin_top = 50.0
+margin_right = 425.0
+margin_bottom = 90.0
+size_flags_vertical = 6
+custom_fonts/font = ExtResource( 6 )
+text = "Sample"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="AlertLineEdit" type="LineEdit" parent="WindowDialog/VBoxContainer"]
+visible = false
+margin_top = 75.0
+margin_right = 423.0
+margin_bottom = 125.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 6 )
+align = 1
+editable = false
+
+[node name="AlertButton" type="Button" parent="WindowDialog/VBoxContainer"]
+margin_top = 150.0
+margin_right = 425.0
+margin_bottom = 190.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 4 )
+text = "Ok"
 [connection signal="pressed" from="GridContainer/Button_X0Y4" to="GridContainer" method="_on_Button_X0Y4_pressed"]
 [connection signal="pressed" from="GridContainer/Button_X1Y4" to="GridContainer" method="_on_Button_X1Y4_pressed"]
 [connection signal="pressed" from="GridContainer/Button_X2Y4" to="GridContainer" method="_on_Button_X2Y4_pressed"]
@@ -314,3 +400,5 @@ __meta__ = {
 [connection signal="pressed" from="GridContainer/Button_X4Y0" to="GridContainer" method="_on_Button_X4Y0_pressed"]
 [connection signal="pressed" from="MCBackButton" to="MCBackButton" method="_on_MCBackButton_pressed"]
 [connection signal="pressed" from="ConfirmButton" to="GridContainer" method="_on_ConfirmButton_pressed"]
+[connection signal="pressed" from="TopicChooserButton" to="GridContainer" method="_on_TopicChooserButton_pressed"]
+[connection signal="pressed" from="WindowDialog/VBoxContainer/AlertButton" to="GridContainer" method="_on_AlertButton_pressed"]

@@ -1,0 +1,45 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Resources/images/coin-2.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/coin.gd" type="Script" id=2]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 10, 10 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 1 )
+region = Rect2( 10, 0, 10, 10 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 1 )
+region = Rect2( 20, 0, 10, 10 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 1 )
+region = Rect2( 30, 0, 10, 10 )
+
+[sub_resource type="SpriteFrames" id=5]
+animations = [ {
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[node name="Coin" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="ChildNode" type="Node2D" parent="."]
+scale = Vector2( 5, 5 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="ChildNode"]
+frames = SubResource( 5 )
+frame = 3
+speed_scale = 1.4
+playing = true
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="ShakeTween" type="Tween" parent="."]
+[connection signal="tween_completed" from="ShakeTween" to="." method="_on_ShakeTween_tween_completed"]

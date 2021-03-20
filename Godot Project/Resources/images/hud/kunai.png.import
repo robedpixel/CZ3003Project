@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/number 20 monster.png-72ee75855e10da77f762f30f26ea233b.stex"
+path="res://.import/kunai.png-f46619d931c1fead4516f3546f963e47.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resources/images/Monster/Drawing/number 20 monster.png"
-dest_files=[ "res://.import/number 20 monster.png-72ee75855e10da77f762f30f26ea233b.stex" ]
+source_file="res://Resources/images/hud/kunai.png"
+dest_files=[ "res://.import/kunai.png-f46619d931c1fead4516f3546f963e47.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

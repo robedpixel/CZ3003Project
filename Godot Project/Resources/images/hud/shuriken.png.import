@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/number 1 monster.png-7abcc64306e1e5e665537b5e2bd6f7e8.stex"
+path="res://.import/shuriken.png-fd581d3ee1455a7d2f2e2d58a8b6690e.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resources/images/Monster/Drawing/number 1 monster.png"
-dest_files=[ "res://.import/number 1 monster.png-7abcc64306e1e5e665537b5e2bd6f7e8.stex" ]
+source_file="res://Resources/images/hud/shuriken.png"
+dest_files=[ "res://.import/shuriken.png-fd581d3ee1455a7d2f2e2d58a8b6690e.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
