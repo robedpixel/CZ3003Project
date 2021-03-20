@@ -6,7 +6,7 @@ func _ready():
 	pass
 
 func update_question_correct(room_type: int):
-	var adjustment
+	var adjustment = 0
 	match room_type:
 		1:
 			AnalyticVariables["easy"]["correct"] += 1
@@ -21,7 +21,7 @@ func update_question_correct(room_type: int):
 	
 	
 func update_question_wrong(room_type: int):
-	var adjustment
+	var adjustment = 0
 	match room_type:
 		1:
 			AnalyticVariables["easy"]["wrong"] += 1
