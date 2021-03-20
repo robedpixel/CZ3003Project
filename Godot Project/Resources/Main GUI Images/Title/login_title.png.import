@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/BG1.jpg-ed72ce93fb75fbb386f92a3015dea65c.stex"
+path="res://.import/login_title.png-fc585a6b813074eb144b030bbffb40be.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resources/Main GUI Images/BG1.jpg"
-dest_files=[ "res://.import/BG1.jpg-ed72ce93fb75fbb386f92a3015dea65c.stex" ]
+source_file="res://Resources/Main GUI Images/Title/login_title.png"
+dest_files=[ "res://.import/login_title.png-fc585a6b813074eb144b030bbffb40be.stex" ]
 
 [params]
 

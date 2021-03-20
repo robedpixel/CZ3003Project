@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/title_resized.png-851cb8e0348cd1e599503a86e51605e9.stex"
+path="res://.import/title2.png-4d56653cb5438ed18c6b611649b8a512.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resources/Main GUI Images/title_resized.png"
-dest_files=[ "res://.import/title_resized.png-851cb8e0348cd1e599503a86e51605e9.stex" ]
+source_file="res://Resources/Main GUI Images/Title/title2.png"
+dest_files=[ "res://.import/title2.png-4d56653cb5438ed18c6b611649b8a512.stex" ]
 
 [params]
 

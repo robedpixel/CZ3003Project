@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/title_maroon.png-46bc890650f4b460c500735c06db0945.stex"
+path="res://.import/bg1_maroon.png-21fca6d95678f013e0a4f0d351ff3728.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resources/Main GUI Images/title_maroon.png"
-dest_files=[ "res://.import/title_maroon.png-46bc890650f4b460c500735c06db0945.stex" ]
+source_file="res://Resources/Main GUI Images/BG/bg1_maroon.png"
+dest_files=[ "res://.import/bg1_maroon.png-21fca6d95678f013e0a4f0d351ff3728.stex" ]
 
 [params]
 
