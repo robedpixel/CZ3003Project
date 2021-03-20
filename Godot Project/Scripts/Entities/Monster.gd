@@ -20,7 +20,6 @@ signal tween_complete
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	self.set_meta("type", "monster")
-	connect("tween_completed", self, "_on_tween_completed")
 	
 
 func _interact(player):

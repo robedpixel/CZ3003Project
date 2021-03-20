@@ -10,8 +10,7 @@ onready var healthUI = get_node("../MainCanvas/Hearts")
 onready var coinUI = get_node("../MainCanvas/MainUI/CoinsUI")
 onready var itemUI = get_node("../MainCanvas/MainUI/ItemUI/ItemUIBG/Item")
 onready var transition = get_node("../Transition")
-onready var dialogueUI = get_node("../DialogueCanvas/DialogueUI")
-onready var dialogue = get_node("../DialogueCanvas/DialogueUI/DialogueBox")
+onready var dialogueManager = get_node("/root/Main/DialogueCanvas")
 
 var velocity = Vector2()
 onready var playerSprite = $PlayerSprite
@@ -161,27 +160,11 @@ func _interact():
 		
 		if(result != ""):
 			lock = true
-			dialogueUI._showDialogueBox(true)
-			dialogueUI._showPortrait(true)
-			dialogueUI._showPlayerPortrait(portrait)
-			dialogue._displayDialogueClosable(result)
-		
-		#if('Door' in interactObj):
-			#mazeManager._moveRoom(interactObj.name)
-		#elif('Monster' in interactObj):
-			#cmbtManager._enterCombat()
-		#elif('ShopItem' in interactObj):
-			
-		
-		#var interactObjType = get_node("../Interactables/" + interactObjName).get_meta("type")
-		#print(interactObjType)
-		# lazy, lets just do a switch here
-		# godot no switch, use match
-#		match interactObjType:
-#			"monster":
-#				cmbtManager._enterCombat()
-#			"door":
-#				mazeManager._moveRoom(interactObjName)
+			dialogueManager._dialoguePlayer(portrait, result, true)
+			#dialogueUI._showDialogueBox(true)
+			#dialogueUI._showPortrait(true)
+			#dialogueUI._showPlayerPortrait(portrait)
+			#dialogue._displayDialogueClosable(result)
 
 func _disableAndHide():
 	set_process(false)

@@ -84,8 +84,7 @@ func _onAnswer(ansValue):
 			return
 		if(!isBoss):
 			emit_signal("victory_signal", false, currentMonster.difficulty)
-			combatUI._showPortrait(false)
-			combatUI.dialogueUI._showDialogueBox(false)
+			combatUI._showDialogue(false)
 			_exitCombat()
 		else:
 			_nextQuestion()
@@ -95,12 +94,10 @@ func _onAlive(entity):
 
 func _onDeath(entity):
 	currentMonster._deathAnim()
-	combatUI._showDialogueBox(false);
-	combatUI._showPortrait(false);
+	combatUI._showDialogue(false);
 	
 func _monsterDeathAnimEnd():
-	combatUI._showPortrait(false)
-	combatUI.dialogueUI._showDialogueBox(false)
+	combatUI._showDialogue(false)
 	emit_signal("victory_signal", true, currentMonster.difficulty)
 	_exitCombat()
 
@@ -113,7 +110,6 @@ func _onTransitionShowEnd():
 	combatUI._hideAnswers()
 	_toggleCombatUI(true)
 	_nextQuestion()
-	combatUI.dialogueUI._showPortrait(true)
-	combatUI.dialogueUI._setMonsterPortrait(currentMonster)
+	combatUI.dialogueManager.dialogueUI._setMonsterPortrait(currentMonster)
 	
 	

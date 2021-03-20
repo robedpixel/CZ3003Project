@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=2]
+[gd_scene load_steps=63 format=2]
 
 [ext_resource path="res://Resources/images/Character/Sprite/5.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Entities/Character.gd" type="Script" id=2]
@@ -31,6 +31,7 @@
 [ext_resource path="res://Scripts/effects.gd" type="Script" id=29]
 [ext_resource path="res://Scripts/global_pos.gd" type="Script" id=30]
 [ext_resource path="res://Scripts/Maze/AnalyticsManager.gd" type="Script" id=31]
+[ext_resource path="res://Scripts/Maze/DialogueManager.gd" type="Script" id=32]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 29.6183, 25.6201 )
@@ -450,6 +451,7 @@ scale = Vector2( 5, 5 )
 layer = 3
 
 [node name="DialogueCanvas" type="CanvasLayer" parent="."]
+script = ExtResource( 32 )
 
 [node name="DialogueUI" type="Control" parent="DialogueCanvas"]
 margin_right = 40.0
@@ -538,7 +540,7 @@ scale = Vector2( 4, 4 )
 z_index = 1
 frames = SubResource( 20 )
 animation = "down"
-frame = 1
+frame = 2
 playing = true
 
 [node name="Room" type="Node2D" parent="."]
@@ -843,10 +845,10 @@ __meta__ = {
 [node name="EffectManager" type="Node2D" parent="."]
 script = ExtResource( 29 )
 [connection signal="coin_change_signal" from="Player" to="MainCanvas/MainUI/CoinsUI" method="_on_Player_coin_change_signal"]
-[connection signal="combat_signal" from="CombatManager" to="Transition" method="_on_CombatManager_combat_signal"]
 [connection signal="combat_signal" from="CombatManager" to="MainCanvas/MainUI" method="_on_CombatManager_combat_signal"]
-[connection signal="victory_signal" from="CombatManager" to="AnalyticsManager" method="_on_CombatManager_victory_signal"]
+[connection signal="combat_signal" from="CombatManager" to="Transition" method="_on_CombatManager_combat_signal"]
 [connection signal="victory_signal" from="CombatManager" to="Maze" method="_on_CombatManager_victory_signal"]
+[connection signal="victory_signal" from="CombatManager" to="AnalyticsManager" method="_on_CombatManager_victory_signal"]
 [connection signal="body_entered" from="Maze/Doors/Left/Area2D" to="Maze/Doors/Left/Area2D" method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="Maze/Doors/Left/Area2D" to="Maze/Doors/Left/Area2D" method="_on_Area2D_body_exited"]
 [connection signal="body_entered" from="Maze/Doors/Right/Area2D" to="Maze/Doors/Right/Area2D" method="_on_Area2D_body_entered"]
