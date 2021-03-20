@@ -57,6 +57,10 @@ func _ready():
 func _initializeMaze():
 	_exitRoom()
 	
+	var topic = GlobalVariables.topic_selected
+	topic = GlobalVariables.TopicEnum.TOPIC_1
+	cmbtManager._initTopic(topic)
+	
 	mazeDesign._generateMaze(5, 5)
 	
 	for x in range(mazeDesign.WIDTH):
@@ -81,6 +85,7 @@ func _initializeMaze():
 	shopItems = [GlobalVariables.ItemEnum.ITEM_HEALTHPOT,
 	GlobalVariables.ItemEnum.ITEM_HEALTHPOT,
 	GlobalVariables.ItemEnum.ITEM_HEALTHPOT]
+	
 	
 	
 

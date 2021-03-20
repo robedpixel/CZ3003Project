@@ -574,7 +574,16 @@ position = Vector2( 640, 720 )
 [node name="Bottom Wall Collision Shape" type="CollisionShape2D" parent="Room/Bottom Wall"]
 shape = SubResource( 22 )
 
-[node name="QuestionManager" type="Node" parent="."]
+[node name="QuestionManagerEasy" type="Node" parent="."]
+script = ExtResource( 19 )
+
+[node name="QuestionManagerMed" type="Node" parent="."]
+script = ExtResource( 19 )
+
+[node name="QuestionManagerHard" type="Node" parent="."]
+script = ExtResource( 19 )
+
+[node name="QuestionManagerBoss" type="Node" parent="."]
 script = ExtResource( 19 )
 
 [node name="CombatManager" type="Node2D" parent="."]
