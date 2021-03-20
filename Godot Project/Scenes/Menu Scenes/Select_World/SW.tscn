@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Scripts/GUI/BackToMainMenu.gd" type="Script" id=1]
 [ext_resource path="res://Resources/fonts/arcade_48.tres" type="DynamicFont" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://Resources/fonts/chary_28_dialog_title.tres" type="DynamicFont" id=7]
 [ext_resource path="res://Resources/fonts/arcade_34_SW_Buttons.tres" type="DynamicFont" id=8]
 [ext_resource path="res://Scripts/GUI/DecodeMaze.gd" type="Script" id=9]
+[ext_resource path="res://Resources/Main GUI Images/bg1_maroon.png" type="Texture" id=10]
 
 [node name="SelectWorldScene" type="Control"]
 margin_left = 1.33484
@@ -19,6 +20,11 @@ size_flags_vertical = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 649.8, 431.249 )
+scale = Vector2( 1.35367, 1.29755 )
+texture = ExtResource( 10 )
 
 [node name="Page title" type="Label" parent="."]
 anchor_left = 0.5
@@ -78,6 +84,7 @@ texture = ExtResource( 4 )
 expand = true
 
 [node name="World1Button2" type="Button" parent="WorldContainer/World1_Container"]
+light_mask = -2147483647
 margin_top = 454.0
 margin_right = 382.0
 margin_bottom = 495.0
