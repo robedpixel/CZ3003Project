@@ -578,6 +578,8 @@ custom_styles/pressed = ExtResource( 14 )
 custom_styles/normal = ExtResource( 13 )
 custom_fonts/font = ExtResource( 4 )
 custom_colors/font_color = Color( 1, 0.662745, 0.635294, 1 )
+custom_colors/font_color_hover = Color( 0.313726, 0.0470588, 0.156863, 1 )
+custom_colors/font_color_pressed = Color( 0.25098, 0.14902, 0.0313726, 1 )
 text = "Ok"
 [connection signal="pressed" from="GridContainer/Button_X0Y4" to="GridContainer" method="_on_Button_X0Y4_pressed"]
 [connection signal="pressed" from="GridContainer/Button_X1Y4" to="GridContainer" method="_on_Button_X1Y4_pressed"]
