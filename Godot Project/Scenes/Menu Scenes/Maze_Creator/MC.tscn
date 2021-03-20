@@ -29,7 +29,7 @@ __meta__ = {
 }
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 653.776, 418.866 )
+position = Vector2( 656.296, 417.606 )
 scale = Vector2( 1.03535, 1.18617 )
 texture = ExtResource( 7 )
 
@@ -451,10 +451,10 @@ __meta__ = {
 }
 
 [node name="ConfirmButton" type="Button" parent="."]
-margin_left = 1044.0
-margin_top = 638.0
-margin_right = 1245.0
-margin_bottom = 698.0
+margin_left = 1033.92
+margin_top = 640.0
+margin_right = 1237.92
+margin_bottom = 700.0
 custom_styles/hover = ExtResource( 9 )
 custom_styles/pressed = ExtResource( 8 )
 custom_styles/disabled = ExtResource( 11 )
@@ -471,9 +471,9 @@ __meta__ = {
 }
 
 [node name="TopicChooserButton" type="Button" parent="."]
-margin_left = 462.0
+margin_left = 435.542
 margin_top = 640.0
-margin_right = 1020.0
+margin_right = 993.542
 margin_bottom = 700.0
 custom_styles/hover = ExtResource( 9 )
 custom_styles/pressed = ExtResource( 8 )
@@ -490,9 +490,9 @@ __meta__ = {
 [node name="TopicLabel" type="Label" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 296.081
+margin_left = 270.883
 margin_top = 652.639
-margin_right = -822.919
+margin_right = -848.117
 margin_bottom = -33.3609
 custom_fonts/font = ExtResource( 4 )
 custom_colors/font_color = Color( 1, 0.662745, 0.635294, 1 )

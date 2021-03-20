@@ -11,6 +11,8 @@
 [node name="Main Menu" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 script = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -25,21 +27,20 @@ texture = ExtResource( 5 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 1.0
-margin_right = 1.0
-margin_bottom = 6.10352e-05
+margin_right = -3.0
 custom_constants/separation = 14
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="ImageContainer" type="MarginContainer" parent="MainMenuVericalContainer"]
-margin_right = 1280.0
+margin_right = 1276.0
 margin_bottom = 580.0
 rect_min_size = Vector2( 0, 580 )
 size_flags_horizontal = 3
 
 [node name="Title" type="TextureRect" parent="MainMenuVericalContainer/ImageContainer"]
-margin_right = 1280.0
+margin_right = 1276.0
 margin_bottom = 580.0
 texture = ExtResource( 1 )
 expand = true
@@ -50,15 +51,15 @@ __meta__ = {
 
 [node name="Buttons" type="HBoxContainer" parent="MainMenuVericalContainer"]
 margin_top = 594.0
-margin_right = 1280.0
+margin_right = 1276.0
 margin_bottom = 653.0
 focus_mode = 2
-custom_constants/separation = 50
+custom_constants/separation = 40
 alignment = 1
 
 [node name="SelectWorldButton" type="Button" parent="MainMenuVericalContainer/Buttons"]
-margin_left = 33.0
-margin_right = 406.0
+margin_left = 65.0
+margin_right = 418.0
 margin_bottom = 59.0
 custom_styles/hover = ExtResource( 4 )
 custom_styles/pressed = ExtResource( 7 )
@@ -67,11 +68,11 @@ custom_fonts/font = ExtResource( 3 )
 custom_colors/font_color = Color( 1, 0.662745, 0.635294, 1 )
 custom_colors/font_color_hover = Color( 0.4, 0.0156863, 0.0156863, 1 )
 custom_colors/font_color_pressed = Color( 1, 0.662745, 0.635294, 1 )
-text = "     select world     "
+text = "select world"
 
 [node name="MazeCreatorButton" type="Button" parent="MainMenuVericalContainer/Buttons"]
-margin_left = 456.0
-margin_right = 841.0
+margin_left = 458.0
+margin_right = 817.0
 margin_bottom = 59.0
 custom_styles/hover = ExtResource( 4 )
 custom_styles/pressed = ExtResource( 7 )
@@ -80,11 +81,11 @@ custom_fonts/font = ExtResource( 3 )
 custom_colors/font_color = Color( 1, 0.662745, 0.635294, 1 )
 custom_colors/font_color_hover = Color( 0.4, 0.0156863, 0.0156863, 1 )
 custom_colors/font_color_pressed = Color( 1, 0.662745, 0.635294, 1 )
-text = "     Maze   creator     "
+text = " Maze creator"
 
 [node name="LeaderBoardButton" type="Button" parent="MainMenuVericalContainer/Buttons"]
-margin_left = 891.0
-margin_right = 1246.0
+margin_left = 857.0
+margin_right = 1210.0
 margin_bottom = 59.0
 custom_styles/hover = ExtResource( 4 )
 custom_styles/pressed = ExtResource( 7 )
@@ -93,7 +94,7 @@ custom_fonts/font = ExtResource( 3 )
 custom_colors/font_color = Color( 1, 0.662745, 0.635294, 1 )
 custom_colors/font_color_hover = Color( 0.4, 0.0156863, 0.0156863, 1 )
 custom_colors/font_color_pressed = Color( 1, 0.662745, 0.635294, 1 )
-text = "    leaderboard    "
+text = " leaderboard"
 [connection signal="pressed" from="MainMenuVericalContainer/Buttons/SelectWorldButton" to="." method="_on_SelectWorldButton_pressed"]
 [connection signal="pressed" from="MainMenuVericalContainer/Buttons/MazeCreatorButton" to="." method="_on_MazeCreatorButton_pressed"]
 [connection signal="pressed" from="MainMenuVericalContainer/Buttons/LeaderBoardButton" to="." method="_on_LeaderBoardButton_pressed"]
