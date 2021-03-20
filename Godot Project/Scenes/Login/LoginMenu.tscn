@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://Resources/Main GUI Images/title_resized.png" type="Texture" id=1]
+[ext_resource path="res://Resources/Main GUI Images/login_title.png" type="Texture" id=1]
 [ext_resource path="res://Resources/fonts/arcade_48.tres" type="DynamicFont" id=2]
 [ext_resource path="res://Scenes/Login/LoginMenu.gd" type="Script" id=3]
 [ext_resource path="res://Resources/fonts/joystix_28.tres" type="DynamicFont" id=4]
+[ext_resource path="res://Resources/Main GUI Images/bg2_darker_maroon.png" type="Texture" id=5]
 
 [node name="Login" type="Control"]
 anchor_right = 1.0
@@ -12,6 +13,11 @@ script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 638.218, 358.829 )
+scale = Vector2( 1.0446, 1.07249 )
+texture = ExtResource( 5 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchor_left = -0.00078125
