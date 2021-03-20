@@ -103,6 +103,9 @@ func _onDialogueTextEnd():
 	
 func _showPortrait(show):
 	dialogueUI._showPortrait(show)
+
+func _showDialogueBox(show):
+	dialogueUI._showDialogueBox(show)
 	
 func _weaponSlashAnimation(monsterPosition):
 	var weaponSlashInstance = weaponSlash.instance()

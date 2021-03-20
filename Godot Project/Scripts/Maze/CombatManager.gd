@@ -35,7 +35,7 @@ func _enterCombat(monster):
 
 func _nextQuestion():
 	var question = questionManager.ask_question()
-	print("QUESTION" + str (question.question))
+	#print("QUESTION" + str (question.question))
 	combatUI._setQuestion(question)
 	
 	correctAnswer = question.correct_answer
@@ -54,8 +54,6 @@ func _exitCombat():
 	player._enable()
 	
 	_toggleCombatUI(false)
-	combatUI._showPortrait(false)
-	combatUI.dialogueUI._showDialogueBox(false)
 	
 	emit_signal("combat_signal", false)
 	
@@ -86,7 +84,8 @@ func _onAnswer(ansValue):
 			return
 		if(!isBoss):
 			emit_signal("victory_signal", false, currentMonster.difficulty)
-			
+			combatUI._showPortrait(false)
+			combatUI.dialogueUI._showDialogueBox(false)
 			_exitCombat()
 		else:
 			_nextQuestion()
@@ -96,17 +95,21 @@ func _onAlive(entity):
 
 func _onDeath(entity):
 	currentMonster._deathAnim()
+	combatUI._showDialogueBox(false);
+	combatUI._showPortrait(false);
 	
 func _monsterDeathAnimEnd():
+	combatUI._showPortrait(false)
+	combatUI.dialogueUI._showDialogueBox(false)
 	emit_signal("victory_signal", true, currentMonster.difficulty)
 	_exitCombat()
 
 func _onTransitionShowStart():
-	print("AAAA")
+	
 	currentMonster._monsterFadeInAnim()
 	
 func _onTransitionShowEnd():
-	print("BBBB")
+	
 	combatUI._hideAnswers()
 	_toggleCombatUI(true)
 	_nextQuestion()

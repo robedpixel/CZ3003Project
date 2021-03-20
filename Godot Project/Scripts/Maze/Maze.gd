@@ -8,7 +8,8 @@ onready var cmbtManager = get_node("../CombatManager")
 onready var monsterFactory = get_node("../MonsterFactory")
 onready var transition = get_node("../Transition")
 onready var effectManager = get_node("../EffectManager")
-
+onready var dialogueUI = get_node("/root/Main/DialogueCanvas/DialogueUI")
+onready var dialogue = get_node("/root/Main/DialogueCanvas/DialogueUI/DialogueBox")
 
 # door
 onready var leftDoor = $Doors/Left
@@ -32,6 +33,7 @@ var prevPlayerY = 0
 # room variables
 var currentRoomType
 var currentMonster
+var minDifficulty = GlobalVariables.RoomEnum.CHALLENGE_ROOM_EASY
 
 var shop
 var shopItems = []
@@ -235,6 +237,10 @@ func _initChallengeRoom(isBoss):
 	var monster
 	if(!isBoss):
 		var difficulty = mazeDesign._getRoom(playerX, playerY)
+		if(difficulty < minDifficulty):
+			print("DIFFICULTY CHANGE PROC " + str(difficulty) + " TO " + str(minDifficulty))
+			difficulty = minDifficulty
+			
 		monster = monsterFactory._createMonster(difficulty)
 	else:
 		monster = monsterFactory._createBoss()
@@ -303,4 +309,19 @@ func _rewardPlayer():
 	
 	effectManager._playCoinAnim(currentMonster.get_position(), rewardedCoins)
 
-
+func _difficultyChange(prevDifficulty, newDifficulty):
+	
+	var difficultyChangeTxt = ""
+	
+	if(newDifficulty > prevDifficulty):
+		difficultyChangeTxt = "You feel a stronger presence"
+	else:
+		difficultyChangeTxt = "You feel less pressure from your surroundings"
+		
+	player._lockCharacter(true)
+	dialogueUI._showDialogueBox(true)
+	dialogueUI._showPortrait(true)
+	dialogueUI._showPlayerPortrait(player.portrait)
+	dialogue._displayDialogueClosable(difficultyChangeTxt)
+	
+	minDifficulty = newDifficulty
