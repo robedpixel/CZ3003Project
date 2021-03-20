@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Resources/Main GUI Images/login_title.png" type="Texture" id=1]
 [ext_resource path="res://Resources/fonts/arcade_48.tres" type="DynamicFont" id=2]
 [ext_resource path="res://Scenes/Login/LoginMenu.gd" type="Script" id=3]
 [ext_resource path="res://Resources/fonts/joystix_28.tres" type="DynamicFont" id=4]
-[ext_resource path="res://Resources/Main GUI Images/bg2_darker_maroon.png" type="Texture" id=5]
+[ext_resource path="res://Resources/Main GUI Images/bg3_maroon.png" type="Texture" id=5]
+[ext_resource path="res://Resources/fonts/joystix_20.tres" type="DynamicFont" id=6]
 
 [node name="Login" type="Control"]
 anchor_right = 1.0
@@ -14,47 +15,54 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 638.218, 358.829 )
-scale = Vector2( 1.0446, 1.07249 )
+[node name="Background" type="Sprite" parent="."]
+position = Vector2( 651.432, 360.38 )
+scale = Vector2( 1.01805, 1.00432 )
 texture = ExtResource( 5 )
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-anchor_left = -0.00078125
-anchor_right = -0.00078125
-margin_left = 110.828
-margin_top = 68.4142
-margin_right = 1210.83
-margin_bottom = 688.414
-custom_constants/separation = 9
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -20.0
+margin_top = 70.0
+margin_right = -580.0
+margin_bottom = -309.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
-margin_right = 1100.0
-margin_bottom = 425.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="Logo" type="TextureRect" parent="VBoxContainer/MarginContainer"]
-margin_right = 1100.0
-margin_bottom = 425.0
+[node name="Title" type="TextureRect" parent="MarginContainer"]
+margin_right = 720.0
+margin_bottom = 341.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 texture = ExtResource( 1 )
 expand = true
 
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_left = -0.00078125
+anchor_right = -0.00078125
+margin_left = 111.0
+margin_top = 503.0
+margin_right = 1211.0
+margin_bottom = 688.0
+custom_constants/separation = 9
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="UsernameContainer" type="HBoxContainer" parent="VBoxContainer"]
-margin_top = 434.0
 margin_right = 1100.0
-margin_bottom = 478.0
+margin_bottom = 44.0
 
 [node name="UsernameLabel" type="Label" parent="VBoxContainer/UsernameContainer"]
 margin_top = 5.0
 margin_right = 230.0
 margin_bottom = 39.0
 custom_fonts/font = ExtResource( 4 )
+custom_colors/font_color = Color( 0.933333, 0.380392, 0.380392, 1 )
 text = "Username: "
 
 [node name="UsernameInputBox" type="LineEdit" parent="VBoxContainer/UsernameContainer"]
@@ -65,15 +73,16 @@ custom_fonts/font = ExtResource( 4 )
 expand_to_text_length = true
 
 [node name="PasswordContainer" type="HBoxContainer" parent="VBoxContainer"]
-margin_top = 487.0
+margin_top = 53.0
 margin_right = 1100.0
-margin_bottom = 531.0
+margin_bottom = 97.0
 
 [node name="PasswordLabel" type="Label" parent="VBoxContainer/PasswordContainer"]
 margin_top = 5.0
 margin_right = 230.0
 margin_bottom = 39.0
 custom_fonts/font = ExtResource( 4 )
+custom_colors/font_color = Color( 0.933333, 0.380392, 0.380392, 1 )
 text = "Password: "
 
 [node name="PasswordInputBox" type="LineEdit" parent="VBoxContainer/PasswordContainer"]
@@ -85,16 +94,19 @@ secret = true
 expand_to_text_length = true
 
 [node name="Button" type="Button" parent="VBoxContainer"]
-margin_top = 540.0
+margin_top = 106.0
 margin_right = 1100.0
-margin_bottom = 596.0
+margin_bottom = 162.0
 custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "Login"
 
 [node name="LoginStatusLabel" type="Label" parent="VBoxContainer"]
-margin_top = 605.0
+margin_top = 171.0
 margin_right = 1100.0
-margin_bottom = 619.0
+margin_bottom = 195.0
+custom_fonts/font = ExtResource( 6 )
+custom_colors/font_color = Color( 0.917647, 0.12549, 0.12549, 1 )
 align = 1
 valign = 1
 [connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_Button_pressed"]
