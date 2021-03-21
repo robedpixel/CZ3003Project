@@ -16,16 +16,12 @@ var maxName = ""
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	
 	handler = load("res://Scripts/auth/firebase_db.gd").new()
 	add_child(handler)
 	get_leaderboard_data()
 	
 	
-
 func get_leaderboard_data():
-	print("begin saving analytics...")
-	#yield(handler.save_analytics(1),"completed")
 	print("getting leaderboard data...")
 	handler.get_world_leaderboard_data(1, self.http) #for now assume world 1
 
@@ -57,7 +53,6 @@ func show_sorted_leaderboard():
 		get_node("ScrollContainer/VBoxContainer/HBoxContainer/ScoreLabel").text += str(highest) + "\n"
 		students.erase(maxName)
 		j = j + 1
-
 
 func _on_ShareFBBtn_pressed():
 	OS.shell_open("https://www.facebook.com/groups/4064171876949849")

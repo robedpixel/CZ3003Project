@@ -31,9 +31,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -114.119
+margin_left = -115.119
 margin_top = 260.748
-margin_right = 109.881
+margin_right = 108.881
 margin_bottom = 329.748
 custom_styles/hover = ExtResource( 7 )
 custom_styles/pressed = ExtResource( 6 )
@@ -100,7 +100,7 @@ custom_fonts/font = ExtResource( 2 )
 custom_colors/font_color = Color( 1, 0.662745, 0.635294, 1 )
 custom_colors/font_color_hover = Color( 0.4, 0.0156863, 0.0156863, 1 )
 custom_colors/font_color_pressed = Color( 1, 0.662745, 0.635294, 1 )
-text = "World 1"
+text = " Requirement Analysis "
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -118,7 +118,7 @@ custom_fonts/font = ExtResource( 2 )
 custom_colors/font_color = Color( 1, 0.662745, 0.635294, 1 )
 custom_colors/font_color_hover = Color( 0.4, 0.0156863, 0.0156863, 1 )
 custom_colors/font_color_pressed = Color( 1, 0.662745, 0.635294, 1 )
-text = "World 2"
+text = "Requirement Elicitaion"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -312,12 +312,9 @@ __meta__ = {
 }
 
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
-
-[node name="HTTPRequest2" type="HTTPRequest" parent="."]
 [connection signal="pressed" from="GR_gobackBtn" to="." method="_on_GR_gobackBtn_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/GR_selectW1Btn" to="." method="_on_GR_selectW1Btn_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/GR_selectW2Btn" to="." method="_on_GR_selectW2Btn_pressed"]
 [connection signal="about_to_show" from="ConfirmGR" to="." method="_on_ConfirmationDialog_about_to_show"]
 [connection signal="confirmed" from="ConfirmGR" to="." method="_on_ConfirmationDialog_confirmed"]
 [connection signal="request_completed" from="HTTPRequest" to="." method="_on_HTTPRequest_request_completed"]
-[connection signal="request_completed" from="HTTPRequest2" to="." method="_on_HTTPRequest2_request_completed"]

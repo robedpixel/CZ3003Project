@@ -31,10 +31,10 @@ anchor_left = 0.536
 anchor_top = 0.5
 anchor_right = 0.536
 anchor_bottom = 0.5
-margin_left = -121.961
-margin_top = 269.882
-margin_right = 102.039
-margin_bottom = 338.882
+margin_left = -173.9
+margin_top = 268.384
+margin_right = 50.0999
+margin_bottom = 337.384
 custom_styles/hover = ExtResource( 5 )
 custom_styles/pressed = ExtResource( 4 )
 custom_styles/normal = ExtResource( 6 )
@@ -50,16 +50,16 @@ __meta__ = {
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -430.0
-margin_right = 448.0
-margin_bottom = 623.0
+margin_left = -498.0
+margin_right = 506.0
+margin_bottom = 626.0
 alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
-margin_right = 878.0
+margin_right = 1004.0
 margin_bottom = 41.0
 alignment = 1
 __meta__ = {
@@ -67,8 +67,8 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="VBoxContainer/HBoxContainer2"]
-margin_left = 91.0
-margin_right = 786.0
+margin_left = 154.0
+margin_right = 849.0
 margin_bottom = 41.0
 custom_fonts/font = ExtResource( 2 )
 custom_colors/font_color = Color( 1, 0.662745, 0.635294, 1 )
@@ -77,7 +77,7 @@ align = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 margin_top = 45.0
-margin_right = 878.0
+margin_right = 1004.0
 margin_bottom = 95.0
 alignment = 1
 __meta__ = {
@@ -85,7 +85,7 @@ __meta__ = {
 }
 
 [node name="GR_selectW1Btn" type="Button" parent="VBoxContainer/HBoxContainer"]
-margin_right = 437.0
+margin_right = 483.0
 margin_bottom = 50.0
 size_flags_horizontal = 3
 custom_styles/hover = ExtResource( 5 )
@@ -95,14 +95,14 @@ custom_fonts/font = ExtResource( 2 )
 custom_colors/font_color = Color( 1, 0.662745, 0.635294, 1 )
 custom_colors/font_color_hover = Color( 0.4, 0.0156863, 0.0156863, 1 )
 custom_colors/font_color_pressed = Color( 1, 0.662745, 0.635294, 1 )
-text = "World 1"
+text = " Requirement Analysis "
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="GR_selectW2Btn" type="Button" parent="VBoxContainer/HBoxContainer"]
-margin_left = 441.0
-margin_right = 878.0
+margin_left = 487.0
+margin_right = 1004.0
 margin_bottom = 50.0
 size_flags_horizontal = 3
 custom_styles/hover = ExtResource( 5 )
@@ -112,14 +112,14 @@ custom_fonts/font = ExtResource( 2 )
 custom_colors/font_color = Color( 1, 0.662745, 0.635294, 1 )
 custom_colors/font_color_hover = Color( 0.4, 0.0156863, 0.0156863, 1 )
 custom_colors/font_color_pressed = Color( 1, 0.662745, 0.635294, 1 )
-text = "World 2"
+text = "Requirement Elicitaion"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="wSelectedLbl" type="Label" parent="VBoxContainer"]
 margin_top = 99.0
-margin_right = 878.0
+margin_right = 1004.0
 margin_bottom = 184.0
 custom_fonts/font = ExtResource( 2 )
 text = "
@@ -129,11 +129,11 @@ valign = 1
 
 [node name="HBoxContainer4" type="HBoxContainer" parent="VBoxContainer"]
 margin_top = 188.0
-margin_right = 878.0
+margin_right = 1004.0
 margin_bottom = 259.0
 
 [node name="Label" type="Label" parent="VBoxContainer/HBoxContainer4"]
-margin_right = 437.0
+margin_right = 500.0
 margin_bottom = 71.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -143,8 +143,8 @@ text = "NAME
 -------------------"
 
 [node name="Label2" type="Label" parent="VBoxContainer/HBoxContainer4"]
-margin_left = 441.0
-margin_right = 878.0
+margin_left = 504.0
+margin_right = 1004.0
 margin_bottom = 71.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -156,17 +156,17 @@ align = 2
 
 [node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer"]
 margin_top = 263.0
-margin_right = 878.0
+margin_right = 1004.0
 margin_bottom = 588.0
 rect_min_size = Vector2( 0, 325 )
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer/ScrollContainer"]
-margin_right = 878.0
+margin_right = 1004.0
 margin_bottom = 34.0
 size_flags_horizontal = 3
 
 [node name="nameLbl" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer3"]
-margin_right = 437.0
+margin_right = 500.0
 margin_bottom = 34.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -174,8 +174,8 @@ custom_fonts/font = ExtResource( 3 )
 custom_colors/font_color = Color( 1, 0.662745, 0.635294, 1 )
 
 [node name="scoreLbl" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer3"]
-margin_left = 441.0
-margin_right = 878.0
+margin_left = 504.0
+margin_right = 1004.0
 margin_bottom = 34.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -185,7 +185,7 @@ align = 2
 
 [node name="avgScoreLbl" type="Label" parent="VBoxContainer"]
 margin_top = 592.0
-margin_right = 878.0
+margin_right = 1004.0
 margin_bottom = 626.0
 custom_fonts/font = ExtResource( 3 )
 custom_colors/font_color = Color( 1, 0.662745, 0.635294, 1 )
