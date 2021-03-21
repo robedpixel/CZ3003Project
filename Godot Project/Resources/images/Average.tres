@@ -7,5 +7,5 @@
 script = ExtResource( 2 )
 characterType = "Average"
 health = 4
-multiplier = 1.5
+multiplier = 2.0
 profile = ExtResource( 1 )
