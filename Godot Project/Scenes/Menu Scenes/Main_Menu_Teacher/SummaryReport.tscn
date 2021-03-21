@@ -124,6 +124,7 @@ margin_top = 99.0
 margin_right = 878.0
 margin_bottom = 184.0
 custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 1, 0.662745, 0.635294, 1 )
 text = "
 "
 align = 1
