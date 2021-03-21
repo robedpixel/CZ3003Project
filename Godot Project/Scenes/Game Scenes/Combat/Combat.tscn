@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Resources/fonts/combat_dynamicfont.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Scripts/GUI/CombatGUI.gd" type="Script" id=2]
-[ext_resource path="res://Resources/images/battle_backgrounds_v_2__free_to_use__by_kwharever_dcp9kqf.png" type="Texture" id=3]
+[ext_resource path="res://Resources/Main GUI Images/BG/bg3_maroon.png" type="Texture" id=3]
 [ext_resource path="res://Resources/fonts/arcade_48.tres" type="DynamicFont" id=4]
 [ext_resource path="res://Resources/Button Styles/main_menu_button_normal.tres" type="StyleBox" id=5]
 [ext_resource path="res://Resources/Button Styles/main_menu_button_hover.tres" type="StyleBox" id=6]
@@ -17,6 +17,11 @@ script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="BG" type="Sprite" parent="CombatUI"]
+visible = false
+position = Vector2( 640, 360 )
+texture = ExtResource( 3 )
 
 [node name="Control" type="Control" parent="CombatUI"]
 margin_left = 135.468
@@ -160,15 +165,6 @@ __meta__ = {
 }
 
 [node name="Tween" type="Tween" parent="CombatUI"]
-
-[node name="BG" type="Sprite" parent="CombatUI"]
-visible = false
-position = Vector2( 453.257, 383.163 )
-scale = Vector2( 7, 7 )
-texture = ExtResource( 3 )
-vframes = 3
-hframes = 3
-frame = 5
 [connection signal="pressed" from="CombatUI/Control/Button" to="CombatUI" method="_on_Button_pressed" binds= [ 0 ]]
 [connection signal="pressed" from="CombatUI/Control2/Button" to="CombatUI" method="_on_Button_pressed" binds= [ 1 ]]
 [connection signal="pressed" from="CombatUI/Control3/Button" to="CombatUI" method="_on_Button_pressed" binds= [ 2 ]]

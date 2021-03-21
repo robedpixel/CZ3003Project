@@ -15,3 +15,6 @@ func _ready():
 
 func _on_AnimatedSprite_animation_finished():
 	self.queue_free()
+
+func _play():
+	$AnimatedSprite.playing = true

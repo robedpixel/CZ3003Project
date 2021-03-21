@@ -213,6 +213,7 @@ extents = Vector2( 66.2783, 32.5377 )
 [node name="Main" type="Node2D"]
 
 [node name="MainCanvas" type="CanvasLayer" parent="."]
+layer = 2
 
 [node name="GuideBook" parent="MainCanvas" instance=ExtResource( 33 )]
 
@@ -756,10 +757,11 @@ __meta__ = {
 [node name="EffectManager" type="Node2D" parent="."]
 script = ExtResource( 29 )
 [connection signal="coin_change_signal" from="Player" to="MainCanvas/MainUI/CoinsUI" method="_on_Player_coin_change_signal"]
-[connection signal="combat_signal" from="CombatManager" to="Transition" method="_on_CombatManager_combat_signal"]
 [connection signal="combat_signal" from="CombatManager" to="MainCanvas/MainUI" method="_on_CombatManager_combat_signal"]
-[connection signal="victory_signal" from="CombatManager" to="AnalyticsManager" method="_on_CombatManager_victory_signal"]
+[connection signal="combat_signal" from="CombatManager" to="Transition" method="_on_CombatManager_combat_signal"]
+[connection signal="gameover_signal" from="CombatManager" to="Maze" method="_on_CombatManager_gameover_signal"]
 [connection signal="victory_signal" from="CombatManager" to="Maze" method="_on_CombatManager_victory_signal"]
+[connection signal="victory_signal" from="CombatManager" to="AnalyticsManager" method="_on_CombatManager_victory_signal"]
 [connection signal="body_entered" from="Maze/Doors/Left/Area2D" to="Maze/Doors/Left/Area2D" method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="Maze/Doors/Left/Area2D" to="Maze/Doors/Left/Area2D" method="_on_Area2D_body_exited"]
 [connection signal="body_entered" from="Maze/Doors/Right/Area2D" to="Maze/Doors/Right/Area2D" method="_on_Area2D_body_entered"]

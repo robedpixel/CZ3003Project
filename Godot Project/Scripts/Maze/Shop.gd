@@ -10,14 +10,15 @@ func _ready():
 
 func _initShop():
 	var items = maze.shopItems
+	var itemCost = [5, 10, 15]
 #	
 	for x in 3:
 		get_child(x)._hideItem()
-
+	
 	for i in items.size():
 		get_child(i)._setItem(items[i])
 		get_child(i)._showItem()
 		
 		# TODO CHange cost to its respective cost
-		get_child(i)._setItemCost(1)
+		get_child(i)._setItemCost(itemCost[i])
 	

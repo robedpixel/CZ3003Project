@@ -105,6 +105,7 @@ func _showDialogue(show):
 	
 func _weaponSlashAnimation(monsterPosition):
 	var weaponSlashInstance = weaponSlash.instance()
+	weaponSlashInstance._play()
 	
 	weaponSlashInstance.set_position(monsterPosition)
 	
