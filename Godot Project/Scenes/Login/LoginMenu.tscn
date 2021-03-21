@@ -1,9 +1,15 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=11 format=2]
 
-[ext_resource path="res://Resources/Main GUI Images/title_resized.png" type="Texture" id=1]
+[ext_resource path="res://Resources/Main GUI Images/Title/login_title.png" type="Texture" id=1]
 [ext_resource path="res://Resources/fonts/arcade_48.tres" type="DynamicFont" id=2]
 [ext_resource path="res://Scenes/Login/LoginMenu.gd" type="Script" id=3]
 [ext_resource path="res://Resources/fonts/joystix_28.tres" type="DynamicFont" id=4]
+[ext_resource path="res://Resources/Main GUI Images/BG/bg3_maroon.png" type="Texture" id=5]
+[ext_resource path="res://Resources/fonts/joystix_20.tres" type="DynamicFont" id=6]
+[ext_resource path="res://Resources/Button Styles/login_button_normal.tres" type="StyleBox" id=7]
+[ext_resource path="res://Resources/Button Styles/login_button_hover.tres" type="StyleBox" id=8]
+[ext_resource path="res://Resources/Button Styles/login_button_pressed.tres" type="StyleBox" id=9]
+[ext_resource path="res://Resources/LineEdit Styles/line_edit_normal.tres" type="StyleBox" id=10]
 
 [node name="Login" type="Control"]
 anchor_right = 1.0
@@ -13,82 +19,111 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-anchor_left = -0.00078125
-anchor_right = -0.00078125
-margin_left = 110.828
-margin_top = 68.4142
-margin_right = 1210.83
-margin_bottom = 688.414
-custom_constants/separation = 9
+[node name="Background" type="Sprite" parent="."]
+position = Vector2( 651.432, 360.38 )
+scale = Vector2( 1.01805, 1.00432 )
+texture = ExtResource( 5 )
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -20.0
+margin_top = 70.0
+margin_right = -580.0
+margin_bottom = -309.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
-margin_right = 1100.0
-margin_bottom = 425.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="Logo" type="TextureRect" parent="VBoxContainer/MarginContainer"]
-margin_right = 1100.0
-margin_bottom = 425.0
+[node name="Title" type="TextureRect" parent="MarginContainer"]
+margin_right = 720.0
+margin_bottom = 341.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 texture = ExtResource( 1 )
 expand = true
 
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_left = -0.00078125
+anchor_right = -0.00078125
+margin_left = 111.0
+margin_top = 503.0
+margin_right = 1211.0
+margin_bottom = 688.0
+custom_constants/separation = 9
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="UsernameContainer" type="HBoxContainer" parent="VBoxContainer"]
-margin_top = 434.0
 margin_right = 1100.0
-margin_bottom = 478.0
+margin_bottom = 40.0
 
 [node name="UsernameLabel" type="Label" parent="VBoxContainer/UsernameContainer"]
-margin_top = 5.0
+margin_top = 3.0
 margin_right = 230.0
-margin_bottom = 39.0
+margin_bottom = 37.0
 custom_fonts/font = ExtResource( 4 )
+custom_colors/font_color = Color( 0.933333, 0.380392, 0.380392, 1 )
 text = "Username: "
 
 [node name="UsernameInputBox" type="LineEdit" parent="VBoxContainer/UsernameContainer"]
 margin_left = 234.0
-margin_right = 520.0
-margin_bottom = 44.0
+margin_right = 516.0
+margin_bottom = 40.0
+custom_styles/normal = ExtResource( 10 )
 custom_fonts/font = ExtResource( 4 )
+custom_colors/selection_color = Color( 1, 0.623529, 0.623529, 1 )
+custom_colors/font_color_selected = Color( 0.290196, 0.0196078, 0.0196078, 0.996078 )
+custom_colors/font_color = Color( 0.917647, 0.615686, 0.615686, 1 )
 expand_to_text_length = true
 
 [node name="PasswordContainer" type="HBoxContainer" parent="VBoxContainer"]
-margin_top = 487.0
+margin_top = 49.0
 margin_right = 1100.0
-margin_bottom = 531.0
+margin_bottom = 89.0
 
 [node name="PasswordLabel" type="Label" parent="VBoxContainer/PasswordContainer"]
-margin_top = 5.0
+margin_top = 3.0
 margin_right = 230.0
-margin_bottom = 39.0
+margin_bottom = 37.0
 custom_fonts/font = ExtResource( 4 )
+custom_colors/font_color = Color( 0.933333, 0.380392, 0.380392, 1 )
 text = "Password: "
 
 [node name="PasswordInputBox" type="LineEdit" parent="VBoxContainer/PasswordContainer"]
 margin_left = 234.0
-margin_right = 520.0
-margin_bottom = 44.0
+margin_right = 516.0
+margin_bottom = 40.0
+custom_styles/normal = ExtResource( 10 )
 custom_fonts/font = ExtResource( 4 )
+custom_colors/selection_color = Color( 1, 0.623529, 0.623529, 1 )
+custom_colors/font_color_selected = Color( 0.290196, 0.0196078, 0.0196078, 0.996078 )
+custom_colors/font_color = Color( 0.917647, 0.615686, 0.615686, 1 )
 secret = true
 expand_to_text_length = true
 
 [node name="Button" type="Button" parent="VBoxContainer"]
-margin_top = 540.0
+margin_top = 98.0
 margin_right = 1100.0
-margin_bottom = 596.0
+margin_bottom = 156.0
+custom_styles/hover = ExtResource( 8 )
+custom_styles/pressed = ExtResource( 9 )
+custom_styles/normal = ExtResource( 7 )
 custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 1, 0, 0.305882, 1 )
+custom_colors/font_color_hover = Color( 0.286275, 0.0117647, 0.0117647, 1 )
+custom_colors/font_color_pressed = Color( 0.192157, 0.0117647, 0.00392157, 1 )
 text = "Login"
 
 [node name="LoginStatusLabel" type="Label" parent="VBoxContainer"]
-margin_top = 605.0
+margin_top = 165.0
 margin_right = 1100.0
-margin_bottom = 619.0
+margin_bottom = 189.0
+custom_fonts/font = ExtResource( 6 )
+custom_colors/font_color = Color( 0.917647, 0.12549, 0.12549, 1 )
 align = 1
 valign = 1
 [connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_Button_pressed"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Scripts/GUI/BackToMainMenu.gd" type="Script" id=1]
 [ext_resource path="res://Resources/fonts/arcade_40.tres" type="DynamicFont" id=2]
@@ -6,6 +6,16 @@
 [ext_resource path="res://Resources/fonts/joystix_28.tres" type="DynamicFont" id=4]
 [ext_resource path="res://Resources/fonts/chary_28_dialog_title.tres" type="DynamicFont" id=5]
 [ext_resource path="res://Resources/fonts/chary_40.tres" type="DynamicFont" id=6]
+[ext_resource path="res://Resources/Main GUI Images/BG/bg1_maroon.png" type="Texture" id=7]
+[ext_resource path="res://Resources/Button Styles/main_menu_button_pressed.tres" type="StyleBox" id=8]
+[ext_resource path="res://Resources/Button Styles/main_menu_button_hover.tres" type="StyleBox" id=9]
+[ext_resource path="res://Resources/Button Styles/main_menu_button_normal.tres" type="StyleBox" id=10]
+[ext_resource path="res://Resources/Button Styles/main_menu_button_disabled.tres" type="StyleBox" id=11]
+[ext_resource path="res://Resources/window_dialog_maroon.tres" type="StyleBox" id=12]
+[ext_resource path="res://Resources/Button Styles/window_dialog_normal.tres" type="StyleBox" id=13]
+[ext_resource path="res://Resources/Button Styles/window_dialog_pressed.tres" type="StyleBox" id=14]
+[ext_resource path="res://Resources/Button Styles/window_dialog_hover.tres" type="StyleBox" id=15]
+[ext_resource path="res://Resources/LineEdit Styles/line_edit_read_only.tres" type="StyleBox" id=16]
 
 [sub_resource type="ShaderMaterial" id=1]
 
@@ -17,6 +27,11 @@ size_flags_vertical = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 656.296, 417.606 )
+scale = Vector2( 1.03535, 1.18617 )
+texture = ExtResource( 7 )
 
 [node name="GridContainer" type="GridContainer" parent="."]
 margin_left = 50.0
@@ -34,7 +49,13 @@ margin_right = 236.0
 margin_bottom = 116.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+custom_styles/hover = ExtResource( 9 )
+custom_styles/pressed = ExtResource( 8 )
+custom_styles/normal = ExtResource( 10 )
 custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 1, 0.662745, 0.635294, 1 )
+custom_colors/font_color_hover = Color( 0.4, 0.0156863, 0.0156863, 1 )
+custom_colors/font_color_pressed = Color( 1, 0.662745, 0.635294, 1 )
 text = "a"
 
 [node name="Button_X1Y4" type="Button" parent="GridContainer"]
@@ -43,7 +64,13 @@ margin_right = 476.0
 margin_bottom = 116.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+custom_styles/hover = ExtResource( 9 )
+custom_styles/pressed = ExtResource( 8 )
+custom_styles/normal = ExtResource( 10 )
 custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 1, 0.662745, 0.635294, 1 )
+custom_colors/font_color_hover = Color( 0.4, 0.0156863, 0.0156863, 1 )
+custom_colors/font_color_pressed = Color( 1, 0.662745, 0.635294, 1 )
 text = "a"
 
 [node name="Button_X2Y4" type="Button" parent="GridContainer"]
@@ -52,7 +79,13 @@ margin_right = 716.0
 margin_bottom = 116.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+custom_styles/hover = ExtResource( 9 )
+custom_styles/pressed = ExtResource( 8 )
+custom_styles/normal = ExtResource( 10 )
 custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 1, 0.662745, 0.635294, 1 )
+custom_colors/font_color_hover = Color( 0.4, 0.0156863, 0.0156863, 1 )
+custom_colors/font_color_pressed = Color( 1, 0.662745, 0.635294, 1 )
 text = "a"
 
 [node name="Button_X3Y4" type="Button" parent="GridContainer"]
@@ -61,7 +94,13 @@ margin_right = 956.0
 margin_bottom = 116.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+custom_styles/hover = ExtResource( 9 )
+custom_styles/pressed = ExtResource( 8 )
+custom_styles/normal = ExtResource( 10 )
 custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 1, 0.662745, 0.635294, 1 )
+custom_colors/font_color_hover = Color( 0.4, 0.0156863, 0.0156863, 1 )
+custom_colors/font_color_pressed = Color( 1, 0.662745, 0.635294, 1 )
 text = "a"
 
 [node name="Button_X4Y4" type="Button" parent="GridContainer"]
@@ -70,7 +109,13 @@ margin_right = 1196.0
 margin_bottom = 116.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+custom_styles/hover = ExtResource( 9 )
+custom_styles/pressed = ExtResource( 8 )
+custom_styles/normal = ExtResource( 10 )
 custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 1, 0.662745, 0.635294, 1 )
+custom_colors/font_color_hover = Color( 0.4, 0.0156863, 0.0156863, 1 )
+custom_colors/font_color_pressed = Color( 1, 0.662745, 0.635294, 1 )
 text = "a"
 
 [node name="Button_X0Y3" type="Button" parent="GridContainer"]
@@ -79,7 +124,13 @@ margin_right = 236.0
 margin_bottom = 236.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+custom_styles/hover = ExtResource( 9 )
+custom_styles/pressed = ExtResource( 8 )
+custom_styles/normal = ExtResource( 10 )
 custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 1, 0.662745, 0.635294, 1 )
+custom_colors/font_color_hover = Color( 0.4, 0.0156863, 0.0156863, 1 )
+custom_colors/font_color_pressed = Color( 1, 0.662745, 0.635294, 1 )
 text = "a"
 
 [node name="Button_X1Y3" type="Button" parent="GridContainer"]
@@ -89,7 +140,13 @@ margin_right = 476.0
 margin_bottom = 236.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+custom_styles/hover = ExtResource( 9 )
+custom_styles/pressed = ExtResource( 8 )
+custom_styles/normal = ExtResource( 10 )
 custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 1, 0.662745, 0.635294, 1 )
+custom_colors/font_color_hover = Color( 0.4, 0.0156863, 0.0156863, 1 )
+custom_colors/font_color_pressed = Color( 1, 0.662745, 0.635294, 1 )
 text = "a"
 
 [node name="Button_X2Y3" type="Button" parent="GridContainer"]
@@ -99,7 +156,14 @@ margin_right = 716.0
 margin_bottom = 236.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+custom_styles/hover = ExtResource( 9 )
+custom_styles/pressed = ExtResource( 8 )
+custom_styles/normal = ExtResource( 10 )
 custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color_disabled = Color( 0, 0, 0, 1 )
+custom_colors/font_color = Color( 1, 0.662745, 0.635294, 1 )
+custom_colors/font_color_hover = Color( 0.4, 0.0156863, 0.0156863, 1 )
+custom_colors/font_color_pressed = Color( 1, 0.662745, 0.635294, 1 )
 text = "a"
 
 [node name="Button_X3Y3" type="Button" parent="GridContainer"]
@@ -109,7 +173,13 @@ margin_right = 956.0
 margin_bottom = 236.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+custom_styles/hover = ExtResource( 9 )
+custom_styles/pressed = ExtResource( 8 )
+custom_styles/normal = ExtResource( 10 )
 custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 1, 0.662745, 0.635294, 1 )
+custom_colors/font_color_hover = Color( 0.4, 0.0156863, 0.0156863, 1 )
+custom_colors/font_color_pressed = Color( 1, 0.662745, 0.635294, 1 )
 text = "a"
 
 [node name="Button_X4Y3" type="Button" parent="GridContainer"]
@@ -119,7 +189,13 @@ margin_right = 1196.0
 margin_bottom = 236.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+custom_styles/hover = ExtResource( 9 )
+custom_styles/pressed = ExtResource( 8 )
+custom_styles/normal = ExtResource( 10 )
 custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 1, 0.662745, 0.635294, 1 )
+custom_colors/font_color_hover = Color( 0.4, 0.0156863, 0.0156863, 1 )
+custom_colors/font_color_pressed = Color( 1, 0.662745, 0.635294, 1 )
 text = "a"
 
 [node name="Button_X0Y2" type="Button" parent="GridContainer"]
@@ -128,7 +204,13 @@ margin_right = 236.0
 margin_bottom = 356.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+custom_styles/hover = ExtResource( 9 )
+custom_styles/pressed = ExtResource( 8 )
+custom_styles/normal = ExtResource( 10 )
 custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 1, 0.662745, 0.635294, 1 )
+custom_colors/font_color_hover = Color( 0.4, 0.0156863, 0.0156863, 1 )
+custom_colors/font_color_pressed = Color( 1, 0.662745, 0.635294, 1 )
 text = "a"
 
 [node name="Button_X1Y2" type="Button" parent="GridContainer"]
@@ -138,7 +220,13 @@ margin_right = 476.0
 margin_bottom = 356.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+custom_styles/hover = ExtResource( 9 )
+custom_styles/pressed = ExtResource( 8 )
+custom_styles/normal = ExtResource( 10 )
 custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 1, 0.662745, 0.635294, 1 )
+custom_colors/font_color_hover = Color( 0.4, 0.0156863, 0.0156863, 1 )
+custom_colors/font_color_pressed = Color( 1, 0.662745, 0.635294, 1 )
 text = "a"
 
 [node name="Button_X2Y2" type="Button" parent="GridContainer"]
@@ -148,7 +236,13 @@ margin_right = 716.0
 margin_bottom = 356.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+custom_styles/hover = ExtResource( 9 )
+custom_styles/pressed = ExtResource( 8 )
+custom_styles/normal = ExtResource( 10 )
 custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 1, 0.662745, 0.635294, 1 )
+custom_colors/font_color_hover = Color( 0.4, 0.0156863, 0.0156863, 1 )
+custom_colors/font_color_pressed = Color( 1, 0.662745, 0.635294, 1 )
 text = "a"
 
 [node name="Button_X3Y2" type="Button" parent="GridContainer"]
@@ -158,7 +252,13 @@ margin_right = 956.0
 margin_bottom = 356.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+custom_styles/hover = ExtResource( 9 )
+custom_styles/pressed = ExtResource( 8 )
+custom_styles/normal = ExtResource( 10 )
 custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 1, 0.662745, 0.635294, 1 )
+custom_colors/font_color_hover = Color( 0.4, 0.0156863, 0.0156863, 1 )
+custom_colors/font_color_pressed = Color( 1, 0.662745, 0.635294, 1 )
 text = "a"
 
 [node name="Button_X4Y2" type="Button" parent="GridContainer"]
@@ -168,7 +268,13 @@ margin_right = 1196.0
 margin_bottom = 356.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+custom_styles/hover = ExtResource( 9 )
+custom_styles/pressed = ExtResource( 8 )
+custom_styles/normal = ExtResource( 10 )
 custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 1, 0.662745, 0.635294, 1 )
+custom_colors/font_color_hover = Color( 0.4, 0.0156863, 0.0156863, 1 )
+custom_colors/font_color_pressed = Color( 1, 0.662745, 0.635294, 1 )
 text = "a"
 
 [node name="Button_X0Y1" type="Button" parent="GridContainer"]
@@ -177,7 +283,13 @@ margin_right = 236.0
 margin_bottom = 476.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+custom_styles/hover = ExtResource( 9 )
+custom_styles/pressed = ExtResource( 8 )
+custom_styles/normal = ExtResource( 10 )
 custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 1, 0.662745, 0.635294, 1 )
+custom_colors/font_color_hover = Color( 0.4, 0.0156863, 0.0156863, 1 )
+custom_colors/font_color_pressed = Color( 1, 0.662745, 0.635294, 1 )
 text = "a"
 
 [node name="Button_X1Y1" type="Button" parent="GridContainer"]
@@ -187,7 +299,13 @@ margin_right = 476.0
 margin_bottom = 476.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+custom_styles/hover = ExtResource( 9 )
+custom_styles/pressed = ExtResource( 8 )
+custom_styles/normal = ExtResource( 10 )
 custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 1, 0.662745, 0.635294, 1 )
+custom_colors/font_color_hover = Color( 0.4, 0.0156863, 0.0156863, 1 )
+custom_colors/font_color_pressed = Color( 1, 0.662745, 0.635294, 1 )
 text = "a"
 
 [node name="Button_X2Y1" type="Button" parent="GridContainer"]
@@ -197,7 +315,13 @@ margin_right = 716.0
 margin_bottom = 476.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+custom_styles/hover = ExtResource( 9 )
+custom_styles/pressed = ExtResource( 8 )
+custom_styles/normal = ExtResource( 10 )
 custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 1, 0.662745, 0.635294, 1 )
+custom_colors/font_color_hover = Color( 0.4, 0.0156863, 0.0156863, 1 )
+custom_colors/font_color_pressed = Color( 1, 0.662745, 0.635294, 1 )
 text = "a"
 
 [node name="Button_X3Y1" type="Button" parent="GridContainer"]
@@ -207,7 +331,13 @@ margin_right = 956.0
 margin_bottom = 476.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+custom_styles/hover = ExtResource( 9 )
+custom_styles/pressed = ExtResource( 8 )
+custom_styles/normal = ExtResource( 10 )
 custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 1, 0.662745, 0.635294, 1 )
+custom_colors/font_color_hover = Color( 0.4, 0.0156863, 0.0156863, 1 )
+custom_colors/font_color_pressed = Color( 1, 0.662745, 0.635294, 1 )
 text = "a"
 
 [node name="Button_X4Y1" type="Button" parent="GridContainer"]
@@ -217,7 +347,13 @@ margin_right = 1196.0
 margin_bottom = 476.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+custom_styles/hover = ExtResource( 9 )
+custom_styles/pressed = ExtResource( 8 )
+custom_styles/normal = ExtResource( 10 )
 custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 1, 0.662745, 0.635294, 1 )
+custom_colors/font_color_hover = Color( 0.4, 0.0156863, 0.0156863, 1 )
+custom_colors/font_color_pressed = Color( 1, 0.662745, 0.635294, 1 )
 text = "a"
 
 [node name="Button_X0Y0_Start" type="Button" parent="GridContainer"]
@@ -226,7 +362,9 @@ margin_right = 236.0
 margin_bottom = 596.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+custom_styles/disabled = ExtResource( 11 )
 custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color_disabled = Color( 0.4, 0.0156863, 0.0156863, 1 )
 disabled = true
 text = "start"
 
@@ -237,7 +375,13 @@ margin_right = 476.0
 margin_bottom = 596.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+custom_styles/hover = ExtResource( 9 )
+custom_styles/pressed = ExtResource( 8 )
+custom_styles/normal = ExtResource( 10 )
 custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 1, 0.662745, 0.635294, 1 )
+custom_colors/font_color_hover = Color( 0.4, 0.0156863, 0.0156863, 1 )
+custom_colors/font_color_pressed = Color( 1, 0.662745, 0.635294, 1 )
 text = "a"
 
 [node name="Button_X2Y0" type="Button" parent="GridContainer"]
@@ -247,7 +391,13 @@ margin_right = 716.0
 margin_bottom = 596.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+custom_styles/hover = ExtResource( 9 )
+custom_styles/pressed = ExtResource( 8 )
+custom_styles/normal = ExtResource( 10 )
 custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 1, 0.662745, 0.635294, 1 )
+custom_colors/font_color_hover = Color( 0.4, 0.0156863, 0.0156863, 1 )
+custom_colors/font_color_pressed = Color( 1, 0.662745, 0.635294, 1 )
 text = "a"
 
 [node name="Button_X3Y0" type="Button" parent="GridContainer"]
@@ -257,7 +407,13 @@ margin_right = 956.0
 margin_bottom = 596.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+custom_styles/hover = ExtResource( 9 )
+custom_styles/pressed = ExtResource( 8 )
+custom_styles/normal = ExtResource( 10 )
 custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 1, 0.662745, 0.635294, 1 )
+custom_colors/font_color_hover = Color( 0.4, 0.0156863, 0.0156863, 1 )
+custom_colors/font_color_pressed = Color( 1, 0.662745, 0.635294, 1 )
 text = "a"
 
 [node name="Button_X4Y0" type="Button" parent="GridContainer"]
@@ -267,7 +423,13 @@ margin_right = 1196.0
 margin_bottom = 596.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+custom_styles/hover = ExtResource( 9 )
+custom_styles/pressed = ExtResource( 8 )
+custom_styles/normal = ExtResource( 10 )
 custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 1, 0.662745, 0.635294, 1 )
+custom_colors/font_color_hover = Color( 0.4, 0.0156863, 0.0156863, 1 )
+custom_colors/font_color_pressed = Color( 1, 0.662745, 0.635294, 1 )
 text = "a"
 
 [node name="MCBackButton" type="Button" parent="."]
@@ -275,7 +437,13 @@ margin_left = 50.0
 margin_top = 640.0
 margin_right = 250.0
 margin_bottom = 700.0
+custom_styles/hover = ExtResource( 9 )
+custom_styles/pressed = ExtResource( 8 )
+custom_styles/normal = ExtResource( 10 )
 custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 1, 0.662745, 0.635294, 1 )
+custom_colors/font_color_hover = Color( 0.4, 0.0156863, 0.0156863, 1 )
+custom_colors/font_color_pressed = Color( 1, 0.662745, 0.635294, 1 )
 text = "Back"
 script = ExtResource( 1 )
 __meta__ = {
@@ -283,11 +451,19 @@ __meta__ = {
 }
 
 [node name="ConfirmButton" type="Button" parent="."]
-margin_left = 1046.0
+margin_left = 1033.92
 margin_top = 640.0
-margin_right = 1247.0
+margin_right = 1237.92
 margin_bottom = 700.0
+custom_styles/hover = ExtResource( 9 )
+custom_styles/pressed = ExtResource( 8 )
+custom_styles/disabled = ExtResource( 11 )
+custom_styles/normal = ExtResource( 10 )
 custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color_disabled = Color( 0.4, 0.0156863, 0.0156863, 1 )
+custom_colors/font_color = Color( 1, 0.662745, 0.635294, 1 )
+custom_colors/font_color_hover = Color( 0.4, 0.0156863, 0.0156863, 1 )
+custom_colors/font_color_pressed = Color( 1, 0.662745, 0.635294, 1 )
 disabled = true
 text = "Confirm"
 __meta__ = {
@@ -295,11 +471,17 @@ __meta__ = {
 }
 
 [node name="TopicChooserButton" type="Button" parent="."]
-margin_left = 462.0
+margin_left = 435.542
 margin_top = 640.0
-margin_right = 1020.0
+margin_right = 993.542
 margin_bottom = 700.0
+custom_styles/hover = ExtResource( 9 )
+custom_styles/pressed = ExtResource( 8 )
+custom_styles/normal = ExtResource( 10 )
 custom_fonts/font = ExtResource( 4 )
+custom_colors/font_color = Color( 1, 0.662745, 0.635294, 1 )
+custom_colors/font_color_hover = Color( 0.4, 0.0156863, 0.0156863, 1 )
+custom_colors/font_color_pressed = Color( 1, 0.662745, 0.635294, 1 )
 text = "Topic 0"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -308,11 +490,12 @@ __meta__ = {
 [node name="TopicLabel" type="Label" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 296.081
+margin_left = 270.883
 margin_top = 652.639
-margin_right = -822.919
+margin_right = -848.117
 margin_bottom = -33.3609
 custom_fonts/font = ExtResource( 4 )
+custom_colors/font_color = Color( 1, 0.662745, 0.635294, 1 )
 text = "Topic :"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -335,11 +518,24 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="WindowDialog"]
+[node name="Panel" type="Panel" parent="WindowDialog"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_right = 3.05176e-05
-margin_bottom = -9.99998
+margin_bottom = 1.52588e-05
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/panel = ExtResource( 12 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="WindowDialog"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 6.0
+margin_right = -9.0
+margin_bottom = -20.0
 custom_constants/separation = 10
 alignment = 1
 __meta__ = {
@@ -347,32 +543,43 @@ __meta__ = {
 }
 
 [node name="AlertLabel" type="Label" parent="WindowDialog/VBoxContainer"]
-margin_top = 50.0
-margin_right = 425.0
-margin_bottom = 90.0
+margin_top = 14.0
+margin_right = 410.0
+margin_bottom = 54.0
 size_flags_vertical = 6
 custom_fonts/font = ExtResource( 6 )
+custom_colors/font_color = Color( 1, 0.662745, 0.635294, 1 )
 text = "Sample"
 align = 1
 valign = 1
 autowrap = true
 
 [node name="AlertLineEdit" type="LineEdit" parent="WindowDialog/VBoxContainer"]
-visible = false
-margin_top = 75.0
-margin_right = 423.0
-margin_bottom = 125.0
+margin_top = 78.0
+margin_right = 410.0
+margin_bottom = 128.0
 size_flags_horizontal = 3
+custom_styles/read_only = ExtResource( 16 )
 custom_fonts/font = ExtResource( 6 )
+custom_colors/selection_color = Color( 0.290196, 0.172549, 0.2, 1 )
+custom_colors/font_color_selected = Color( 0.824219, 0.511917, 0.511917, 1 )
+custom_colors/font_color = Color( 0.898039, 0.666667, 0.666667, 1 )
+custom_colors/font_color_uneditable = Color( 0.270588, 0.164706, 0.164706, 1 )
 align = 1
 editable = false
 
 [node name="AlertButton" type="Button" parent="WindowDialog/VBoxContainer"]
-margin_top = 150.0
-margin_right = 425.0
-margin_bottom = 190.0
+margin_top = 138.0
+margin_right = 410.0
+margin_bottom = 180.0
 size_flags_horizontal = 3
+custom_styles/hover = ExtResource( 15 )
+custom_styles/pressed = ExtResource( 14 )
+custom_styles/normal = ExtResource( 13 )
 custom_fonts/font = ExtResource( 4 )
+custom_colors/font_color = Color( 1, 0.662745, 0.635294, 1 )
+custom_colors/font_color_hover = Color( 0.313726, 0.0470588, 0.156863, 1 )
+custom_colors/font_color_pressed = Color( 0.25098, 0.14902, 0.0313726, 1 )
 text = "Ok"
 [connection signal="pressed" from="GridContainer/Button_X0Y4" to="GridContainer" method="_on_Button_X0Y4_pressed"]
 [connection signal="pressed" from="GridContainer/Button_X1Y4" to="GridContainer" method="_on_Button_X1Y4_pressed"]
