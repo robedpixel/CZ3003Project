@@ -8,6 +8,8 @@ onready var cmbtManager = get_node("../CombatManager")
 onready var monsterFactory = get_node("../MonsterFactory")
 onready var transition = get_node("../Transition")
 onready var effectManager = get_node("../EffectManager")
+onready var dialogueUI = get_node("/root/Main/DialogueCanvas/DialogueUI")
+onready var dialogue = get_node("/root/Main/DialogueCanvas/DialogueUI/DialogueBox")
 
 # door
 onready var leftDoor = $Doors/Left
@@ -31,6 +33,7 @@ var prevPlayerY = 0
 # room variables
 var currentRoomType
 var currentMonster
+var minDifficulty = GlobalVariables.RoomEnum.CHALLENGE_ROOM_EASY
 
 var shop
 var shopItems = []
@@ -54,6 +57,33 @@ func _ready():
 func _initializeMaze():
 	_exitRoom()
 	
+	var topic = GlobalVariables.topic_selected
+	if(topic == null):
+		topic = GlobalVariables.TopicEnum.TOPIC_1
+	cmbtManager._initTopic(topic)
+	
+	var charSelected = GlobalVariables.charSelected
+	charSelected = 0
+	var health = 0
+	var attack = 0
+	var coins = 0
+	var class_data = null
+	match charSelected:
+		0:
+			class_data = preload("res://Resources/images/Warrior.tres")
+		1:
+			class_data = preload("res://Resources/images/Average.tres")
+		2:
+			class_data = preload("res://Resources/images/Thief.tres")
+		_:
+			pass
+			
+	if(class_data == null):
+		print("Error initializing player. Setting debug player")
+		player._initPlayer(30, 999, 99999, charSelected)
+	else:
+		player._initPlayer(class_data.health, class_data.multiplier, 0, charSelected)
+	
 	mazeDesign._generateMaze(5, 5)
 	
 	for x in range(mazeDesign.WIDTH):
@@ -70,14 +100,13 @@ func _initializeMaze():
 	_loadRoom(playerX, playerY)
 	_updatePlayerGridUI()
 	
-	# 3 health 5 coins
-	player._initPlayer(3, 5)
 	
 	# init shop and boss
 	
 	shopItems = [GlobalVariables.ItemEnum.ITEM_HEALTHPOT,
 	GlobalVariables.ItemEnum.ITEM_HEALTHPOT,
 	GlobalVariables.ItemEnum.ITEM_HEALTHPOT]
+	
 	
 	
 
@@ -234,6 +263,10 @@ func _initChallengeRoom(isBoss):
 	var monster
 	if(!isBoss):
 		var difficulty = mazeDesign._getRoom(playerX, playerY)
+		if(difficulty < minDifficulty):
+			print("DIFFICULTY CHANGE PROC " + str(difficulty) + " TO " + str(minDifficulty))
+			difficulty = minDifficulty
+			
 		monster = monsterFactory._createMonster(difficulty)
 	else:
 		monster = monsterFactory._createBoss()
@@ -251,7 +284,7 @@ func _initShopRoom():
 	shop._initShop()
 
 
-func _on_CombatManager_victory_signal(value):
+func _on_CombatManager_victory_signal(value, difficulty):
 	if(value):
 		_rewardPlayer()
 		mazeDesign._setRoom(playerX, playerY, GlobalVariables.RoomEnum.EMPTY_ROOM)
@@ -301,4 +334,20 @@ func _rewardPlayer():
 	player._addCoins(rewardedCoins)
 	
 	effectManager._playCoinAnim(currentMonster.get_position(), rewardedCoins)
+
+func _difficultyChange(prevDifficulty, newDifficulty):
 	
+	var difficultyChangeTxt = ""
+	
+	if(newDifficulty > prevDifficulty):
+		difficultyChangeTxt = "You feel a stronger presence"
+	else:
+		difficultyChangeTxt = "You feel less pressure from your surroundings"
+		
+	player._lockCharacter(true)
+	dialogueUI._showDialogueBox(true)
+	dialogueUI._showPortrait(true)
+	dialogueUI._showPlayerPortrait(player.portrait)
+	dialogue._displayDialogueClosable(difficultyChangeTxt)
+	
+	minDifficulty = newDifficulty
