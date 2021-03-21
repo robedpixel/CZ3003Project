@@ -22,6 +22,7 @@ onready var gridLocationTxt = get_node("../MainCanvas/MainUI/GridLocationBackgro
 
 # prefabs
 onready var shopObj = preload("res://Scenes/Prefabs/Shop.tscn")
+onready var guideBookObj = preload("res://Scenes/Prefabs/GuideBookItem.tscn")
 
 # player variables
 var playerX = 0
@@ -33,6 +34,7 @@ var prevPlayerY = 0
 # room variables
 var currentRoomType
 var currentMonster
+var currentGuideBook
 var minDifficulty = GlobalVariables.RoomEnum.CHALLENGE_ROOM_EASY
 
 var shop
@@ -205,6 +207,8 @@ func _loadRoom(x, y):
 			_initChallengeRoom(true)
 		GlobalVariables.RoomEnum.SHOP_ROOM: # shop
 			_initShopRoom()
+		GlobalVariables.RoomEnum.STARTING_ROOM:
+			_initStartingRoom()
 		_: # default
 			pass	
 
@@ -251,6 +255,16 @@ func _exitRoom():
 		shop.queue_free()
 	if(currentMonster):
 		currentMonster.queue_free()
+	if(currentGuideBook):
+		currentGuideBook.queue_free()
+	
+
+func _initStartingRoom():
+	var guideBookInstance = guideBookObj.instance()
+	add_child(guideBookInstance)
+	guideBookInstance.set_position(Vector2(640, 360))
+	
+	currentGuideBook = guideBookInstance
 
 func _initChallengeRoom(isBoss):
 	print("Init challenge room")
