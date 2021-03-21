@@ -240,9 +240,9 @@ __meta__ = {
 }
 
 [node name="UserCode" type="LineEdit" parent="WindowDialog/VBoxContainer"]
-margin_top = 257.0
+margin_top = 256.0
 margin_right = 628.0
-margin_bottom = 307.0
+margin_bottom = 306.0
 rect_min_size = Vector2( 600, 50 )
 custom_styles/normal = ExtResource( 18 )
 custom_fonts/font = ExtResource( 5 )
@@ -255,9 +255,9 @@ clear_button_enabled = true
 placeholder_text = "ENTER CODE HERE"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="WindowDialog/VBoxContainer"]
-margin_top = 317.0
+margin_top = 316.0
 margin_right = 628.0
-margin_bottom = 366.0
+margin_bottom = 365.0
 size_flags_horizontal = 3
 custom_constants/separation = 10
 alignment = 1
