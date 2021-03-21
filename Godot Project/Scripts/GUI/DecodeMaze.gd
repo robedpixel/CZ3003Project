@@ -108,6 +108,7 @@ func decode_user_code():
 						#print(topic_selected)
 						GlobalVariables.maze_creator_map = decoded_maze
 						GlobalVariables.topic_selected = topic_selected
+						GlobalVariables.bool_custom_maze = true
 						success_message_setting()
 						bool_code_decoded = true 
 					
