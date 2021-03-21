@@ -59,7 +59,7 @@ func _on_GR_selectW2Btn_pressed():
 #	get_node("ConfirmGR").visible = true
 #	get_node("ConfirmGR").dialog_text = "Generate Summary report for World 2?"
 	alert_dialog.visible = true
-	alert_label.text = "Generate Summary report for World 1?"
+	alert_label.text = "Generate Summary report for World 2?"
 	wSelected = 2
 
 	
