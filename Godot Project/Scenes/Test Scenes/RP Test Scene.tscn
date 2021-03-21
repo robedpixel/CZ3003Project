@@ -36,28 +36,28 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 29.6183, 25.6201 )
 
-[sub_resource type="RectangleShape2D" id=21]
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 20.9225, 440.206 )
 
-[sub_resource type="RectangleShape2D" id=22]
+[sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 786.64, 24.5294 )
 
-[sub_resource type="ConvexPolygonShape2D" id=23]
+[sub_resource type="ConvexPolygonShape2D" id=4]
 points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 
-[sub_resource type="ConvexPolygonShape2D" id=24]
+[sub_resource type="ConvexPolygonShape2D" id=5]
 points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 
-[sub_resource type="ConvexPolygonShape2D" id=25]
+[sub_resource type="ConvexPolygonShape2D" id=6]
 points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
 
-[sub_resource type="ConvexPolygonShape2D" id=26]
+[sub_resource type="ConvexPolygonShape2D" id=7]
 points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 
-[sub_resource type="ConvexPolygonShape2D" id=27]
+[sub_resource type="ConvexPolygonShape2D" id=8]
 points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 
-[sub_resource type="TileSet" id=28]
+[sub_resource type="TileSet" id=9]
 2/name = "0x72_16x16DungeonTileset.v4.png 2"
 2/texture = ExtResource( 21 )
 2/tex_offset = Vector2( 0, 0 )
@@ -96,32 +96,32 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 3/navigation_offset = Vector2( 0, 0 )
 3/shape_offset = Vector2( 0, 0 )
 3/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-3/shape = SubResource( 23 )
+3/shape = SubResource( 4 )
 3/shape_one_way = false
 3/shape_one_way_margin = 1.0
 3/shapes = [ {
 "autotile_coord": Vector2( 0, 1 ),
 "one_way": false,
 "one_way_margin": 1.0,
-"shape": SubResource( 23 ),
+"shape": SubResource( 4 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 }, {
 "autotile_coord": Vector2( 1, 1 ),
 "one_way": false,
 "one_way_margin": 1.0,
-"shape": SubResource( 24 ),
+"shape": SubResource( 5 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 }, {
 "autotile_coord": Vector2( 1, 1 ),
 "one_way": false,
 "one_way_margin": 1.0,
-"shape": SubResource( 25 ),
+"shape": SubResource( 6 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 }, {
 "autotile_coord": Vector2( 2, 1 ),
 "one_way": false,
 "one_way_margin": 1.0,
-"shape": SubResource( 26 ),
+"shape": SubResource( 7 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 3/z_index = 0
@@ -135,14 +135,14 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 4/navigation_offset = Vector2( 0, 0 )
 4/shape_offset = Vector2( 0, 0 )
 4/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-4/shape = SubResource( 27 )
+4/shape = SubResource( 8 )
 4/shape_one_way = false
 4/shape_one_way_margin = 1.0
 4/shapes = [ {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
-"shape": SubResource( 27 ),
+"shape": SubResource( 8 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 4/z_index = 0
@@ -203,10 +203,10 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 7/shapes = [  ]
 7/z_index = 0
 
-[sub_resource type="RectangleShape2D" id=29]
+[sub_resource type="RectangleShape2D" id=10]
 extents = Vector2( 34.4287, 63.2573 )
 
-[sub_resource type="RectangleShape2D" id=30]
+[sub_resource type="RectangleShape2D" id=11]
 extents = Vector2( 66.2783, 32.5377 )
 
 [node name="Main" type="Node2D"]
@@ -450,28 +450,28 @@ visible = false
 position = Vector2( 0, 360 )
 
 [node name="Left Wall Collision Shape" type="CollisionShape2D" parent="Room/Left Wall"]
-shape = SubResource( 21 )
+shape = SubResource( 2 )
 
 [node name="Right Wall" type="StaticBody2D" parent="Room"]
 visible = false
 position = Vector2( 1280, 360 )
 
 [node name="Right Wall Collision Shape" type="CollisionShape2D" parent="Room/Right Wall"]
-shape = SubResource( 21 )
+shape = SubResource( 2 )
 
 [node name="Top Wall" type="StaticBody2D" parent="Room"]
 visible = false
 position = Vector2( 640, 0 )
 
 [node name="Top Wall Collision Shape" type="CollisionShape2D" parent="Room/Top Wall"]
-shape = SubResource( 22 )
+shape = SubResource( 3 )
 
 [node name="Bottom Wall" type="StaticBody2D" parent="Room"]
 visible = false
 position = Vector2( 640, 720 )
 
 [node name="Bottom Wall Collision Shape" type="CollisionShape2D" parent="Room/Bottom Wall"]
-shape = SubResource( 22 )
+shape = SubResource( 3 )
 
 [node name="QuestionManagerEasy" type="Node" parent="."]
 script = ExtResource( 19 )
@@ -502,7 +502,7 @@ script = ExtResource( 9 )
 
 [node name="TileMap2" type="TileMap" parent="Maze"]
 scale = Vector2( 4, 4 )
-tile_set = SubResource( 28 )
+tile_set = SubResource( 9 )
 cell_size = Vector2( 16, 16 )
 cell_quadrant_size = 64
 collision_layer = 32
@@ -514,7 +514,7 @@ __meta__ = {
 
 [node name="TileMap" type="TileMap" parent="Maze"]
 scale = Vector2( 4, 4 )
-tile_set = SubResource( 28 )
+tile_set = SubResource( 9 )
 cell_size = Vector2( 16, 16 )
 cell_quadrant_size = 64
 collision_layer = 32
@@ -537,14 +537,14 @@ collision_mask = 2147483649
 script = ExtResource( 12 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Maze/Doors/Left/Area2D"]
-shape = SubResource( 29 )
+shape = SubResource( 10 )
 
 [node name="Door" type="Node2D" parent="Maze/Doors/Left"]
 visible = false
 
 [node name="TileMap" type="TileMap" parent="Maze/Doors/Left/Door"]
 scale = Vector2( 4, 4 )
-tile_set = SubResource( 28 )
+tile_set = SubResource( 9 )
 cell_size = Vector2( 16, 16 )
 cell_quadrant_size = 64
 collision_layer = 32
@@ -556,7 +556,7 @@ __meta__ = {
 }
 
 [node name="TileMap2" type="TileMap" parent="Maze/Doors/Left/Door/TileMap"]
-tile_set = SubResource( 28 )
+tile_set = SubResource( 9 )
 cell_size = Vector2( 16, 16 )
 cell_quadrant_size = 64
 collision_layer = 32
@@ -572,7 +572,7 @@ visible = false
 
 [node name="TileMap" type="TileMap" parent="Maze/Doors/Left/Empty"]
 scale = Vector2( 4, 4 )
-tile_set = SubResource( 28 )
+tile_set = SubResource( 9 )
 cell_size = Vector2( 16, 16 )
 cell_quadrant_size = 64
 collision_layer = 32
@@ -592,7 +592,7 @@ collision_layer = 2
 script = ExtResource( 12 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Maze/Doors/Right/Area2D"]
-shape = SubResource( 29 )
+shape = SubResource( 10 )
 __meta__ = {
 "_editor_description_": ""
 }
@@ -602,7 +602,7 @@ visible = false
 
 [node name="TileMap3" type="TileMap" parent="Maze/Doors/Right/Door"]
 scale = Vector2( 4, 4 )
-tile_set = SubResource( 28 )
+tile_set = SubResource( 9 )
 cell_size = Vector2( 16, 16 )
 cell_quadrant_size = 64
 collision_layer = 32
@@ -614,7 +614,7 @@ __meta__ = {
 }
 
 [node name="TileMap" type="TileMap" parent="Maze/Doors/Right/Door/TileMap3"]
-tile_set = SubResource( 28 )
+tile_set = SubResource( 9 )
 cell_size = Vector2( 16, 16 )
 cell_quadrant_size = 64
 collision_layer = 32
@@ -630,7 +630,7 @@ visible = false
 
 [node name="TileMap" type="TileMap" parent="Maze/Doors/Right/Empty"]
 scale = Vector2( 4, 4 )
-tile_set = SubResource( 28 )
+tile_set = SubResource( 9 )
 cell_size = Vector2( 16, 16 )
 cell_quadrant_size = 64
 collision_layer = 32
@@ -650,13 +650,13 @@ collision_layer = 2
 script = ExtResource( 12 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Maze/Doors/Up/Area2D"]
-shape = SubResource( 30 )
+shape = SubResource( 11 )
 
 [node name="Door" type="Node2D" parent="Maze/Doors/Up"]
 
 [node name="TileMap" type="TileMap" parent="Maze/Doors/Up/Door"]
 scale = Vector2( 4, 4 )
-tile_set = SubResource( 28 )
+tile_set = SubResource( 9 )
 cell_size = Vector2( 16, 16 )
 cell_quadrant_size = 64
 collision_layer = 32
@@ -668,7 +668,7 @@ __meta__ = {
 
 [node name="TileMap2" type="TileMap" parent="Maze/Doors/Up/Door"]
 scale = Vector2( 4, 4 )
-tile_set = SubResource( 28 )
+tile_set = SubResource( 9 )
 cell_size = Vector2( 16, 16 )
 cell_quadrant_size = 64
 collision_layer = 32
@@ -683,7 +683,7 @@ visible = false
 
 [node name="TileMap" type="TileMap" parent="Maze/Doors/Up/Empty"]
 scale = Vector2( 4, 4 )
-tile_set = SubResource( 28 )
+tile_set = SubResource( 9 )
 cell_size = Vector2( 16, 16 )
 cell_quadrant_size = 64
 collision_layer = 32
@@ -703,14 +703,14 @@ collision_layer = 2
 script = ExtResource( 12 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Maze/Doors/Down/Area2D"]
-shape = SubResource( 30 )
+shape = SubResource( 11 )
 
 [node name="Door" type="Node2D" parent="Maze/Doors/Down"]
 visible = false
 
 [node name="TileMap" type="TileMap" parent="Maze/Doors/Down/Door"]
 scale = Vector2( 4, 4 )
-tile_set = SubResource( 28 )
+tile_set = SubResource( 9 )
 cell_size = Vector2( 16, 16 )
 cell_quadrant_size = 64
 collision_layer = 32
@@ -722,7 +722,7 @@ __meta__ = {
 
 [node name="TileMap2" type="TileMap" parent="Maze/Doors/Down/Door"]
 scale = Vector2( 4, 4 )
-tile_set = SubResource( 28 )
+tile_set = SubResource( 9 )
 cell_size = Vector2( 16, 16 )
 cell_quadrant_size = 64
 collision_layer = 32
@@ -738,7 +738,7 @@ visible = false
 [node name="TileMap" type="TileMap" parent="Maze/Doors/Down/Empty"]
 scale = Vector2( 4, 4 )
 z_index = -1
-tile_set = SubResource( 28 )
+tile_set = SubResource( 9 )
 cell_size = Vector2( 16, 16 )
 cell_quadrant_size = 64
 collision_layer = 32
