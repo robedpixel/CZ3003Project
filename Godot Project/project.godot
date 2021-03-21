@@ -8,12 +8,7 @@
 
 config_version=4
 
-_global_script_classes=[ {
-"base": "Node",
-"class": "BookHelper",
-"language": "GDScript",
-"path": "res://Scripts/BookHelper.gd"
-}, {
+_global_script_classes=[{
 "base": "Node",
 "class": "CombatQuestion",
 "language": "GDScript",
@@ -30,7 +25,6 @@ _global_script_classes=[ {
 "path": "res://Scripts/Character/CharacterStats.gd"
 } ]
 _global_script_class_icons={
-"BookHelper": "",
 "CombatQuestion": "",
 "QuestionManager": "",
 "characterStats": ""
