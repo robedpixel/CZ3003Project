@@ -90,7 +90,7 @@ func save_document(path: String, fields: Dictionary, http: HTTPRequest) -> void:
 
 func get_world_leaderboard_data(world: int, http: HTTPRequest) -> void:
 	id_token = FirebaseAuth._get_current_token_id()
-	var path = "leaderboard/World "+str(world)+ ".json"
+	var path = "student-analytics/World "+str(world)+ ".json"
 	var url = FIRESTORE_URL + path + "?auth=%s" % id_token
 	print(http.request(url, FirebaseAuth._get_request_headers(), false, HTTPClient.METHOD_GET))
 

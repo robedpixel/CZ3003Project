@@ -4,7 +4,7 @@ onready var http : HTTPRequest = $HTTPRequest
 
 var handler
 var data_from_db
-var path_to_main_menu_teacher =  "res://Scenes/Menu Scenes/Main_Menu_teacher/MainMenuTeacher.tscn";
+var path_to_main_menu_teacher = "res://Scenes/Menu Scenes/Main_Menu_teacher/MainMenuTeacher.tscn";
 var wSelected = 0;# 1 = world 1, 2 = world 2
 var studsScoreData = {
 }
@@ -85,6 +85,5 @@ func _on_HTTPRequest_request_completed(result, response_code, headers, body):
 			data_from_db = result_body
 			process_db_data()
 			show_summary_report()
-			#show_sorted_leaderboard()
 			return
 	print("some other error")
