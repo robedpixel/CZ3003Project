@@ -3,13 +3,9 @@
 [ext_resource path="res://Scenes/Game_Over/Game_Over.gd" type="Script" id=1]
 [ext_resource path="res://Resources/fonts/arcade_48.tres" type="DynamicFont" id=2]
 
-[node name="Control" type="Control"]
-anchor_right = 1.0
-anchor_bottom = 1.0
+[node name="Control" type="CanvasLayer"]
+layer = 4
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 margin_right = 1073.0

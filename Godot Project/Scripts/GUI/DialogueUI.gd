@@ -27,6 +27,10 @@ func _showPortrait(show):
 		playerPortrait.visible = false
 		enemyPortrait.visible = false
 	
+func _showPlayerPortrait(portrait):
+	playerPortrait.visible = true
+	playerPortrait.set_texture(portrait)
+
 func _setMonsterPortrait(monster):
 	enemyPortrait.visible = true
 	

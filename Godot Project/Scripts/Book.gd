@@ -44,7 +44,7 @@ var world2dir = ["res://Resources/images/World2GuideBook/1.jpg", "res://Resource
 ,"res://Resources/images/World2GuideBook/58.jpg","res://Resources/images/World2GuideBook/59.jpg"
 ]
 
-
+var isOpen : bool = false
 
 var defaultPage = 1
 
@@ -65,6 +65,14 @@ func displaySlide(no):
 		get_node("Popup/ScrollContainer/RichTextLabel").add_image(t,600,400)
 		pass
 
+func _open():
+	if(isOpen):
+		return
+		
+	isOpen = true
+	get_node("Popup").popup()
+	get_node("Popup/PageNumber").text = str(defaultPage) + " / " + str(world2dir.size())
+	displaySlide(defaultPage-1)
 
 func _on_ToolButton_pressed():
 	get_node("Popup").popup()
@@ -86,3 +94,10 @@ func _on_NextPageButton_pressed():
 		get_node("Popup/PageNumber").text = str(defaultPage) + " / " + str(world2dir.size())
 		get_node("Popup/ScrollContainer/RichTextLabel").text = ""
 		displaySlide(defaultPage-1)
+
+
+func _on_Popup_popup_hide():
+	isOpen = false
+	var player = get_node("/root/Main/Player")
+	if(player):
+		player._lockCharacter(false)

@@ -3,12 +3,15 @@ extends Node
 var world_num = null
 var maze_creator_map = null
 var topic_selected = null
-var charSelected = 1
+var charSelected = 0
+var score = 0
 
 enum ItemEnum {ITEM_NULL, ITEM_HEALTHPOT, ITEM_SCROLL}
 
 enum RoomEnum {VOID_ROOM, CHALLENGE_ROOM_EASY, CHALLENGE_ROOM_MED, CHALLENGE_ROOM_HARD,
 BOSS_ROOM, SHOP_ROOM, STARTING_ROOM, EMPTY_ROOM, MAX_ROOM_ENUM}
+
+enum TopicEnum {TOPIC_1, TOPIC_2, CUSTOM_TOPIC, MAX_TOPIC_ENUM}
 
 var monsterDifficultyRewardModifier = {
 	"EASY" : 1.5,
