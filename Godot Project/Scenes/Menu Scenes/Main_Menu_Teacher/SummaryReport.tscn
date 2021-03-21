@@ -23,7 +23,8 @@ __meta__ = {
 }
 
 [node name="Background" type="Sprite" parent="."]
-position = Vector2( 641.058, 354.737 )
+position = Vector2( 644.3, 350.719 )
+scale = Vector2( 1.02303, 1.04446 )
 texture = ExtResource( 7 )
 
 [node name="GR_gobackBtn" type="Button" parent="."]
@@ -79,13 +80,14 @@ align = 1
 margin_top = 45.0
 margin_right = 878.0
 margin_bottom = 95.0
+custom_constants/separation = 20
 alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="GR_selectW1Btn" type="Button" parent="VBoxContainer/HBoxContainer"]
-margin_right = 437.0
+margin_right = 429.0
 margin_bottom = 50.0
 size_flags_horizontal = 3
 custom_styles/hover = ExtResource( 5 )
@@ -101,7 +103,7 @@ __meta__ = {
 }
 
 [node name="GR_selectW2Btn" type="Button" parent="VBoxContainer/HBoxContainer"]
-margin_left = 441.0
+margin_left = 449.0
 margin_right = 878.0
 margin_bottom = 50.0
 size_flags_horizontal = 3
