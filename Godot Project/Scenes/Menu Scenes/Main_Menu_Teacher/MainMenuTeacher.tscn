@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Resources/Main GUI Images/Title/mm_title.png" type="Texture" id=1]
 [ext_resource path="res://Resources/Main GUI Images/BG/bg1_maroon.png" type="Texture" id=2]
@@ -7,6 +7,9 @@
 [ext_resource path="res://Resources/Button Styles/main_menu_button_normal.tres" type="StyleBox" id=5]
 [ext_resource path="res://Resources/Button Styles/main_menu_button_hover.tres" type="StyleBox" id=6]
 [ext_resource path="res://Resources/Button Styles/main_menu_button_pressed.tres" type="StyleBox" id=7]
+[ext_resource path="res://Resources/Logout Button Image/logout_button_pressed.png" type="Texture" id=8]
+[ext_resource path="res://Resources/Logout Button Image/logout_button_normal.png" type="Texture" id=9]
+[ext_resource path="res://Resources/Logout Button Image/logout_button_hover.png" type="Texture" id=10]
 
 [node name="Main Menu Teacher" type="Control"]
 anchor_right = 1.0
@@ -80,5 +83,21 @@ custom_colors/font_color = Color( 1, 0.662745, 0.635294, 1 )
 custom_colors/font_color_hover = Color( 0.4, 0.0156863, 0.0156863, 1 )
 custom_colors/font_color_pressed = Color( 1, 0.662745, 0.635294, 1 )
 text = "Detailed  report"
+
+[node name="LogoutButton" type="TextureButton" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -107.385
+margin_top = 12.7279
+margin_right = -18.3848
+margin_bottom = 80.7279
+texture_normal = ExtResource( 9 )
+texture_pressed = ExtResource( 8 )
+texture_hover = ExtResource( 10 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="pressed" from="MainMenuVericalContainer/Buttons/Button" to="." method="_on_Button_pressed"]
 [connection signal="pressed" from="MainMenuVericalContainer/Buttons/Button2" to="." method="_on_Button2_pressed"]
+[connection signal="pressed" from="LogoutButton" to="." method="_on_LogoutButton_pressed"]
