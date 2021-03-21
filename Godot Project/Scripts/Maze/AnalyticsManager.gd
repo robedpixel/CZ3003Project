@@ -57,3 +57,15 @@ func _on_CombatManager_victory_signal(value, difficulty):
 	
 	if(prevDifficulty != nextDifficulty):
 		get_node("/root/Main/Maze")._difficultyChange(prevDifficulty, nextDifficulty)
+
+	
+func _resetAnalytics():
+	AnalyticVariables["easy"]["correct"] += 1
+	AnalyticVariables["easy"]["wrong"] += 1
+	
+	AnalyticVariables["medium"]["correct"] += 1
+	AnalyticVariables["medium"]["wrong"] += 1
+	
+	AnalyticVariables["hard"]["correct"] += 1
+	AnalyticVariables["hard"]["wrong"] += 1
+	

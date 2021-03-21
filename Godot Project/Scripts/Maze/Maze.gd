@@ -11,6 +11,7 @@ onready var effectManager = get_node("../EffectManager")
 onready var dialogueUI = get_node("/root/Main/DialogueCanvas/DialogueUI")
 onready var dialogue = get_node("/root/Main/DialogueCanvas/DialogueUI/DialogueBox")
 onready var mainUI = get_node("/root/Main/MainCanvas")
+onready var analytics = get_node("../AnalyticsManager")
 
 # door
 onready var leftDoor = $Doors/Left
@@ -86,6 +87,8 @@ func _initializeMaze():
 		player._initPlayer(30, 999, 99999, charSelected)
 	else:
 		player._initPlayer(class_data.health, class_data.multiplier, 0, charSelected)
+	
+	analytics._resetAnalytics()
 	
 	mazeDesign._generateMaze(5, 5)
 	
