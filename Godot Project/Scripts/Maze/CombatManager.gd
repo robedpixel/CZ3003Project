@@ -14,7 +14,7 @@ var correctAnswer = 1
 
 signal combat_signal(value)
 signal victory_signal(value, roomDifficulty)
-signal gameover_signal
+signal gameover_signal(value)
 
 var currentMonster
 var isBoss : bool = false
@@ -131,7 +131,7 @@ func _onAnswer(ansValue):
 		print("Wrong answer")
 		player._takeDamage(1)
 		if(player.health <= 0):
-			emit_signal("gameover_signal")
+			emit_signal("gameover_signal", false)
 			return
 		if(!isBoss):
 			emit_signal("victory_signal", false, currentMonster.difficulty)
@@ -146,11 +146,15 @@ func _onAlive(entity):
 func _onDeath(entity):
 	currentMonster._deathAnim()
 	combatUI._showDialogue(false);
+		
 	
 func _monsterDeathAnimEnd():
 	combatUI._showDialogue(false)
 	emit_signal("victory_signal", true, currentMonster.difficulty)
 	_exitCombat()
+	
+	if(isBoss):
+		emit_signal("gameover_signal", true)
 
 func _onTransitionShowStart():
 	

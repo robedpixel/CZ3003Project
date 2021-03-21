@@ -10,6 +10,7 @@ onready var transition = get_node("../Transition")
 onready var effectManager = get_node("../EffectManager")
 onready var dialogueUI = get_node("/root/Main/DialogueCanvas/DialogueUI")
 onready var dialogue = get_node("/root/Main/DialogueCanvas/DialogueUI/DialogueBox")
+onready var mainUI = get_node("/root/Main/MainCanvas")
 
 # door
 onready var leftDoor = $Doors/Left
@@ -65,7 +66,7 @@ func _initializeMaze():
 	cmbtManager._initTopic(topic)
 	
 	var charSelected = GlobalVariables.charSelected
-	charSelected = 0
+	#charSelected = 0
 	var health = 0
 	var attack = 0
 	var coins = 0
@@ -365,3 +366,13 @@ func _difficultyChange(prevDifficulty, newDifficulty):
 	dialogue._displayDialogueClosable(difficultyChangeTxt)
 	
 	minDifficulty = newDifficulty
+
+
+func _on_CombatManager_gameover_signal(value):
+	
+	player._lockCharacter(true)
+	
+	var gameOver = load("res://Scenes/Game_Over/Game_Over.tscn").instance()
+	gameOver._saveScore(player.coins)
+	mainUI.add_child(gameOver)
+	
