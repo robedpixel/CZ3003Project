@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Scripts/GUI/BackToMainMenu.gd" type="Script" id=1]
 [ext_resource path="res://Resources/fonts/arcade_48.tres" type="DynamicFont" id=2]
@@ -9,6 +9,15 @@
 [ext_resource path="res://Resources/fonts/chary_28_dialog_title.tres" type="DynamicFont" id=7]
 [ext_resource path="res://Resources/fonts/arcade_34_SW_Buttons.tres" type="DynamicFont" id=8]
 [ext_resource path="res://Scripts/GUI/DecodeMaze.gd" type="Script" id=9]
+[ext_resource path="res://Resources/Main GUI Images/BG/bg1_maroon.png" type="Texture" id=10]
+[ext_resource path="res://Resources/Button Styles/main_menu_button_pressed.tres" type="StyleBox" id=11]
+[ext_resource path="res://Resources/Button Styles/main_menu_button_normal.tres" type="StyleBox" id=12]
+[ext_resource path="res://Resources/Button Styles/main_menu_button_hover.tres" type="StyleBox" id=13]
+[ext_resource path="res://Resources/Button Styles/window_dialog_normal.tres" type="StyleBox" id=14]
+[ext_resource path="res://Resources/Button Styles/window_dialog_pressed.tres" type="StyleBox" id=15]
+[ext_resource path="res://Resources/Button Styles/window_dialog_hover.tres" type="StyleBox" id=16]
+[ext_resource path="res://Resources/window_dialog_maroon.tres" type="StyleBox" id=17]
+[ext_resource path="res://Resources/LineEdit Styles/line_edit_normal.tres" type="StyleBox" id=18]
 
 [node name="SelectWorldScene" type="Control"]
 margin_left = 1.33484
@@ -20,6 +29,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Background" type="Sprite" parent="."]
+position = Vector2( 649.8, 431.249 )
+scale = Vector2( 1.35367, 1.29755 )
+texture = ExtResource( 10 )
+
 [node name="Page title" type="Label" parent="."]
 anchor_left = 0.5
 anchor_right = 0.5
@@ -28,17 +42,24 @@ margin_top = 23.622
 margin_right = 471.0
 margin_bottom = 73.622
 custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 1, 0.662745, 0.635294, 1 )
 text = "SELECT  A   WORLD  TO  BEGIN  YOUR  ADVENTURE"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="SWBackButton" type="Button" parent="."]
-margin_left = 1055.0
+margin_left = 1053.5
 margin_top = 640.0
-margin_right = 1248.0
+margin_right = 1246.5
 margin_bottom = 696.0
+custom_styles/hover = ExtResource( 13 )
+custom_styles/pressed = ExtResource( 11 )
+custom_styles/normal = ExtResource( 12 )
 custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 1, 0.662745, 0.635294, 1 )
+custom_colors/font_color_hover = Color( 0.4, 0.0156863, 0.0156863, 1 )
+custom_colors/font_color_pressed = Color( 1, 0.662745, 0.635294, 1 )
 text = "back"
 script = ExtResource( 1 )
 __meta__ = {
@@ -61,7 +82,7 @@ __meta__ = {
 }
 
 [node name="World1_Container" type="VBoxContainer" parent="WorldContainer"]
-margin_right = 382.0
+margin_right = 423.0
 margin_bottom = 495.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -71,27 +92,34 @@ __meta__ = {
 }
 
 [node name="sample_map" type="TextureRect" parent="WorldContainer/World1_Container"]
-margin_right = 382.0
-margin_bottom = 434.0
+margin_right = 423.0
+margin_bottom = 431.0
 size_flags_vertical = 3
 texture = ExtResource( 4 )
 expand = true
 
 [node name="World1Button2" type="Button" parent="WorldContainer/World1_Container"]
-margin_top = 454.0
-margin_right = 382.0
+light_mask = -2147483647
+margin_top = 451.0
+margin_right = 423.0
 margin_bottom = 495.0
 size_flags_horizontal = 5
+custom_styles/hover = ExtResource( 13 )
+custom_styles/pressed = ExtResource( 11 )
+custom_styles/normal = ExtResource( 12 )
 custom_fonts/font = ExtResource( 8 )
-text = "Requirement Analysis"
+custom_colors/font_color = Color( 1, 0.662745, 0.635294, 1 )
+custom_colors/font_color_hover = Color( 0.4, 0.0156863, 0.0156863, 1 )
+custom_colors/font_color_pressed = Color( 1, 0.662745, 0.635294, 1 )
+text = " Requirement Analysis "
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="World2_Container" type="VBoxContainer" parent="WorldContainer"]
-margin_left = 402.0
-margin_right = 817.0
+margin_left = 443.0
+margin_right = 896.0
 margin_bottom = 495.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -101,18 +129,24 @@ __meta__ = {
 }
 
 [node name="sample_map2" type="TextureRect" parent="WorldContainer/World2_Container"]
-margin_right = 415.0
-margin_bottom = 434.0
+margin_right = 453.0
+margin_bottom = 431.0
 size_flags_vertical = 3
 texture = ExtResource( 4 )
 expand = true
 
 [node name="World2Button" type="Button" parent="WorldContainer/World2_Container"]
-margin_top = 454.0
-margin_right = 415.0
+margin_top = 451.0
+margin_right = 453.0
 margin_bottom = 495.0
 size_flags_horizontal = 7
+custom_styles/hover = ExtResource( 13 )
+custom_styles/pressed = ExtResource( 11 )
+custom_styles/normal = ExtResource( 12 )
 custom_fonts/font = ExtResource( 8 )
+custom_colors/font_color = Color( 1, 0.662745, 0.635294, 1 )
+custom_colors/font_color_hover = Color( 0.4, 0.0156863, 0.0156863, 1 )
+custom_colors/font_color_pressed = Color( 1, 0.662745, 0.635294, 1 )
 text = "Requirement Elicitaion"
 script = ExtResource( 3 )
 __meta__ = {
@@ -120,7 +154,7 @@ __meta__ = {
 }
 
 [node name="FriendMaze_Container" type="VBoxContainer" parent="WorldContainer"]
-margin_left = 837.0
+margin_left = 916.0
 margin_right = 1219.0
 margin_bottom = 495.0
 size_flags_horizontal = 3
@@ -131,19 +165,25 @@ __meta__ = {
 }
 
 [node name="sample_map3" type="TextureRect" parent="WorldContainer/FriendMaze_Container"]
-margin_right = 382.0
-margin_bottom = 434.0
+margin_right = 303.0
+margin_bottom = 431.0
 size_flags_vertical = 3
 texture = ExtResource( 4 )
 expand = true
 
 [node name="FriendMaze" type="Button" parent="WorldContainer/FriendMaze_Container"]
-margin_top = 454.0
-margin_right = 382.0
+margin_top = 451.0
+margin_right = 303.0
 margin_bottom = 495.0
 size_flags_horizontal = 7
+custom_styles/hover = ExtResource( 13 )
+custom_styles/pressed = ExtResource( 11 )
+custom_styles/normal = ExtResource( 12 )
 custom_fonts/font = ExtResource( 8 )
-text = "Friends Maze"
+custom_colors/font_color = Color( 1, 0.662745, 0.635294, 1 )
+custom_colors/font_color_hover = Color( 0.4, 0.0156863, 0.0156863, 1 )
+custom_colors/font_color_pressed = Color( 1, 0.662745, 0.635294, 1 )
+text = "Custom    Maze"
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -164,10 +204,20 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Panel" type="Panel" parent="WindowDialog"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/panel = ExtResource( 17 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="VBoxContainer" type="VBoxContainer" parent="WindowDialog"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_bottom = -10.0
+margin_left = 10.0
+margin_right = -11.9951
+margin_bottom = -14.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 10
@@ -176,11 +226,12 @@ __meta__ = {
 }
 
 [node name="PopupLabel" type="Label" parent="WindowDialog/VBoxContainer"]
-margin_top = 106.0
-margin_right = 649.0
-margin_bottom = 146.0
+margin_top = 103.0
+margin_right = 628.0
+margin_bottom = 143.0
 size_flags_vertical = 6
 custom_fonts/font = ExtResource( 5 )
+custom_colors/font_color = Color( 1, 0.662745, 0.635294, 1 )
 align = 1
 valign = 1
 autowrap = true
@@ -189,38 +240,54 @@ __meta__ = {
 }
 
 [node name="UserCode" type="LineEdit" parent="WindowDialog/VBoxContainer"]
-margin_top = 262.0
-margin_right = 649.0
-margin_bottom = 312.0
+margin_top = 257.0
+margin_right = 628.0
+margin_bottom = 307.0
 rect_min_size = Vector2( 600, 50 )
+custom_styles/normal = ExtResource( 18 )
 custom_fonts/font = ExtResource( 5 )
+custom_colors/selection_color = Color( 1, 0.623529, 0.623529, 1 )
+custom_colors/font_color_selected = Color( 0.290196, 0.0196078, 0.0196078, 0.996078 )
+custom_colors/font_color = Color( 1, 0.623529, 0.623529, 1 )
 align = 1
 max_length = 18
 clear_button_enabled = true
 placeholder_text = "ENTER CODE HERE"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="WindowDialog/VBoxContainer"]
-margin_top = 322.0
-margin_right = 649.0
-margin_bottom = 369.0
+margin_top = 317.0
+margin_right = 628.0
+margin_bottom = 366.0
 size_flags_horizontal = 3
 custom_constants/separation = 10
 alignment = 1
 
 [node name="SWAlertCancelButton" type="Button" parent="WindowDialog/VBoxContainer/HBoxContainer"]
-margin_right = 319.0
-margin_bottom = 47.0
+margin_right = 309.0
+margin_bottom = 49.0
 size_flags_horizontal = 3
+custom_styles/hover = ExtResource( 16 )
+custom_styles/pressed = ExtResource( 15 )
+custom_styles/normal = ExtResource( 14 )
 custom_fonts/font = ExtResource( 6 )
+custom_colors/font_color = Color( 1, 0.662745, 0.635294, 1 )
+custom_colors/font_color_hover = Color( 0.313726, 0.0470588, 0.156863, 1 )
+custom_colors/font_color_pressed = Color( 0.25098, 0.14902, 0.0313726, 1 )
 text = "CANCEL"
 script = ExtResource( 9 )
 
 [node name="ConfirmButton" type="Button" parent="WindowDialog/VBoxContainer/HBoxContainer"]
-margin_left = 329.0
-margin_right = 649.0
-margin_bottom = 47.0
+margin_left = 319.0
+margin_right = 628.0
+margin_bottom = 49.0
 size_flags_horizontal = 3
+custom_styles/hover = ExtResource( 16 )
+custom_styles/pressed = ExtResource( 15 )
+custom_styles/normal = ExtResource( 14 )
 custom_fonts/font = ExtResource( 6 )
+custom_colors/font_color = Color( 1, 0.662745, 0.635294, 1 )
+custom_colors/font_color_hover = Color( 0.313726, 0.0470588, 0.156863, 1 )
+custom_colors/font_color_pressed = Color( 0.25098, 0.14902, 0.0313726, 1 )
 text = "confirm"
 script = ExtResource( 9 )
 [connection signal="pressed" from="SWBackButton" to="SWBackButton" method="_on_SWBackButton_pressed"]
