@@ -7,5 +7,5 @@
 script = ExtResource( 1 )
 characterType = "Thief"
 health = 2
-multiplier = 2.5
+multiplier = 3.0
 profile = ExtResource( 2 )
