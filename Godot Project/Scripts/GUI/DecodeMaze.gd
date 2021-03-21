@@ -234,7 +234,7 @@ func create_maze(decoded_code_1, decoded_code_2, decoded_code_3):
 func add_decoded_code_to_1d_array(decoded_code, array_to_add):
 	if(len(decoded_code)==DECODED_CODE_3_MAX_LENGTH):
 		for x in len(decoded_code):
-			if(x==(len(decoded_code)-1)): topic_selected = decoded_code[x] #set topic 
+			if(x==(len(decoded_code)-1)): topic_selected = int(decoded_code[x]) #set topic 
 			else: array_to_add.append(decoded_code[x])
 	else:
 		for x in len(decoded_code): array_to_add.append(decoded_code[x])
