@@ -10,6 +10,7 @@ onready var healthUI = get_node("../MainCanvas/Hearts")
 onready var coinUI = get_node("../MainCanvas/MainUI/CoinsUI")
 onready var itemUI = get_node("../MainCanvas/MainUI/ItemUI/ItemUIBG/Item")
 onready var transition = get_node("../Transition")
+onready var dialogueManager = get_node("/root/Main/DialogueCanvas")
 
 var velocity = Vector2()
 onready var playerSprite = $PlayerSprite
@@ -20,6 +21,9 @@ var interactObjList = []
 var movingRight = false
 var right = false
 var isMoving : bool = false
+var lockFrame : bool = false
+
+var idleAnimSpeed = 0.3
 
 # throw all the stats here, 
 var maxHealth = 0
@@ -29,6 +33,8 @@ var attack = 1
 
 var inventory = []
 var currentInventoryIndex = 0
+
+var portrait
 
 #signals
 signal coin_change_signal(value)
@@ -40,13 +46,34 @@ func _ready():
 	_showItem()
 	connect("player_hurt_signal", transition, "_hurtFlash")
 
-func _initPlayer(startingHealth, startingCoins):
+func _initPlayer(startingHealth, startingAttack, startingCoins, charType):
 	_initHealth(startingHealth)
 	_setCoins(startingCoins)
+	attack = startingAttack
+	
+	match charType:
+		0:
+			portrait = load("res://Resources/images/Character/Drawing/character3.png")
+			playerSprite.set_sprite_frames(load("res://Scenes/Prefabs/player_warrior.tres"))
+			idleAnimSpeed = 0
+		1:
+			portrait = load("res://Resources/images/Character/Drawing/character2.png")
+			playerSprite.set_sprite_frames(load("res://Scenes/Prefabs/player_average.tres"))
+			idleAnimSpeed = 0
+		2:
+			portrait = load("res://Resources/images/Character/Drawing/character1.png")
+			playerSprite.set_sprite_frames(load("res://Scenes/Prefabs/player_thief.tres"))
+			idleAnimSpeed = 0.3
+		_:
+			pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if(lock):
+		return
+	
+	if(lockFrame):
+		lockFrame = false
 		return
 	
 	if Input.is_action_just_pressed('interact'):
@@ -70,9 +97,11 @@ func _process(delta):
 #		right = false
 
 func _processAnimation():
-	if(!isMoving):
+	if(!isMoving or lockFrame):
 #		playerSprite.playing = false
-		playerSprite.speed_scale = 0.3
+		playerSprite.speed_scale = idleAnimSpeed
+		if(idleAnimSpeed == 0):
+			playerSprite.frame = 0
 		return
 	else:
 		playerSprite.playing = true
@@ -88,6 +117,10 @@ func _processAnimation():
 		playerSprite.play("up")
 
 func get_input():
+	if(lock):
+		return
+	
+	
 	velocity = Vector2()
 	if Input.is_action_pressed('right'):
 		velocity = Vector2(1, 0)
@@ -133,24 +166,15 @@ func _interact():
 		var interactObj = interactObjList[interactObjList.size() - 1]
 		print("interacting with " + interactObj.name)
 		
-		interactObj._interact(self)
+		var result = interactObj._interact(self)
 		
-		#if('Door' in interactObj):
-			#mazeManager._moveRoom(interactObj.name)
-		#elif('Monster' in interactObj):
-			#cmbtManager._enterCombat()
-		#elif('ShopItem' in interactObj):
-			
-		
-		#var interactObjType = get_node("../Interactables/" + interactObjName).get_meta("type")
-		#print(interactObjType)
-		# lazy, lets just do a switch here
-		# godot no switch, use match
-#		match interactObjType:
-#			"monster":
-#				cmbtManager._enterCombat()
-#			"door":
-#				mazeManager._moveRoom(interactObjName)
+		if(result != ""):
+			lock = true
+			dialogueManager._dialoguePlayer(portrait, result, true)
+			#dialogueUI._showDialogueBox(true)
+			#dialogueUI._showPortrait(true)
+			#dialogueUI._showPlayerPortrait(portrait)
+			#dialogue._displayDialogueClosable(result)
 
 func _disableAndHide():
 	set_process(false)
@@ -209,6 +233,7 @@ func _getCoins():
 func _nextItem():
 	if(inventory.size() <= 0):
 		itemUI._setItem(GlobalVariables.ItemEnum.ITEM_NULL)
+		currentInventoryIndex = 0
 		return
 	
 	currentInventoryIndex += 1
@@ -225,6 +250,7 @@ func _showItem():
 func _useItem():
 	if(inventory.size() <= 0):
 		print("No items to use")
+		currentInventoryIndex = 0
 		return
 	
 	var item = inventory[currentInventoryIndex]
@@ -243,9 +269,11 @@ func _useItem():
 	
 func _addItem(itemType):
 	inventory.append(itemType)
+	_showItem()
 	
 func _lockCharacter(lock):
 	self.lock = lock
+	lockFrame = true
 	
 	
 	

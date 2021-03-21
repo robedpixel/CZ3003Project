@@ -6,7 +6,7 @@ func _ready():
 	pass
 
 func update_question_correct(room_type: int):
-	var adjustment
+	var adjustment = 0
 	match room_type:
 		1:
 			AnalyticVariables["easy"]["correct"] += 1
@@ -21,7 +21,7 @@ func update_question_correct(room_type: int):
 	
 	
 func update_question_wrong(room_type: int):
-	var adjustment
+	var adjustment = 0
 	match room_type:
 		1:
 			AnalyticVariables["easy"]["wrong"] += 1
@@ -44,3 +44,16 @@ func get_next_difficulty():
 		return GlobalVariables.RoomEnum.CHALLENGE_ROOM_MED
 	else:
 		return GlobalVariables.RoomEnum.CHALLENGE_ROOM_HARD
+
+# connected via signal
+func _on_CombatManager_victory_signal(value, difficulty):
+	#print("Analytics " + str(difficulty))
+	var prevDifficulty = get_next_difficulty()
+	if(value):
+		update_question_correct(difficulty)
+	else:
+		update_question_wrong(difficulty)
+	var nextDifficulty = get_next_difficulty()
+	
+	if(prevDifficulty != nextDifficulty):
+		get_node("/root/Main/Maze")._difficultyChange(prevDifficulty, nextDifficulty)

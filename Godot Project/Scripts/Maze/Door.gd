@@ -22,6 +22,9 @@ func _ready():
 func _interact(player):
 	if(!locked):
 		maze._moveRoom(direction)
+		return ""
+	else:
+		return "Door is locked"
 
 func _setLocked(isLocked):
 	locked = isLocked

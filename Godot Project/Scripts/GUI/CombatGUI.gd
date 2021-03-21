@@ -7,9 +7,7 @@ extends Control
 
 onready var cmbtManager = get_node('/root/Main/CombatManager')
 
-onready var dialogueUI = get_node("/root/Main/DialogueCanvas/DialogueUI")
-
-onready var dialogue = get_node("/root/Main/DialogueCanvas/DialogueUI/DialogueBox")
+onready var dialogueManager = get_node("/root/Main/DialogueCanvas")
 
 onready var background = $BG
 
@@ -78,8 +76,9 @@ func _displayQn():
 	currentQnTxt = ""
 	txtIndex = 0
 	#displayQn = true
-	dialogueUI._showDialogueBox(true)
-	dialogue._displayDialogue(combatQuestion.question)
+	#dialogueUI._showDialogueBox(true)
+	#dialogue._displayDialogue(combatQuestion.question)
+	dialogueManager._dialogueNoPortraitPic(combatQuestion.question, false)
 	_hideAnswers()
 
 func _displayAnswers():
@@ -101,8 +100,8 @@ func _on_Button_pressed(index):
 func _onDialogueTextEnd():
 	_displayAnswers()
 	
-func _showPortrait(show):
-	dialogueUI._showPortrait(show)
+func _showDialogue(show):
+	dialogueManager._show(show)
 	
 func _weaponSlashAnimation(monsterPosition):
 	var weaponSlashInstance = weaponSlash.instance()
