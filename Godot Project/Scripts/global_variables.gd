@@ -2,9 +2,11 @@ extends Node
 
 var world_num = null
 var maze_creator_map = null
+var bool_custom_maze = false
 var topic_selected = null
 var charSelected = 0
 var score = 0
+
 
 enum ItemEnum {ITEM_NULL, ITEM_HEALTHPOT, ITEM_SCROLL}
 

@@ -1,6 +1,13 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scripts/Book.gd" type="Script" id=1]
+[ext_resource path="res://Resources/fonts/chary_40.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Resources/window_dialog_maroon.tres" type="StyleBox" id=3]
+[ext_resource path="res://Resources/fonts/chary_24_GuideBook.tres" type="DynamicFont" id=4]
+[ext_resource path="res://Resources/fonts/chary_28_dialog_title.tres" type="DynamicFont" id=5]
+[ext_resource path="res://Resources/Button Styles/main_menu_button_hover.tres" type="StyleBox" id=6]
+[ext_resource path="res://Resources/Button Styles/main_menu_button_normal.tres" type="StyleBox" id=7]
+[ext_resource path="res://Resources/Button Styles/main_menu_button_pressed.tres" type="StyleBox" id=8]
 
 [node name="GuideBook" type="Node2D"]
 script = ExtResource( 1 )
@@ -11,22 +18,31 @@ margin_left = 199.58
 margin_top = 109.927
 margin_right = 945.58
 margin_bottom = 565.927
-window_title = "World 1 Guide Book"
+custom_fonts/title_font = ExtResource( 5 )
+window_title = "GUIDE BOOK"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="Popup"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/panel = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Popup"]
-margin_left = 25.0
+margin_left = 17.0
 margin_top = 12.0
-margin_right = 681.0
+margin_right = 731.0
 margin_bottom = 400.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Popup/ScrollContainer"]
-margin_right = 656.0
+margin_right = 714.0
 margin_bottom = 388.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -35,31 +51,50 @@ __meta__ = {
 }
 
 [node name="PreviousPageButton" type="ToolButton" parent="Popup"]
-margin_left = 273.216
-margin_top = 413.158
-margin_right = 317.216
-margin_bottom = 435.158
+margin_left = 89.1605
+margin_top = 410.0
+margin_right = 150.16
+margin_bottom = 444.0
+custom_styles/hover = ExtResource( 6 )
+custom_styles/pressed = ExtResource( 8 )
+custom_styles/normal = ExtResource( 7 )
+custom_fonts/font = ExtResource( 4 )
+custom_colors/font_color = Color( 1, 0.662745, 0.635294, 1 )
+custom_colors/font_color_hover = Color( 0.4, 0.0156863, 0.0156863, 1 )
+custom_colors/font_color_pressed = Color( 1, 0.662745, 0.635294, 1 )
 text = "<"
+flat = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="NextPageButton" type="ToolButton" parent="Popup"]
-margin_left = 364.0
-margin_top = 413.158
-margin_right = 402.0
-margin_bottom = 435.158
+margin_left = 565.918
+margin_top = 410.0
+margin_right = 626.918
+margin_bottom = 444.0
+custom_styles/hover = ExtResource( 6 )
+custom_styles/pressed = ExtResource( 8 )
+custom_styles/normal = ExtResource( 7 )
+custom_fonts/font = ExtResource( 4 )
+custom_colors/font_color = Color( 1, 0.662745, 0.635294, 1 )
+custom_colors/font_color_hover = Color( 0.4, 0.0156863, 0.0156863, 1 )
+custom_colors/font_color_pressed = Color( 1, 0.662745, 0.635294, 1 )
 text = ">"
+flat = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="PageNumber" type="RichTextLabel" parent="Popup"]
-margin_left = 317.0
-margin_top = 413.0
-margin_right = 364.0
-margin_bottom = 435.0
+margin_left = 298.786
+margin_top = 407.0
+margin_right = 524.786
+margin_bottom = 444.0
+custom_fonts/normal_font = ExtResource( 2 )
+custom_colors/default_color = Color( 1, 0.662745, 0.635294, 1 )
 text = "TESTING"
+scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
 }

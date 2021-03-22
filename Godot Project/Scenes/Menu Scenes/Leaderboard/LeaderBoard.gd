@@ -22,6 +22,8 @@ func _ready():
 	
 	
 func get_leaderboard_data():
+	#print("begin saving analytics...")
+	#yield(handler.save_analytics(1),"completed")
 	print("getting leaderboard data...")
 	handler.get_world_leaderboard_data(1, self.http) #for now assume world 1
 

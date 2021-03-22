@@ -9,6 +9,7 @@ onready var questionManagerEasy = get_node("../QuestionManagerEasy")
 onready var questionManagerMed = get_node("../QuestionManagerMed")
 onready var questionManagerHard = get_node("../QuestionManagerHard")
 onready var questionManagerBoss = get_node("../QuestionManagerBoss")
+onready var analytics = get_node("../AnalyticsManager")
 
 var correctAnswer = 1
 
@@ -121,6 +122,7 @@ func _onAnswer(ansValue):
 	if(true):
 	#if(ansValue == correctAnswer):
 		print("You got it correct!")
+		analytics.update_question_correct(currentMonster.difficulty)
 		currentMonster.monsterHealth._minusHealth(1)		
 		combatUI._weaponSlashAnimation(currentMonster.position)
 		combatUI._hideAnswers()
@@ -129,6 +131,7 @@ func _onAnswer(ansValue):
 			currentMonster.start_shake_tween()
 	else:
 		print("Wrong answer")
+		analytics.update_question_wrong(currentMonster.difficulty)
 		player._takeDamage(1)
 		if(player.health <= 0):
 			emit_signal("gameover_signal", false)

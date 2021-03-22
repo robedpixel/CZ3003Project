@@ -1,15 +1,15 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://Scripts/GUI/BackToMainMenu.gd" type="Script" id=1]
-[ext_resource path="res://Resources/fonts/arcade_48.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Resources/SW_back_panel.tres" type="StyleBox" id=2]
 [ext_resource path="res://Scripts/GUI/Gotocharselect.gd" type="Script" id=3]
-[ext_resource path="res://Resources/images/sample_map.png" type="Texture" id=4]
+[ext_resource path="res://Resources/Main GUI Images/Map/Hard.jpg" type="Texture" id=4]
 [ext_resource path="res://Resources/fonts/chary_40.tres" type="DynamicFont" id=5]
 [ext_resource path="res://Resources/fonts/arcade_40.tres" type="DynamicFont" id=6]
 [ext_resource path="res://Resources/fonts/chary_28_dialog_title.tres" type="DynamicFont" id=7]
 [ext_resource path="res://Resources/fonts/arcade_34_SW_Buttons.tres" type="DynamicFont" id=8]
 [ext_resource path="res://Scripts/GUI/DecodeMaze.gd" type="Script" id=9]
-[ext_resource path="res://Resources/Main GUI Images/BG/bg1_maroon.png" type="Texture" id=10]
+[ext_resource path="res://Resources/Main GUI Images/BG/bg2_darker_maroon.png" type="Texture" id=10]
 [ext_resource path="res://Resources/Button Styles/main_menu_button_pressed.tres" type="StyleBox" id=11]
 [ext_resource path="res://Resources/Button Styles/main_menu_button_normal.tres" type="StyleBox" id=12]
 [ext_resource path="res://Resources/Button Styles/main_menu_button_hover.tres" type="StyleBox" id=13]
@@ -18,6 +18,10 @@
 [ext_resource path="res://Resources/Button Styles/window_dialog_hover.tres" type="StyleBox" id=16]
 [ext_resource path="res://Resources/window_dialog_maroon.tres" type="StyleBox" id=17]
 [ext_resource path="res://Resources/LineEdit Styles/line_edit_normal.tres" type="StyleBox" id=18]
+[ext_resource path="res://Resources/Main GUI Images/Map/custom.jpg" type="Texture" id=19]
+[ext_resource path="res://Resources/Main GUI Images/Map/Med.jpg" type="Texture" id=20]
+[ext_resource path="res://Resources/fonts/arcade_61_SW_title.tres" type="DynamicFont" id=21]
+[ext_resource path="res://Resources/fonts/arcade_45_SW_back.tres" type="DynamicFont" id=22]
 
 [node name="SelectWorldScene" type="Control"]
 margin_left = 1.33484
@@ -30,18 +34,30 @@ __meta__ = {
 }
 
 [node name="Background" type="Sprite" parent="."]
-position = Vector2( 649.8, 431.249 )
+position = Vector2( 849.933, 365.659 )
 scale = Vector2( 1.35367, 1.29755 )
 texture = ExtResource( 10 )
+
+[node name="Panel" type="Panel" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -1.68176
+margin_top = 178.319
+margin_right = -1.67688
+margin_bottom = -139.681
+custom_styles/panel = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Page title" type="Label" parent="."]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -471.0
-margin_top = 23.622
-margin_right = 471.0
-margin_bottom = 73.622
-custom_fonts/font = ExtResource( 2 )
+margin_left = -590.407
+margin_top = 95.9391
+margin_right = 601.593
+margin_bottom = 158.939
+custom_fonts/font = ExtResource( 21 )
 custom_colors/font_color = Color( 1, 0.662745, 0.635294, 1 )
 text = "SELECT  A   WORLD  TO  BEGIN  YOUR  ADVENTURE"
 __meta__ = {
@@ -49,14 +65,14 @@ __meta__ = {
 }
 
 [node name="SWBackButton" type="Button" parent="."]
-margin_left = 1053.5
-margin_top = 640.0
-margin_right = 1246.5
-margin_bottom = 696.0
+margin_left = 552.326
+margin_top = 611.409
+margin_right = 732.326
+margin_bottom = 655.409
 custom_styles/hover = ExtResource( 13 )
 custom_styles/pressed = ExtResource( 11 )
 custom_styles/normal = ExtResource( 12 )
-custom_fonts/font = ExtResource( 2 )
+custom_fonts/font = ExtResource( 22 )
 custom_colors/font_color = Color( 1, 0.662745, 0.635294, 1 )
 custom_colors/font_color_hover = Color( 0.4, 0.0156863, 0.0156863, 1 )
 custom_colors/font_color_pressed = Color( 1, 0.662745, 0.635294, 1 )
@@ -66,13 +82,22 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="WorldContainer" type="GridContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_top = 0.5
 anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 15.0
-margin_top = 105.0
-margin_right = -45.0
-margin_bottom = -120.0
+anchor_bottom = 0.5
+margin_left = 50.0
+margin_top = -110.0
+margin_right = -57.9951
+margin_bottom = 190.0
+rect_min_size = Vector2( 0, 300 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WorldContainer" type="GridContainer" parent="MarginContainer"]
+margin_right = 1172.0
+margin_bottom = 300.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/hseparation = 20
@@ -81,9 +106,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="World1_Container" type="VBoxContainer" parent="WorldContainer"]
-margin_right = 423.0
-margin_bottom = 495.0
+[node name="World1_Container" type="VBoxContainer" parent="MarginContainer/WorldContainer"]
+margin_right = 377.0
+margin_bottom = 300.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 20
@@ -91,18 +116,18 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="sample_map" type="TextureRect" parent="WorldContainer/World1_Container"]
-margin_right = 423.0
-margin_bottom = 431.0
+[node name="sample_map" type="TextureRect" parent="MarginContainer/WorldContainer/World1_Container"]
+margin_right = 377.0
+margin_bottom = 236.0
 size_flags_vertical = 3
-texture = ExtResource( 4 )
+texture = ExtResource( 20 )
 expand = true
 
-[node name="World1Button2" type="Button" parent="WorldContainer/World1_Container"]
+[node name="World1Button2" type="Button" parent="MarginContainer/WorldContainer/World1_Container"]
 light_mask = -2147483647
-margin_top = 451.0
-margin_right = 423.0
-margin_bottom = 495.0
+margin_top = 256.0
+margin_right = 377.0
+margin_bottom = 300.0
 size_flags_horizontal = 5
 custom_styles/hover = ExtResource( 13 )
 custom_styles/pressed = ExtResource( 11 )
@@ -111,16 +136,16 @@ custom_fonts/font = ExtResource( 8 )
 custom_colors/font_color = Color( 1, 0.662745, 0.635294, 1 )
 custom_colors/font_color_hover = Color( 0.4, 0.0156863, 0.0156863, 1 )
 custom_colors/font_color_pressed = Color( 1, 0.662745, 0.635294, 1 )
-text = " Requirement Analysis "
+text = "World 1"
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="World2_Container" type="VBoxContainer" parent="WorldContainer"]
-margin_left = 443.0
-margin_right = 896.0
-margin_bottom = 495.0
+[node name="World2_Container" type="VBoxContainer" parent="MarginContainer/WorldContainer"]
+margin_left = 397.0
+margin_right = 774.0
+margin_bottom = 300.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 20
@@ -128,17 +153,17 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="sample_map2" type="TextureRect" parent="WorldContainer/World2_Container"]
-margin_right = 453.0
-margin_bottom = 431.0
+[node name="sample_map2" type="TextureRect" parent="MarginContainer/WorldContainer/World2_Container"]
+margin_right = 377.0
+margin_bottom = 236.0
 size_flags_vertical = 3
 texture = ExtResource( 4 )
 expand = true
 
-[node name="World2Button" type="Button" parent="WorldContainer/World2_Container"]
-margin_top = 451.0
-margin_right = 453.0
-margin_bottom = 495.0
+[node name="World2Button" type="Button" parent="MarginContainer/WorldContainer/World2_Container"]
+margin_top = 256.0
+margin_right = 377.0
+margin_bottom = 300.0
 size_flags_horizontal = 7
 custom_styles/hover = ExtResource( 13 )
 custom_styles/pressed = ExtResource( 11 )
@@ -147,16 +172,16 @@ custom_fonts/font = ExtResource( 8 )
 custom_colors/font_color = Color( 1, 0.662745, 0.635294, 1 )
 custom_colors/font_color_hover = Color( 0.4, 0.0156863, 0.0156863, 1 )
 custom_colors/font_color_pressed = Color( 1, 0.662745, 0.635294, 1 )
-text = "Requirement Elicitaion"
+text = "World 2"
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="FriendMaze_Container" type="VBoxContainer" parent="WorldContainer"]
-margin_left = 916.0
-margin_right = 1219.0
-margin_bottom = 495.0
+[node name="FriendMaze_Container" type="VBoxContainer" parent="MarginContainer/WorldContainer"]
+margin_left = 794.0
+margin_right = 1171.0
+margin_bottom = 300.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 20
@@ -164,17 +189,18 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="sample_map3" type="TextureRect" parent="WorldContainer/FriendMaze_Container"]
-margin_right = 303.0
-margin_bottom = 431.0
+[node name="sample_map3" type="TextureRect" parent="MarginContainer/WorldContainer/FriendMaze_Container"]
+margin_right = 377.0
+margin_bottom = 236.0
 size_flags_vertical = 3
-texture = ExtResource( 4 )
+texture = ExtResource( 19 )
 expand = true
+stretch_mode = 1
 
-[node name="FriendMaze" type="Button" parent="WorldContainer/FriendMaze_Container"]
-margin_top = 451.0
-margin_right = 303.0
-margin_bottom = 495.0
+[node name="FriendMaze" type="Button" parent="MarginContainer/WorldContainer/FriendMaze_Container"]
+margin_top = 256.0
+margin_right = 377.0
+margin_bottom = 300.0
 size_flags_horizontal = 7
 custom_styles/hover = ExtResource( 13 )
 custom_styles/pressed = ExtResource( 11 )
@@ -240,9 +266,9 @@ __meta__ = {
 }
 
 [node name="UserCode" type="LineEdit" parent="WindowDialog/VBoxContainer"]
-margin_top = 257.0
+margin_top = 256.0
 margin_right = 628.0
-margin_bottom = 307.0
+margin_bottom = 306.0
 rect_min_size = Vector2( 600, 50 )
 custom_styles/normal = ExtResource( 18 )
 custom_fonts/font = ExtResource( 5 )
@@ -255,9 +281,9 @@ clear_button_enabled = true
 placeholder_text = "ENTER CODE HERE"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="WindowDialog/VBoxContainer"]
-margin_top = 317.0
+margin_top = 316.0
 margin_right = 628.0
-margin_bottom = 366.0
+margin_bottom = 365.0
 size_flags_horizontal = 3
 custom_constants/separation = 10
 alignment = 1
@@ -291,9 +317,9 @@ custom_colors/font_color_pressed = Color( 0.25098, 0.14902, 0.0313726, 1 )
 text = "confirm"
 script = ExtResource( 9 )
 [connection signal="pressed" from="SWBackButton" to="SWBackButton" method="_on_SWBackButton_pressed"]
-[connection signal="pressed" from="WorldContainer/World1_Container/World1Button2" to="WorldContainer/World1_Container/World1Button2" method="_on_World1Button_pressed"]
-[connection signal="pressed" from="WorldContainer/World2_Container/World2Button" to="WorldContainer/World2_Container/World2Button" method="_on_World2Button_pressed"]
-[connection signal="pressed" from="WorldContainer/FriendMaze_Container/FriendMaze" to="WorldContainer/FriendMaze_Container/FriendMaze" method="_on_FriendMaze_pressed"]
+[connection signal="pressed" from="MarginContainer/WorldContainer/World1_Container/World1Button2" to="MarginContainer/WorldContainer/World1_Container/World1Button2" method="_on_World1Button_pressed"]
+[connection signal="pressed" from="MarginContainer/WorldContainer/World2_Container/World2Button" to="MarginContainer/WorldContainer/World2_Container/World2Button" method="_on_World2Button_pressed"]
+[connection signal="pressed" from="MarginContainer/WorldContainer/FriendMaze_Container/FriendMaze" to="MarginContainer/WorldContainer/FriendMaze_Container/FriendMaze" method="_on_FriendMaze_pressed"]
 [connection signal="draw" from="WindowDialog" to="WindowDialog/VBoxContainer/HBoxContainer/ConfirmButton" method="_on_WindowDialog_draw"]
 [connection signal="pressed" from="WindowDialog/VBoxContainer/HBoxContainer/SWAlertCancelButton" to="WindowDialog/VBoxContainer/HBoxContainer/SWAlertCancelButton" method="_on_SWAlertCancelButton_pressed"]
 [connection signal="pressed" from="WindowDialog/VBoxContainer/HBoxContainer/ConfirmButton" to="WindowDialog/VBoxContainer/HBoxContainer/ConfirmButton" method="_on_ConfirmButton_pressed"]
