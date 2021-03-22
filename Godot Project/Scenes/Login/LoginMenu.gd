@@ -9,8 +9,8 @@ func _ready():
 	pass
 
 func _on_Button_pressed():
-	username = $"VBoxContainer/UsernameContainer/UsernameInputBox".get_text()
-	password = $"VBoxContainer/PasswordContainer/PasswordInputBox".get_text()
+	username = $"UsernameContainer/UsernameInputBox".get_text()
+	password = $"PasswordContainer/PasswordInputBox".get_text()
 	if username.empty() == true:
 		$"VBoxContainer/LoginStatusLabel".set_text("Please input a valid username")
 	elif password.empty() == true:
