@@ -12,21 +12,22 @@ var highest = 0
 const top5 = 5
 var j = 1
 var maxName = ""
-
+var wSelected
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	handler = load("res://Scripts/auth/firebase_db.gd").new()
 	add_child(handler)
-	get_leaderboard_data()
+
 	
 	
 func get_leaderboard_data():
-	#print("begin saving analytics...")
-	#yield(handler.save_analytics(1),"completed")
 	print("getting leaderboard data...")
-	handler.get_world_leaderboard_data(1, self.http) #for now assume world 1
-
+	if(wSelected == 1):
+		handler.get_world_leaderboard_data(1, self.http) #for now assume world 1
+	elif(wSelected == 2):
+		handler.get_world_leaderboard_data(2, self.http) #for now assume world 1
+		
 func process_db_data():
 	for key in data_from_db:
 		var studName=null
@@ -55,6 +56,7 @@ func show_sorted_leaderboard():
 		get_node("ScrollContainer/VBoxContainer/HBoxContainer/ScoreLabel").text += str(highest) + "\n"
 		students.erase(maxName)
 		j = j + 1
+	print("shown")
 
 func _on_ShareFBBtn_pressed():
 	OS.shell_open("https://www.facebook.com/groups/4064171876949849")
@@ -78,3 +80,24 @@ func _on_HTTPRequest_request_completed(result, response_code, headers, body):
 			return
 	print("some other error")
 	
+
+
+func _on_Button_pressed():
+	students = {}
+	j = 1
+	get_node("ScrollContainer/VBoxContainer/HBoxContainer/RankLabel").text = ""
+	get_node("ScrollContainer/VBoxContainer/HBoxContainer/NameLabel").text = ""
+	get_node("ScrollContainer/VBoxContainer/HBoxContainer/ScoreLabel").text = ""
+	wSelected = 1
+	get_leaderboard_data()
+	print("world1")
+
+func _on_Button2_pressed():
+	students = {}
+	j = 1
+	get_node("ScrollContainer/VBoxContainer/HBoxContainer/RankLabel").text = ""
+	get_node("ScrollContainer/VBoxContainer/HBoxContainer/NameLabel").text = ""
+	get_node("ScrollContainer/VBoxContainer/HBoxContainer/ScoreLabel").text = ""
+	wSelected = 2
+	get_leaderboard_data()
+	print("world2")

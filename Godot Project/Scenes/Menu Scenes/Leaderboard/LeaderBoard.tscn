@@ -123,19 +123,15 @@ __meta__ = {
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="."]
 margin_left = 121.0
-margin_top = 83.0
+margin_top = 123.0
 margin_right = 1237.0
-margin_bottom = 126.0
+margin_bottom = 166.0
 size_flags_horizontal = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Button" type="Button" parent="HBoxContainer2"]
-anchor_left = -0.0241935
-anchor_top = 0.813953
-anchor_right = -0.0241935
-anchor_bottom = 0.813953
 margin_right = 556.0
 margin_bottom = 43.0
 size_flags_horizontal = 3
@@ -148,11 +144,9 @@ custom_fonts/font = ExtResource( 11 )
 custom_colors/font_color = Color( 1, 0.662745, 0.635294, 1 )
 custom_colors/font_color_hover = Color( 0.4, 0.0156863, 0.0156863, 1 )
 custom_colors/font_color_pressed = Color( 1, 0.662745, 0.635294, 1 )
-text = " Requirement Analysis "
+text = "World 1"
 
 [node name="Button2" type="Button" parent="HBoxContainer2"]
-anchor_top = 0.837209
-anchor_bottom = 0.837209
 margin_left = 560.0
 margin_right = 1116.0
 margin_bottom = 43.0
@@ -166,13 +160,13 @@ custom_fonts/font = ExtResource( 11 )
 custom_colors/font_color = Color( 1, 0.662745, 0.635294, 1 )
 custom_colors/font_color_hover = Color( 0.4, 0.0156863, 0.0156863, 1 )
 custom_colors/font_color_pressed = Color( 1, 0.662745, 0.635294, 1 )
-text = "Requirement Elicitaion"
+text = "World 2"
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
 margin_left = 271.0
-margin_top = 152.0
+margin_top = 169.0
 margin_right = 1049.0
-margin_bottom = 626.0
+margin_bottom = 643.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -225,8 +219,10 @@ scale = Vector2( 0.0833217, 0.0755706 )
 texture = ExtResource( 5 )
 
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
-[connection signal="pressed" from="ShareFBBtn" to="." method="_on_Button_pressed"]
 [connection signal="pressed" from="ShareFBBtn" to="." method="_on_ShareFBBtn_pressed"]
+[connection signal="pressed" from="ShareFBBtn" to="." method="_on_Button_pressed"]
 [connection signal="pressed" from="ShareTwitterBtn" to="." method="_on_ShareTwitterBtn_pressed"]
 [connection signal="pressed" from="LBBackButton" to="LBBackButton" method="_on_LBBackButton_pressed"]
+[connection signal="pressed" from="HBoxContainer2/Button" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="HBoxContainer2/Button2" to="." method="_on_Button2_pressed"]
 [connection signal="request_completed" from="HTTPRequest" to="." method="_on_HTTPRequest_request_completed"]
