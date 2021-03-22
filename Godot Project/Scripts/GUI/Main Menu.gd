@@ -4,6 +4,7 @@ extends Control
 var path_to_select_world = "res://Scenes/Menu Scenes/Select_World/SW.tscn"
 var path_to_maze_creator = "res://Scenes/Menu Scenes/Maze_Creator/MC.tscn"
 var path_to_leaderboard = "res://Scenes/Menu Scenes/Leaderboard/LeaderBoard.tscn"
+var path_to_login = "res://Scenes/Login/LoginMenu.tscn"
 var x =0
 
 # for connecting the buttons to the respective buttons
@@ -26,3 +27,7 @@ func _on_MazeCreatorButton_pressed():
 
 func _on_LeaderBoardButton_pressed():
 	get_tree().change_scene(path_to_leaderboard)
+
+
+func _on_LogoutButton_pressed():
+	get_tree().change_scene(path_to_login)

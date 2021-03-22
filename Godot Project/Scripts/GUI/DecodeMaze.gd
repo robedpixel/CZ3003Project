@@ -21,7 +21,7 @@ var bool_code_decoded
 var default_text = "Please input your friend's code below.\n- you must include the (-) \n- the code is case sensitive"
 var incorrect_code_text= "Incorrect Code. Please try again."
 var empty_input_text = "Nothing was entered. Please enter the code"
-var success_text = "Successfully decoded!\nClick play to beign your adventure!."
+var success_text = "Successfully decoded!\nClick play to begin your adventure!."
 
 var path_to_char_select ="res://Scenes/Menu Scenes/Select_Character/CharacterSelection.tscn";
 
@@ -108,6 +108,7 @@ func decode_user_code():
 						#print(topic_selected)
 						GlobalVariables.maze_creator_map = decoded_maze
 						GlobalVariables.topic_selected = topic_selected
+						GlobalVariables.bool_custom_maze = true
 						success_message_setting()
 						bool_code_decoded = true 
 					
