@@ -17,6 +17,9 @@ func update_question_correct(room_type: int):
 		GlobalVariables.RoomEnum.CHALLENGE_ROOM_HARD:
 			AnalyticVariables["hard"]["correct"] += 1
 			adjustment = 1
+		GlobalVariables.RoomEnum.BOSS_ROOM:
+			AnalyticVariables["hard"]["correct"] += 1
+			adjustment = 1
 	performance_score = (performance_score + adjustment) / 2
 	
 	
@@ -30,6 +33,9 @@ func update_question_wrong(room_type: int):
 			AnalyticVariables["medium"]["wrong"] += 1
 			adjustment = 0.2
 		GlobalVariables.RoomEnum.CHALLENGE_ROOM_HARD:
+			AnalyticVariables["hard"]["wrong"] += 1
+			adjustment = 0.3
+		GlobalVariables.RoomEnum.BOSS_ROOM:
 			AnalyticVariables["hard"]["wrong"] += 1
 			adjustment = 0.3
 	performance_score = (performance_score + adjustment) / 2
