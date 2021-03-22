@@ -29,6 +29,7 @@ onready var alert_dialog = get_node("../WindowDialog")
 onready var alert_label = get_node("../WindowDialog/VBoxContainer/AlertLabel")
 onready var alert_line_edit = get_node("../WindowDialog/VBoxContainer/AlertLineEdit")
 onready var alert_button = get_node("../WindowDialog/VBoxContainer/AlertButton")
+onready var alert_button_FB = get_node("../WindowDialog/VBoxContainer/AlertShareFB")
 onready var topic_label = get_node("../TopicLabel")
 onready var topic_button = get_node("../TopicChooserButton")
 
@@ -55,6 +56,7 @@ func _ready():
 	store_exists = false
 	topic_button.visible=false
 	topic_label.visible = false
+	alert_button_FB.visible = false
 	#print(button_grid)
 	
 
@@ -268,6 +270,7 @@ func _on_ConfirmButton_pressed():
 		generate_code(button_grid,topic_int)
 		alert_dialog.visible=true
 		alert_line_edit.visible = true
+		alert_button_FB.visible =true
 		alert_dialog.window_title = ""
 		alert_label.text = "SUCCESS!\nYOUR CODE IS" 
 		alert_line_edit.text= code_1 + "-" + code_2 + "-" + code_3
@@ -306,7 +309,9 @@ func _on_AlertButton_pressed():
 		alert_dialog.visible=false
 	else:
 		get_tree().change_scene(path_to_select_world)
-	
+
+func _on_AlertShareFB_pressed():
+	OS.shell_open("https://www.facebook.com/groups/4064171876949849")
 ####################		The functions below are totally for each button		############################
 
 #########################  				 Y axis = 4				#########################
@@ -387,6 +392,7 @@ func _on_Button_X3Y0_pressed():
 
 func _on_Button_X4Y0_pressed():
 	button_press("btn_x4y0")
+
 
 
 
