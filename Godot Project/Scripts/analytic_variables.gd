@@ -1,16 +1,16 @@
 extends Node
 
 var easy = {
-	"correct": 1,
-	"wrong": 2
+	"correct": 0,
+	"wrong": 1
 }
 var medium = { 
-	"correct": 0,
-	"wrong": 2
+	"correct": 2,
+	"wrong": 3
 }
 var hard = { 
-	"correct": 1,
-	"wrong": 3
+	"correct": 4,
+	"wrong": 5
 }
 
 func _ready():
