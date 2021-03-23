@@ -1,6 +1,8 @@
 extends Control
 
 onready var http : HTTPRequest = $HTTPRequest
+onready var alert_dialog = get_node("WindowDialog")
+onready var alert_label = get_node("WindowDialog/VBoxContainer/DialogLabel")
 # Declare member variables here. 
 var path_to_main_menu_teacher =  "res://Scenes/Menu Scenes/Main_Menu_teacher/MainMenuTeacher.tscn";
 var wSelected = 0
@@ -53,35 +55,17 @@ func show_detailed_report():
 		get_node("VBoxContainer/ScrollContainer/HBoxContainer/hardWrongLbl").text += str(value[6]) + "\n"
 
 func _on_GR_selectW1Btn_pressed():
-	get_node("ConfirmGR").visible = true
-	get_node("ConfirmGR").dialog_text = "Generate Detailed Report for World 1?"
+	alert_dialog.visible = true
+	alert_label.text = "Generate Detailed Report for World 1?"
 	wSelected = 1
 
 func _on_GR_selectW2Btn_pressed():
-	get_node("ConfirmGR").visible = true
-	get_node("ConfirmGR").dialog_text = "Generate Detailed Report for World 2?"
+	alert_dialog.visible = true
+	alert_label.text = "Generate Detailed Report for World 2?"
 	wSelected = 2
 	
 func _on_GR_gobackBtn_pressed():
 	get_tree().change_scene(path_to_main_menu_teacher)
-
-func _on_ConfirmationDialog_confirmed():
-	get_node("VBoxContainer/ScrollContainer/HBoxContainer/nameLbl").text = ""
-	get_node("VBoxContainer/ScrollContainer/HBoxContainer/scoreLbl").text = ""
-	get_node("VBoxContainer/ScrollContainer/HBoxContainer/easyCorrLbl").text = ""
-	get_node("VBoxContainer/ScrollContainer/HBoxContainer/easyWrongLbl").text = ""
-	get_node("VBoxContainer/ScrollContainer/HBoxContainer/medCorrLbl").text = ""
-	get_node("VBoxContainer/ScrollContainer/HBoxContainer/medWrongLbl").text = ""
-	get_node("VBoxContainer/ScrollContainer/HBoxContainer/hardCorrLbl").text = ""
-	get_node("VBoxContainer/ScrollContainer/HBoxContainer/hardWrongLbl").text = ""
-	studsAnalyticsData = {}
-	if(wSelected == 1):
-		print("successw1")
-		get_node("VBoxContainer/wSelectedLbl").text = "World Selected: \n World 1"
-	elif(wSelected == 2):
-		print("successw2")
-		get_node("VBoxContainer/wSelectedLbl").text = "World Selected: \n World 2"
-	get_studentanalytics_data()	
 
 
 func _on_HTTPRequest_request_completed(result, response_code, headers, body):
@@ -99,3 +83,27 @@ func _on_HTTPRequest_request_completed(result, response_code, headers, body):
 			show_detailed_report()
 			return
 	print("some other error")
+
+
+func _on_cancelBtn_pressed():
+	alert_dialog.visible =false
+
+
+func _on_confirmBtn_pressed():
+	get_node("VBoxContainer/ScrollContainer/HBoxContainer/nameLbl").text = ""
+	get_node("VBoxContainer/ScrollContainer/HBoxContainer/scoreLbl").text = ""
+	get_node("VBoxContainer/ScrollContainer/HBoxContainer/easyCorrLbl").text = ""
+	get_node("VBoxContainer/ScrollContainer/HBoxContainer/easyWrongLbl").text = ""
+	get_node("VBoxContainer/ScrollContainer/HBoxContainer/medCorrLbl").text = ""
+	get_node("VBoxContainer/ScrollContainer/HBoxContainer/medWrongLbl").text = ""
+	get_node("VBoxContainer/ScrollContainer/HBoxContainer/hardCorrLbl").text = ""
+	get_node("VBoxContainer/ScrollContainer/HBoxContainer/hardWrongLbl").text = ""
+	studsAnalyticsData = {}
+	if(wSelected == 1):
+		print("successw1")
+		get_node("VBoxContainer/wSelectedLbl").text = "World Selected: \n World 1"
+	elif(wSelected == 2):
+		print("successw2")
+		get_node("VBoxContainer/wSelectedLbl").text = "World Selected: \n World 2"
+	get_studentanalytics_data()	
+	alert_dialog.visible =false

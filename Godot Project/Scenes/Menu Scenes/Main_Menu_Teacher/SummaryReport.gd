@@ -47,37 +47,20 @@ func show_summary_report():
 	get_node("VBoxContainer/avgScoreLbl").text = "Average score: " + str(avgScore)
 
 func _on_GR_selectW1Btn_pressed():
-#	get_node("ConfirmGR").visible = true
-#	get_node("ConfirmGR").dialog_text = "Generate Summary report for World 1?"
 	alert_dialog.visible = true
-	alert_label.text = "Generate Summary report for World 1?"
+	alert_label.text = "Generate Summary Report for World 1?"
 	wSelected = 1
 
 
 func _on_GR_selectW2Btn_pressed():
-#	get_node("ConfirmGR").visible = true
-#	get_node("ConfirmGR").dialog_text = "Generate Summary report for World 2?"
 	alert_dialog.visible = true
-	alert_label.text = "Generate Summary report for World 2?"
+	alert_label.text = "Generate Summary Report for World 2?"
 	wSelected = 2
 
 	
 func _on_GR_gobackBtn_pressed():
 	get_tree().change_scene(path_to_main_menu_teacher)
 
-
-#func _on_ConfirmationDialog_confirmed():
-#	get_node("VBoxContainer/ScrollContainer/HBoxContainer3/nameLbl").text = ""
-#	get_node("VBoxContainer/ScrollContainer/HBoxContainer3/scoreLbl").text = ""
-#	studsScoreData = {}
-#	if(wSelected == 1):
-#		print("successw1")
-#		get_node("VBoxContainer/wSelectedLbl").text = "World Selected: \n World 1"
-#	elif(wSelected == 2):
-#		print("successw2")
-#		get_node("VBoxContainer/wSelectedLbl").text = "World Selected: \n World 2"
-#	get_leaderboard_data()
-		
 
 func _on_HTTPRequest_request_completed(result, response_code, headers, body):
 	print("http request completed")

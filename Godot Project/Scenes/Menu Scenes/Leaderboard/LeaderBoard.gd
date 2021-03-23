@@ -1,6 +1,8 @@
 extends Control
 
 onready var http : HTTPRequest = $HTTPRequest
+onready var alert_dialog = get_node("WindowDialog")
+onready var alert_label = get_node("WindowDialog/VBoxContainer/DialogLabel")
 
 var handler
 
@@ -83,21 +85,29 @@ func _on_HTTPRequest_request_completed(result, response_code, headers, body):
 
 
 func _on_Button_pressed():
-	students = {}
-	j = 1
-	get_node("ScrollContainer/VBoxContainer/HBoxContainer/RankLabel").text = ""
-	get_node("ScrollContainer/VBoxContainer/HBoxContainer/NameLabel").text = ""
-	get_node("ScrollContainer/VBoxContainer/HBoxContainer/ScoreLabel").text = ""
+	alert_dialog.visible = true
+	alert_label.text = "Show Leaderboard for World 1?"
 	wSelected = 1
-	get_leaderboard_data()
-	print("world1")
 
 func _on_Button2_pressed():
+	alert_dialog.visible = true
+	alert_label.text = "Show Leaderboard for World 2?"
+	wSelected = 2
+
+
+func _on_cancelBtn_pressed():
+	alert_dialog.visible =false
+
+
+func _on_confirmBtn_pressed():
 	students = {}
 	j = 1
 	get_node("ScrollContainer/VBoxContainer/HBoxContainer/RankLabel").text = ""
 	get_node("ScrollContainer/VBoxContainer/HBoxContainer/NameLabel").text = ""
 	get_node("ScrollContainer/VBoxContainer/HBoxContainer/ScoreLabel").text = ""
-	wSelected = 2
+	if(wSelected == 1):
+		get_node("wSelectedLbl").text = "World Selected: World 1"
+	elif(wSelected == 2):
+		get_node("wSelectedLbl").text = "World Selected: World 2"
 	get_leaderboard_data()
-	print("world2")
+	alert_dialog.visible =false
