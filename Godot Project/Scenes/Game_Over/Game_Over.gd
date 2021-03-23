@@ -4,6 +4,8 @@ var handler
 var score = 0
 
 func _ready():
+	handler = load("res://Scripts/auth/firebase_db.gd").new()
+	add_child(handler)
 	pass
 
 func _saveScore(coins):
@@ -13,11 +15,15 @@ func _saveScore(coins):
 	GlobalVariables.score = coins
 	var score = coins
 	
-	
-	handler = load("res://Scripts/auth/firebase_db.gd").new()
-	add_child(handler)
 	get_node("CenterContainer/VBoxContainer/HBoxContainer/ScoreLabel").text += str(score)
-	#handler.save_world_score(world, score) #not sure how to get world and score yet
+	
+#	print(AnalyticVariables["easy"]["correct"])
+#	print(AnalyticVariables["hard"]["correct"])
+	
+	yield(handler.save_world_score(topicSelected+1, score), "completed")
+	print("save_world_score done")
+	yield(handler.save_analytics(topicSelected+1),"completed")
+	print("save_analytics done")
 
 func _on_Button_pressed():
 	get_tree().change_scene("res://Scenes/Menu Scenes/Leaderboard/Leaderboard.tscn")

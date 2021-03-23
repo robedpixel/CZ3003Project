@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Resources/Main GUI Images/Title/title_maroon.png" type="Texture" id=1]
 [ext_resource path="res://Resources/Button Styles/main_menu_button_normal.tres" type="StyleBox" id=2]
@@ -7,6 +7,9 @@
 [ext_resource path="res://Resources/Main GUI Images/BG/bg1_maroon.png" type="Texture" id=5]
 [ext_resource path="res://Scripts/GUI/Main Menu.gd" type="Script" id=6]
 [ext_resource path="res://Resources/Button Styles/main_menu_button_pressed.tres" type="StyleBox" id=7]
+[ext_resource path="res://Resources/Logout Button Image/logout_button_pressed.png" type="Texture" id=8]
+[ext_resource path="res://Resources/Logout Button Image/logout_button_normal.png" type="Texture" id=9]
+[ext_resource path="res://Resources/Logout Button Image/logout_button_hover.png" type="Texture" id=10]
 
 [sub_resource type="DynamicFont" id=1]
 size = 19
@@ -29,8 +32,6 @@ texture = ExtResource( 5 )
 [node name="MainMenuVericalContainer" type="VBoxContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 1.0
-margin_right = -3.0
 custom_constants/separation = 14
 __meta__ = {
 "_edit_use_anchors_": false
@@ -38,13 +39,13 @@ __meta__ = {
 
 [node name="ImageContainer" type="MarginContainer" parent="MainMenuVericalContainer"]
 margin_right = 1280.0
-margin_bottom = 580.0
-rect_min_size = Vector2( 0, 580 )
+margin_bottom = 600.0
+rect_min_size = Vector2( 0, 600 )
 size_flags_horizontal = 3
 
 [node name="Title" type="TextureRect" parent="MainMenuVericalContainer/ImageContainer"]
 margin_right = 1280.0
-margin_bottom = 580.0
+margin_bottom = 600.0
 texture = ExtResource( 1 )
 expand = true
 stretch_mode = 1
@@ -53,9 +54,9 @@ __meta__ = {
 }
 
 [node name="Buttons" type="HBoxContainer" parent="MainMenuVericalContainer"]
-margin_top = 594.0
+margin_top = 614.0
 margin_right = 1280.0
-margin_bottom = 653.0
+margin_bottom = 673.0
 focus_mode = 2
 custom_constants/separation = 40
 alignment = 1
@@ -100,13 +101,29 @@ custom_colors/font_color_pressed = Color( 1, 0.662745, 0.635294, 1 )
 text = " leaderboard"
 
 [node name="Version" type="Label" parent="MainMenuVericalContainer"]
-margin_top = 667.0
+margin_top = 687.0
 margin_right = 1280.0
-margin_bottom = 672.0
+margin_bottom = 692.0
 size_flags_vertical = 1
 custom_fonts/font = SubResource( 1 )
 text = "Version    1.0
 "
+
+[node name="LogoutButton" type="TextureButton" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -106.0
+margin_top = 14.0
+margin_right = -24.0
+margin_bottom = 81.0
+texture_normal = ExtResource( 9 )
+texture_pressed = ExtResource( 8 )
+texture_hover = ExtResource( 10 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="pressed" from="MainMenuVericalContainer/Buttons/SelectWorldButton" to="." method="_on_SelectWorldButton_pressed"]
 [connection signal="pressed" from="MainMenuVericalContainer/Buttons/MazeCreatorButton" to="." method="_on_MazeCreatorButton_pressed"]
 [connection signal="pressed" from="MainMenuVericalContainer/Buttons/LeaderBoardButton" to="." method="_on_LeaderBoardButton_pressed"]
+[connection signal="pressed" from="LogoutButton" to="." method="_on_LogoutButton_pressed"]

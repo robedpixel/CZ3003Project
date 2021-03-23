@@ -1,7 +1,7 @@
 extends Button
 
 var path_to_char_select ="res://Scenes/Menu Scenes/Select_Character/CharacterSelection.tscn";
-onready var alert_dialog = get_node("../../../WindowDialog")
+onready var alert_dialog = get_node("../../../../WindowDialog")
 
 	
 
