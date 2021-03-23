@@ -154,11 +154,13 @@ func _onDeath(entity):
 	
 func _monsterDeathAnimEnd():
 	combatUI._showDialogue(false)
-	emit_signal("victory_signal", true, currentMonster.difficulty)
+	
 	_exitCombat()
 	
 	if(isBoss):
 		emit_signal("gameover_signal", true)
+		
+	emit_signal("victory_signal", true, currentMonster.difficulty)
 
 func _onTransitionShowStart():
 	

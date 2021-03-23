@@ -45,6 +45,8 @@ var movedRoom : bool = false
 var lastUsedDoor = ""
 var targetDoorPos
 
+var gameOver : bool = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	_initializeMaze()
@@ -59,6 +61,8 @@ func _ready():
 # Set player, boss and shop spawn
 func _initializeMaze():
 	_exitRoom()
+	
+	gameOver = false
 	
 	var topic = GlobalVariables.topic_selected
 	if(topic == null):
@@ -353,6 +357,8 @@ func _rewardPlayer():
 	effectManager._playCoinAnim(currentMonster.get_position(), rewardedCoins)
 
 func _difficultyChange(newDifficulty):
+	if(gameOver):
+		return
 	
 	var difficultyChangeTxt = ""
 	
@@ -373,6 +379,8 @@ func _difficultyChange(newDifficulty):
 
 
 func _on_CombatManager_gameover_signal(value):
+	
+	gameOver = true
 	
 	player._lockCharacter(true)
 	
