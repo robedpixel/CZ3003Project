@@ -64,10 +64,7 @@ func _initializeMaze():
 	
 	gameOver = false
 	
-	var topic = GlobalVariables.topic_selected
-	if(topic == null):
-		topic = GlobalVariables.TopicEnum.TOPIC_1
-	cmbtManager._initTopic(topic)
+	
 	
 	var charSelected = GlobalVariables.charSelected
 	#charSelected = 0
@@ -93,8 +90,42 @@ func _initializeMaze():
 	
 	analytics._resetAnalytics()
 	
+	var topic = GlobalVariables.topic_selected
+	if(topic == null):
+		topic = GlobalVariables.TopicEnum.TOPIC_1
+		
+	cmbtManager._initTopic(topic)
+	
+	var worldSelected = GlobalVariables.world_num
+	match worldSelected:
+		0:
+			pass
+		1:
+			pass
+		2:
+			pass
+		_:
+			pass
+	
 	mazeDesign._generateMaze(5, 5)
 	
+	var isCustomMaze = GlobalVariables.bool_custom_maze
+	if(isCustomMaze):
+		mazeDesign._setMaze(GlobalVariables.maze_creator_map)
+		mazeDesign._validateLayout()
+	else:
+		_initDebugMaze()
+	
+	_loadRoom(playerX, playerY)
+	_updatePlayerGridUI()
+	
+	# init shop and boss
+	
+	shopItems = [GlobalVariables.ItemEnum.ITEM_HEALTHPOT,
+	GlobalVariables.ItemEnum.ITEM_HEALTHPOT,
+	GlobalVariables.ItemEnum.ITEM_HEALTHPOT]
+	
+func _initDebugMaze():
 	for x in range(mazeDesign.WIDTH):
 		for y in range(mazeDesign.HEIGHT):
 			mazeDesign._setRoom(x, y, GlobalVariables.RoomEnum.CHALLENGE_ROOM_EASY)
@@ -105,18 +136,6 @@ func _initializeMaze():
 	mazeDesign._setRoom(playerX, playerY, GlobalVariables.RoomEnum.STARTING_ROOM)
 	mazeDesign._setRoom(1, 1, GlobalVariables.RoomEnum.BOSS_ROOM)
 	mazeDesign._setRoom(1, 0, GlobalVariables.RoomEnum.SHOP_ROOM)
-	
-	_loadRoom(playerX, playerY)
-	_updatePlayerGridUI()
-	
-	
-	# init shop and boss
-	
-	shopItems = [GlobalVariables.ItemEnum.ITEM_HEALTHPOT,
-	GlobalVariables.ItemEnum.ITEM_HEALTHPOT,
-	GlobalVariables.ItemEnum.ITEM_HEALTHPOT]
-	
-	
 	
 
 func _moveRoom(dir):
@@ -180,7 +199,7 @@ func _loadRoom(x, y):
 	var roomType = mazeDesign._getRoom(x, y)
 	
 	# display error room
-	if(roomType == -1):
+	if(int(roomType) < 0):
 		_toggleAllDoors(false)
 		return
 	

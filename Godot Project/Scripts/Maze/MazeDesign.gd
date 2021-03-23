@@ -5,13 +5,6 @@ var HEIGHT
 
 var layout
 
-# 0 walled
-# 1 challenge room
-# 2 boss
-# 3 shop
-# 4 starting room
-# 5 empty room
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass
@@ -22,6 +15,11 @@ func _ready():
 # set the 2d array layout variable
 func _setMaze(newLayout):
 	layout = newLayout
+
+func _validateLayout():
+	for x in range(WIDTH):
+		for y in range(HEIGHT):
+			layout[x][y] = int(layout[x][y])
 
 func _generateMaze(mazeWidth, mazeHeight):
 	WIDTH = mazeWidth
@@ -41,7 +39,7 @@ func _getLayout():
 	
 func _getRoom(x, y):
 	if(x < 0 or x >= WIDTH or y < 0 or y >= HEIGHT):
-		return -1 # -1 for error
+		return GlobalVariables.RoomEnum.VOID_ROOM # -1 for error
 	return layout[x][y]
 
 func _setRoom(x, y, value):			
