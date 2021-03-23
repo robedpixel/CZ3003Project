@@ -47,12 +47,12 @@ func show_detailed_report():
 		var value = studsAnalyticsData[i]
 		get_node("VBoxContainer/ScrollContainer/HBoxContainer/nameLbl").text += str(value[0]) + "\n"
 		get_node("VBoxContainer/ScrollContainer/HBoxContainer/scoreLbl").text += str(value[1]) + "\n"
-		get_node("VBoxContainer/ScrollContainer/HBoxContainer/easyCorrLbl").text += str(value[1]) + "\n"
-		get_node("VBoxContainer/ScrollContainer/HBoxContainer/easyWrongLbl").text += str(value[2]) + "\n"
-		get_node("VBoxContainer/ScrollContainer/HBoxContainer/medCorrLbl").text += str(value[3]) + "\n"
-		get_node("VBoxContainer/ScrollContainer/HBoxContainer/medWrongLbl").text += str(value[4]) + "\n"
-		get_node("VBoxContainer/ScrollContainer/HBoxContainer/hardCorrLbl").text += str(value[5]) + "\n"
-		get_node("VBoxContainer/ScrollContainer/HBoxContainer/hardWrongLbl").text += str(value[6]) + "\n"
+		get_node("VBoxContainer/ScrollContainer/HBoxContainer/easyCorrLbl").text += str(value[2]) + "\n"
+		get_node("VBoxContainer/ScrollContainer/HBoxContainer/easyWrongLbl").text += str(value[3]) + "\n"
+		get_node("VBoxContainer/ScrollContainer/HBoxContainer/medCorrLbl").text += str(value[4]) + "\n"
+		get_node("VBoxContainer/ScrollContainer/HBoxContainer/medWrongLbl").text += str(value[5]) + "\n"
+		get_node("VBoxContainer/ScrollContainer/HBoxContainer/hardCorrLbl").text += str(value[6]) + "\n"
+		get_node("VBoxContainer/ScrollContainer/HBoxContainer/hardWrongLbl").text += str(value[7]) + "\n"
 
 func _on_GR_selectW1Btn_pressed():
 	alert_dialog.visible = true
