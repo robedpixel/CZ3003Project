@@ -289,9 +289,9 @@ func _on_ConfirmButton_pressed():
 
 func update_topic_button_text():
 	match(topic_int): 
-		0 : topic_button.text= "Requirement Analysis"
-		1 : topic_button.text= "Requirement Elicitation"
-		2 : topic_button.text= "Both Topics"
+		0 : topic_button.text= "1.Requirement Analysis"
+		1 : topic_button.text= "2.Requirement Elicitation"
+		2 : topic_button.text= "3.Both Topics"
 		_ : return "error"
 
 func _on_TopicChooserButton_pressed():
