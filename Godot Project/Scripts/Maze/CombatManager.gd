@@ -123,6 +123,7 @@ func _onAnswer(ansValue):
 	#if(ansValue == correctAnswer):
 		print("You got it correct!")
 		analytics.update_question_correct(currentMonster.difficulty)
+
 		currentMonster.monsterHealth._minusHealth(1)		
 		combatUI._weaponSlashAnimation(currentMonster.position)
 		combatUI._hideAnswers()

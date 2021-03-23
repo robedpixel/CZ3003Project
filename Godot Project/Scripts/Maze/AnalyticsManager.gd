@@ -54,15 +54,17 @@ func get_next_difficulty():
 # connected via signal
 func _on_CombatManager_victory_signal(value, difficulty):
 	#print("Analytics " + str(difficulty))
-	var prevDifficulty = get_next_difficulty()
-	if(value):
-		update_question_correct(difficulty)
-	else:
-		update_question_wrong(difficulty)
+#	var prevDifficulty = get_next_difficulty()
+#	if(value):
+#		update_question_correct(difficulty)
+#	else:
+#		update_question_wrong(difficulty)
 	var nextDifficulty = get_next_difficulty()
 	
-	if(prevDifficulty != nextDifficulty):
-		get_node("/root/Main/Maze")._difficultyChange(prevDifficulty, nextDifficulty)
+#	if(prevDifficulty != nextDifficulty):
+#		get_node("/root/Main/Maze")._difficultyChange(prevDifficulty, nextDifficulty)
+
+	get_node("/root/Main/Maze")._difficultyChange(nextDifficulty)
 
 	
 func _resetAnalytics():

@@ -17,13 +17,14 @@ func _saveScore(coins):
 	
 	get_node("CenterContainer/VBoxContainer/HBoxContainer/ScoreLabel").text += str(score)
 	
-#	print(AnalyticVariables["easy"]["correct"])
-#	print(AnalyticVariables["hard"]["correct"])
+	#print(AnalyticVariables["easy"]["correct"])
+	#print(AnalyticVariables["hard"]["correct"])
 	
-	yield(handler.save_world_score(topicSelected+1, score), "completed")
-	print("save_world_score done")
-	yield(handler.save_analytics(topicSelected+1),"completed")
-	print("save_analytics done")
+	if(topicSelected != null):
+		yield(handler.save_world_score(topicSelected+1, score), "completed")
+		print("save_world_score done")
+		yield(handler.save_analytics(topicSelected+1),"completed")
+		print("save_analytics done")
 
 func _on_Button_pressed():
 	get_tree().change_scene("res://Scenes/Menu Scenes/Leaderboard/Leaderboard.tscn")

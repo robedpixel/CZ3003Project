@@ -8,8 +8,7 @@ onready var cmbtManager = get_node("../CombatManager")
 onready var monsterFactory = get_node("../MonsterFactory")
 onready var transition = get_node("../Transition")
 onready var effectManager = get_node("../EffectManager")
-onready var dialogueUI = get_node("/root/Main/DialogueCanvas/DialogueUI")
-onready var dialogue = get_node("/root/Main/DialogueCanvas/DialogueUI/DialogueBox")
+onready var dialogueManager = get_node("/root/Main/DialogueCanvas")
 onready var mainUI = get_node("/root/Main/MainCanvas")
 onready var analytics = get_node("../AnalyticsManager")
 
@@ -353,20 +352,22 @@ func _rewardPlayer():
 	
 	effectManager._playCoinAnim(currentMonster.get_position(), rewardedCoins)
 
-func _difficultyChange(prevDifficulty, newDifficulty):
+func _difficultyChange(newDifficulty):
 	
 	var difficultyChangeTxt = ""
 	
-	if(newDifficulty > prevDifficulty):
+	if(newDifficulty > minDifficulty):
 		difficultyChangeTxt = "You feel a stronger presence"
-	else:
+	elif(newDifficulty < minDifficulty):
 		difficultyChangeTxt = "You feel less pressure from your surroundings"
-		
-	player._lockCharacter(true)
-	dialogueUI._showDialogueBox(true)
-	dialogueUI._showPortrait(true)
-	dialogueUI._showPlayerPortrait(player.portrait)
-	dialogue._displayDialogueClosable(difficultyChangeTxt)
+	
+	if(difficultyChangeTxt != ""):
+		player._lockCharacter(true)
+		dialogueManager._dialoguePlayer(player.portrait, difficultyChangeTxt, true)
+#		dialogueUI._showDialogueBox(true)
+#		dialogueUI._showPortrait(true)
+#		dialogueUI._showPlayerPortrait(player.portrait)
+#		dialogue._displayDialogueClosable(difficultyChangeTxt)
 	
 	minDifficulty = newDifficulty
 
