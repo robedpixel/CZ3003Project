@@ -20,6 +20,16 @@ signal gameover_signal(value)
 var currentMonster
 var isBoss : bool = false
 
+var src1Easy = "res://Resources/Questions/Requirement_Analysis_easy.json"
+var src1Med = "res://Resources/Questions/Requirement_Analysis_medium.json"
+var src1Hard = "res://Resources/Questions/Requirement_Analysis_hard.json"
+var src1Boss = "res://Resources/Questions/Requirement_Analysis_boss.json"
+
+var src2Easy = "res://Resources/Questions/Requirement_Elicitation_easy.json"
+var src2Med = "res://Resources/Questions/Requirement_Elicitation_medium.json"
+var src2Hard = "res://Resources/Questions/Requirement_Elicitation_hard.json"
+var src2Boss = "res://Resources/Questions/Requirement_Elicitation_boss.json"
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass
@@ -29,37 +39,37 @@ func _ready():
 #	pass
 
 func _initTopic(topic):
-	var srcEasy = "res://Resources/Questions/"
-	var srcMed = "res://Resources/Questions/"
-	var srcHard = "res://Resources/Questions/"
-	var srcBoss = ""
+	questionManagerEasy.clear_questions_array()
+	questionManagerMed.clear_questions_array()
+	questionManagerHard.clear_questions_array()
+	questionManagerBoss.clear_questions_array()
 	
 	match topic:
 		GlobalVariables.TopicEnum.TOPIC_1:
-			# i should append instead
-			srcEasy = "res://Resources/Questions/Requirement_Analysis_easy.json"
-			srcMed = "res://Resources/Questions/Requirement_Analysis_medium.json"
-			srcHard = "res://Resources/Questions/Requirement_Analysis_hard.json"
-			srcBoss = "res://Resources/Questions/Requirement_Analysis_boss.json"
+			questionManagerEasy.read_questions_from_source(src1Easy)		
+			questionManagerMed.read_questions_from_source(src1Med)
+			questionManagerHard.read_questions_from_source(src1Hard)
+			questionManagerBoss.read_questions_from_source(src1Boss)
 		GlobalVariables.TopicEnum.TOPIC_2:
-			srcEasy = "res://Resources/Questions/Requirement_Elicitation_easy.json"
-			srcMed = "res://Resources/Questions/Requirement_Elicitation_medium.json"
-			srcHard = "res://Resources/Questions/Requirement_Elicitation_hard.json"
-			srcBoss = "res://Resources/Questions/Requirement_Elicitation_boss.json"
+			questionManagerEasy.read_questions_from_source(src2Easy)		
+			questionManagerMed.read_questions_from_source(src2Med)
+			questionManagerHard.read_questions_from_source(src2Hard)
+			questionManagerBoss.read_questions_from_source(src2Boss)
 		GlobalVariables.TopicEnum.CUSTOM_TOPIC:
-			pass
+			questionManagerEasy.read_questions_from_source(src1Easy)		
+			questionManagerMed.read_questions_from_source(src1Med)
+			questionManagerHard.read_questions_from_source(src1Hard)
+			questionManagerBoss.read_questions_from_source(src1Boss)
+			questionManagerEasy.add_questions_from_source(src2Easy)		
+			questionManagerMed.add_questions_from_source(src2Med)
+			questionManagerHard.add_questions_from_source(src2Hard)
+			questionManagerBoss.add_questions_from_source(src2Boss)
 		_:
 			pass
-	questionManagerEasy.read_questions_from_source(srcEasy)
+	
 	questionManagerEasy.prepare_questions()
-	
-	questionManagerMed.read_questions_from_source(srcMed)
 	questionManagerMed.prepare_questions()
-	
-	questionManagerHard.read_questions_from_source(srcHard)
 	questionManagerHard.prepare_questions()
-	
-	questionManagerBoss.read_questions_from_source(srcBoss)
 	questionManagerBoss.prepare_questions()
 
 func _enterCombat(monster):
@@ -123,6 +133,7 @@ func _onAnswer(ansValue):
 	#if(ansValue == correctAnswer):
 		print("You got it correct!")
 		analytics.update_question_correct(currentMonster.difficulty)
+
 		currentMonster.monsterHealth._minusHealth(1)		
 		combatUI._weaponSlashAnimation(currentMonster.position)
 		combatUI._hideAnswers()
@@ -153,11 +164,13 @@ func _onDeath(entity):
 	
 func _monsterDeathAnimEnd():
 	combatUI._showDialogue(false)
-	emit_signal("victory_signal", true, currentMonster.difficulty)
-	_exitCombat()
 	
 	if(isBoss):
 		emit_signal("gameover_signal", true)
+		
+	emit_signal("victory_signal", true, currentMonster.difficulty)
+	
+	_exitCombat()
 
 func _onTransitionShowStart():
 	

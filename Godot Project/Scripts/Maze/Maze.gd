@@ -8,8 +8,7 @@ onready var cmbtManager = get_node("../CombatManager")
 onready var monsterFactory = get_node("../MonsterFactory")
 onready var transition = get_node("../Transition")
 onready var effectManager = get_node("../EffectManager")
-onready var dialogueUI = get_node("/root/Main/DialogueCanvas/DialogueUI")
-onready var dialogue = get_node("/root/Main/DialogueCanvas/DialogueUI/DialogueBox")
+onready var dialogueManager = get_node("/root/Main/DialogueCanvas")
 onready var mainUI = get_node("/root/Main/MainCanvas")
 onready var analytics = get_node("../AnalyticsManager")
 
@@ -46,6 +45,8 @@ var movedRoom : bool = false
 var lastUsedDoor = ""
 var targetDoorPos
 
+var gameOver : bool = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	_initializeMaze()
@@ -61,10 +62,9 @@ func _ready():
 func _initializeMaze():
 	_exitRoom()
 	
-	var topic = GlobalVariables.topic_selected
-	if(topic == null):
-		topic = GlobalVariables.TopicEnum.TOPIC_1
-	cmbtManager._initTopic(topic)
+	gameOver = false
+	
+	
 	
 	var charSelected = GlobalVariables.charSelected
 	#charSelected = 0
@@ -90,8 +90,42 @@ func _initializeMaze():
 	
 	analytics._resetAnalytics()
 	
+	var topic = GlobalVariables.topic_selected
+	if(topic == null):
+		topic = GlobalVariables.TopicEnum.TOPIC_1
+		
+	cmbtManager._initTopic(topic)
+	
+	var worldSelected = GlobalVariables.world_num
+	match worldSelected:
+		0:
+			pass
+		1:
+			pass
+		2:
+			pass
+		_:
+			pass
+	
 	mazeDesign._generateMaze(5, 5)
 	
+	var isCustomMaze = GlobalVariables.bool_custom_maze
+	if(isCustomMaze):
+		mazeDesign._setMaze(GlobalVariables.maze_creator_map)
+		mazeDesign._validateLayout()
+	else:
+		_initDebugMaze()
+	
+	_loadRoom(playerX, playerY)
+	_updatePlayerGridUI()
+	
+	# init shop and boss
+	
+	shopItems = [GlobalVariables.ItemEnum.ITEM_HEALTHPOT,
+	GlobalVariables.ItemEnum.ITEM_HEALTHPOT,
+	GlobalVariables.ItemEnum.ITEM_HEALTHPOT]
+	
+func _initDebugMaze():
 	for x in range(mazeDesign.WIDTH):
 		for y in range(mazeDesign.HEIGHT):
 			mazeDesign._setRoom(x, y, GlobalVariables.RoomEnum.CHALLENGE_ROOM_EASY)
@@ -102,18 +136,6 @@ func _initializeMaze():
 	mazeDesign._setRoom(playerX, playerY, GlobalVariables.RoomEnum.STARTING_ROOM)
 	mazeDesign._setRoom(1, 1, GlobalVariables.RoomEnum.BOSS_ROOM)
 	mazeDesign._setRoom(1, 0, GlobalVariables.RoomEnum.SHOP_ROOM)
-	
-	_loadRoom(playerX, playerY)
-	_updatePlayerGridUI()
-	
-	
-	# init shop and boss
-	
-	shopItems = [GlobalVariables.ItemEnum.ITEM_HEALTHPOT,
-	GlobalVariables.ItemEnum.ITEM_HEALTHPOT,
-	GlobalVariables.ItemEnum.ITEM_HEALTHPOT]
-	
-	
 	
 
 func _moveRoom(dir):
@@ -177,7 +199,7 @@ func _loadRoom(x, y):
 	var roomType = mazeDesign._getRoom(x, y)
 	
 	# display error room
-	if(roomType == -1):
+	if(int(roomType) < 0):
 		_toggleAllDoors(false)
 		return
 	
@@ -353,25 +375,31 @@ func _rewardPlayer():
 	
 	effectManager._playCoinAnim(currentMonster.get_position(), rewardedCoins)
 
-func _difficultyChange(prevDifficulty, newDifficulty):
+func _difficultyChange(newDifficulty):
+	if(gameOver):
+		return
 	
 	var difficultyChangeTxt = ""
 	
-	if(newDifficulty > prevDifficulty):
+	if(newDifficulty > minDifficulty):
 		difficultyChangeTxt = "You feel a stronger presence"
-	else:
+	elif(newDifficulty < minDifficulty):
 		difficultyChangeTxt = "You feel less pressure from your surroundings"
-		
-	player._lockCharacter(true)
-	dialogueUI._showDialogueBox(true)
-	dialogueUI._showPortrait(true)
-	dialogueUI._showPlayerPortrait(player.portrait)
-	dialogue._displayDialogueClosable(difficultyChangeTxt)
+	
+	if(difficultyChangeTxt != ""):
+		player._lockCharacter(true)
+		dialogueManager._dialoguePlayer(player.portrait, difficultyChangeTxt, true)
+#		dialogueUI._showDialogueBox(true)
+#		dialogueUI._showPortrait(true)
+#		dialogueUI._showPlayerPortrait(player.portrait)
+#		dialogue._displayDialogueClosable(difficultyChangeTxt)
 	
 	minDifficulty = newDifficulty
 
 
 func _on_CombatManager_gameover_signal(value):
+	
+	gameOver = true
 	
 	player._lockCharacter(true)
 	

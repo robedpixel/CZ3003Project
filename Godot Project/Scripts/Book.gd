@@ -44,6 +44,8 @@ var world2dir = ["res://Resources/images/World2GuideBook/1.jpg", "res://Resource
 ,"res://Resources/images/World2GuideBook/58.jpg","res://Resources/images/World2GuideBook/59.jpg"
 ]
 
+var customWorld = world1dir + world2dir
+
 var isOpen : bool = false
 
 var defaultPage = 1
@@ -58,12 +60,15 @@ func displaySlide(no):
 		var t = Texture.new()
 		t = load(world1dir[no])
 		get_node("Popup/ScrollContainer/RichTextLabel").add_image(t,600,400)
-		pass
-	else:
+	elif (GlobalVariables.world_num == 2):
 		var t = Texture.new()
 		t = load(world2dir[no])
 		get_node("Popup/ScrollContainer/RichTextLabel").add_image(t,600,400)
-		pass
+	else:
+		var t = Texture.new()
+		t = load(customWorld[no])
+		get_node("Popup/ScrollContainer/RichTextLabel").add_image(t,600,400)
+		
 
 func _open():
 	if(isOpen):
@@ -71,29 +76,53 @@ func _open():
 		
 	isOpen = true
 	get_node("Popup").popup()
-	get_node("Popup/PageNumber").text = str(defaultPage) + " / " + str(world2dir.size())
+	if (GlobalVariables.world_num == 1):
+		get_node("Popup/PageNumber").text = str(defaultPage) + " / " + str(world1dir.size())
+		get_node("Popup/ScrollContainer/RichTextLabel").text = ""
+	elif (GlobalVariables.world_num == 2):
+		get_node("Popup/PageNumber").text = str(defaultPage) + " / " + str(world2dir.size())
+		get_node("Popup/ScrollContainer/RichTextLabel").text = ""
+	else:
+		get_node("Popup/PageNumber").text = str(defaultPage) + " / " + str(customWorld.size())
+		get_node("Popup/ScrollContainer/RichTextLabel").text = ""
 	displaySlide(defaultPage-1)
 
-func _on_ToolButton_pressed():
-	get_node("Popup").popup()
-	get_node("Popup/PageNumber").text = str(defaultPage) + " / " + str(world2dir.size())
-	displaySlide(defaultPage-1)
 	
 
 func _on_PreviousPageButton_pressed():
 	if(defaultPage != 1):
 		defaultPage -= 1
-		get_node("Popup/PageNumber").text = str(defaultPage) + " / " + str(world2dir.size())
-		get_node("Popup/ScrollContainer/RichTextLabel").text = ""
+		if (GlobalVariables.world_num == 1):
+			get_node("Popup/PageNumber").text = str(defaultPage) + " / " + str(world1dir.size())
+			get_node("Popup/ScrollContainer/RichTextLabel").text = ""
+		elif (GlobalVariables.world_num == 2):
+			get_node("Popup/PageNumber").text = str(defaultPage) + " / " + str(world2dir.size())
+			get_node("Popup/ScrollContainer/RichTextLabel").text = ""
+		else:
+			get_node("Popup/PageNumber").text = str(defaultPage) + " / " + str(customWorld.size())
+			get_node("Popup/ScrollContainer/RichTextLabel").text = ""
 		displaySlide(defaultPage-1)
 
 
 func _on_NextPageButton_pressed():
-	if(defaultPage < world1dir.size()):
-		defaultPage += 1
-		get_node("Popup/PageNumber").text = str(defaultPage) + " / " + str(world2dir.size())
-		get_node("Popup/ScrollContainer/RichTextLabel").text = ""
-		displaySlide(defaultPage-1)
+		if (GlobalVariables.world_num == 1):
+			if(defaultPage < world1dir.size()):
+				defaultPage += 1
+				get_node("Popup/PageNumber").text = str(defaultPage) + " / " + str(world1dir.size())
+				get_node("Popup/ScrollContainer/RichTextLabel").text = ""
+				displaySlide(defaultPage-1)
+		elif (GlobalVariables.world_num == 2):
+			if(defaultPage < world2dir.size()):
+				defaultPage += 1
+				get_node("Popup/PageNumber").text = str(defaultPage) + " / " + str(world2dir.size())
+				get_node("Popup/ScrollContainer/RichTextLabel").text = ""
+				displaySlide(defaultPage-1)
+		else:
+			if(defaultPage < customWorld.size()):
+				defaultPage += 1
+				get_node("Popup/PageNumber").text = str(defaultPage) + " / " + str(customWorld.size())
+				get_node("Popup/ScrollContainer/RichTextLabel").text = ""
+				displaySlide(defaultPage-1)
 
 
 func _on_Popup_popup_hide():

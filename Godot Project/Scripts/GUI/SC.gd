@@ -49,21 +49,21 @@ func _on_ThiefButton_pressed():
 
 # Go to the game scene based on the selection
 func _on_SelectWarrior_pressed():
-	GlobalVariables.charSelected = 1
+	GlobalVariables.charSelected = 0
 	get_tree().change_scene(path_to_game)
 	print("Warriror Selected")
 	print("World ",GlobalVariables.world_num)
 	
 	
 func _on_SelectAverage_pressed():
-	GlobalVariables.charSelected = 2
+	GlobalVariables.charSelected = 1
 	get_tree().change_scene(path_to_game)
 	print("Average Selected")
 	print("World ",GlobalVariables.world_num)
 	
 
 func _on_SelectThief_pressed():
-	GlobalVariables.charSelected = 3
+	GlobalVariables.charSelected = 2
 	get_tree().change_scene(path_to_game)
 	print("Theif Selected")
 	print("World ",GlobalVariables.world_num)
