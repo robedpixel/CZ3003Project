@@ -62,8 +62,8 @@ custom_constants/separation = 40
 alignment = 1
 
 [node name="SelectWorldButton" type="Button" parent="MainMenuVericalContainer/Buttons"]
-margin_left = 67.0
-margin_right = 420.0
+margin_left = 65.0
+margin_right = 418.0
 margin_bottom = 59.0
 custom_styles/hover = ExtResource( 4 )
 custom_styles/pressed = ExtResource( 7 )
@@ -75,8 +75,8 @@ custom_colors/font_color_pressed = Color( 1, 0.662745, 0.635294, 1 )
 text = "select world"
 
 [node name="MazeCreatorButton" type="Button" parent="MainMenuVericalContainer/Buttons"]
-margin_left = 460.0
-margin_right = 819.0
+margin_left = 458.0
+margin_right = 817.0
 margin_bottom = 59.0
 custom_styles/hover = ExtResource( 4 )
 custom_styles/pressed = ExtResource( 7 )
@@ -88,8 +88,8 @@ custom_colors/font_color_pressed = Color( 1, 0.662745, 0.635294, 1 )
 text = " Maze creator"
 
 [node name="LeaderBoardButton" type="Button" parent="MainMenuVericalContainer/Buttons"]
-margin_left = 859.0
-margin_right = 1212.0
+margin_left = 857.0
+margin_right = 1210.0
 margin_bottom = 59.0
 custom_styles/hover = ExtResource( 4 )
 custom_styles/pressed = ExtResource( 7 )
