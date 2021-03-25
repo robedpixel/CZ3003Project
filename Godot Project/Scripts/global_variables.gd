@@ -1,6 +1,8 @@
 extends Node
 
 var world_num = null
+var world_1_map = [[6, 1, 2, 0, 3], [1, 0, 2, 3, 1], [2, 0, 4, 0, 3], [3, 1, 0, 5, 1], [2, 3, 7, 0, 7]]
+var world_2_map = [[6, 0, 1, 7, 2], [7, 1, 1, 2, 2], [3, 5, 2, 0, 7], [1, 7, 0, 3, 3], [3, 0, 2, 3, 4]]
 var maze_creator_map = null
 var bool_custom_maze = false
 var topic_selected = null
@@ -69,35 +71,40 @@ func transcode(data, target, source):
 
 
 
-func post_to_telegram(world,score , maze_code:String,student_name):
+func post_to_telegram(world_num,score , maze_code,student_name):
 	var http = HTTPRequest.new()
 	add_child(http)
 	
 	var url ="https://api.telegram.org/bot1765926387:AAEgU23J1uNMdpMTX-uvnbDtKJGIe1i5Hpk/sendMessage?chat_id=@ssad_class&text="
 	var game_message 
+	
 	if(maze_code==null):
-		if(world == 0):
-			game_message = "Hey%21+Check+out+my+score+for+Requirement+Analysis.+My+score+is+"+ score+" . %0A%0A - " + student_name
-		elif(world == 1):
-			game_message = "Hey%21+Check+out+my+score+for+Requirement+Engineering.+My+score+is+"+ score +" . %0A%0A- " + student_name
+		if(world_num == 0):
+			game_message = "Hey%21+Check+out+my+score+for+Requirement+Analysis.%0AMy+score+is+"+ str(score)+" . %0A%0A - " + student_name
+		elif(world_num == 1):
+			game_message = "Hey%21+Check+out+my+score+for+Requirement+Engineering.%0AMy+score+is+"+ str(score) +" . %0A%0A- " + student_name
 		else: print("error")
 	else:
-		game_message = "Hey%21+Try+out+my+maze.+Here+is+the+code "+ maze_code.percent_encode() + " . %0A%0A- " + student_name
+		var maze_code_string = str(maze_code)
+		game_message = "Hey%21+Try+out+my+maze.+Here+is+the+code: %0A%0A"+ maze_code_string.percent_encode() + " %0A%0A- " + student_name
 	http.request(url+game_message, [], true, HTTPClient.METHOD_POST, "")
+	#OS.shell_open("https://t.me/ssad_class")
 
 func post_to_facebook():
 	OS.shell_open("https://www.facebook.com/groups/4064171876949849")
 
-func post_to_twitter(world,score , maze_code:String,student_name):
+func post_to_twitter(world_num,score , maze_code,student_name):
+	print(world_num,"type: ", typeof(world_num))
 	var game_message 
 	if(maze_code==null):
-		if(world == 0):
-			game_message = "Hey%21+Check+out+my+score+for+Requirement+Analysis.+My+score+is+"+ score+" . %0A%0A - " + student_name
-		elif(world == 1):
-			game_message = "Hey%21+Check+out+my+score+for+Requirement+Engineering.+My+score+is+"+ score +" . %0A%0A- " + student_name
+		if(world_num == 0):
+			game_message = "Hey%21+Check+out+my+score+for+Requirement+Analysis.%0AMy+score+is+"+ str(score)+" . %0A%0A - " + student_name
+		elif(world_num == 1):
+			game_message = "Hey%21+Check+out+my+score+for+Requirement+Engineering.%0AMy+score+is+"+ str(score) +" . %0A%0A- " + student_name
 		else: print("error")
 	else:
-		game_message = "Hey%21+Try+out+my+maze.+Here+is+the+code "+ maze_code.percent_encode() + " . %0A%0A- " + student_name
+		var maze_code_string = str(maze_code)
+		game_message = "Hey%21+Try+out+my+maze.+Here+is+the+code: %0A%0A"+ maze_code_string.percent_encode() + " %0A%0A- " + student_name
 	
 	
 	OS.shell_open("https://twitter.com/intent/tweet?text="+game_message)
