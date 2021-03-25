@@ -77,13 +77,30 @@ func post_to_telegram(world,score , maze_code:String,student_name):
 	var game_message 
 	if(maze_code==null):
 		if(world == 0):
-			game_message = "Hey%21+Check+out+my+score+for+Requirement+Analysis.+My+score+is+"+ score+" . %0A -" + student_name
+			game_message = "Hey%21+Check+out+my+score+for+Requirement+Analysis.+My+score+is+"+ score+" . %0A%0A - " + student_name
 		elif(world == 1):
-			game_message = "Hey%21+Check+out+my+score+for+Requirement+Engineering.+My+score+is+"+ score +" . %0A-" + student_name
+			game_message = "Hey%21+Check+out+my+score+for+Requirement+Engineering.+My+score+is+"+ score +" . %0A%0A- " + student_name
 		else: print("error")
 	else:
-		game_message = "Hey%21+Try+out+my+maze.+Here+is+the+code "+ maze_code.percent_encode() + " . %0A-" + student_name
+		game_message = "Hey%21+Try+out+my+maze.+Here+is+the+code "+ maze_code.percent_encode() + " . %0A%0A- " + student_name
 	http.request(url+game_message, [], true, HTTPClient.METHOD_POST, "")
+
+func post_to_facebook():
+	OS.shell_open("https://www.facebook.com/groups/4064171876949849")
+
+func post_to_twitter(world,score , maze_code:String,student_name):
+	var game_message 
+	if(maze_code==null):
+		if(world == 0):
+			game_message = "Hey%21+Check+out+my+score+for+Requirement+Analysis.+My+score+is+"+ score+" . %0A%0A - " + student_name
+		elif(world == 1):
+			game_message = "Hey%21+Check+out+my+score+for+Requirement+Engineering.+My+score+is+"+ score +" . %0A%0A- " + student_name
+		else: print("error")
+	else:
+		game_message = "Hey%21+Try+out+my+maze.+Here+is+the+code "+ maze_code.percent_encode() + " . %0A%0A- " + student_name
+	
+	
+	OS.shell_open("https://twitter.com/intent/tweet?text="+game_message)
 
 func _ready():
 	pass # Replace with function body.
