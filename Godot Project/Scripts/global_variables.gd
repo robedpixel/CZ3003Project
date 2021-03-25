@@ -23,9 +23,7 @@ var monsterDifficultyRewardModifier = {
 }
 
 
-
 var BASE64_DIGITS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789$&'
-
 
 # Decodes an encoded number into a decimal number.
 #
@@ -68,6 +66,24 @@ func encode(data, target):
 func transcode(data, target, source):
 	return encode(decode(data, source), target)
 ####
+
+
+
+func post_to_telegram(world,score , maze_code:String,student_name):
+	var http = HTTPRequest.new()
+	add_child(http)
+	
+	var url ="https://api.telegram.org/bot1765926387:AAEgU23J1uNMdpMTX-uvnbDtKJGIe1i5Hpk/sendMessage?chat_id=@ssad_class&text="
+	var game_message 
+	if(maze_code==null):
+		if(world == 0):
+			game_message = "Hey%21+Check+out+my+score+for+Requirement+Analysis.+My+score+is+"+ score+" . %0A -" + student_name
+		elif(world == 1):
+			game_message = "Hey%21+Check+out+my+score+for+Requirement+Engineering.+My+score+is+"+ score +" . %0A-" + student_name
+		else: print("error")
+	else:
+		game_message = "Hey%21+Try+out+my+maze.+Here+is+the+code "+ maze_code.percent_encode() + " . %0A-" + student_name
+	http.request(url+game_message, [], true, HTTPClient.METHOD_POST, "")
 
 func _ready():
 	pass # Replace with function body.
