@@ -88,8 +88,8 @@ custom_colors/font_color_pressed = Color( 1, 0.662745, 0.635294, 1 )
 text = " Maze creator"
 
 [node name="LeaderBoardButton" type="Button" parent="MainMenuVericalContainer/Buttons"]
-margin_left = 859.0
-margin_right = 1212.0
+margin_left = 857.0
+margin_right = 1210.0
 margin_bottom = 59.0
 custom_styles/hover = ExtResource( 4 )
 custom_styles/pressed = ExtResource( 7 )
