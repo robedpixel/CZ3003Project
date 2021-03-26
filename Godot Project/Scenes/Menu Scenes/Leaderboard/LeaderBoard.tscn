@@ -1,10 +1,10 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://Scripts/GUI/BackToMainMenu.gd" type="Script" id=1]
 [ext_resource path="res://Resources/fonts/arcade_48.tres" type="DynamicFont" id=2]
 [ext_resource path="res://Scenes/Menu Scenes/Leaderboard/LeaderBoard.gd" type="Script" id=3]
-[ext_resource path="res://Scenes/Menu Scenes/Leaderboard/f_logo_RGB-Hex-Blue_512.png" type="Texture" id=4]
-[ext_resource path="res://Scenes/Menu Scenes/Leaderboard/2890bac9ba41e52707f36268231dfe9e.png" type="Texture" id=5]
+[ext_resource path="res://Resources/Social Media Buttons/Facebook/Facebook_normal.png" type="Texture" id=4]
+[ext_resource path="res://Resources/Social Media Buttons/Twitter/Twitter_normal.png" type="Texture" id=5]
 [ext_resource path="res://Resources/Main GUI Images/BG/BG4.jpg.png" type="Texture" id=6]
 [ext_resource path="res://Resources/Button Styles/main_menu_button_disabled.tres" type="StyleBox" id=7]
 [ext_resource path="res://Resources/Button Styles/main_menu_button_normal.tres" type="StyleBox" id=8]
@@ -18,6 +18,13 @@
 [ext_resource path="res://Resources/fonts/chary_40.tres" type="DynamicFont" id=16]
 [ext_resource path="res://Resources/fonts/arcade_40.tres" type="DynamicFont" id=17]
 [ext_resource path="res://Resources/fonts/chary_28_dialog_title.tres" type="DynamicFont" id=18]
+[ext_resource path="res://Resources/Social Media Buttons/Facebook/Facebook_pressed.png" type="Texture" id=19]
+[ext_resource path="res://Resources/Social Media Buttons/Twitter/Twitter_pressed.png" type="Texture" id=20]
+[ext_resource path="res://Resources/Social Media Buttons/Facebook/Facebook_hover.png" type="Texture" id=21]
+[ext_resource path="res://Resources/Social Media Buttons/Telegram/Telegram_normal.png" type="Texture" id=22]
+[ext_resource path="res://Resources/Social Media Buttons/Telegram/Telegram_pressed.png" type="Texture" id=23]
+[ext_resource path="res://Resources/Social Media Buttons/Twitter/Twitter_hover.png" type="Texture" id=24]
+[ext_resource path="res://Resources/Social Media Buttons/Telegram/Telegram_hover.png" type="Texture" id=25]
 
 [node name="LeaderBoardScene" type="Control"]
 margin_right = 1280.0
@@ -59,47 +66,11 @@ custom_fonts/font = ExtResource( 2 )
 custom_colors/font_color = Color( 1, 0.662745, 0.635294, 1 )
 text = "LeaderBoard  Page"
 
-[node name="ShareFBBtn" type="Button" parent="."]
-margin_left = 1069.0
-margin_top = 551.0
-margin_right = 1259.0
-margin_bottom = 605.0
-custom_styles/hover = ExtResource( 10 )
-custom_styles/pressed = ExtResource( 9 )
-custom_styles/disabled = ExtResource( 7 )
-custom_styles/normal = ExtResource( 8 )
-custom_colors/font_color_disabled = Color( 0, 0, 0, 1 )
-custom_colors/font_color = Color( 1, 0.662745, 0.635294, 1 )
-custom_colors/font_color_hover = Color( 0.4, 0.0156863, 0.0156863, 1 )
-custom_colors/font_color_pressed = Color( 1, 0.662745, 0.635294, 1 )
-action_mode = 0
-text = "     Share on FB"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="ShareTwitterBtn" type="Button" parent="."]
-margin_left = 1066.09
-margin_top = 623.0
-margin_right = 1259.09
-margin_bottom = 679.0
-custom_styles/hover = ExtResource( 10 )
-custom_styles/pressed = ExtResource( 9 )
-custom_styles/disabled = ExtResource( 7 )
-custom_styles/normal = ExtResource( 8 )
-custom_colors/font_color = Color( 1, 0.662745, 0.635294, 1 )
-custom_colors/font_color_hover = Color( 0.4, 0.0156863, 0.0156863, 1 )
-custom_colors/font_color_pressed = Color( 1, 0.662745, 0.635294, 1 )
-text = "          Share on Twitter"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="LBBackButton" type="Button" parent="."]
 margin_left = 425.914
-margin_top = 654.825
+margin_top = 640.0
 margin_right = 842.914
-margin_bottom = 713.825
+margin_bottom = 699.0
 custom_styles/hover = ExtResource( 10 )
 custom_styles/pressed = ExtResource( 9 )
 custom_styles/disabled = ExtResource( 7 )
@@ -215,16 +186,6 @@ custom_colors/font_color = Color( 1, 0.662745, 0.635294, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 align = 2
 
-[node name="FBLogoImg" type="Sprite" parent="."]
-position = Vector2( 1104.85, 575.663 )
-scale = Vector2( 0.0897207, 0.069043 )
-texture = ExtResource( 4 )
-
-[node name="TwitLogoImg" type="Sprite" parent="."]
-position = Vector2( 1105.05, 647.885 )
-scale = Vector2( 0.0833217, 0.0755706 )
-texture = ExtResource( 5 )
-
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
 
 [node name="WindowDialog" type="WindowDialog" parent="."]
@@ -237,6 +198,9 @@ margin_right = -359.0
 margin_bottom = -189.0
 custom_fonts/title_font = ExtResource( 18 )
 window_title = "PLEASE CONFIRM..."
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Panel" type="Panel" parent="WindowDialog"]
 anchor_right = 1.0
@@ -302,12 +266,78 @@ custom_colors/font_color = Color( 1, 0.662745, 0.635294, 1 )
 custom_colors/font_color_hover = Color( 0.313726, 0.0470588, 0.156863, 1 )
 custom_colors/font_color_pressed = Color( 0.25098, 0.14902, 0.0313726, 1 )
 text = "Confirm"
-[connection signal="pressed" from="ShareFBBtn" to="." method="_on_Button_pressed"]
-[connection signal="pressed" from="ShareFBBtn" to="." method="_on_ShareFBBtn_pressed"]
-[connection signal="pressed" from="ShareTwitterBtn" to="." method="_on_ShareTwitterBtn_pressed"]
+
+[node name="SocialMediaContainer" type="VBoxContainer" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -230.0
+margin_top = -120.0
+margin_right = -30.0
+margin_bottom = -20.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SocialMediaLabel" type="Label" parent="SocialMediaContainer"]
+margin_right = 200.0
+margin_bottom = 34.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 11 )
+custom_colors/font_color = Color( 1, 0.662745, 0.635294, 1 )
+text = "go to:"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SocialMediaButtons" type="HBoxContainer" parent="SocialMediaContainer"]
+margin_top = 38.0
+margin_right = 200.0
+margin_bottom = 100.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 5
+
+[node name="Telegram" type="TextureButton" parent="SocialMediaContainer/SocialMediaButtons"]
+margin_right = 63.0
+margin_bottom = 62.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_normal = ExtResource( 22 )
+texture_pressed = ExtResource( 23 )
+texture_hover = ExtResource( 25 )
+expand = true
+
+[node name="Twitter" type="TextureButton" parent="SocialMediaContainer/SocialMediaButtons"]
+margin_left = 68.0
+margin_right = 131.0
+margin_bottom = 62.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_normal = ExtResource( 5 )
+texture_pressed = ExtResource( 20 )
+texture_hover = ExtResource( 24 )
+expand = true
+
+[node name="Facebook" type="TextureButton" parent="SocialMediaContainer/SocialMediaButtons"]
+margin_left = 136.0
+margin_right = 200.0
+margin_bottom = 62.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 19 )
+texture_hover = ExtResource( 21 )
+expand = true
 [connection signal="pressed" from="LBBackButton" to="LBBackButton" method="_on_LBBackButton_pressed"]
 [connection signal="pressed" from="HBoxContainer2/Button" to="." method="_on_Button_pressed"]
 [connection signal="pressed" from="HBoxContainer2/Button2" to="." method="_on_Button2_pressed"]
 [connection signal="request_completed" from="HTTPRequest" to="." method="_on_HTTPRequest_request_completed"]
 [connection signal="pressed" from="WindowDialog/VBoxContainer/HBoxContainer/cancelBtn" to="." method="_on_cancelBtn_pressed"]
 [connection signal="pressed" from="WindowDialog/VBoxContainer/HBoxContainer/confirmBtn" to="." method="_on_confirmBtn_pressed"]
+[connection signal="pressed" from="SocialMediaContainer/SocialMediaButtons/Telegram" to="." method="_on_Telegram_pressed"]
+[connection signal="pressed" from="SocialMediaContainer/SocialMediaButtons/Twitter" to="." method="_on_Twitter_pressed"]
+[connection signal="pressed" from="SocialMediaContainer/SocialMediaButtons/Facebook" to="." method="_on_Facebook_pressed"]

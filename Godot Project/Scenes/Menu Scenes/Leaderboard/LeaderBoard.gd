@@ -60,11 +60,7 @@ func show_sorted_leaderboard():
 		j = j + 1
 	print("shown")
 
-func _on_ShareFBBtn_pressed():
-	OS.shell_open("https://www.facebook.com/groups/4064171876949849")
 
-func _on_ShareTwitterBtn_pressed():
-	OS.shell_open("https://twitter.com/intent/tweet")
 
 func _on_HTTPRequest_request_completed(result, response_code, headers, body):
 	print("http request completed")
@@ -111,3 +107,15 @@ func _on_confirmBtn_pressed():
 		get_node("wSelectedLbl").text = "World Selected: World 2"
 	get_leaderboard_data()
 	alert_dialog.visible =false
+
+
+func _on_Telegram_pressed():
+	OS.shell_open("https://t.me/ssad_class")
+
+
+func _on_Twitter_pressed():
+	OS.shell_open("https://twitter.com/home")
+
+
+func _on_Facebook_pressed():
+	OS.shell_open("https://www.facebook.com/groups/4064171876949849")

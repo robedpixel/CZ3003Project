@@ -29,9 +29,10 @@ onready var alert_dialog = get_node("../WindowDialog")
 onready var alert_label = get_node("../WindowDialog/VBoxContainer/AlertLabel")
 onready var alert_line_edit = get_node("../WindowDialog/VBoxContainer/AlertLineEdit")
 onready var alert_button = get_node("../WindowDialog/VBoxContainer/AlertButton")
-onready var alert_button_FB = get_node("../WindowDialog/VBoxContainer/AlertShareFB")
+onready var alert_social_media= get_node("../WindowDialog/VBoxContainer/Social Media")
 onready var topic_label = get_node("../TopicLabel")
 onready var topic_button = get_node("../TopicChooserButton")
+
 
 var path_to_select_world = "res://Scenes/Menu Scenes/Select_World/SW.tscn"
 
@@ -47,6 +48,11 @@ var height = 5  # height of the map
 var width = 5   # width of the map
 var topic_int = 0
 var bool_maze_encoded
+var full_maze_code
+var handler
+var student_name
+
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -56,9 +62,13 @@ func _ready():
 	store_exists = false
 	topic_button.visible=false
 	topic_label.visible = false
-	alert_button_FB.visible = false
-	#print(button_grid)
+	alert_social_media.visible = false
+	handler = load("res://Scripts/auth/firebase_db.gd").new()
+	add_child(handler)
+	student_name = yield(handler.get_student_name(), "completed")
 	
+	#print(button_grid)
+
 
 # Function that initailies all (x,y) axis to 0 except (0,0) to 6 as it is the start
 func generate_layout(var height,var width):
@@ -270,20 +280,23 @@ func _on_ConfirmButton_pressed():
 		generate_code(button_grid,topic_int)
 		alert_dialog.visible=true
 		alert_line_edit.visible = true
-		alert_button_FB.visible =true
+		alert_social_media.visible = true
 		alert_dialog.window_title = ""
 		alert_label.text = "SUCCESS!\nYOUR CODE IS" 
 		alert_line_edit.text= code_1 + "-" + code_2 + "-" + code_3
 		alert_button.text = "Go to maze"
 		bool_maze_encoded = true
+		full_maze_code = code_1 + "-" + code_2 + "-" + code_3
 		#print("Path exists: ", path_exists)
 	else:
 		alert_dialog.visible=true
 		alert_line_edit.visible = false
+		alert_social_media.visible = false
 		alert_dialog.window_title = "ERROR"
 		alert_label.text = "NO PATH TO BOSS TILE!"
 		alert_button.text = "Close"
 		bool_maze_encoded = false
+		full_maze_code = null
 		#print("Path does not exist")
 
 
@@ -310,8 +323,17 @@ func _on_AlertButton_pressed():
 	else:
 		get_tree().change_scene(path_to_select_world)
 
-func _on_AlertShareFB_pressed():
-	OS.shell_open("https://www.facebook.com/groups/4064171876949849")
+
+func _on_Telegram_pressed():
+	GlobalVariables.post_to_telegram(null,null,full_maze_code,student_name)
+
+
+func _on_Twitter_pressed():
+	GlobalVariables.post_to_twitter(null,null,full_maze_code,student_name)
+
+
+func _on_Facebook_pressed():
+	GlobalVariables.post_to_facebook()
 ####################		The functions below are totally for each button		############################
 
 #########################  				 Y axis = 4				#########################
@@ -392,6 +414,7 @@ func _on_Button_X3Y0_pressed():
 
 func _on_Button_X4Y0_pressed():
 	button_press("btn_x4y0")
+
 
 
 
