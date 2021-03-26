@@ -22,8 +22,8 @@ func _read_json_from_source(path : String)->Dictionary:
 	var file = File.new()
 	file.open(path, file.READ)
 	var json = file.get_as_text()
-	file.close()
 	var json_result = JSON.parse(json).result
+	file.close()
 	return json_result
 
 func _read_questions(questions_json: Dictionary)->void:
