@@ -342,7 +342,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="CoinAudio" type="AudioStreamPlayer2D" parent="MainCanvas/MainUI/CoinsUI"]
+[node name="CoinAudio" type="AudioStreamPlayer" parent="MainCanvas/MainUI/CoinsUI"]
 stream = ExtResource( 47 )
 
 [node name="ItemUI" type="Control" parent="MainCanvas/MainUI"]
@@ -448,14 +448,11 @@ __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="PopupAudio" type="AudioStreamPlayer2D" parent="MainCanvas/Popup"]
+[node name="PopupAudio" type="AudioStreamPlayer" parent="MainCanvas/Popup"]
 stream = ExtResource( 41 )
 
-[node name="ButtonPressAudio" type="AudioStreamPlayer2D" parent="MainCanvas/Popup"]
+[node name="ButtonPressAudio" type="AudioStreamPlayer" parent="MainCanvas/Popup"]
 stream = ExtResource( 46 )
-__meta__ = {
-"_editor_description_": ""
-}
 
 [node name="DialogueCanvas" type="CanvasLayer" parent="."]
 script = ExtResource( 32 )
@@ -533,7 +530,7 @@ position = Vector2( 80, 130 )
 scale = Vector2( 0.1, 0.1 )
 texture = ExtResource( 23 )
 
-[node name="DialogueAudio" type="AudioStreamPlayer2D" parent="DialogueCanvas"]
+[node name="DialogueAudio" type="AudioStreamPlayer" parent="DialogueCanvas"]
 stream = ExtResource( 38 )
 
 [node name="Player" type="KinematicBody2D" parent="."]
@@ -552,7 +549,7 @@ frames = ExtResource( 1 )
 animation = "idle"
 playing = true
 
-[node name="ItemUseAudio" type="AudioStreamPlayer2D" parent="Player"]
+[node name="ItemUseAudio" type="AudioStreamPlayer" parent="Player"]
 stream = ExtResource( 45 )
 
 [node name="Room" type="Node2D" parent="."]
@@ -863,19 +860,19 @@ __meta__ = {
 
 [node name="Tween" type="Tween" parent="Maze"]
 
-[node name="VictoryAudio" type="AudioStreamPlayer2D" parent="Maze"]
+[node name="VictoryAudio" type="AudioStreamPlayer" parent="Maze"]
 stream = ExtResource( 39 )
 
-[node name="GameOverAudio" type="AudioStreamPlayer2D" parent="Maze"]
+[node name="GameOverAudio" type="AudioStreamPlayer" parent="Maze"]
 stream = ExtResource( 40 )
 
-[node name="DoorAudio" type="AudioStreamPlayer2D" parent="Maze"]
+[node name="DoorAudio" type="AudioStreamPlayer" parent="Maze"]
 stream = ExtResource( 42 )
 
-[node name="BGM" type="AudioStreamPlayer2D" parent="Maze"]
+[node name="BGM" type="AudioStreamPlayer" parent="Maze"]
 stream = ExtResource( 43 )
 
-[node name="CombatBGM" type="AudioStreamPlayer2D" parent="Maze"]
+[node name="CombatBGM" type="AudioStreamPlayer" parent="Maze"]
 stream = ExtResource( 44 )
 volume_db = -2.0
 
@@ -886,12 +883,12 @@ script = ExtResource( 29 )
 [connection signal="pressed" from="MainCanvas/Popup/ResumeButton" to="MainCanvas/Popup" method="_on_ResumeButton_pressed"]
 [connection signal="pressed" from="MainCanvas/Popup/MainMenuButton" to="MainCanvas/Popup" method="_on_MainMenuButton_pressed"]
 [connection signal="coin_change_signal" from="Player" to="MainCanvas/MainUI/CoinsUI" method="_on_Player_coin_change_signal"]
-[connection signal="combat_signal" from="CombatManager" to="Transition" method="_on_CombatManager_combat_signal"]
 [connection signal="combat_signal" from="CombatManager" to="MainCanvas/MainUI" method="_on_CombatManager_combat_signal"]
 [connection signal="combat_signal" from="CombatManager" to="Maze" method="_on_CombatManager_combat_signal"]
+[connection signal="combat_signal" from="CombatManager" to="Transition" method="_on_CombatManager_combat_signal"]
 [connection signal="gameover_signal" from="CombatManager" to="Maze" method="_on_CombatManager_gameover_signal"]
-[connection signal="victory_signal" from="CombatManager" to="Maze" method="_on_CombatManager_victory_signal"]
 [connection signal="victory_signal" from="CombatManager" to="AnalyticsManager" method="_on_CombatManager_victory_signal"]
+[connection signal="victory_signal" from="CombatManager" to="Maze" method="_on_CombatManager_victory_signal"]
 [connection signal="body_entered" from="Maze/Doors/Left/Area2D" to="Maze/Doors/Left/Area2D" method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="Maze/Doors/Left/Area2D" to="Maze/Doors/Left/Area2D" method="_on_Area2D_body_exited"]
 [connection signal="body_entered" from="Maze/Doors/Right/Area2D" to="Maze/Doors/Right/Area2D" method="_on_Area2D_body_entered"]

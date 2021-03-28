@@ -233,7 +233,7 @@ func _getCoins():
 # can decouple UI logic from player. Use observer pattern to see if currentInventoryIndex has changed
 func _nextItem():
 	if(inventory.size() <= 0):
-		itemUI._setItem(GlobalVariables.ItemEnum.ITEM_NULL)
+		itemUI._setItem(GlobalVariables.ItemEnum.ITEM_NULL, 0)
 		currentInventoryIndex = 0
 		return
 	
