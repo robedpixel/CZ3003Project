@@ -211,6 +211,7 @@ func _takeDamage(damageTaken):
 	
 	if(health <= 0):
 		print("Game over")
+		_lockCharacter(true)
 		return
 	
 
@@ -243,7 +244,7 @@ func _nextItem():
 	_showItem()
 	
 func _showItem():
-	itemUI._setItem(inventory[currentInventoryIndex])
+	itemUI._setItem(inventory[currentInventoryIndex], 0)
 	#itemUI._disableCollider()
 	
 # can move item logic outside of player

@@ -43,6 +43,7 @@ var minDifficulty = GlobalVariables.RoomEnum.CHALLENGE_ROOM_EASY
 
 var shop
 var shopItems = []
+var boughtHistory = []
 
 var movedRoom : bool = false
 var lastUsedDoor = ""
@@ -90,6 +91,7 @@ func _initializeMaze():
 		player._initPlayer(class_data.health, class_data.multiplier, 0, charSelected)
 	
 	get_node("/root/Main/MainCanvas/MainUI")._setPlayerDamageLabel(player.attack)
+	player.coins = 999
 	
 	analytics._resetAnalytics()
 	
@@ -129,6 +131,7 @@ func _initializeMaze():
 	shopItems = [GlobalVariables.ItemEnum.ITEM_HEALTHPOT,
 	GlobalVariables.ItemEnum.ITEM_HEALTHPOT,
 	GlobalVariables.ItemEnum.ITEM_HEALTHPOT]
+	boughtHistory = []
 	
 	$BGM.play()
 	
@@ -435,3 +438,5 @@ func _on_CombatManager_combat_signal(value):
 func _playMazeBGM():
 	$BGM.play()
 	
+func _onItemBought(index):
+	boughtHistory.append(index)

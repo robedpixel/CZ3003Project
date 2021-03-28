@@ -10,6 +10,7 @@ onready var itemSprite = $ItemSprite
 onready var itemLabel = $Label
 onready var itemCoinSprite = $ItemCoinSprite
 onready var area2D = $Area2D
+var itemID = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -36,8 +37,9 @@ func _showItem():
 		
 	area2D._enable()
 
-func _setItem(type):
+func _setItem(type, id):
 	itemType = type
+	itemID = id
 	itemSprite.texture = _getImage()
 
 func _setItemCost(cost):
@@ -63,7 +65,7 @@ func _interact(player):
 	
 	_hideItem()
 	# fuck it just remove item from maze directly
-	get_node("/root/Main/Maze").shopItems.erase(itemType)
+	get_node("/root/Main/Maze")._onItemBought(itemID)
 	
 	return ""
 		
