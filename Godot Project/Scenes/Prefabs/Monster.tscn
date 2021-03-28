@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Resources/images/Monster_easy.tres" type="SpriteFrames" id=1]
 [ext_resource path="res://Scripts/Entities/Monster.gd" type="Script" id=2]
 [ext_resource path="res://Scripts/Entities/Interactable.gd" type="Script" id=3]
 [ext_resource path="res://Scripts/Entities/Health.gd" type="Script" id=4]
 [ext_resource path="res://Scripts/Entities/MonsterSprite.gd" type="Script" id=5]
+[ext_resource path="res://Resources/sounds/kill.ogg" type="AudioStream" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 32.8479, 33.0825 )
@@ -54,6 +55,9 @@ health = 1
 maxHealth = 1
 
 [node name="ShakeTween" type="Tween" parent="."]
+
+[node name="KillAudio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 6 )
 [connection signal="body_entered" from="InteractableArea" to="InteractableArea" method="_on_Interactable_Area_body_entered"]
 [connection signal="body_exited" from="InteractableArea" to="InteractableArea" method="_on_Interactable_Area_body_exited"]
 [connection signal="tween_completed" from="ShakeTween" to="." method="_on_ShakeTween_tween_completed"]

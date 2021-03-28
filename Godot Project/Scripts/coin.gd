@@ -12,14 +12,20 @@ var tween_values = [-300.0, 300.0]
 var shakeMax
 var shakeCount
 
+var setToDespawn : bool = false
+var despawnTimer : float = 0
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _process(delta):
+	if(setToDespawn):
+		despawnTimer += delta
+		if(despawnTimer > 1):
+			self.queue_free()
 
 func _playAnim(spawnPos, targetPos):
 	var childNode = $ChildNode
@@ -42,7 +48,11 @@ func _playAnim(spawnPos, targetPos):
 	
 	yield(tween, "tween_completed")
 	
-	self.queue_free()
+	get_node("/root/Main/MainCanvas/MainUI/CoinsUI")._plusCoinCounterUI()
+	
+	setToDespawn = true
+	
+	self.visible = false
 
 
 func _setShake(shakeMax):

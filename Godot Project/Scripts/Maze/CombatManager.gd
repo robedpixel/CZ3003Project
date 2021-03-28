@@ -129,8 +129,8 @@ func _toggleCombatUI(show):
 # ansValue will take on values 1, 2, 3, 4
 func _onAnswer(ansValue):
 	print('Chosen ans ' + str(ansValue))
-	if(true):
-	#if(ansValue == correctAnswer):
+	#if(true):
+	if(ansValue == correctAnswer):
 		print("You got it correct!")
 		analytics.update_question_correct(currentMonster.difficulty)
 
@@ -145,6 +145,7 @@ func _onAnswer(ansValue):
 		analytics.update_question_wrong(currentMonster.difficulty)
 		player._takeDamage(1)
 		if(player.health <= 0):
+			_exitCombat()
 			emit_signal("gameover_signal", false)
 			return
 		if(!isBoss):

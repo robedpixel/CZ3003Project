@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=2]
+[gd_scene load_steps=59 format=2]
 
 [ext_resource path="res://Scenes/Prefabs/player_warrior.tres" type="SpriteFrames" id=1]
 [ext_resource path="res://Scripts/Entities/Character.gd" type="Script" id=2]
@@ -25,7 +25,7 @@
 [ext_resource path="res://Resources/images/Monster/Drawing/monster_boss.png" type="Texture" id=23]
 [ext_resource path="res://Scripts/GUI/DialogueUI.gd" type="Script" id=24]
 [ext_resource path="res://Scripts/GUI/Dialogue.gd" type="Script" id=25]
-[ext_resource path="res://Resources/fonts/combat_dynamicfont.tres" type="DynamicFont" id=26]
+[ext_resource path="res://Resources/fonts/chary_40.tres" type="DynamicFont" id=26]
 [ext_resource path="res://Resources/images/hud/dialogue-bubble.png" type="Texture" id=27]
 [ext_resource path="res://Resources/images/hud/faceset-box.png" type="Texture" id=28]
 [ext_resource path="res://Scripts/effects.gd" type="Script" id=29]
@@ -37,6 +37,16 @@
 [ext_resource path="res://Resources/Button Styles/main_menu_button_hover.tres" type="StyleBox" id=35]
 [ext_resource path="res://Resources/Button Styles/main_menu_button_normal.tres" type="StyleBox" id=36]
 [ext_resource path="res://Resources/Button Styles/main_menu_button_pressed.tres" type="StyleBox" id=37]
+[ext_resource path="res://Resources/sounds/voice-2.ogg" type="AudioStream" id=38]
+[ext_resource path="res://Resources/sounds/succes.ogg" type="AudioStream" id=39]
+[ext_resource path="res://Resources/sounds/game-over-2.ogg" type="AudioStream" id=40]
+[ext_resource path="res://Resources/sounds/menu-4.ogg" type="AudioStream" id=41]
+[ext_resource path="res://Resources/sounds/16.ogg" type="AudioStream" id=42]
+[ext_resource path="res://Resources/musics/theme-10.ogg" type="AudioStream" id=43]
+[ext_resource path="res://Resources/musics/theme-2.ogg" type="AudioStream" id=44]
+[ext_resource path="res://Resources/sounds/7.ogg" type="AudioStream" id=45]
+[ext_resource path="res://Resources/sounds/menu-1.ogg" type="AudioStream" id=46]
+[ext_resource path="res://Resources/sounds/gold-2.ogg" type="AudioStream" id=47]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 29.6183, 25.6201 )
@@ -327,10 +337,13 @@ margin_top = -25.0
 margin_right = 65.0
 margin_bottom = 25.0
 custom_fonts/font = ExtResource( 13 )
-text = "1"
+text = "0"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="CoinAudio" type="AudioStreamPlayer2D" parent="MainCanvas/MainUI/CoinsUI"]
+stream = ExtResource( 47 )
 
 [node name="ItemUI" type="Control" parent="MainCanvas/MainUI"]
 anchor_right = 1.0
@@ -435,6 +448,15 @@ __meta__ = {
 "_editor_description_": ""
 }
 
+[node name="PopupAudio" type="AudioStreamPlayer2D" parent="MainCanvas/Popup"]
+stream = ExtResource( 41 )
+
+[node name="ButtonPressAudio" type="AudioStreamPlayer2D" parent="MainCanvas/Popup"]
+stream = ExtResource( 46 )
+__meta__ = {
+"_editor_description_": ""
+}
+
 [node name="DialogueCanvas" type="CanvasLayer" parent="."]
 script = ExtResource( 32 )
 
@@ -511,6 +533,9 @@ position = Vector2( 80, 130 )
 scale = Vector2( 0.1, 0.1 )
 texture = ExtResource( 23 )
 
+[node name="DialogueAudio" type="AudioStreamPlayer2D" parent="DialogueCanvas"]
+stream = ExtResource( 38 )
+
 [node name="Player" type="KinematicBody2D" parent="."]
 position = Vector2( 640, 360 )
 script = ExtResource( 2 )
@@ -526,6 +551,9 @@ z_index = 1
 frames = ExtResource( 1 )
 animation = "idle"
 playing = true
+
+[node name="ItemUseAudio" type="AudioStreamPlayer2D" parent="Player"]
+stream = ExtResource( 45 )
 
 [node name="Room" type="Node2D" parent="."]
 script = ExtResource( 3 )
@@ -833,6 +861,24 @@ __meta__ = {
 "_editor_description_": ""
 }
 
+[node name="Tween" type="Tween" parent="Maze"]
+
+[node name="VictoryAudio" type="AudioStreamPlayer2D" parent="Maze"]
+stream = ExtResource( 39 )
+
+[node name="GameOverAudio" type="AudioStreamPlayer2D" parent="Maze"]
+stream = ExtResource( 40 )
+
+[node name="DoorAudio" type="AudioStreamPlayer2D" parent="Maze"]
+stream = ExtResource( 42 )
+
+[node name="BGM" type="AudioStreamPlayer2D" parent="Maze"]
+stream = ExtResource( 43 )
+
+[node name="CombatBGM" type="AudioStreamPlayer2D" parent="Maze"]
+stream = ExtResource( 44 )
+volume_db = -2.0
+
 [node name="Transition" parent="." instance=ExtResource( 20 )]
 
 [node name="EffectManager" type="Node2D" parent="."]
@@ -840,8 +886,9 @@ script = ExtResource( 29 )
 [connection signal="pressed" from="MainCanvas/Popup/ResumeButton" to="MainCanvas/Popup" method="_on_ResumeButton_pressed"]
 [connection signal="pressed" from="MainCanvas/Popup/MainMenuButton" to="MainCanvas/Popup" method="_on_MainMenuButton_pressed"]
 [connection signal="coin_change_signal" from="Player" to="MainCanvas/MainUI/CoinsUI" method="_on_Player_coin_change_signal"]
-[connection signal="combat_signal" from="CombatManager" to="MainCanvas/MainUI" method="_on_CombatManager_combat_signal"]
 [connection signal="combat_signal" from="CombatManager" to="Transition" method="_on_CombatManager_combat_signal"]
+[connection signal="combat_signal" from="CombatManager" to="MainCanvas/MainUI" method="_on_CombatManager_combat_signal"]
+[connection signal="combat_signal" from="CombatManager" to="Maze" method="_on_CombatManager_combat_signal"]
 [connection signal="gameover_signal" from="CombatManager" to="Maze" method="_on_CombatManager_gameover_signal"]
 [connection signal="victory_signal" from="CombatManager" to="Maze" method="_on_CombatManager_victory_signal"]
 [connection signal="victory_signal" from="CombatManager" to="AnalyticsManager" method="_on_CombatManager_victory_signal"]

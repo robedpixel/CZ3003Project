@@ -23,6 +23,8 @@ func _dialogueNoPortraitPic(dialogueText, closable : bool):
 		dialogue._displayDialogueClosable(dialogueText)
 	else:
 		dialogue._displayDialogue(dialogueText)
+		
+	$DialogueAudio.play()
 	
 func _show(show):
 	dialogueUI._showDialogueBox(show)

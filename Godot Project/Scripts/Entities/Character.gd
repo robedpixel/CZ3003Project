@@ -211,6 +211,7 @@ func _takeDamage(damageTaken):
 	
 	if(health <= 0):
 		print("Game over")
+		_lockCharacter(true)
 		return
 	
 
@@ -243,7 +244,7 @@ func _nextItem():
 	_showItem()
 	
 func _showItem():
-	itemUI._setItem(inventory[currentInventoryIndex])
+	itemUI._setItem(inventory[currentInventoryIndex], 0)
 	#itemUI._disableCollider()
 	
 # can move item logic outside of player
@@ -255,17 +256,22 @@ func _useItem():
 	
 	var item = inventory[currentInventoryIndex]
 	
-	# remove from inventory
-	inventory.erase(item)
-	_nextItem()
-	
 	match item:
 		GlobalVariables.ItemEnum.ITEM_HEALTHPOT:
+			if(health == maxHealth):
+				#dialogueManager._dialoguePlayer(portrait, "Already at max hp", true)
+				return
 			_restoreHealth(3)
 		1:
 			pass
 		_:
 			pass
+			
+	# remove from inventory
+	inventory.erase(item)
+	_nextItem()
+			
+	$ItemUseAudio.play()
 	
 func _addItem(itemType):
 	inventory.append(itemType)
