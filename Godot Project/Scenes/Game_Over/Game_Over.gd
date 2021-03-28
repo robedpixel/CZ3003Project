@@ -11,10 +11,12 @@ func _ready():
 	handler = load("res://Scripts/auth/firebase_db.gd").new()
 	print("Print world num : ",GlobalVariables.world_num)
 	add_child(handler)
+	
 	if(GlobalVariables.world_num==2): 
 		leaderboard_button.visible=false
 		social_media_container.visible=false
 	else: 
+		student_name = yield(handler.get_student_name(),"completed")
 		leaderboard_button.visible=true
 		social_media_container.visible=true
 	pass
@@ -46,13 +48,15 @@ func _on_BacktoMM_pressed():
 
 
 func _on_Telegram_pressed():
-	var student_name = yield(handler.get_student_name(),"completed")
+	print("start func")
+	print("Tele: :",student_name)
 	print(GlobalVariables.world_num)
 	GlobalVariables.post_to_telegram(GlobalVariables.world_num,GlobalVariables.score,null,student_name)
 
 
 func _on_Twitter_pressed():
-	var student_name = yield(handler.get_student_name(),"completed")
+	print("start func")
+	print("Twit: :",student_name)
 	print(GlobalVariables.world_num)
 	GlobalVariables.post_to_twitter(GlobalVariables.world_num,GlobalVariables.score,null,student_name)
 
