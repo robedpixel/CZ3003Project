@@ -61,11 +61,11 @@ func _process(delta):
 	if Engine.editor_hint:
 		print("hint")
 		set_process(false)
-	else:
-		if Input.is_action_pressed("ui_accept"):
-			tex_rect.hide_screen()
-		elif Input.is_action_pressed("ui_cancel"):
-			tex_rect.show_screen()
+#	else:
+#		if Input.is_action_pressed("ui_accept"):
+#			tex_rect.hide_screen()
+#		elif Input.is_action_pressed("ui_cancel"):
+#			tex_rect.show_screen()
 
 ###########################################################
 # Set Get
