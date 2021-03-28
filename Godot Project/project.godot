@@ -34,6 +34,8 @@ _global_script_class_icons={
 
 config/name="Sample"
 run/main_scene="res://Scenes/Login/LoginMenu.tscn"
+config/icon="res://Resources/Icons/Game Icon2.png"
+config/windows_native_icon="res://Resources/Icons/Windows Game Icon2.ico"
 
 [autoload]
 
