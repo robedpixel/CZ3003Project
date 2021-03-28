@@ -53,7 +53,10 @@ var defaultPage = 1
 func _ready():
 	pass # Replace with function body.
 
-	
+func _process(delta):
+	if Input.is_action_just_pressed('interact') and isOpen:
+		get_node("Popup").hide()
+		_on_Popup_popup_hide()
 	
 func displaySlide(no):
 	if (GlobalVariables.world_num == 1):

@@ -361,7 +361,6 @@ layer = 3
 
 [node name="Popup" type="Popup" parent="MainCanvas"]
 pause_mode = 2
-visible = true
 margin_left = 320.0
 margin_top = 150.0
 margin_right = 960.0
