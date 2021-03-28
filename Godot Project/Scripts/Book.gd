@@ -90,6 +90,7 @@ func _open():
 		get_node("Popup/ScrollContainer/RichTextLabel").text = ""
 	displaySlide(defaultPage-1)
 
+	$Popup/GuidebookAudio.play()
 	
 
 func _on_PreviousPageButton_pressed():
@@ -133,3 +134,5 @@ func _on_Popup_popup_hide():
 	var player = get_node("/root/Main/Player")
 	if(player):
 		player._lockCharacter(false)
+		
+	$Popup/GuidebookAudio.play()

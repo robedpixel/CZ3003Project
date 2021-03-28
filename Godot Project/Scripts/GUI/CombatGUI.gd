@@ -94,7 +94,13 @@ func _displayAnswers():
 func _on_Button_pressed(index):
 	if(tween_lock):
 		return
-		
+	
+	$ButtonPressAudio.play()
+	_hideAnswers()
+	tween.interpolate_callback(self, 0.5, "_combatManagerOnAnswer", index)
+	tween.start()
+	
+func _combatManagerOnAnswer(index):
 	cmbtManager._onAnswer(index)
 	
 func _onDialogueTextEnd():
@@ -110,3 +116,5 @@ func _weaponSlashAnimation(monsterPosition):
 	weaponSlashInstance.set_position(monsterPosition)
 	
 	add_child(weaponSlashInstance)
+	
+	$WeaponSlashAudio.play()

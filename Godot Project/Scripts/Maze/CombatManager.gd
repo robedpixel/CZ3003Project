@@ -146,6 +146,7 @@ func _onAnswer(ansValue):
 		player._takeDamage(1)
 		if(player.health <= 0):
 			emit_signal("gameover_signal", false)
+			_exitCombat()
 			return
 		if(!isBoss):
 			emit_signal("victory_signal", false, currentMonster.difficulty)

@@ -26,6 +26,8 @@ onready var instructionsLabel = get_node("../MainCanvas/InstructionsLabel")
 onready var shopObj = preload("res://Scenes/Prefabs/Shop.tscn")
 onready var guideBookObj = preload("res://Scenes/Prefabs/GuideBookItem.tscn")
 
+onready var tween = $Tween
+
 # player variables
 var playerX = 0
 var playerY = 0
@@ -125,6 +127,8 @@ func _initializeMaze():
 	shopItems = [GlobalVariables.ItemEnum.ITEM_HEALTHPOT,
 	GlobalVariables.ItemEnum.ITEM_HEALTHPOT,
 	GlobalVariables.ItemEnum.ITEM_HEALTHPOT]
+	
+	$BGM.play()
 	
 func _initDebugMaze():
 	for x in range(mazeDesign.WIDTH):
@@ -333,9 +337,9 @@ func _on_CombatManager_victory_signal(value, difficulty):
 	if(value):
 		_rewardPlayer()
 		mazeDesign._setRoom(playerX, playerY, GlobalVariables.RoomEnum.EMPTY_ROOM)
+		$VictoryAudio.play()
 	else:
 		pass
-
 # 
 
 # attack 2, 3
@@ -403,7 +407,6 @@ func _difficultyChange(newDifficulty):
 
 
 func _on_CombatManager_gameover_signal(value):
-	
 	gameOver = true
 	
 	dialogueManager._show(false)
@@ -413,5 +416,19 @@ func _on_CombatManager_gameover_signal(value):
 	var gameOver = load("res://Scenes/Game_Over/Game_Over.tscn").instance()
 	mainUI.add_child(gameOver)
 	gameOver._saveScore(player.coins)
+	
+	$GameOverAudio.play()
 
+func _on_CombatManager_combat_signal(value):
+	if(value):
+		$BGM.stop()
+		$CombatBGM.play()
+	else:
+		$CombatBGM.stop()
+		tween.interpolate_callback(self, 2, "_playMazeBGM")
+		tween.start()
+		
+		
+func _playMazeBGM():
+	$BGM.play()
 	

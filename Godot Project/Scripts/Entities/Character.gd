@@ -255,17 +255,22 @@ func _useItem():
 	
 	var item = inventory[currentInventoryIndex]
 	
-	# remove from inventory
-	inventory.erase(item)
-	_nextItem()
-	
 	match item:
 		GlobalVariables.ItemEnum.ITEM_HEALTHPOT:
+			if(health == maxHealth):
+				#dialogueManager._dialoguePlayer(portrait, "Already at max hp", true)
+				return
 			_restoreHealth(3)
 		1:
 			pass
 		_:
 			pass
+			
+	# remove from inventory
+	inventory.erase(item)
+	_nextItem()
+			
+	$ItemUseAudio.play()
 	
 func _addItem(itemType):
 	inventory.append(itemType)

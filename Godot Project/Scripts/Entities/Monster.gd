@@ -72,6 +72,8 @@ func _deathAnim():
 	
 	yield(tween, "tween_completed")
 	
+	$KillAudio.play()
+	
 	tween.interpolate_property(monsterSprite, "modulate", Color(1, 0.2, 0.2, 1), Color(1, 0.2, 0.2, 0.0), 1.0, Tween.TRANS_LINEAR, Tween.EASE_IN)
 	tween.interpolate_property(self, "position:y", get_position().y, get_position().y + 100, 1.0, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	tween.start()
