@@ -20,6 +20,7 @@ onready var downDoor = $Doors/Down
 
 # UI
 onready var gridLocationTxt = get_node("../MainCanvas/MainUI/GridLocationBackground/GridLocationText")
+onready var instructionsLabel = get_node("../MainCanvas/InstructionsLabel")
 
 # prefabs
 onready var shopObj = preload("res://Scenes/Prefabs/Shop.tscn")
@@ -283,6 +284,8 @@ func _exitRoom():
 		currentMonster.queue_free()
 	if(currentGuideBook):
 		currentGuideBook.queue_free()
+	if(instructionsLabel):
+		instructionsLabel.hide()
 	
 
 func _initStartingRoom():
@@ -291,6 +294,8 @@ func _initStartingRoom():
 	guideBookInstance.set_position(Vector2(640, 360))
 	
 	currentGuideBook = guideBookInstance
+	
+	instructionsLabel.show()
 
 func _initChallengeRoom(isBoss):
 	print("Init challenge room")
