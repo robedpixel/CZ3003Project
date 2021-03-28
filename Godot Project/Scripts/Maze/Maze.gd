@@ -425,6 +425,7 @@ func _on_CombatManager_combat_signal(value):
 	if(value):
 		$BGM.stop()
 		$CombatBGM.play()
+		tween.stop(self)
 	else:
 		$CombatBGM.stop()
 		tween.interpolate_callback(self, 2, "_playMazeBGM")
