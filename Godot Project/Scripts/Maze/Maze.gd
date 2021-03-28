@@ -20,6 +20,7 @@ onready var downDoor = $Doors/Down
 
 # UI
 onready var gridLocationTxt = get_node("../MainCanvas/MainUI/GridLocationBackground/GridLocationText")
+onready var instructionsLabel = get_node("../MainCanvas/InstructionsLabel")
 
 # prefabs
 onready var shopObj = preload("res://Scenes/Prefabs/Shop.tscn")
@@ -63,9 +64,7 @@ func _initializeMaze():
 	_exitRoom()
 	
 	gameOver = false
-	
-	
-	
+
 	var charSelected = GlobalVariables.charSelected
 	#charSelected = 0
 	var health = 0
@@ -96,25 +95,27 @@ func _initializeMaze():
 		
 	cmbtManager._initTopic(topic)
 	
+	mazeDesign._generateMaze(5, 5)
+	
+	var isValidWorld = true
 	var worldSelected = GlobalVariables.world_num
 	match worldSelected:
 		0:
-			pass
+			mazeDesign._setMaze(GlobalVariables.world_1_map)
 		1:
-			pass
+			mazeDesign._setMaze(GlobalVariables.world_2_map)
 		2:
 			pass
 		_:
-			pass
-	
-	mazeDesign._generateMaze(5, 5)
-	
+			isValidWorld = false
+
 	var isCustomMaze = GlobalVariables.bool_custom_maze
 	if(isCustomMaze):
 		mazeDesign._setMaze(GlobalVariables.maze_creator_map)
-		mazeDesign._validateLayout()
-	else:
+	elif(!isValidWorld):
 		_initDebugMaze()
+	
+	mazeDesign._validateLayout()
 	
 	_loadRoom(playerX, playerY)
 	_updatePlayerGridUI()
@@ -283,6 +284,8 @@ func _exitRoom():
 		currentMonster.queue_free()
 	if(currentGuideBook):
 		currentGuideBook.queue_free()
+	if(instructionsLabel):
+		instructionsLabel.hide()
 	
 
 func _initStartingRoom():
@@ -291,6 +294,8 @@ func _initStartingRoom():
 	guideBookInstance.set_position(Vector2(640, 360))
 	
 	currentGuideBook = guideBookInstance
+	
+	instructionsLabel.show()
 
 func _initChallengeRoom(isBoss):
 	print("Init challenge room")
@@ -400,6 +405,8 @@ func _difficultyChange(newDifficulty):
 func _on_CombatManager_gameover_signal(value):
 	
 	gameOver = true
+	
+	dialogueManager._show(false)
 	
 	player._lockCharacter(true)
 	
