@@ -89,6 +89,8 @@ func _initializeMaze():
 	else:
 		player._initPlayer(class_data.health, class_data.multiplier, 0, charSelected)
 	
+	get_node("/root/Main/MainCanvas/MainUI")._setPlayerDamageLabel(player.attack)
+	
 	analytics._resetAnalytics()
 	
 	var topic = GlobalVariables.topic_selected

@@ -20,3 +20,6 @@ func _on_CombatManager_combat_signal(value):
 	else:
 		visible = true
 		maze._refreshRoom()
+
+func _setPlayerDamageLabel(multiplier):
+	$DamageUI/Label.text = str(multiplier)
