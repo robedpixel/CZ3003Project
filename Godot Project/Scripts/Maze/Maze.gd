@@ -91,7 +91,6 @@ func _initializeMaze():
 		player._initPlayer(class_data.health, class_data.multiplier, 0, charSelected)
 	
 	get_node("/root/Main/MainCanvas/MainUI")._setPlayerDamageLabel(player.attack)
-	player.coins = 999
 	
 	analytics._resetAnalytics()
 	

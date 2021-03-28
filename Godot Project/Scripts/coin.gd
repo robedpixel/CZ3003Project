@@ -48,7 +48,7 @@ func _playAnim(spawnPos, targetPos):
 	
 	yield(tween, "tween_completed")
 	
-	$CoinAudio.play()
+	get_node("/root/Main/MainCanvas/MainUI/CoinsUI")._plusCoinCounterUI()
 	
 	setToDespawn = true
 	
