@@ -168,7 +168,7 @@ __meta__ = {
 
 [node name="Tween" type="Tween" parent="CombatUI"]
 
-[node name="WeaponSlashAudio" type="AudioStreamPlayer2D" parent="CombatUI"]
+[node name="WeaponSlashAudio" type="AudioStreamPlayer" parent="CombatUI"]
 stream = ExtResource( 8 )
 volume_db = 20.0
 
