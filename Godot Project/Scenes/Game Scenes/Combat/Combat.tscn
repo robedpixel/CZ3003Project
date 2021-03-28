@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://Resources/fonts/combat_dynamicfont.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Resources/fonts/chary_28_dialog_title.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Scripts/GUI/CombatGUI.gd" type="Script" id=2]
 [ext_resource path="res://Resources/Main GUI Images/BG/bg3_maroon.png" type="Texture" id=3]
 [ext_resource path="res://Resources/fonts/arcade_48.tres" type="DynamicFont" id=4]
