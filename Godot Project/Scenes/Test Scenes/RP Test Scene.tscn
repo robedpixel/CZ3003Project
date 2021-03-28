@@ -342,7 +342,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="CoinAudio" type="AudioStreamPlayer2D" parent="MainCanvas/MainUI/CoinsUI"]
+[node name="CoinAudio" type="AudioStreamPlayer" parent="MainCanvas/MainUI/CoinsUI"]
 stream = ExtResource( 47 )
 
 [node name="ItemUI" type="Control" parent="MainCanvas/MainUI"]
@@ -448,14 +448,11 @@ __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="PopupAudio" type="AudioStreamPlayer2D" parent="MainCanvas/Popup"]
+[node name="PopupAudio" type="AudioStreamPlayer" parent="MainCanvas/Popup"]
 stream = ExtResource( 41 )
 
-[node name="ButtonPressAudio" type="AudioStreamPlayer2D" parent="MainCanvas/Popup"]
+[node name="ButtonPressAudio" type="AudioStreamPlayer" parent="MainCanvas/Popup"]
 stream = ExtResource( 46 )
-__meta__ = {
-"_editor_description_": ""
-}
 
 [node name="DialogueCanvas" type="CanvasLayer" parent="."]
 script = ExtResource( 32 )
@@ -533,7 +530,7 @@ position = Vector2( 80, 130 )
 scale = Vector2( 0.1, 0.1 )
 texture = ExtResource( 23 )
 
-[node name="DialogueAudio" type="AudioStreamPlayer2D" parent="DialogueCanvas"]
+[node name="DialogueAudio" type="AudioStreamPlayer" parent="DialogueCanvas"]
 stream = ExtResource( 38 )
 
 [node name="Player" type="KinematicBody2D" parent="."]
@@ -552,7 +549,7 @@ frames = ExtResource( 1 )
 animation = "idle"
 playing = true
 
-[node name="ItemUseAudio" type="AudioStreamPlayer2D" parent="Player"]
+[node name="ItemUseAudio" type="AudioStreamPlayer" parent="Player"]
 stream = ExtResource( 45 )
 
 [node name="Room" type="Node2D" parent="."]
@@ -863,19 +860,19 @@ __meta__ = {
 
 [node name="Tween" type="Tween" parent="Maze"]
 
-[node name="VictoryAudio" type="AudioStreamPlayer2D" parent="Maze"]
+[node name="VictoryAudio" type="AudioStreamPlayer" parent="Maze"]
 stream = ExtResource( 39 )
 
-[node name="GameOverAudio" type="AudioStreamPlayer2D" parent="Maze"]
+[node name="GameOverAudio" type="AudioStreamPlayer" parent="Maze"]
 stream = ExtResource( 40 )
 
-[node name="DoorAudio" type="AudioStreamPlayer2D" parent="Maze"]
+[node name="DoorAudio" type="AudioStreamPlayer" parent="Maze"]
 stream = ExtResource( 42 )
 
-[node name="BGM" type="AudioStreamPlayer2D" parent="Maze"]
+[node name="BGM" type="AudioStreamPlayer" parent="Maze"]
 stream = ExtResource( 43 )
 
-[node name="CombatBGM" type="AudioStreamPlayer2D" parent="Maze"]
+[node name="CombatBGM" type="AudioStreamPlayer" parent="Maze"]
 stream = ExtResource( 44 )
 volume_db = -2.0
 
