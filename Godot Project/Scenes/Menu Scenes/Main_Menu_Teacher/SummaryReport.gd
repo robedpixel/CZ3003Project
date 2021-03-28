@@ -6,7 +6,7 @@ onready var alert_label = get_node("WindowDialog/VBoxContainer/DialogLabel")
 
 var handler
 var data_from_db
-var path_to_main_menu_teacher = "res://Scenes/Menu Scenes/Main_Menu_teacher/MainMenuTeacher.tscn";
+var path_to_main_menu_teacher = "res://Scenes/Menu Scenes/Main_Menu_Teacher/MainMenuTeacher.tscn";
 var wSelected = 0;# 1 = world 1, 2 = world 2
 
 var studsScoreData = {
@@ -15,14 +15,14 @@ var studsScoreData = {
 func _ready():
 	handler = load("res://Scripts/auth/firebase_db.gd").new()
 	add_child(handler)
-	
+
 func get_leaderboard_data():
 	print("getting leaderboard data...")
 	if wSelected == 1:
 		handler.get_world_leaderboard_data(1, self.http) #for now assume world
 	elif wSelected == 2:
 		handler.get_world_leaderboard_data(2, self.http) #for now assume world
-	
+
 func process_db_data():
 	var id = 0;
 	for key in data_from_db:
@@ -57,7 +57,7 @@ func _on_GR_selectW2Btn_pressed():
 	alert_label.text = "Generate Summary Report for World 2?"
 	wSelected = 2
 
-	
+
 func _on_GR_gobackBtn_pressed():
 	get_tree().change_scene(path_to_main_menu_teacher)
 
