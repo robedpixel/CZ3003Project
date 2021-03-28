@@ -1,10 +1,19 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Scenes/Game_Over/Game_Over.gd" type="Script" id=1]
 [ext_resource path="res://Resources/fonts/arcade_48.tres" type="DynamicFont" id=2]
 [ext_resource path="res://Resources/Button Styles/main_menu_button_pressed.tres" type="StyleBox" id=3]
 [ext_resource path="res://Resources/Button Styles/main_menu_button_normal.tres" type="StyleBox" id=4]
 [ext_resource path="res://Resources/Button Styles/main_menu_button_hover.tres" type="StyleBox" id=5]
+[ext_resource path="res://Resources/Social Media Buttons/Facebook/Facebook_pressed.png" type="Texture" id=6]
+[ext_resource path="res://Resources/Social Media Buttons/Facebook/Facebook_normal.png" type="Texture" id=7]
+[ext_resource path="res://Resources/Social Media Buttons/Telegram/Telegram_pressed.png" type="Texture" id=8]
+[ext_resource path="res://Resources/Social Media Buttons/Twitter/Twitter_pressed.png" type="Texture" id=9]
+[ext_resource path="res://Resources/Social Media Buttons/Twitter/Twitter_hover.png" type="Texture" id=10]
+[ext_resource path="res://Resources/Social Media Buttons/Telegram/Telegram_hover.png" type="Texture" id=11]
+[ext_resource path="res://Resources/Social Media Buttons/Telegram/Telegram_normal.png" type="Texture" id=12]
+[ext_resource path="res://Resources/Social Media Buttons/Twitter/Twitter_normal.png" type="Texture" id=13]
+[ext_resource path="res://Resources/Social Media Buttons/Facebook/Facebook_hover.png" type="Texture" id=14]
 
 [node name="Control" type="CanvasLayer"]
 layer = 4
@@ -21,9 +30,10 @@ __meta__ = {
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
 margin_left = 294.0
-margin_top = 164.0
+margin_top = 121.0
 margin_right = 779.0
-margin_bottom = 331.0
+margin_bottom = 375.0
+custom_constants/separation = 12
 
 [node name="GameOverLabel" type="Label" parent="CenterContainer/VBoxContainer"]
 margin_right = 485.0
@@ -33,9 +43,9 @@ custom_colors/font_color = Color( 1, 0.756863, 0.737255, 1 )
 text = "GAME   OVER"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
-margin_top = 54.0
+margin_top = 62.0
 margin_right = 485.0
-margin_bottom = 104.0
+margin_bottom = 112.0
 custom_constants/separation = 10
 
 [node name="YourScoreLabel" type="Label" parent="CenterContainer/VBoxContainer/HBoxContainer"]
@@ -53,9 +63,9 @@ custom_fonts/font = ExtResource( 2 )
 custom_colors/font_color = Color( 1, 0.247059, 0.160784, 1 )
 
 [node name="Button" type="Button" parent="CenterContainer/VBoxContainer"]
-margin_top = 108.0
+margin_top = 124.0
 margin_right = 485.0
-margin_bottom = 167.0
+margin_bottom = 183.0
 custom_styles/hover = ExtResource( 5 )
 custom_styles/pressed = ExtResource( 3 )
 custom_styles/normal = ExtResource( 4 )
@@ -65,4 +75,63 @@ custom_colors/font_color = Color( 1, 0.662745, 0.635294, 1 )
 custom_colors/font_color_hover = Color( 0.4, 0.0156863, 0.0156863, 1 )
 custom_colors/font_color_pressed = Color( 1, 0.662745, 0.635294, 1 )
 text = "View     Leaderboard"
+
+[node name="BacktoMM" type="Button" parent="CenterContainer/VBoxContainer"]
+margin_top = 195.0
+margin_right = 485.0
+margin_bottom = 254.0
+custom_styles/hover = ExtResource( 5 )
+custom_styles/pressed = ExtResource( 3 )
+custom_styles/normal = ExtResource( 4 )
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color_disabled = Color( 0, 0, 0, 1 )
+custom_colors/font_color = Color( 1, 0.662745, 0.635294, 1 )
+custom_colors/font_color_hover = Color( 0.4, 0.0156863, 0.0156863, 1 )
+custom_colors/font_color_pressed = Color( 1, 0.662745, 0.635294, 1 )
+text = "Back   to   Main   menu"
+
+[node name="SocialMediaContainer" type="HBoxContainer" parent="."]
+margin_left = 300.0
+margin_top = 390.0
+margin_right = 520.0
+margin_bottom = 460.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Telegram" type="TextureButton" parent="SocialMediaContainer"]
+margin_right = 70.0
+margin_bottom = 70.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_normal = ExtResource( 12 )
+texture_pressed = ExtResource( 8 )
+texture_hover = ExtResource( 11 )
+expand = true
+
+[node name="Twitter" type="TextureButton" parent="SocialMediaContainer"]
+margin_left = 74.0
+margin_right = 145.0
+margin_bottom = 70.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_normal = ExtResource( 13 )
+texture_pressed = ExtResource( 9 )
+texture_hover = ExtResource( 10 )
+expand = true
+
+[node name="Facebook" type="TextureButton" parent="SocialMediaContainer"]
+margin_left = 149.0
+margin_right = 220.0
+margin_bottom = 70.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_normal = ExtResource( 7 )
+texture_pressed = ExtResource( 6 )
+texture_hover = ExtResource( 14 )
+expand = true
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Button" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/BacktoMM" to="." method="_on_BacktoMM_pressed"]
+[connection signal="pressed" from="SocialMediaContainer/Telegram" to="." method="_on_Telegram_pressed"]
+[connection signal="pressed" from="SocialMediaContainer/Twitter" to="." method="_on_Twitter_pressed"]
+[connection signal="pressed" from="SocialMediaContainer/Facebook" to="." method="_on_Facebook_pressed"]
