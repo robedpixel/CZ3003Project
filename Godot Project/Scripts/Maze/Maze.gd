@@ -406,6 +406,8 @@ func _on_CombatManager_gameover_signal(value):
 	
 	gameOver = true
 	
+	dialogueManager._show(false)
+	
 	player._lockCharacter(true)
 	
 	var gameOver = load("res://Scenes/Game_Over/Game_Over.tscn").instance()
