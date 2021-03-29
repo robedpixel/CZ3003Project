@@ -38,5 +38,5 @@ func _getSpriteSheet(difficulty):
 		GlobalVariables.RoomEnum.CHALLENGE_ROOM_HARD:
 			return hardFrames
 		_:
-			return null
+			return easyFrames
 			
