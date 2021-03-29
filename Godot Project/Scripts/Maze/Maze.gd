@@ -374,9 +374,9 @@ func _rewardPlayer():
 	
 	match player.attack:
 		2: 
-			attackMultiplier = 1.5
+			attackMultiplier = 2
 		3:
-			attackMultiplier = 1.75
+			attackMultiplier = 3
 		_:
 			pass
 	
