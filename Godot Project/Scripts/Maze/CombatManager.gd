@@ -102,6 +102,8 @@ func _nextQuestion():
 	
 	correctAnswer = question.correct_answer
 	
+	print("ANS : " + str(correctAnswer))
+	
 	combatUI._displayQn()
 
 func _setMonster(monster):
