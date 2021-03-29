@@ -59,11 +59,11 @@ func _process(delta):
 		_on_Popup_popup_hide()
 	
 func displaySlide(no):
-	if (GlobalVariables.world_num == 1):
+	if (GlobalVariables.world_num == 0):
 		var t = Texture.new()
 		t = load(world1dir[no])
 		get_node("Popup/ScrollContainer/RichTextLabel").add_image(t,600,400)
-	elif (GlobalVariables.world_num == 2):
+	elif (GlobalVariables.world_num == 1):
 		var t = Texture.new()
 		t = load(world2dir[no])
 		get_node("Popup/ScrollContainer/RichTextLabel").add_image(t,600,400)
@@ -79,10 +79,10 @@ func _open():
 		
 	isOpen = true
 	get_node("Popup").popup()
-	if (GlobalVariables.world_num == 1):
+	if (GlobalVariables.world_num == 0):
 		get_node("Popup/PageNumber").text = str(defaultPage) + " / " + str(world1dir.size())
 		get_node("Popup/ScrollContainer/RichTextLabel").text = ""
-	elif (GlobalVariables.world_num == 2):
+	elif (GlobalVariables.world_num == 1):
 		get_node("Popup/PageNumber").text = str(defaultPage) + " / " + str(world2dir.size())
 		get_node("Popup/ScrollContainer/RichTextLabel").text = ""
 	else:
@@ -96,10 +96,10 @@ func _open():
 func _on_PreviousPageButton_pressed():
 	if(defaultPage != 1):
 		defaultPage -= 1
-		if (GlobalVariables.world_num == 1):
+		if (GlobalVariables.world_num == 0):
 			get_node("Popup/PageNumber").text = str(defaultPage) + " / " + str(world1dir.size())
 			get_node("Popup/ScrollContainer/RichTextLabel").text = ""
-		elif (GlobalVariables.world_num == 2):
+		elif (GlobalVariables.world_num == 1):
 			get_node("Popup/PageNumber").text = str(defaultPage) + " / " + str(world2dir.size())
 			get_node("Popup/ScrollContainer/RichTextLabel").text = ""
 		else:
@@ -109,13 +109,13 @@ func _on_PreviousPageButton_pressed():
 
 
 func _on_NextPageButton_pressed():
-		if (GlobalVariables.world_num == 1):
+		if (GlobalVariables.world_num == 0):
 			if(defaultPage < world1dir.size()):
 				defaultPage += 1
 				get_node("Popup/PageNumber").text = str(defaultPage) + " / " + str(world1dir.size())
 				get_node("Popup/ScrollContainer/RichTextLabel").text = ""
 				displaySlide(defaultPage-1)
-		elif (GlobalVariables.world_num == 2):
+		elif (GlobalVariables.world_num == 1):
 			if(defaultPage < world2dir.size()):
 				defaultPage += 1
 				get_node("Popup/PageNumber").text = str(defaultPage) + " / " + str(world2dir.size())

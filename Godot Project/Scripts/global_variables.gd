@@ -82,7 +82,7 @@ func post_to_telegram(world_num,score , maze_code,student_name):
 		if(world_num == 0):
 			game_message = "Hey%21+Check+out+my+score+for+Requirement+Analysis.%0AMy+score+is+"+ str(score)+" . %0A%0A - " + student_name
 		elif(world_num == 1):
-			game_message = "Hey%21+Check+out+my+score+for+Requirement+Engineering.%0AMy+score+is+"+ str(score) +" . %0A%0A- " + student_name
+			game_message = "Hey%21+Check+out+my+score+for+Requirement+Elicitation.%0AMy+score+is+"+ str(score) +" . %0A%0A- " + student_name
 		else: print("error")
 	else:
 		var maze_code_string = str(maze_code)
@@ -100,7 +100,7 @@ func post_to_twitter(world_num,score , maze_code,student_name):
 		if(world_num == 0):
 			game_message = "Hey%21+Check+out+my+score+for+Requirement+Analysis.%0AMy+score+is+"+ str(score)+" . %0A%0A - " + student_name
 		elif(world_num == 1):
-			game_message = "Hey%21+Check+out+my+score+for+Requirement+Engineering.%0AMy+score+is+"+ str(score) +" . %0A%0A- " + student_name
+			game_message = "Hey%21+Check+out+my+score+for+Requirement+Elicitation.%0AMy+score+is+"+ str(score) +" . %0A%0A- " + student_name
 		else: print("error")
 	else:
 		var maze_code_string = str(maze_code)
