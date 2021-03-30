@@ -102,6 +102,8 @@ func _nextQuestion():
 	
 	correctAnswer = question.correct_answer
 	
+	print("ANS : " + str(correctAnswer))
+	
 	combatUI._displayQn()
 
 func _setMonster(monster):
@@ -149,9 +151,10 @@ func _onAnswer(ansValue):
 			emit_signal("gameover_signal", false)
 			return
 		if(!isBoss):
-			emit_signal("victory_signal", false, currentMonster.difficulty)
 			combatUI._showDialogue(false)
 			_exitCombat()
+			emit_signal("victory_signal", false, currentMonster.difficulty)
+			
 		else:
 			_nextQuestion()
 

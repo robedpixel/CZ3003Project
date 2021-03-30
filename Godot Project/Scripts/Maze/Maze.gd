@@ -106,7 +106,9 @@ func _initializeMaze():
 	var worldSelected = GlobalVariables.world_num
 	match worldSelected:
 		0:
+			print(mazeDesign._getLayout())
 			mazeDesign._setMaze(GlobalVariables.world_1_map)
+			print(mazeDesign._getLayout())
 		1:
 			mazeDesign._setMaze(GlobalVariables.world_2_map)
 		2:
@@ -117,6 +119,7 @@ func _initializeMaze():
 	var isCustomMaze = GlobalVariables.bool_custom_maze
 	if(isCustomMaze):
 		mazeDesign._setMaze(GlobalVariables.maze_creator_map)
+		
 	elif(!isValidWorld):
 		_initDebugMaze()
 	
@@ -230,6 +233,8 @@ func _loadRoom(x, y):
 	if(adjacentDownRoom <= 0):
 		downDoor._toggleDoor(false)
 	
+	print(roomType)
+	print(mazeDesign._getLayout())
 	# show/hide monsters/shops accordingly
 	match roomType:
 		GlobalVariables.RoomEnum.CHALLENGE_ROOM_EASY: # challenge

@@ -14,7 +14,9 @@ func _ready():
 
 # set the 2d array layout variable
 func _setMaze(newLayout):
-	layout = newLayout
+	for x in range(WIDTH):
+		for y in range(HEIGHT):
+			layout[x][y] = newLayout[x][y]
 
 func _validateLayout():
 	for x in range(WIDTH):
