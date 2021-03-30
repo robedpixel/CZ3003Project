@@ -336,9 +336,9 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="DialogLabel" type="Label" parent="WindowDialog/VBoxContainer"]
-margin_top = 84.0
+margin_top = 83.0
 margin_right = 465.0
-margin_bottom = 124.0
+margin_bottom = 123.0
 size_flags_horizontal = 3
 size_flags_vertical = 6
 custom_fonts/font = ExtResource( 13 )
@@ -347,9 +347,9 @@ align = 1
 autowrap = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="WindowDialog/VBoxContainer"]
-margin_top = 212.0
+margin_top = 211.0
 margin_right = 465.0
-margin_bottom = 261.0
+margin_bottom = 260.0
 size_flags_horizontal = 3
 custom_constants/separation = 20
 alignment = 1
