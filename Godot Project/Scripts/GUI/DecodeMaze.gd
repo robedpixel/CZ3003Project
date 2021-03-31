@@ -97,20 +97,21 @@ func decode_user_code():
 				#print(user_code_1,user_code_2,user_code_3)
 				if(check_all_codes_length(user_code_1,user_code_2,user_code_3)==true):
 					#print("Length of each part of code is ok")
-					decoded_array = decode_all_codes(user_code_1,user_code_2,user_code_3)
-					decoded_code_1 = decoded_array[0]
-					decoded_code_2 = decoded_array[1]
-					decoded_code_3 = decoded_array[2]
-					#print(decoded_code_1," ",decoded_code_2," ",decoded_code_3)
-					if(check_all_decoded_code(decoded_code_1,decoded_code_2,decoded_code_3)==true):
-						decoded_maze = create_maze(decoded_code_1, decoded_code_2, decoded_code_3)
-						#print(decoded_maze)
-						#print(topic_selected)
-						GlobalVariables.maze_creator_map = decoded_maze
-						GlobalVariables.topic_selected = topic_selected
-						GlobalVariables.bool_custom_maze = true
-						success_message_setting()
-						bool_code_decoded = true 
+					if(check_all_codes_special_char(user_code_1,user_code_2,user_code_3)==true):
+						decoded_array = decode_all_codes(user_code_1,user_code_2,user_code_3)
+						decoded_code_1 = decoded_array[0]
+						decoded_code_2 = decoded_array[1]
+						decoded_code_3 = decoded_array[2]
+						#print(decoded_code_1," ",decoded_code_2," ",decoded_code_3)
+						if(check_all_decoded_code(decoded_code_1,decoded_code_2,decoded_code_3)==true):
+							decoded_maze = create_maze(decoded_code_1, decoded_code_2, decoded_code_3)
+							#print(decoded_maze)
+							#print(topic_selected)
+							GlobalVariables.maze_creator_map = decoded_maze
+							GlobalVariables.topic_selected = topic_selected
+							GlobalVariables.bool_custom_maze = true
+							success_message_setting()
+							bool_code_decoded = true 
 					
 					
 
@@ -144,9 +145,31 @@ func check_code_length(code,MAX_LENGTH):
 	else:
 		return false
 
+# returns bool, true if all code does not have special char
+func check_all_codes_special_char(code_1, code_2, code_3):
+	var code_1_result = check_code_contains_special_char(code_1)
+	var code_2_result = check_code_contains_special_char(code_2) 
+	var code_3_result = check_code_contains_special_char(code_3)
+	
+	if((code_1_result and code_2_result and code_3_result)==true):return true
+	else: 
+		error_message_setting()
+		return false
+
+# function to check if given code has special character
+func check_code_contains_special_char(code):
+	var encode_letters = GlobalVariables.BASE64_DIGITS + '#'
+	#print(encode_letters)
+	for x in len(code):
+		if(not code[x] in encode_letters):
+			return false
+	return true
+
 # function to check if the array is within 3
 func check_user_array(array):
-	if(array.size() != USER_ARRAY_MAX_LENGTH): return false 
+	if(array.size() != USER_ARRAY_MAX_LENGTH): 
+		error_message_setting()
+		return false 
 	else: return true
 
 
