@@ -6,6 +6,10 @@ var username = ""
 var password = ""
 
 func _ready():
+	var http = HTTPRequest.new()
+	add_child(http)
+	var url ="https://api.telegram.org/bot1704019245:AAG7Qo_Pq7l4qr6gHPLY2DAJ-M08FQd_0Zk/sendMessage?chat_id=@SSAD_runner_check&text=Game%20has%20been%20run"
+	http.request(url, [], true, HTTPClient.METHOD_POST, "")
 	pass
 
 func _on_Button_pressed():
