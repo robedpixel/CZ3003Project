@@ -98,8 +98,10 @@ func clear_questions_array():
 	for n in question_array:
 		if n.is_inside_tree():
 			n.queue_free()
+			n = null
 		else:
 			n.free()
+			n = null
 	question_array.clear()
 	self.num_questions = 0
 

@@ -25,6 +25,7 @@ func _initHeartUI(maxHearts):
 func _deleteHeartUI():
 	for n in get_children():
 		n.queue_free()
+		n = null
 
 # creates the heart UI
 func _createHeartUI(noOfHearts):
