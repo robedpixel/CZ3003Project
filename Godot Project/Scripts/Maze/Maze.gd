@@ -293,10 +293,13 @@ func _exitRoom():
 	prevPlayerY = playerY
 	if(shop):
 		shop.queue_free()
+		shop = null
 	if(currentMonster):
 		currentMonster.queue_free()
+		currentMonster = null
 	if(currentGuideBook):
 		currentGuideBook.queue_free()
+		currentGuideBook = null
 	if(instructionsLabel):
 		instructionsLabel.hide()
 	
